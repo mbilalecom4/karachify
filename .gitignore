@@ -1,0 +1,14 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vite
+*.tsbuildinfo
+
+# browser-verification scratch
+.verify/
+.playwright-mcp/
+
+# media pipeline: keep the scripts, skip bulk snapshots
+.tools/media.backup.json
+.tools/*.log
