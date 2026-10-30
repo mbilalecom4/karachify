@@ -241,7 +241,7 @@ export default function EventDetail() {
                 />
               </div>
               <p className="mt-2 text-[13px] text-navy-500">
-                Approximate demo coordinates: {coordText(event.lat, event.lng)}. {area && (
+                Approximate position, derived from the venue area centre: {coordText(event.lat, event.lng)}. {area && (
                   <Link to={`/area/${area.slug}`} className="link">
                     See what else is in {area.name}
                   </Link>

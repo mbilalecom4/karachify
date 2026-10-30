@@ -68,11 +68,20 @@ export function ListingCard({
         <MapPin className="h-3.5 w-3.5 shrink-0 text-teal-500" />
         {showArea ? area?.name ?? 'Karachi' : 'Karachi'}
       </span>
-      <span className="inline-flex items-center gap-1">
-        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-        {listing.rating.toFixed(1)}
-        <span className="text-navy-400">({plural(listing.reviewCount, 'demo review', 'demo reviews')})</span>
-      </span>
+      {listing.rating != null ? (
+        <span className="inline-flex items-center gap-1">
+          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+          {listing.rating.toFixed(1)}
+          {listing.reviewCount != null && (
+            <span className="text-navy-400">({plural(listing.reviewCount, 'verified review', 'verified reviews')})</span>
+          )}
+        </span>
+      ) : (
+        <span className="inline-flex items-center gap-1 text-navy-400">
+          <Star className="h-3.5 w-3.5" />
+          Rating not verified
+        </span>
+      )}
       {listing.priceRange && <span>{priceLabel(listing.priceRange)}</span>}
     </>
   );

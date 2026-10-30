@@ -134,7 +134,7 @@ export function StatusBadge({ status, className = '' }: { status: 'demo' | 'veri
 
 export function Stars({ value, size = 14, showValue = true }: { value: number; size?: number; showValue?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-1" title={`${value.toFixed(1)} out of 5 (demo rating)`}>
+    <span className="inline-flex items-center gap-1" title={`${value.toFixed(1)} out of 5`}>
       <span className="inline-flex">
         {[0, 1, 2, 3, 4].map((i) => {
           const fill = Math.max(0, Math.min(1, value - i));

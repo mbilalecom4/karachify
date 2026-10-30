@@ -22,16 +22,20 @@ export function useListingSort(items: Listing[], sort: SortKey) {
     const list = [...items];
     switch (sort) {
       case 'rating':
-        return list.sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount);
+        return list.sort(
+          (a, b) =>
+            (b.rating ?? 0) - (a.rating ?? 0) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name)
+        );
       case 'reviews':
-        return list.sort((a, b) => b.reviewCount - a.reviewCount);
+        return list.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name));
       case 'az':
         return list.sort((a, b) => a.name.localeCompare(b.name));
       case 'area':
-        return list.sort((a, b) => a.areaId.localeCompare(b.areaId) || b.rating - a.rating);
+        return list.sort((a, b) => a.areaId.localeCompare(b.areaId) || (b.rating ?? 0) - (a.rating ?? 0));
       default:
         return list.sort(
-          (a, b) => Number(b.featured || b.promoted) - Number(a.featured || a.promoted) || b.rating - a.rating
+          (a, b) =>
+            Number(b.featured || b.promoted) - Number(a.featured || a.promoted) || (b.rating ?? 0) - (a.rating ?? 0)
         );
     }
   }, [items, sort]);

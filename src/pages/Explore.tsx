@@ -24,8 +24,14 @@ export default function Explore() {
   );
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
-  const popular = useMemo(
-    () => [...listings].sort((a, b) => b.reviewCount - a.reviewCount).slice(0, 12),
+  const featuredFirst = useMemo(
+    () =>
+      [...listings]
+        .sort(
+          (a, b) =>
+            Number(b.featured) - Number(a.featured) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name)
+        )
+        .slice(0, 12),
     [listings]
   );
 
@@ -94,16 +100,16 @@ export default function Explore() {
 
       <section className="shell section">
         <SectionHeading
-          eyebrow="Popular right now"
-          title="Most-visited demo listings"
-          sub="Ranked by demo review volume — a quick way to see how the cards, filters and detail pages behave."
+          eyebrow="Start here"
+          title="Featured Karachi places"
+          sub="An editorial shortlist, not a visitor-count ranking — Karachify publishes no traffic or popularity figures it cannot source."
           action={
             <Link to="/search?q=karachi" className="btn-outline btn-sm">
               Search everything <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           }
         />
-        <ListingExplorer items={popular} pageSize={12} />
+        <ListingExplorer items={featuredFirst} pageSize={12} />
       </section>
 
       {upcoming.length > 0 && (

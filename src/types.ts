@@ -98,7 +98,7 @@ export interface Listing {
   /** Candidate Wikipedia/Commons article titles used to source a real Karachi photo */
   wiki?: string[];
   address: string;
-  /** Approximate demo coordinates — never presented as verified */
+  /** Position for the map: verified when coordsVerified is set, otherwise derived from the area centre. */
   lat: number;
   lng: number;
   phone?: string;
@@ -108,13 +108,18 @@ export interface Listing {
   priceRange?: 'Free' | '$' | '$$' | '$$$' | 'Demo';
   cuisine?: string[];
   facilities: string[];
-  rating: number;
-  reviewCount: number;
+  /** Only ever set from a verified source; absent means "no rating", not "unrated by visitors". */
+  rating?: number;
+  reviewCount?: number;
   tags: string[];
   featured: boolean;
   promoted: boolean;
   status: VerificationStatus;
   sourceUrl?: string;
+  /** Date the verified fields below were last checked against their source. */
+  lastVerified?: string;
+  /** True only when lat/lng came from a real geocode, not from the area-centre jitter. */
+  coordsVerified?: boolean;
   createdAt: string;
 }
 

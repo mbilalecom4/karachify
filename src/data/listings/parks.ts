@@ -17,8 +17,6 @@ export const parksAndBeaches = [
     facilities: ['Open lawns', 'Stadium', 'Parking', 'Kite flying', 'Family picnics'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.1,
-    reviewCount: 890,
     tags: ['Park', 'Cricket', 'Free', 'Kite flying'],
     featured: true,
   }),
@@ -34,8 +32,6 @@ export const parksAndBeaches = [
     facilities: ['Lake', 'Amusement rides', 'Maze', 'Viewpoint', 'Ticketed entry'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.0,
-    reviewCount: 1200,
     tags: ['Park', 'Kids', 'Rides', 'Viewpoint'],
   }),
   makeListing({
@@ -50,8 +46,6 @@ export const parksAndBeaches = [
     facilities: ['Garden', 'Lake', 'Play area', 'Ticketed entry', 'Seating'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.0,
-    reviewCount: 540,
     tags: ['Garden', 'Quiet', 'Kids', 'Heritage'],
   }),
   makeListing({
@@ -66,8 +60,6 @@ export const parksAndBeaches = [
     facilities: ['Water rides', 'Wave pool', 'Coaster', 'Food court', 'Ticketed entry'],
     priceRange: '$$',
     hours: [{ day: 'Tuesday – Sunday', open: '11:00 – 20:00 (demo timing)' }],
-    rating: 4.2,
-    reviewCount: 2100,
     tags: ['Theme park', 'Water park', 'Kids', 'Summer'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Ocean_Park,_Karachi',
@@ -84,8 +76,6 @@ export const parksAndBeaches = [
     facilities: ['Walking path', 'Play area', 'Benches', 'Free entry'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 3.9,
-    reviewCount: 210,
     tags: ['Park', 'Walking', 'Free', 'Evening'],
   }),
   makeListing({
@@ -100,8 +90,6 @@ export const parksAndBeaches = [
     facilities: ['Beach access', 'Play area', 'Aquarium', 'Walking track', 'Ticketed entry'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.0,
-    reviewCount: 980,
     tags: ['Beach', 'Park', 'Family', 'Evening'],
   }),
   makeListing({
@@ -116,8 +104,6 @@ export const parksAndBeaches = [
     facilities: ['Formal lawns', 'Fountains', 'Walkways', 'Free entry', 'Lighting'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.4,
-    reviewCount: 640,
     tags: ['Garden', 'Walking', 'Free', 'Landmark'],
   }),
   makeListing({
@@ -132,8 +118,6 @@ export const parksAndBeaches = [
     facilities: ['Jogging loop', 'Green belt', 'Cricket ground', 'Free entry'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.3,
-    reviewCount: 320,
     tags: ['Running', 'Park', 'Free', 'Evening'],
   }),
   makeListing({
@@ -148,8 +132,6 @@ export const parksAndBeaches = [
     facilities: ['Walking path', 'Outdoor gym', 'Children\'s area', 'Free entry'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.1,
-    reviewCount: 240,
     tags: ['Park', 'Walking', 'Free'],
   }),
   makeListing({
@@ -164,8 +146,6 @@ export const parksAndBeaches = [
     facilities: ['Gardens', 'Picnic lawns', 'Boating', 'Ticketed entry', 'Parking'],
     priceRange: '$',
     hours: parkHours,
-    rating: 3.9,
-    reviewCount: 410,
     tags: ['Garden', 'Picnic', 'Weekend', 'Boating'],
   }),
   makeListing({
@@ -180,8 +160,6 @@ export const parksAndBeaches = [
     facilities: ['Beach access', 'Resort', 'Food shacks', 'Parking', 'Changing rooms'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.2,
-    reviewCount: 760,
     tags: ['Beach', 'Weekend', 'Family', 'Sunset'],
     featured: true,
   }),
@@ -197,8 +175,6 @@ export const parksAndBeaches = [
     facilities: ['Beach', 'Seafood huts', 'Kite flying', 'Parking'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.1,
-    reviewCount: 520,
     tags: ['Beach', 'Seafood', 'Kite flying'],
   }),
   makeListing({
@@ -213,8 +189,6 @@ export const parksAndBeaches = [
     facilities: ['Promenade', 'Viewpoints', 'Food stalls', 'Museum', 'Parking'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.0,
-    reviewCount: 480,
     tags: ['Coastline', 'Evening', 'Free', 'Walk'],
   }),
   makeListing({
@@ -229,8 +203,6 @@ export const parksAndBeaches = [
     facilities: ['Beach', 'Village', 'Fish market', 'Boats'],
     priceRange: '$',
     hours: parkHours,
-    rating: 4.1,
-    reviewCount: 160,
     tags: ['Beach', 'Quiet', 'Fishing village'],
   }),
   makeListing({
@@ -245,8 +217,6 @@ export const parksAndBeaches = [
     facilities: ['Viewpoint', 'Park path', 'Photography', 'Free entry'],
     priceRange: 'Free',
     hours: parkHours,
-    rating: 4.3,
-    reviewCount: 300,
     tags: ['Sunset', 'Viewpoint', 'Free'],
   }),
   makeListing({
@@ -261,8 +231,6 @@ export const parksAndBeaches = [
     facilities: ['Birding', 'Mangroves', 'Boat access', 'No facilities'],
     priceRange: 'Free',
     hours: [{ day: 'Daylight only', open: '06:00 – 18:00 (demo timing)' }],
-    rating: 4.0,
-    reviewCount: 140,
     tags: ['Nature', 'Birding', 'Mangrove'],
   }),
 ];

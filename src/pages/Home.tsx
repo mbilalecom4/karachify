@@ -69,7 +69,7 @@ export default function Home() {
   const byCategory = (id: string, n: number, featuredFirst = true) =>
     listings
       .filter((l) => l.categoryId === id)
-      .sort((a, b) => Number(featuredFirst && b.featured) - Number(featuredFirst && a.featured) || b.rating - a.rating)
+      .sort((a, b) => Number(featuredFirst && b.featured) - Number(featuredFirst && a.featured) || (b.rating ?? 0) - (a.rating ?? 0))
       .slice(0, n);
 
   const restaurants = byCategory('restaurants-cafes', 4);

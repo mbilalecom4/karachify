@@ -21,8 +21,6 @@ export const shopping = [
     facilities: ['Anchor retailers', 'Food court', 'Cinema', 'Ice rink', 'Basement parking'],
     priceRange: '$$',
     hours: mallHours,
-    rating: 4.4,
-    reviewCount: 3200,
     tags: ['Mall', 'Brands', 'Cinema', 'Family'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Dolmen_Mall_Clifton',
@@ -39,8 +37,6 @@ export const shopping = [
     facilities: ['Brands', 'Food court', 'Cinema', 'Parking'],
     priceRange: '$$',
     hours: mallHours,
-    rating: 4.3,
-    reviewCount: 1600,
     tags: ['Mall', 'Brands', 'Family'],
   }),
   makeListing({
@@ -55,8 +51,6 @@ export const shopping = [
     facilities: ['Hypermarket', 'Amusement park', 'Cinema', 'Food court', 'Large parking'],
     priceRange: '$$',
     hours: mallHours,
-    rating: 4.4,
-    reviewCount: 2800,
     tags: ['Mega mall', 'Kids', 'Hypermarket'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Lucky_One_Mall',
@@ -73,8 +67,6 @@ export const shopping = [
     facilities: ['Brands', 'Food court', 'Cinema', 'Parking'],
     priceRange: '$$',
     hours: mallHours,
-    rating: 4.1,
-    reviewCount: 430,
     tags: ['Mall', 'Saddar', 'Cinema'],
   }),
   makeListing({
@@ -89,8 +81,6 @@ export const shopping = [
     facilities: ['Grocery', 'Pharmacy', 'Restaurants', 'Parking'],
     priceRange: '$$',
     hours: mallHours,
-    rating: 4.2,
-    reviewCount: 380,
     tags: ['Mall', 'Grocery', 'Neighbourhood'],
   }),
   makeListing({
@@ -105,8 +95,6 @@ export const shopping = [
     facilities: ['Covered lanes', 'Wholesale rates', 'Fabric', 'Jewellery'],
     priceRange: '$',
     hours: [{ day: 'Monday – Saturday', open: '10:00 – 20:00 (demo timing)' }],
-    rating: 4.2,
-    reviewCount: 620,
     tags: ['Bazaar', 'Fabric', 'Bargaining', 'Wholesale'],
   }),
   makeListing({
@@ -121,8 +109,6 @@ export const shopping = [
     facilities: ['Boutiques', 'Tailors', 'Shoe stores', 'Street parking'],
     priceRange: '$$',
     hours: [{ day: 'Monday – Saturday', open: '11:00 – 22:30 (demo timing)' }],
-    rating: 4.1,
-    reviewCount: 240,
     tags: ['High street', 'Boutiques', 'Tailoring'],
   }),
   makeListing({
@@ -137,8 +123,6 @@ export const shopping = [
     facilities: ['Stall rows', 'Electronics', 'Spare parts', 'Cash only'],
     priceRange: '$',
     hours: [{ day: 'Monday – Saturday', open: '10:00 – 19:00 (demo timing)' }],
-    rating: 4.0,
-    reviewCount: 310,
     tags: ['Second hand', 'Electronics', 'Bargaining'],
   }),
   makeListing({
@@ -153,8 +137,6 @@ export const shopping = [
     facilities: ['Wholesale', 'Timber', 'Leather', 'Cut-to-size'],
     priceRange: '$',
     hours: [{ day: 'Monday – Saturday', open: '09:30 – 18:30 (demo timing)' }],
-    rating: 4.0,
-    reviewCount: 120,
     tags: ['Trade', 'Wholesale', 'Materials'],
   }),
   makeListing({
@@ -169,8 +151,6 @@ export const shopping = [
     facilities: ['Fruit and vegetable', 'Grocery', 'Laundry', 'Evening footpath'],
     priceRange: '$',
     hours: [{ day: 'Every day', open: '08:00 – 22:00 (demo timing)' }],
-    rating: 4.1,
-    reviewCount: 260,
     tags: ['Neighbourhood market', 'Grocery', 'Fruit'],
   }),
   makeListing({
@@ -185,8 +165,6 @@ export const shopping = [
     facilities: ['Repairs', 'Accessories', 'Wholesale', 'Card payment'],
     priceRange: '$$',
     hours: [{ day: 'Monday – Saturday', open: '11:00 – 21:00 (demo timing)' }],
-    rating: 4.0,
-    reviewCount: 540,
     tags: ['Electronics', 'Repairs', 'Accessories'],
   }),
   makeListing({
@@ -201,8 +179,6 @@ export const shopping = [
     facilities: ['Wholesale only', 'Cold storage', 'Loading bays', 'Crate hire'],
     priceRange: '$',
     hours: [{ day: 'Every day', open: '02:00 – 12:00 (demo timing)' }],
-    rating: 3.9,
-    reviewCount: 180,
     tags: ['Wholesale', 'Produce', 'Early morning'],
   }),
 ];

@@ -19,8 +19,6 @@ export const dining = [
     facilities: ['Family seating', 'Private room', 'Parking', 'Card payment'],
     priceRange: '$$',
     hours: allDay,
-    rating: 4.4,
-    reviewCount: 1820,
     tags: ['Family', 'Dinner', 'Mughlai', 'Platters'],
     featured: true,
   }),
@@ -37,8 +35,6 @@ export const dining = [
     facilities: ['Family hall', 'Parking', 'Heritage interiors'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.2,
-    reviewCount: 1240,
     tags: ['Old school', 'Steak', 'Seafood'],
   }),
   makeListing({
@@ -54,8 +50,6 @@ export const dining = [
     facilities: ['Late night', 'Family seating', 'Takeaway'],
     priceRange: '$',
     hours: evening,
-    rating: 4.3,
-    reviewCount: 2640,
     tags: ['Biryani', 'Late night', 'Budget', 'Heritage'],
     featured: true,
   }),
@@ -72,8 +66,6 @@ export const dining = [
     facilities: ['Set lunch', 'Takeaway', 'Tandoor'],
     priceRange: '$',
     hours: allDay,
-    rating: 4.1,
-    reviewCount: 430,
     tags: ['Kabab', 'Lunch', 'Budget'],
   }),
   makeListing({
@@ -89,8 +81,6 @@ export const dining = [
     facilities: ['Counter ordering', 'Takeaway', 'Cash only'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.2,
-    reviewCount: 780,
     tags: ['Seafood', 'Prawns', 'Evening'],
   }),
   makeListing({
@@ -106,8 +96,6 @@ export const dining = [
     facilities: ['Late night', 'Tandoor', 'Floor seating'],
     priceRange: '$',
     hours: evening,
-    rating: 4.0,
-    reviewCount: 510,
     tags: ['Kabab', 'Budget', 'Late night'],
   }),
   makeListing({
@@ -123,8 +111,6 @@ export const dining = [
     facilities: ['Breakfast service', 'Takeaway', 'Family hall'],
     priceRange: '$',
     hours: [{ day: 'Every day', open: '07:00 – 15:00 (demo timing)' }],
-    rating: 4.2,
-    reviewCount: 640,
     tags: ['Breakfast', 'Nihari', 'Heritage'],
   }),
   makeListing({
@@ -140,8 +126,6 @@ export const dining = [
     facilities: ['Outdoor seating', 'Late night', 'Cash only'],
     priceRange: '$',
     hours: evening,
-    rating: 4.3,
-    reviewCount: 320,
     tags: ['Chai', 'Snacks', 'Late night', 'Budget'],
   }),
   makeListing({
@@ -157,8 +141,6 @@ export const dining = [
     facilities: ['All-day breakfast', 'Mithai counter', 'Late night'],
     priceRange: '$',
     hours: [{ day: 'Every day', open: '06:30 – 01:00 (demo timing)' }],
-    rating: 4.1,
-    reviewCount: 470,
     tags: ['Breakfast', 'Halwa puri', 'Budget'],
   }),
   makeListing({
@@ -174,8 +156,6 @@ export const dining = [
     facilities: ['Takeaway', 'Bulk orders', 'Parking'],
     priceRange: '$',
     hours: allDay,
-    rating: 4.0,
-    reviewCount: 360,
     tags: ['Biryani', 'Budget', 'East Karachi'],
   }),
   makeListing({
@@ -191,8 +171,6 @@ export const dining = [
     facilities: ['Waterfront seating', 'Daily catch', 'Family hall'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.1,
-    reviewCount: 620,
     tags: ['Seafood', 'Waterfront', 'Evening'],
   }),
   makeListing({
@@ -208,8 +186,6 @@ export const dining = [
     facilities: ['Wi-Fi', 'Outdoor seating', 'Card payment', 'Work-friendly'],
     priceRange: '$$',
     hours: allDay,
-    rating: 4.4,
-    reviewCount: 290,
     tags: ['Cafe', 'Chai', 'Work spot'],
   }),
   makeListing({
@@ -225,8 +201,6 @@ export const dining = [
     facilities: ['Wi-Fi', 'Study tables', 'Patio', 'Card payment'],
     priceRange: '$$',
     hours: allDay,
-    rating: 4.5,
-    reviewCount: 210,
     tags: ['Coffee', 'Brunch', 'Study'],
   }),
   makeListing({
@@ -242,8 +216,6 @@ export const dining = [
     facilities: ['Outdoor tables', 'Breakfast', 'Delivery', 'Card payment'],
     priceRange: '$$',
     hours: allDay,
-    rating: 4.3,
-    reviewCount: 480,
     tags: ['Breakfast', 'Casual', 'Outdoor'],
   }),
   makeListing({
@@ -259,8 +231,6 @@ export const dining = [
     facilities: ['Sea view', 'Private room', 'Parking', 'Family hall'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.0,
-    reviewCount: 700,
     tags: ['Sea view', 'Family', 'Dinner'],
   }),
   makeListing({
@@ -276,8 +246,6 @@ export const dining = [
     facilities: ['Tandoor', 'Takeaway', 'Family seating'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.1,
-    reviewCount: 380,
     tags: ['Tikka', 'Tandoor', 'Dinner'],
   }),
   makeListing({
@@ -293,8 +261,6 @@ export const dining = [
     facilities: ['Floor seating', 'Family hall', 'Late night'],
     priceRange: '$',
     hours: evening,
-    rating: 4.2,
-    reviewCount: 560,
     tags: ['Chapli kabab', 'Karahi', 'Budget'],
   }),
   makeListing({
@@ -310,8 +276,6 @@ export const dining = [
     facilities: ['Counter service', 'Gift boxes', 'Takeaway'],
     priceRange: '$',
     hours: allDay,
-    rating: 4.3,
-    reviewCount: 250,
     tags: ['Sweets', 'Namkeen', 'Gifting'],
   }),
   makeListing({
@@ -327,8 +291,6 @@ export const dining = [
     facilities: ['Delivery', 'Takeaway', 'Family seating', 'Card payment'],
     priceRange: '$',
     hours: evening,
-    rating: 4.0,
-    reviewCount: 890,
     tags: ['Pizza', 'Delivery', 'Kids'],
   }),
   makeListing({
@@ -344,8 +306,6 @@ export const dining = [
     facilities: ['Takeaway', 'Late night', 'Delivery'],
     priceRange: '$$',
     hours: evening,
-    rating: 4.2,
-    reviewCount: 210,
     tags: ['Burger', 'Late night'],
   }),
   makeListing({
@@ -361,8 +321,6 @@ export const dining = [
     facilities: ['Outdoor seating', 'Family', 'Takeaway'],
     priceRange: '$',
     hours: evening,
-    rating: 4.4,
-    reviewCount: 330,
     tags: ['Dessert', 'Kulfi', 'Evening'],
   }),
   makeListing({
@@ -378,8 +336,6 @@ export const dining = [
     facilities: ['Roadside counter', 'Late night', 'Cash only'],
     priceRange: '$',
     hours: evening,
-    rating: 4.3,
-    reviewCount: 180,
     tags: ['Taftri', 'Chai', 'Budget'],
   }),
   makeListing({
@@ -395,8 +351,6 @@ export const dining = [
     facilities: ['Set lunch', 'Tiffin service', 'Fast seating'],
     priceRange: '$',
     hours: [{ day: 'Monday – Saturday', open: '11:30 – 16:30 (demo timing)' }],
-    rating: 4.1,
-    reviewCount: 240,
     tags: ['Lunch', 'Budget', 'Home style'],
   }),
   makeListing({
@@ -412,8 +366,6 @@ export const dining = [
     facilities: ['Pre-order', 'Family hall', 'Private room'],
     priceRange: '$$$',
     hours: evening,
-    rating: 4.5,
-    reviewCount: 150,
     tags: ['Shinzozi', 'Special occasion', 'Pre-order'],
   }),
 ];

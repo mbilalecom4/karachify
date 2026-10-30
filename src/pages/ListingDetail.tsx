@@ -26,7 +26,6 @@ import {
 import type { DetailLayout, Listing } from '../types';
 import { actions, prefsFor, reviewsFor, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { imageFor, placeholderImage } from '../lib/media';
-import { demoReviews, REVIEW_DISCLAIMER } from '../lib/reviews';
 import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { KarachifyMap } from '../components/KarachifyMap';
@@ -121,16 +120,13 @@ export default function ListingDetail() {
       listing
         ? listings
             .filter((l) => l.id !== listing.id && l.categoryId === listing.categoryId)
-            .sort((a, b) => Number(b.featured) - Number(a.featured) || b.rating - a.rating)
+            .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.rating ?? 0) - (a.rating ?? 0))
             .slice(0, 4)
         : [],
     [listings, listing]
   );
 
-  const reviews = useMemo(
-    () => (listing ? [...reviewsFor(db, listing.id), ...demoReviews(listing)] : []),
-    [db, listing]
-  );
+  const reviews = useMemo(() => (listing ? reviewsFor(db, listing.id) : []), [db, listing]);
 
   if (!listing) {
     return (
@@ -184,10 +180,16 @@ export default function ListingDetail() {
           <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold leading-tight text-white sm:text-[40px]">{listing.name}</h1>
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-navy-100">{listing.tagline}</p>
           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-100">
-            <span className="inline-flex items-center gap-1.5">
-              <Stars value={listing.rating} />
-              <span className="text-navy-200">({plural(listing.reviewCount, 'demo review', 'demo reviews')})</span>
-            </span>
+            {listing.rating != null ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Stars value={listing.rating} />
+                <span className="text-navy-200">({plural(listing.reviewCount ?? 0, 'verified review', 'verified reviews')})</span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[13px] text-navy-200">
+                <Star className="h-3.5 w-3.5" /> No verified rating for this place
+              </span>
+            )}
             <Link to={`/area/${area?.slug ?? 'areas'}`} className="inline-flex items-center gap-1.5 hover:text-teal-200">
               <MapPin className="h-4 w-4 text-teal-300" />
               {area?.name ?? 'Karachi'}, Karachi
@@ -332,33 +334,48 @@ export default function ListingDetail() {
             )}
 
             <article>
-              <h2 className="section-title mb-3">Reviews</h2>
-              <Note>{REVIEW_DISCLAIMER}</Note>
-              <div className="mt-4 flex flex-wrap items-center gap-4 rounded-xl border border-navy-100 bg-white p-4">
-                <div>
-                  <p className="font-display text-3xl font-extrabold text-navy-800">{listing.rating.toFixed(1)}</p>
-                  <Stars value={listing.rating} showValue={false} />
+              <h2 className="section-title mb-3">Visitor reviews</h2>
+              <Note>
+                Karachify does not invent reviews. Nothing appears here until a visitor actually writes one — the sample
+                ratings this build used to generate have been removed, and a verified public rating appears only when a
+                source for it exists.
+              </Note>
+              {listing.rating != null && (
+                <div className="mt-4 flex flex-wrap items-center gap-4 rounded-xl border border-navy-100 bg-white p-4">
+                  <div>
+                    <p className="font-display text-3xl font-extrabold text-navy-800">{listing.rating.toFixed(1)}</p>
+                    <Stars value={listing.rating} showValue={false} />
+                  </div>
+                  <p className="text-sm text-navy-500">
+                    Verified rating from {plural(listing.reviewCount ?? 0, 'recorded review', 'recorded reviews')}.
+                    {listing.lastVerified && ` Checked ${listing.lastVerified}.`}
+                  </p>
                 </div>
-                <p className="text-sm text-navy-500">
-                  Based on {plural(listing.reviewCount, 'sample rating', 'sample ratings')} generated for this showcase.
-                  {reviewsFor(db, listing.id).length > 0 && ` You have added ${plural(reviewsFor(db, listing.id).length, 'review')} locally.`}
+              )}
+              {reviews.length === 0 ? (
+                <p className="mt-4 rounded-xl border border-dashed border-navy-200 bg-navy-50/60 p-4 text-sm text-navy-500">
+                  No visitor reviews yet for {listing.name}. If you have been, yours would be the first — it is stored on
+                  this device until Karachify has a real review backend.
                 </p>
-              </div>
-              <ul className="mt-4 space-y-3">
-                {reviews.slice(0, 4).map((r) => (
-                  <li key={r.id} className="card p-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-semibold text-navy-800">{r.author}</p>
-                      <span className="flex items-center gap-2">
-                        <Stars value={r.rating} showValue={false} />
-                        <span className="text-[13px] text-navy-400">{r.date}</span>
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-600">{r.text}</p>
-                    {r.demo && <p className="mt-2 text-[12px] font-semibold uppercase tracking-wide text-amber-600">Sample review</p>}
-                  </li>
-                ))}
-              </ul>
+              ) : (
+                <ul className="mt-4 space-y-3">
+                  {reviews.slice(0, 8).map((r) => (
+                    <li key={r.id} className="card p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-semibold text-navy-800">{r.author}</p>
+                        <span className="flex items-center gap-2">
+                          <Stars value={r.rating} showValue={false} />
+                          <span className="text-[13px] text-navy-400">{r.date}</span>
+                        </span>
+                      </div>
+                      <p className="mt-2 text-sm leading-relaxed text-navy-600">{r.text}</p>
+                      <p className="mt-2 text-[12px] font-semibold uppercase tracking-wide text-navy-400">
+                        Written on this device
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <AddReview listingId={listing.id} name={listing.name} />
             </article>
 
@@ -380,10 +397,12 @@ export default function ListingDetail() {
                       </Link>
                     </>
                   )}
+                  {!listing.lastVerified && (
+                    <span className="mt-0.5 block text-[12px] text-navy-400">Not yet checked against an official source.</span>
+                  )}
                 </Row>
                 <Row icon={<Phone className="h-4 w-4" />} label="Phone">
-                  {listing.phone ?? 'Not published'}
-                  <span className="mt-0.5 block text-[12px] text-navy-400">Demo value — verify before calling.</span>
+                  {listing.phone ?? <span className="text-navy-400">No published number for this record.</span>}
                 </Row>
                 {listing.website && (
                   <Row icon={<ExternalLink className="h-4 w-4" />} label="Website">
@@ -393,16 +412,23 @@ export default function ListingDetail() {
                   </Row>
                 )}
                 <Row icon={<CalendarClock className="h-4 w-4" />} label="Opening hours">
-                  <ul className="space-y-1">
-                    {(listing.hours ?? []).map((h) => (
-                      <li key={h.day} className="flex justify-between gap-3">
-                        <span className="text-navy-500">{h.day}</span>
-                        <span className="font-medium text-navy-800">{h.open}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {!listing.hours?.length && <span className="text-navy-400">No timings recorded.</span>}
-                  <span className="mt-1 block text-[12px] text-navy-400">Timings are demo values unless verified.</span>
+                  {listing.hours?.length ? (
+                    <>
+                      <ul className="space-y-1">
+                        {listing.hours.map((h) => (
+                          <li key={h.day} className="flex justify-between gap-3">
+                            <span className="text-navy-500">{h.day}</span>
+                            <span className="font-medium text-navy-800">{h.open}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="mt-1 block text-[12px] text-navy-400">
+                        {listing.lastVerified ? `Checked against a source on ${listing.lastVerified}.` : 'Not verified against an official source — confirm before travelling.'}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-navy-400">Opening hours have not been verified for this place.</span>
+                  )}
                 </Row>
               </dl>
               <div className="mt-4 grid gap-2">
@@ -426,15 +452,22 @@ export default function ListingDetail() {
               </div>
               <p className="mt-3 text-[13px] leading-relaxed text-navy-500">
                 {listing.status === 'verified'
-                  ? 'This record describes a well-known Karachi place. The photograph and any linked page are attributed; timings, prices and phone numbers are still demo values.'
-                  : 'This is a realistic sample record created for the showcase. Do not treat its address, phone number, prices or timings as fact.'}
+                  ? 'Verified against the sources listed here, including coordinates and opening hours. Anything the source did not state is left blank rather than guessed.'
+                  : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
               </p>
               {listing.sourceUrl && (
                 <a href={listing.sourceUrl} target="_blank" rel="noopener noreferrer" className="link mt-2 inline-flex items-center gap-1 text-[13px]">
                   Read the source <ExternalLink className="h-3 w-3" />
                 </a>
               )}
-              <p className="mt-3 text-[12px] text-navy-400">Approximate demo coordinates: {coordText(listing.lat, listing.lng)}</p>
+              <p className="mt-3 text-[12px] text-navy-400">
+                {listing.coordsVerified
+                  ? `Map position verified via OpenStreetMap: ${coordText(listing.lat, listing.lng)}`
+                  : `Approximate position, derived from the area centre — not a surveyed location: ${coordText(listing.lat, listing.lng)}`}
+              </p>
+              {listing.lastVerified && (
+                <p className="mt-1 text-[12px] text-navy-400">Fields on this page last verified {listing.lastVerified}.</p>
+              )}
               <button className="btn-outline btn-sm mt-3 w-full" onClick={() => setClaimOpen(true)}>
                 <Handshake className="h-3.5 w-3.5" /> Claim this business
               </button>
@@ -447,7 +480,7 @@ export default function ListingDetail() {
       {nearby.length > 0 && (
         <section className="bg-white py-12">
           <div className="shell">
-            <SectionHeading eyebrow={`${area?.name ?? 'This area'}`} title="Nearby in the dataset" sub="Sorted by straight-line distance between approximate demo coordinates." />
+            <SectionHeading eyebrow={`${area?.name ?? 'This area'}`} title="Nearby in the dataset" sub="Straight-line distance between the map positions recorded for each place." />
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {nearby.map(({ l, distance: d }) => (
                 <div key={l.id}>

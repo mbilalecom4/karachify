@@ -54,7 +54,7 @@ export function buildIndex(db: DB): SearchDoc[] {
           .filter(Boolean)
           .join(' ')
       ),
-      weight: (l.featured ? 3 : 0) + (l.promoted ? 2 : 0) + Math.min(2, l.reviewCount / 400),
+      weight: (l.featured ? 3 : 0) + (l.promoted ? 2 : 0) + Math.min(2, (l.reviewCount ?? 0) / 400),
     })),
     ...events.map((e) => ({
       type: 'event' as const,

@@ -191,7 +191,7 @@ function Overview() {
     { label: 'Events', value: events.length, hint: `${events.filter((e) => new Date(`${e.date}T00:00:00`) >= new Date()).length} dated today or later` },
     { label: 'Pending submissions', value: pending.length, hint: 'waiting on moderation' },
     { label: 'Areas', value: areas.length, hint: `${categories.length} categories` },
-    { label: 'Resident reviews', value: db.reviews.length, hint: 'plus seeded demo reviews' },
+    { label: 'Resident reviews', value: db.reviews.length, hint: 'written on this device' },
     { label: 'Resolved photographs', value: resolvedMediaCount, hint: 'Wikimedia hotlinks with attribution' },
   ];
 
