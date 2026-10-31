@@ -30,7 +30,7 @@ import { actions, prefsFor, reviewsFor, selectAreas, selectCategories, selectLis
 import { imageFor, placeholderImage } from '../lib/media';
 import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
-import { KarachifyMap } from '../components/KarachifyMap';
+import { LazyMap } from '../components/LazyMap';
 import { Note } from '../components/Page';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 import {
@@ -687,7 +687,7 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
     <article>
       <h2 className="section-title mb-3">Location</h2>
       <div className="card overflow-hidden p-2">
-        <KarachifyMap points={points} compact interactive className="h-[300px] w-full" />
+        <LazyMap points={points} compact interactive className="h-[300px] w-full" />
       </div>
       <p className="mt-2 text-[13px] leading-relaxed text-navy-500">
         {listing.coordsVerified
