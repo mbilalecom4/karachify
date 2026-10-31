@@ -6,7 +6,8 @@
     "docs/verification/batch-b-museums.json",
     "docs/verification/batch-f-practical.json",
     "docs/verification/batch-g-institutions.json",
-    "docs/verification/batch-h-emergency.json"
+    "docs/verification/batch-h-emergency.json",
+    "docs/verification/batch-i-around-the-clock.json"
   ],
   "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
   "records": {
@@ -1560,7 +1561,8 @@
       "lastVerified": "2026-10-31",
       "confidence": "verified",
       "batches": [
-        "batch-g-institutions"
+        "batch-g-institutions",
+        "batch-i-around-the-clock"
       ],
       "published": [
         "lat",
@@ -1569,6 +1571,7 @@
         "sourceUrl",
         "osmId",
         "lastVerified",
+        "hours",
         "website",
         "phone",
         "email"
@@ -1610,10 +1613,17 @@
           ],
           "note": "",
           "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://hospitals.aku.edu/pakistan/others/departments/department-of-emergency-services/department-of-emergency-medicine",
+          "supports": [
+            "hours"
+          ],
+          "note": "",
+          "batch": "batch-i-around-the-clock"
         }
       ],
       "notFound": [
-        "hours",
         "ticketPrices",
         "entryConditions",
         "facilities",
@@ -1625,6 +1635,11 @@
           "kind": "evidence",
           "text": "Pin is the OSM relation named 'Aga Khan University Hospital' (amenity=hospital, addr:street Stadium Road); Nominatim also returns it as the top hit for Karachi. Official contact page states Stadium Road, P.O. Box 3500, Karachi 74800 with UAN +92 21 111-911-911 and akuh.information@aku.edu, so confidence is verified. No opening hours or tariff are published on the fetched official pages (a hospital is not 'timed' like a tourist venue), so hours/ticketPrices are null. Common domains www.akuh.org.pk / www.akuh.edu.pk do not resolve (NXDOMAIN on public resolvers) - the live official domain is hospitals.aku.edu. The Commons photo is a 2000 image of a person standing in front of the hospital (filename and file-page caption name the hospital explicitly); the hospital building is shown as the subject's setting - a people-photograph, not a clean building view.",
           "batch": "batch-g-institutions"
+        },
+        {
+          "kind": "evidence",
+          "text": "The Department of Emergency Medicine page states verbatim: 'The Department of Emergency Medicine at The Aga Khan University Hospital provides 24-hour, seven-day emergency care for patients of all ages presenting with acute medical and surgical conditions.' The same page places the main Emergency Department at the Main Campus on Stadium Road and a satellite one at Clifton Medical Services. Only the emergency department is recorded as round-the-clock: the hospital's outpatient clinics, pharmacy and laboratory keep their own hours, which this page does not publish, so no other hours row is written.",
+          "batch": "batch-i-around-the-clock"
         }
       ]
     },
@@ -2675,6 +2690,69 @@
           "kind": "evidence",
           "text": "Both government pages publish the fire number independently: the Commissioner Karachi's emergency-services page prints 'KMC Fire Brigade: 16' and the police emergency contact directory prints 'Fire Brigade 16'. Neither page publishes a station address, a switchboard number, an email, hours or a fee, and no street address for the brigade was verified from an official source, so address is null - the seeded 'Station across Saddar, SITE, Malir' line described a network rather than a location and is removed. The record publishes the number a caller needs and nothing else.",
           "batch": "batch-h-emergency"
+        }
+      ]
+    },
+    "liaquat-national-hospital": {
+      "researchName": "Liaquat National Hospital",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-i-around-the-clock"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Liaquat+National+Hospital+Karachi&format=jsonv2&addressdetails=1&limit=3&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-i-around-the-clock"
+        },
+        {
+          "url": "https://www.lnh.edu.pk/services/accident-and-emergency-services",
+          "supports": [
+            "hours",
+            "contact"
+          ],
+          "note": "",
+          "batch": "batch-i-around-the-clock"
+        },
+        {
+          "url": "https://www.lnh.edu.pk/",
+          "supports": [
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-i-around-the-clock"
+        }
+      ],
+      "notFound": [
+        "ticketPrices",
+        "entryConditions",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The Accident & Emergency page states verbatim: 'The service is provided 24 hours a day, 365 days per year.' and prints the emergency numbers 021-34412245 & 021-34412445 plus the address 'Stadium Road, Karachi 74800, Pakistan'. Only the emergency department's round-the-clock hours are recorded; the OPD timetable is not published on either fetched page. Nominatim returns two Karachi features named 'Liaquat National Hospital' — the main Stadium Road hospital (relation/17336275, used here, matching the published address) and a separate building in Nazimabad (node/5079542899) — so the pin is the Stadium Road campus.",
+          "batch": "batch-i-around-the-clock"
         }
       ]
     }

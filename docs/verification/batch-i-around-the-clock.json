@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Aga Khan University Hospital",
+    "hours": [
+      { "day": "Emergency department", "open": "Open 24 hours, seven days a week" }
+    ],
+    "sources": [
+      {
+        "url": "https://hospitals.aku.edu/pakistan/others/departments/department-of-emergency-services/department-of-emergency-medicine",
+        "supports": ["hours"]
+      }
+    ],
+    "lastVerified": "2026-10-31",
+    "confidence": "verified",
+    "missingFields": [],
+    "notes": "The Department of Emergency Medicine page states verbatim: 'The Department of Emergency Medicine at The Aga Khan University Hospital provides 24-hour, seven-day emergency care for patients of all ages presenting with acute medical and surgical conditions.' The same page places the main Emergency Department at the Main Campus on Stadium Road and a satellite one at Clifton Medical Services. Only the emergency department is recorded as round-the-clock: the hospital's outpatient clinics, pharmacy and laboratory keep their own hours, which this page does not publish, so no other hours row is written."
+  },
+  {
+    "name": "Liaquat National Hospital",
+    "osmId": "relation/17336275",
+    "lat": 24.8931161,
+    "lng": 67.0684484,
+    "address": "Liaquat National Hospital, Stadium Road, Dawood Society, Gulshan-e-Iqbal Town, Karachi",
+    "openStreetMapLink": "https://www.openstreetmap.org/relation/17336275",
+    "website": "https://www.lnh.edu.pk/",
+    "hours": [
+      { "day": "Emergency department", "open": "Open 24 hours a day, 365 days a year" }
+    ],
+    "ticketPrices": null,
+    "entryConditions": null,
+    "contact": {
+      "phone": "021-34412245 & 021-34412445",
+      "email": null,
+      "owner": "Liaquat National Hospital (Accident & Emergency page)"
+    },
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?q=Liaquat+National+Hospital+Karachi&format=jsonv2&addressdetails=1&limit=3&accept-language=en",
+        "supports": ["lat", "lng", "osmId", "address"]
+      },
+      {
+        "url": "https://www.lnh.edu.pk/services/accident-and-emergency-services",
+        "supports": ["hours", "contact"]
+      },
+      {
+        "url": "https://www.lnh.edu.pk/",
+        "supports": ["website"]
+      }
+    ],
+    "lastVerified": "2026-10-31",
+    "confidence": "verified",
+    "missingFields": ["ticketPrices", "entryConditions", "accessibility", "familySuitability"],
+    "notes": "The Accident & Emergency page states verbatim: 'The service is provided 24 hours a day, 365 days per year.' and prints the emergency numbers 021-34412245 & 021-34412445 plus the address 'Stadium Road, Karachi 74800, Pakistan'. Only the emergency department's round-the-clock hours are recorded; the OPD timetable is not published on either fetched page. Nominatim returns two Karachi features named 'Liaquat National Hospital' — the main Stadium Road hospital (relation/17336275, used here, matching the published address) and a separate building in Nazimabad (node/5079542899) — so the pin is the Stadium Road campus."
+  }
+]

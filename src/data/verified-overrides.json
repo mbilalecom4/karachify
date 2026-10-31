@@ -6,7 +6,8 @@
     "docs/verification/batch-b-museums.json",
     "docs/verification/batch-f-practical.json",
     "docs/verification/batch-g-institutions.json",
-    "docs/verification/batch-h-emergency.json"
+    "docs/verification/batch-h-emergency.json",
+    "docs/verification/batch-i-around-the-clock.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -678,7 +679,12 @@
       "lng": 67.0740719,
       "coordsVerified": true,
       "address": "Stadium Road, P.O. Box 3500, Karachi 74800, Pakistan",
-      "hours": null,
+      "hours": [
+        {
+          "day": "Emergency department",
+          "open": "Open 24 hours, seven days a week"
+        }
+      ],
       "website": "https://hospitals.aku.edu/pakistan",
       "phone": "+92 21 111-911-911",
       "email": "akuh.information@aku.edu",
@@ -897,6 +903,25 @@
       "status": "needs-review",
       "sourceUrl": "https://commissionerkarachi.gos.pk/emergency-services",
       "lastVerified": "2026-10-31"
+    },
+    "liaquat-national-hospital": {
+      "isNew": false,
+      "lat": 24.8931161,
+      "lng": 67.0684484,
+      "coordsVerified": true,
+      "address": "Liaquat National Hospital, Stadium Road, Dawood Society, Gulshan-e-Iqbal Town, Karachi",
+      "hours": [
+        {
+          "day": "Emergency department",
+          "open": "Open 24 hours a day, 365 days a year"
+        }
+      ],
+      "website": "https://www.lnh.edu.pk/",
+      "phone": "021-34412245 & 021-34412445",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/relation/17336275",
+      "lastVerified": "2026-10-31",
+      "osmId": "relation/17336275"
     }
   }
 }

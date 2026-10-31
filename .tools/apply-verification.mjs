@@ -14,6 +14,7 @@ const BATCHES = [
   'batch-f-practical',
   'batch-g-institutions',
   'batch-h-emergency',
+  'batch-i-around-the-clock',
 ];
 
 /** Verified name in the research file -> slug used by the catalogue. */
@@ -56,6 +57,8 @@ const SLUG_MAP = {
   // offices were never mapped — contact-only records, so no pin is written.
   'Sindh Police Headquarters & Complaint Cell': 'sindh-police-hq',
   'Karachi Fire Brigade': 'karachi-fire-brigade',
+  // batch-i: the places whose own page states round-the-clock availability.
+  'Liaquat National Hospital': 'liaquat-national-hospital',
 };
 
 /**

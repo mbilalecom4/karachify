@@ -60,12 +60,12 @@ export const health = [
   makeListing({
     slug: 'liaquat-national-hospital',
     categoryId: HO,
-    areaId: 'north-nazimabad',
+    areaId: 'gulshan-e-iqbal',
     name: 'Liaquat National Hospital',
     description:
-      'Teaching hospital on the Nazimabad ridge with a large emergency department, burns unit and postgraduate training programmes.',
+      'Teaching hospital on Stadium Road with a large emergency department, burns unit and postgraduate training programmes.',
     wiki: ['Liaquat National Hospital'],
-    address: 'N-5/1, Shahrah-e-Quaid-e-Azam, North Nazimabad',
+    address: 'Stadium Road, Karachi 74800',
     facilities: ['Emergency', 'Burns unit', 'Trauma', 'Teaching', 'ICU', 'Pathology'],
     tags: ['Teaching', 'Emergency', 'Burns'],
   }),
