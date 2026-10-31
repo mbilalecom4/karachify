@@ -94,9 +94,6 @@ export const civic = [
     facilities: ['Ambulance', 'Fire response', 'Urban search & rescue', 'Boat rescue'],
     tags: ['Emergency', 'Ambulance', 'Free'],
     featured: true,
-    phone: '1122',
-    sourceUrl: 'https://commissionerkarachi.gos.pk/emergency-services',
-    lastVerified: '2026-10-31',
   }),
   makeListing({
     slug: 'edhi-foundation-karachi',
@@ -110,9 +107,6 @@ export const civic = [
     facilities: ['Free ambulance', 'Shelters', 'Maternity homes', 'Thana (police-aid)'],
     tags: ['Charity', 'Ambulance', 'Free', 'Emergency'],
     featured: true,
-    phone: '115',
-    sourceUrl: 'https://commissionerkarachi.gos.pk/emergency-services',
-    lastVerified: '2026-10-31',
   }),
   makeListing({
     slug: 'sindh-police-hq',
@@ -125,9 +119,6 @@ export const civic = [
     address: 'Shahrah-e-Faisal, I.I. Chundrigar side',
     facilities: ['Complaint office', 'Missing-person unit', 'Zainab Alert women’s helpline 1099'],
     tags: ['Police', 'Emergency', 'Public'],
-    phone: '15',
-    sourceUrl: 'https://karachipolice.gov.pk/services/emergency-contact-directory/',
-    lastVerified: '2026-10-31',
   }),
   makeListing({
     slug: 'karachi-fire-brigade',
@@ -140,8 +131,5 @@ export const civic = [
     address: 'Station across Saddar, SITE, Malir',
     facilities: ['Fire response', 'Gas-leak callout', 'Water tankers'],
     tags: ['Fire', 'Emergency', 'Free'],
-    phone: '16',
-    sourceUrl: 'https://commissionerkarachi.gos.pk/emergency-services',
-    lastVerified: '2026-10-31',
   }),
 ];

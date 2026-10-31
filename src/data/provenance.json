@@ -5,7 +5,8 @@
     "docs/verification/batch-d-attractions.json",
     "docs/verification/batch-b-museums.json",
     "docs/verification/batch-f-practical.json",
-    "docs/verification/batch-g-institutions.json"
+    "docs/verification/batch-g-institutions.json",
+    "docs/verification/batch-h-emergency.json"
   ],
   "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
   "records": {
@@ -2577,6 +2578,103 @@
           "kind": "evidence",
           "text": "Pin is the large OSM campus way (amenity=university, name:en 'University of Karachi'), centre 24.9437, 67.1206, matching Wikipedia's coordinate (~24.94, 67.12). The official homepage footer/contact block prints 'Address: University Road, Karachi-75270' and 'Email: registrar@uok.edu.pk' - a registrar office email rather than a public visitor contact, and no phone number or visiting hours appear in the fetchable HTML (the site is partly JS-rendered), so phone is null and the record is marked verified only on the strength of the printed venue email; if the generator treats registrar email as insufficient, this is a candidate for downgrade to partially-verified. Catalogue address 'Stadium Road, Gulshan-e-Iqbal' conflicts with the official 'University Road' and was replaced. Commons photo names the campus's Silver Jubilee Gate explicitly (November 2022).",
           "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "sindh-police-hq": {
+      "researchName": "Sindh Police Headquarters & Complaint Cell",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-h-emergency"
+      ],
+      "published": [
+        "address",
+        "sourceUrl",
+        "lastVerified",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://karachipolice.gov.pk/services/emergency-contact-directory/",
+          "supports": [
+            "phone",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-h-emergency"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/emergency-services",
+          "supports": [
+            "phone"
+          ],
+          "note": "",
+          "batch": "batch-h-emergency"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "website",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The police emergency contact directory prints 'Madadgar-15' for the emergency line and, beside the Karachi Police entry, the address line 'Karachi Cantonment Fowler Lines, Shahrah-e-Faisal, Karachi' - quoted as served, with the city suffix removed so it reads as an address. The Commissioner Karachi's own emergency-services page lists 'Madadgar Police: 15' independently, so the number is double-sourced. The same police page lists Zainab Alert on 1099, which is the only women's helpline number either page publishes (the older 109 is not printed on either and is therefore not published here). No street address, telephone line, email, opening hours or tariff is published for a complaint office or a missing-person unit on either page, so those stay null rather than being inferred from the record name; the contact here is the city-wide emergency number, not a switchboard.",
+          "batch": "batch-h-emergency"
+        }
+      ]
+    },
+    "karachi-fire-brigade": {
+      "researchName": "Karachi Fire Brigade",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-h-emergency"
+      ],
+      "published": [
+        "sourceUrl",
+        "lastVerified",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://commissionerkarachi.gos.pk/emergency-services",
+          "supports": [
+            "phone"
+          ],
+          "note": "",
+          "batch": "batch-h-emergency"
+        },
+        {
+          "url": "https://karachipolice.gov.pk/services/emergency-contact-directory/",
+          "supports": [
+            "phone"
+          ],
+          "note": "",
+          "batch": "batch-h-emergency"
+        }
+      ],
+      "notFound": [
+        "address",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "website",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Both government pages publish the fire number independently: the Commissioner Karachi's emergency-services page prints 'KMC Fire Brigade: 16' and the police emergency contact directory prints 'Fire Brigade 16'. Neither page publishes a station address, a switchboard number, an email, hours or a fee, and no street address for the brigade was verified from an official source, so address is null - the seeded 'Station across Saddar, SITE, Malir' line described a network rather than a location and is removed. The record publishes the number a caller needs and nothing else.",
+          "batch": "batch-h-emergency"
         }
       ]
     }

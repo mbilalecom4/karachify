@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { guides } from '../data/guides';
 import type { Listing } from '../types';
-import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
+import { coverage, selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
 import { imageFor } from '../lib/media';
 import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
@@ -66,8 +66,7 @@ export default function Home() {
     [events, today]
   );
 
-  const verifiedCount = useMemo(() => listings.filter((l) => l.status === 'verified').length, [listings]);
-  const sourcedCount = useMemo(() => listings.filter((l) => l.coordsVerified).length, [listings]);
+  const { verified: verifiedCount, pinned: sourcedCount, fieldOnly, unchecked } = useMemo(() => coverage(listings), [listings]);
 
   const byCategory = (id: string, n: number, featuredFirst = true) =>
     listings
@@ -107,7 +106,7 @@ export default function Home() {
         </div>
         <div className="shell flex flex-col items-center py-20 text-center sm:py-28">
           <span className="badge bg-teal-500/20 text-teal-100 ring-1 ring-inset ring-teal-300/40">
-            <Sparkles className="h-3 w-3" /> Karachi city discovery · demo build
+            <Sparkles className="h-3 w-3" /> Independent Karachi directory
           </span>
           <h1 className="mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[1.08] text-white sm:text-6xl">
             Discover Everything Karachi.
@@ -168,12 +167,13 @@ export default function Home() {
           <div className="shell flex flex-wrap items-center gap-x-3 gap-y-1 py-3 text-[13px] leading-relaxed text-amber-900">
             <Info className="h-4 w-4 shrink-0" />
             <span>
-              <strong className="font-bold">How this data is sourced.</strong> {verifiedCount} Karachi destinations carry
-              address, opening hours, admission and contacts taken from named sources, each linked with the date it was
-              checked; a further {sourcedCount - verifiedCount} have a sourced OpenStreetMap pin and address but no
-              checked practical details. Everything else in the directory is unconfirmed — this site generates no price,
-              rating, review or opening hour for those records, and each page shows what has not been checked.
-              Photographs are licence-checked Karachi images from Wikimedia Commons.
+              <strong className="font-bold">How this data is sourced.</strong> {verifiedCount} Karachi destinations have
+              their map pin, address and every practical detail they show taken from named sources, each linked with the
+              date it was checked; a further {sourcedCount - verifiedCount} have a sourced OpenStreetMap pin and address
+              but no checked practical details, and {fieldOnly} more were checked for a single field only — a phone
+              number, or an address — so their pin stays marked approximate. The remaining {unchecked} records are
+              unconfirmed: this site generates no price, rating, review or opening hour for them, and each page shows
+              what has not been checked. Photographs are licence-checked Karachi images from Wikimedia Commons.
             </span>
             <Link to="/sources" className="font-semibold underline underline-offset-2">
               Sources &amp; verification

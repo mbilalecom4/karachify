@@ -149,6 +149,26 @@ export function selectListings(db: DB): Listing[] {
     .map((l) => (db.listingPatches[l.id] ? { ...l, ...db.listingPatches[l.id] } : l));
 }
 
+/**
+ * How much of the directory a source actually backs, counted so that every record
+ * falls in exactly one bucket. A hotline whose phone number was checked but whose
+ * pin was not is neither a pinned record nor an unchecked one, and copy that says
+ * "everything else is unconfirmed" would understate what was done.
+ */
+export function coverage(listings: Listing[]) {
+  const pinned = listings.filter((l) => l.coordsVerified).length;
+  const verified = listings.filter((l) => l.coordsVerified && l.status === 'verified').length;
+  const fieldOnly = listings.filter((l) => !l.coordsVerified && Boolean(l.lastVerified)).length;
+  return {
+    verified,
+    pinned,
+    fieldOnly,
+    unchecked: listings.length - pinned - fieldOnly,
+    audited: pinned + fieldOnly,
+    total: listings.length,
+  };
+}
+
 export function selectEvents(db: DB): CityEvent[] {
   const all = [...baseEvents, ...db.newEvents];
   return all

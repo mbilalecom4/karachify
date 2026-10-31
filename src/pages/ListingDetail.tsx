@@ -47,6 +47,7 @@ import {
   useToast,
 } from '../components/ui';
 import { admissionLabel, coordText, copyText, directionsUrl, mapLinkUrl, isValidEmail, pinCaption, plural, priceLabel } from '../lib/format';
+import { fieldsAbsent, fieldsChecked, isAudited } from '../lib/provenance';
 
 /** Names what the record actually carries: "its map position, address and contact". */
 function andList(items: (string | false | null | undefined)[]) {
@@ -54,6 +55,49 @@ function andList(items: (string | false | null | undefined)[]) {
   if (kept.length < 2) return kept.join('');
   const last = kept[kept.length - 1];
   return kept.slice(0, -1).join(', ') + ' and ' + last;
+}
+
+/**
+ * The visible fields of a record, and how each one is evidenced. `shipped` names
+ * what a citation-backed override wrote; `absent` names how a researcher records
+ * that no source states it; `shown` says whether the page displays a value at all.
+ */
+const PROOF_ROWS: { label: string; shipped: string[]; absent: string[]; shown: (l: Listing) => boolean }[] = [
+  { label: 'its map position', shipped: ['lat'], absent: ['coordinates', 'lat'], shown: () => true },
+  { label: 'its address', shipped: ['address'], absent: ['address'], shown: (l) => Boolean(l.address) },
+  { label: 'its opening hours', shipped: ['hours'], absent: ['hours'], shown: (l) => Boolean(l.hours?.length) },
+  { label: 'its admission', shipped: ['entryFees'], absent: ['ticketPrices', 'entryFees'], shown: (l) => Boolean(l.entryFees?.length) },
+  { label: 'its contact details', shipped: ['phone', 'email'], absent: ['contact', 'phone', 'email'], shown: (l) => Boolean(l.phone || l.email) },
+  { label: 'its website', shipped: ['website'], absent: ['website'], shown: (l) => Boolean(l.website) },
+];
+
+/**
+ * Says exactly what the citations behind a record back, field by field. The page
+ * as a whole is never vouched for: a record checked only for its phone number has
+ * an unchecked address, and the reader has to be told which is which.
+ */
+function verificationLine(listing: Listing) {
+  if (!isAudited(listing.slug)) {
+    return listing.sourceUrl
+      ? 'One source has been read for this record and is linked below; it supports only the specific field quoted from it. The map position, address and timings on this page are not checked, so do not treat them as fact.'
+      : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.';
+  }
+  const checked: string[] = [];
+  const absent: string[] = [];
+  const unchecked: string[] = [];
+  for (const row of PROOF_ROWS) {
+    if (fieldsChecked(listing.slug, row.shipped)) checked.push(row.label);
+    else if (fieldsAbsent(listing.slug, row.absent)) absent.push(row.label);
+    else if (row.shown(listing)) unchecked.push(row.label);
+  }
+  if (listing.status === 'verified') {
+    return `Verified against the sources listed here — ${andList(checked)}. Anything a source did not state is left blank rather than guessed.`;
+  }
+  const parts: string[] = [];
+  if (checked.length) parts.push(`Checked against a source: ${andList(checked)}.`);
+  if (absent.length) parts.push(`Sources were searched for ${andList(absent)} and none publish it, so it is left blank here.`);
+  if (unchecked.length) parts.push(`Not checked against any source: ${andList(unchecked)} — do not treat ${unchecked.length === 1 ? 'that' : 'those'} as fact.`);
+  return parts.join(' ');
 }
 
 const LAYOUT_META: Record<DetailLayout, { icon: typeof Landmark; kicker: string }> = {
@@ -400,8 +444,8 @@ export default function ListingDetail() {
               <h2 className="font-display text-[17px] font-bold text-navy-800">Contact & practicals</h2>
               <dl className="mt-3 space-y-3 text-sm">
                 <Row icon={<MapPin className="h-4 w-4" />} label="Address">
-                  {listing.address}
-                  {area && (
+                  {listing.address ?? <span className="text-navy-400">No address has been verified for this record.</span>}
+                  {listing.address && area && (
                     <>
                       <br />
                       <Link to={`/area/${area.slug}`} className="link">
@@ -409,8 +453,12 @@ export default function ListingDetail() {
                       </Link>
                     </>
                   )}
-                  {!listing.lastVerified && (
-                    <span className="mt-0.5 block text-[12px] text-navy-400">Not yet checked against an official source.</span>
+                  {listing.address && (
+                    <span className="mt-0.5 block text-[12px] text-navy-400">
+                      {fieldsChecked(listing.slug, ['address'])
+                        ? `Checked against a source on ${listing.lastVerified}.`
+                        : 'Not yet checked against an official source.'}
+                    </span>
                   )}
                 </Row>
                 <Row icon={<Phone className="h-4 w-4" />} label="Phone">
@@ -463,7 +511,7 @@ export default function ListingDetail() {
                     </>
                   ) : (
                     <span className="text-navy-400">
-                      {listing.lastVerified
+                      {fieldsAbsent(listing.slug, ['ticketPrices'])
                         ? 'No entry fee is published by the sources checked for this place.'
                         : 'Admission has not been verified for this place.'}
                     </span>
@@ -501,21 +549,7 @@ export default function ListingDetail() {
                 <StatusBadge status={listing.status} />
                 <span className="badge bg-navy-50 text-navy-600">{meta.kicker}</span>
               </div>
-              <p className="mt-3 text-[13px] leading-relaxed text-navy-500">
-                {listing.status === 'verified'
-                  ? `Verified against the sources listed here — ${andList([
-                      'its map position',
-                      listing.address && 'address',
-                      !!listing.hours?.length && 'opening hours',
-                      !!listing.entryFees?.length && 'admission',
-                      (listing.phone || listing.email || listing.website) && 'contact',
-                    ])}. Anything the source did not state is left blank rather than guessed.`
-                  : listing.coordsVerified
-                    ? 'Its map position and address were read from a source, as cited below. Any field the source did not state — opening hours, admission, a contact — is left blank here rather than estimated, so check those before you rely on them.'
-                    : listing.sourceUrl
-                      ? 'One source has been read for this record and is linked below; it supports only the specific field quoted from it. The map position, address and timings on this page are not checked, so do not treat them as fact.'
-                      : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
-              </p>
+              <p className="mt-3 text-[13px] leading-relaxed text-navy-500">{verificationLine(listing)}</p>
               {listing.sourceUrl && (
                 <a href={listing.sourceUrl} target="_blank" rel="noopener noreferrer" className="link mt-2 inline-flex items-center gap-1 text-[13px]">
                   Read the source <ExternalLink className="h-3 w-3" />
@@ -531,9 +565,8 @@ export default function ListingDetail() {
               </p>
               {listing.lastVerified && (
                 <p className="mt-1 text-[12px] text-navy-400">
-                  {listing.coordsVerified || listing.status === 'verified'
-                    ? `Fields on this page last verified ${listing.lastVerified}.`
-                    : `The quoted field was read from that source on ${listing.lastVerified}; the rest of this record is unchecked.`}
+                  The fields named as checked above were read from their sources on {listing.lastVerified}; the date
+                  covers the least recently checked of them.
                 </p>
               )}
               <button className="btn-outline btn-sm mt-3 w-full" onClick={() => setClaimOpen(true)}>
@@ -879,7 +912,7 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
 
   const admissionLine = () => {
     if (!listing.entryFees?.length)
-      return listing.lastVerified
+      return fieldsAbsent(listing.slug, ['ticketPrices'])
         ? 'No admission price is published by the sources checked for this place.'
         : 'Admission has not been verified for this place.';
     const first = listing.entryFees[0];
@@ -1019,10 +1052,13 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
         <li className="flex gap-2.5">
           <Info className="mt-1 h-4 w-4 shrink-0 text-teal-600" />
           <span>
-            {listing.address}
-            {listing.lastVerified
-              ? ` — checked against a source on ${listing.lastVerified}.`
-              : ' — not yet checked against an official source.'}
+            {listing.address
+              ? `${listing.address}${
+                  fieldsChecked(listing.slug, ['address'])
+                    ? ` — checked against a source on ${listing.lastVerified}.`
+                    : ' — not yet checked against an official source.'
+                }`
+              : 'No address has been verified for this record, so none is published.'}
           </span>
         </li>
         <li className="flex gap-2.5">

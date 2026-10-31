@@ -13,6 +13,7 @@ const BATCHES = [
   'batch-b-museums',
   'batch-f-practical',
   'batch-g-institutions',
+  'batch-h-emergency',
 ];
 
 /** Verified name in the research file -> slug used by the catalogue. */
@@ -51,6 +52,10 @@ const SLUG_MAP = {
   'Ocean Park Karachi': 'ocean-park-karachi',
   'Rescue 1122': 'rescue-1122-karachi',
   'University of Karachi': 'university-of-karachi',
+  // batch-h: the two city-wide hotlines whose numbers are published but whose
+  // offices were never mapped — contact-only records, so no pin is written.
+  'Sindh Police Headquarters & Complaint Cell': 'sindh-police-hq',
+  'Karachi Fire Brigade': 'karachi-fire-brigade',
 };
 
 /**
@@ -310,7 +315,7 @@ function osmIdFrom(r, osm) {
  */
 const FIELD_TOKENS = new Set([
   'lat', 'lng', 'osmId', 'osmName', 'address', 'name', 'coordinates', 'website', 'hours',
-  'ticketPrices', 'entryConditions', 'contact', 'description', 'photo', 'facilities',
+  'ticketPrices', 'entryConditions', 'contact', 'phone', 'email', 'description', 'photo', 'facilities',
   'accessibility', 'familySuitability',
 ]);
 
@@ -482,13 +487,14 @@ for (const entry of entries.values()) {
     console.log(`UNMAPPED: ${r.name} — add it to SLUG_MAP or NEW_RECORDS`);
     continue;
   }
-  if (!r.lat || !r.lng) {
+  const contactOnly = r.contactOnly === true;
+  if (!contactOnly && (!r.lat || !r.lng)) {
     console.log(`NO COORDS: ${r.name} — not merged`);
     continue;
   }
   const osm = OSM_ADDRESSES[r.name] ?? {};
   const address = cleanAddress(osm.address || r.address || '');
-  if (!address) {
+  if (!contactOnly && !address) {
     console.log(`NO ADDRESS: ${r.name} — check osm-addresses.json`);
     continue;
   }
@@ -497,7 +503,7 @@ for (const entry of entries.values()) {
   // centroid would not. Guard against a typo rather than against a choice.
   const lat = Number(r.lat);
   const lng = Number(r.lng);
-  if (!(lat > 23.5 && lat < 26.5 && lng > 66.0 && lng < 68.7)) {
+  if (!contactOnly && !(lat > 23.5 && lat < 26.5 && lng > 66.0 && lng < 68.7)) {
     console.log(`OUT OF BOUNDS: ${r.name} — ${lat},${lng}. Not merged.`);
     continue;
   }
@@ -519,10 +525,17 @@ for (const entry of entries.values()) {
           description: fresh.description,
         }
       : {}),
-    lat,
-    lng,
-    coordsVerified: true,
-    address: address.charAt(0).toUpperCase() + address.slice(1),
+    // A hotline is not a place. Research can verify the number a service
+    // publishes without verifying any building it works from, so a contact-only
+    // record writes no pin at all and refuses the seeded street address.
+    ...(contactOnly
+      ? { address: address ? address.charAt(0).toUpperCase() + address.slice(1) : null }
+      : {
+          lat,
+          lng,
+          coordsVerified: true,
+          address: address.charAt(0).toUpperCase() + address.slice(1),
+        }),
     hours: hoursFrom(r),
     entryFees: feesFrom(r, slug),
     website: r.website ?? undefined,
@@ -531,7 +544,7 @@ for (const entry of entries.values()) {
     status: confidence === 'verified' ? 'verified' : 'needs-review',
     sourceUrl: osmUrlFromToken(osm.osmToken) ?? r.openStreetMapLink ?? entry.sources[0]?.url,
     lastVerified,
-    osmId: osmIdFrom(r, osm),
+    osmId: contactOnly ? undefined : osmIdFrom(r, osm),
   };
   if (conditions) o.entryConditions = conditions;
   if (r.facilities?.length) o.facilities = r.facilities;

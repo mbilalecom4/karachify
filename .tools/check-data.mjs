@@ -97,6 +97,11 @@ for (const l of listings) {
   if (l.status === 'verified' && !(l.sourceUrl && l.lastVerified)) {
     failures.push(`${at}: badged verified without a source and a check date`);
   }
+  // A check date is the strongest claim a record makes: it may only arrive with
+  // the citation that was checked, which means through the generated overrides.
+  if (l.lastVerified && !provenance.records[l.slug]) {
+    failures.push(`${at}: lastVerified ${l.lastVerified} with no provenance record — a date typed into a seed file is not a verification`);
+  }
 
   const demoish = [l.name, l.tagline, l.description, l.address, ...(l.tags ?? []), ...(l.facilities ?? []), ...(l.hours ?? []).map((h) => `${h.day} ${h.open}`), l.entryConditions ?? '']
     .join(' \u0001 ');

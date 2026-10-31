@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Camera, Database, Eye, Heart, Layers, Search, ShieldCheck } from 'lucide-react';
-import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
+import { coverage, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { resolvedMediaCount } from '../lib/media';
 import { plural } from '../lib/format';
 import { Note, PageHero, Prose } from '../components/Page';
@@ -11,14 +11,13 @@ export default function About() {
   const listings = selectListings(db);
   const areas = selectAreas(db);
   const categories = selectCategories(db);
-  const verifiedCount = listings.filter((l) => l.status === 'verified').length;
-  const sourcedCount = listings.filter((l) => l.coordsVerified).length;
+  const { verified: verifiedCount, pinned: sourcedCount, fieldOnly, unchecked, audited } = coverage(listings);
 
   const facts = [
     { icon: Database, label: 'Directory records', value: String(listings.length) },
     { icon: Layers, label: 'Categories', value: String(categories.length) },
     { icon: Eye, label: 'Areas mapped', value: String(areas.length) },
-    { icon: Heart, label: 'Sourced records', value: String(sourcedCount) },
+    { icon: Heart, label: 'Records with a source', value: String(audited) },
   ];
 
   return (
@@ -61,9 +60,10 @@ export default function About() {
 
             <h2>What is honest in this build</h2>
             <p>
-              {verifiedCount} records are fully source-checked: the address, opening hours, admission, contact numbers and
-              map pin on those pages were read from the operator’s own website, a museum’s published tariff or
-              OpenStreetMap, and each page links the source together with the date it was checked. Those pages carry a
+              {verifiedCount} records are fully source-checked: the map pin, the address and every practical detail those
+              pages show — hours, admission or contact numbers where the operator states them — were read from the
+              operator’s own website, a museum’s published tariff or OpenStreetMap, and each page links the source
+              together with the date it was checked. Those pages carry a
               <span className="badge-verified mx-1 align-middle">Verified</span> badge.
             </p>
             <p>
@@ -73,7 +73,13 @@ export default function About() {
               with their date and leave the unchecked ones blank.
             </p>
             <p>
-              Everything else is a record nobody at Karachify has checked yet. Those pages carry no star rating, no review
+              {fieldOnly} records were checked for one field and one field only. A city-wide hotline is not a building:
+              the number it publishes on a government page can be confirmed while its office cannot be located, so those
+              pages carry a sourced phone number or address and mark the pin itself approximate.
+            </p>
+            <p>
+              The remaining {unchecked} records are ones nobody at Karachify has checked yet. Those pages carry no star
+              rating, no review
               count, no invented price band and no survey-grade pin — they say “Rating not verified”, “Pricing to confirm”
               or “Approximate position” instead of offering a plausible guess, and Karachify does not claim the business
               still trades under the name shown. Records whose own data files described them as placeholder entries —

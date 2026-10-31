@@ -5,7 +5,8 @@
     "docs/verification/batch-d-attractions.json",
     "docs/verification/batch-b-museums.json",
     "docs/verification/batch-f-practical.json",
-    "docs/verification/batch-g-institutions.json"
+    "docs/verification/batch-g-institutions.json",
+    "docs/verification/batch-h-emergency.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -878,6 +879,24 @@
       "sourceUrl": "https://www.openstreetmap.org/way/687471093",
       "lastVerified": "2026-10-31",
       "osmId": "way/687471093"
+    },
+    "sindh-police-hq": {
+      "isNew": false,
+      "address": "Fowler Lines, Karachi Cantonment, Shahrah-e-Faisal, Karachi",
+      "hours": null,
+      "phone": "15",
+      "status": "needs-review",
+      "sourceUrl": "https://karachipolice.gov.pk/services/emergency-contact-directory/",
+      "lastVerified": "2026-10-31"
+    },
+    "karachi-fire-brigade": {
+      "isNew": false,
+      "address": null,
+      "hours": null,
+      "phone": "16",
+      "status": "needs-review",
+      "sourceUrl": "https://commissionerkarachi.gos.pk/emergency-services",
+      "lastVerified": "2026-10-31"
     }
   }
 }

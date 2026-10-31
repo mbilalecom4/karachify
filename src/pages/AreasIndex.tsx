@@ -58,7 +58,7 @@ export default function AreasIndex() {
         <SectionHeading
           eyebrow={`${areas.length} localities`}
           title="Choose an area"
-          sub="Listing counts include every demo record tagged to that locality."
+          sub="Listing counts include every unverified record tagged to that locality."
         />
 
         {filtered.length === 0 ? (

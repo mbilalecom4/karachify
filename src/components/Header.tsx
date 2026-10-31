@@ -13,7 +13,7 @@ import {
   User,
   X,
 } from 'lucide-react';
-import { useDB, currentUser, actions, prefsFor, selectCategories, selectListings } from '../lib/store';
+import { useDB, currentUser, actions, prefsFor, coverage, selectCategories, selectListings } from '../lib/store';
 import { BrandLogo } from './BrandLogo';
 import { SearchBox } from './SearchBox';
 
@@ -28,8 +28,7 @@ export function Header() {
   const user = currentUser(db);
   const categories = selectCategories(db);
   const listings = selectListings(db);
-  const verifiedCount = listings.filter((l) => l.status === 'verified').length;
-  const sourcedCount = listings.filter((l) => l.coordsVerified).length;
+  const { verified: verifiedCount, pinned: sourcedCount, fieldOnly, unchecked } = coverage(listings);
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -152,9 +151,10 @@ export function Header() {
             <span>
               Launch preview · <strong className="font-semibold text-white">{sourcedCount} destinations</strong> have a
               sourced address and OpenStreetMap pin with the date it was checked,{' '}
-              <strong className="font-semibold text-white">{verifiedCount} of them</strong> also carry operator-published
-              hours, admission and contacts; everything else is unconfirmed and generates no rating, review, price or
-              opening hour.{' '}
+              <strong className="font-semibold text-white">{verifiedCount} of them</strong> checked through to the
+              operator&apos;s own page; <strong className="font-semibold text-white">{fieldOnly} more</strong> carry a
+              source for one field only — a phone number, or an address — and keep an approximate pin. The rest is
+              unconfirmed and shows no rating, review, price or opening hour.{' '}
               <Link to="/sources" className="font-semibold text-teal-200 underline underline-offset-2">
                 See every source
               </Link>
@@ -364,11 +364,12 @@ export function Header() {
               </Link>
             </div>
             <p className="mt-5 rounded-xl bg-mist px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">
-              Karachify publishes three kinds of record: {verifiedCount} destinations whose address, hours, admission and
-              contacts all come from a named source with the date it was checked; {sourcedCount - verifiedCount} more
-              whose location and address are sourced but whose practical details are not; and the rest of the directory,
-              which has not been confirmed against a source at all — so the site invents no price, rating or review for
-              any of it.
+              Karachify publishes four kinds of record: {verifiedCount} destinations whose map pin, address and every
+              practical detail they show come from a named source with the date it was checked; {sourcedCount - verifiedCount} more
+              whose location and address are sourced but whose practical details are not; {fieldOnly} that were checked
+              for a single field — a phone number, or an address — and still keep an approximate pin; and the remaining
+              {unchecked}, which has not been confirmed against a source at all. So the site invents no price, rating or
+              review for any of it.
             </p>
           </nav>
         </div>

@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Sindh Police Headquarters & Complaint Cell",
+    "contactOnly": true,
+    "address": "Fowler Lines, Karachi Cantonment, Shahrah-e-Faisal, Karachi",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": null,
+    "facilities": null,
+    "accessibility": null,
+    "familySuitability": null,
+    "contact": {
+      "phone": "15",
+      "email": null,
+      "owner": "Karachi Police (emergency contact directory published by the police)"
+    },
+    "sources": [
+      {
+        "url": "https://karachipolice.gov.pk/services/emergency-contact-directory/",
+        "supports": ["phone", "address"]
+      },
+      {
+        "url": "https://commissionerkarachi.gos.pk/emergency-services",
+        "supports": ["phone"]
+      }
+    ],
+    "lastVerified": "2026-10-31",
+    "confidence": "partially-verified",
+    "missingFields": ["hours", "ticketPrices", "entryConditions", "website", "accessibility", "familySuitability"],
+    "notes": "The police emergency contact directory prints 'Madadgar-15' for the emergency line and, beside the Karachi Police entry, the address line 'Karachi Cantonment Fowler Lines, Shahrah-e-Faisal, Karachi' - quoted as served, with the city suffix removed so it reads as an address. The Commissioner Karachi's own emergency-services page lists 'Madadgar Police: 15' independently, so the number is double-sourced. The same police page lists Zainab Alert on 1099, which is the only women's helpline number either page publishes (the older 109 is not printed on either and is therefore not published here). No street address, telephone line, email, opening hours or tariff is published for a complaint office or a missing-person unit on either page, so those stay null rather than being inferred from the record name; the contact here is the city-wide emergency number, not a switchboard."
+  },
+  {
+    "name": "Karachi Fire Brigade",
+    "contactOnly": true,
+    "address": null,
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": null,
+    "facilities": null,
+    "accessibility": null,
+    "familySuitability": null,
+    "contact": {
+      "phone": "16",
+      "email": null,
+      "owner": "Karachi Metropolitan Corporation (Commissioner Karachi emergency-services page)"
+    },
+    "sources": [
+      {
+        "url": "https://commissionerkarachi.gos.pk/emergency-services",
+        "supports": ["phone"]
+      },
+      {
+        "url": "https://karachipolice.gov.pk/services/emergency-contact-directory/",
+        "supports": ["phone"]
+      }
+    ],
+    "lastVerified": "2026-10-31",
+    "confidence": "partially-verified",
+    "missingFields": ["address", "hours", "ticketPrices", "entryConditions", "website", "accessibility", "familySuitability"],
+    "notes": "Both government pages publish the fire number independently: the Commissioner Karachi's emergency-services page prints 'KMC Fire Brigade: 16' and the police emergency contact directory prints 'Fire Brigade 16'. Neither page publishes a station address, a switchboard number, an email, hours or a fee, and no street address for the brigade was verified from an official source, so address is null - the seeded 'Station across Saddar, SITE, Malir' line described a network rather than a location and is removed. The record publishes the number a caller needs and nothing else."
+  }
+]
