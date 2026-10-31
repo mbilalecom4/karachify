@@ -61,11 +61,16 @@ function orderStops(picked: Listing[], centres: { lat: number; lng: number }[]) 
 }
 
 function splitAcrossDays<T>(items: T[], days: number) {
-  if (items.length === 0) return Array.from({ length: days }, () => [] as T[]);
+  // Hand the extra stops to the first days: a plan of four places over five days
+  // should walk on day one, not open with a free day and leave the last one busy.
+  const base = Math.floor(items.length / days);
+  const extra = items.length % days;
+  let cursor = 0;
   return Array.from({ length: days }, (_, d) => {
-    const start = Math.floor((d * items.length) / days);
-    const end = Math.floor(((d + 1) * items.length) / days);
-    return items.slice(start, end);
+    const size = base + (d < extra ? 1 : 0);
+    const slice = items.slice(cursor, cursor + size);
+    cursor += size;
+    return slice;
   });
 }
 
@@ -311,7 +316,7 @@ export default function PlanDay() {
                   >
                     <Copy className="h-3.5 w-3.5" /> Copy plan
                   </button>
-                  <Link to="/map" className="btn-outline btn-sm">
+                  <Link to={plan[0]?.[0] ? `/map?focus=${plan[0][0].slug}` : '/map'} className="btn-outline btn-sm">
                     <MapPin className="h-3.5 w-3.5" /> Open the map
                   </Link>
                 </div>
