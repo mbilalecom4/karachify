@@ -498,7 +498,9 @@ export default function ListingDetail() {
                   ? 'Verified against the sources listed here, including coordinates and opening hours. Anything the source did not state is left blank rather than guessed.'
                   : listing.coordsVerified
                     ? 'Its map position and address were read from a source, as cited below. Any field the source did not state — opening hours, admission, a contact — is left blank here rather than estimated, so check those before you rely on them.'
-                    : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
+                    : listing.sourceUrl
+                      ? 'One source has been read for this record and is linked below; it supports only the specific field quoted from it. The map position, address and timings on this page are not checked, so do not treat them as fact.'
+                      : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
               </p>
               {listing.sourceUrl && (
                 <a href={listing.sourceUrl} target="_blank" rel="noopener noreferrer" className="link mt-2 inline-flex items-center gap-1 text-[13px]">
@@ -514,7 +516,11 @@ export default function ListingDetail() {
                   : `Approximate position, derived from the area centre — not a surveyed location: ${coordText(listing.lat, listing.lng)}`}
               </p>
               {listing.lastVerified && (
-                <p className="mt-1 text-[12px] text-navy-400">Fields on this page last verified {listing.lastVerified}.</p>
+                <p className="mt-1 text-[12px] text-navy-400">
+                  {listing.coordsVerified || listing.status === 'verified'
+                    ? `Fields on this page last verified ${listing.lastVerified}.`
+                    : `The quoted field was read from that source on ${listing.lastVerified}; the rest of this record is unchecked.`}
+                </p>
               )}
               <button className="btn-outline btn-sm mt-3 w-full" onClick={() => setClaimOpen(true)}>
                 <Handshake className="h-3.5 w-3.5" /> Claim this business
@@ -924,8 +930,13 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
         </p>
         <div className="mt-3">
           <Note tone="warn">
-            In an emergency call 15 (Rescue) or 1122 (Edhi). Numbers are listed on the emergency services category
-            page and are the city-wide helplines, not this facility&apos;s switchboard.
+            In an emergency call 1122 (Sindh Emergency Rescue Service) or 15 (Madadgar Police). The Commissioner
+            Karachi also lists Edhi ambulance on 115 and the KMC fire brigade on 16. These are the city-wide numbers
+            published by the government, not this facility&apos;s switchboard —{' '}
+            <Link to="/services" className="font-semibold underline underline-offset-2">
+              see the emergency services page
+            </Link>
+            .
           </Note>
         </div>
       </article>

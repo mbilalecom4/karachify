@@ -3,7 +3,7 @@ import { makeListing } from '../factory';
 const H = 'hotels';
 const W = 'wedding-venues';
 
-const hfac = ['Reception 24 hours', 'Wi-Fi', 'Room service', 'Airport transfer', 'Parking', 'Power backup'];
+const hfac = ['Wi-Fi', 'Room service', 'Airport transfer', 'Parking', 'Power backup'];
 
 export const stays = [
   makeListing({
@@ -16,7 +16,6 @@ export const stays = [
     wiki: ['Mövenpick Hotel', 'Hotel lobby'],
     address: 'Dolmen Mall Road, Clifton Block 4',
     facilities: [...hfac, 'Swimming pool', 'Spa', 'Multiple restaurants', 'Conference floor'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Five star', 'Business', 'Pool', 'Near mall'],
     featured: true,
   }),
@@ -30,7 +29,6 @@ export const stays = [
     wiki: ['Pearl-Airconditioned Hotel & Conference Center', 'Hotel Karachi'],
     address: 'Shahrah-e-Faisal, Clifton Block 2',
     facilities: [...hfac, 'Banquet halls', 'Sea-view rooms', 'Gym', 'Business centre'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Heritage hotel', 'Events', 'Business'],
     featured: true,
   }),
@@ -44,7 +42,6 @@ export const stays = [
     wiki: ['Hotel room', 'Boutique hotel'],
     address: 'Khayaban-e-Babar, DHA Phase 6',
     facilities: [...hfac, 'Meeting room', 'Complimentary breakfast'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Business', 'Mid-range', 'DHA'],
   }),
   makeListing({
@@ -57,7 +54,6 @@ export const stays = [
     wiki: ['Airport hotel', 'Hotel corridor'],
     address: 'Airport Road, near Jinnah International',
     facilities: [...hfac, 'Airport shuttle', 'Day rooms'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Transit', 'Airport', 'Day room'],
   }),
   makeListing({
@@ -94,7 +90,6 @@ export const stays = [
     wiki: ['Beach resort', 'Hawke\'s Bay'],
     address: 'Hawke\'s Bay Road, Kemari',
     facilities: ['Beach access', 'Cottages', 'Restaurant', 'Parking', 'Pool'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Beach', 'Weekend', 'Family'],
   }),
   makeListing({
@@ -107,7 +102,6 @@ export const stays = [
     wiki: ['Budget hotel', 'Hotel room'],
     address: 'Liaquatabad 6, North Nazimabad',
     facilities: ['Attached bath', 'Wi-Fi', 'Parking', 'Family rooms'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Budget', 'Family', 'Long stay'],
   }),
   makeListing({
@@ -133,7 +127,6 @@ export const stays = [
     wiki: ['Marquee', 'Event lawn'],
     address: 'Talwar, DHA Phase 5',
     facilities: ['Marquee ground', 'Bulk kitchen', 'Parking', 'Security'],
-    hours: [{ day: 'By booking', open: 'Event hours' }],
     tags: ['Lawn', 'Walima', 'Corporate events'],
   }),
   makeListing({
@@ -146,7 +139,6 @@ export const stays = [
     wiki: ['Golf club', 'Country club'],
     address: 'Dr. José Ma. Fragasso Road, Clifton',
     facilities: ['Golf course', 'Banquet', 'Restaurant', 'Terrace', 'Parking'],
-    hours: [{ day: 'By booking', open: 'Event hours' }],
     tags: ['Outdoor', 'Golf', 'Corporate'],
   }),
   makeListing({
@@ -173,7 +165,6 @@ export const stays = [
     wiki: ['Banquet hall', 'Wedding'],
     address: 'Faisaltown, Malir',
     facilities: ['Lawn', 'Hall', 'Catering', 'Parking', 'Dressing rooms'],
-    hours: [{ day: 'By booking', open: 'Event hours' }],
     tags: ['Lawn', 'Value', 'Large guest count'],
   }),
   makeListing({

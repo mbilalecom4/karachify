@@ -15,7 +15,6 @@ export const health = [
     wiki: ['Aga Khan University Hospital, Karachi', 'Aga Khan University'],
     address: 'Stadium Road, Gulshan-e-Iqbal',
     facilities: ['Emergency department', 'ICU', 'Heart centre', 'Cancer institute', 'Diagnostic imaging', 'Inpatient wards', 'Pharmacy on site'],
-    hours: [{ day: 'Emergency', open: '24 hours' }],
     tags: ['Teaching hospital', 'Emergency', 'Specialist'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Aga_Khan_University_Hospital,_Karachi',
@@ -29,8 +28,7 @@ export const health = [
       'The largest public hospital in Sindh, free at the point of care, with burns, trauma, kidney and cardiac units and the busiest emergency entrance in the city.',
     wiki: ['Jinnah Postgraduate Medical Centre'],
     address: 'Rafiqu Ahmed Marg, near KMC, Saddar',
-    facilities: ['Emergency 24/7', 'Burns unit', 'Trauma', 'Kidney unit', 'Free OPD', 'Ambulance'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
+    facilities: ['Emergency', 'Burns unit', 'Trauma', 'Kidney unit', 'Free OPD', 'Ambulance'],
     tags: ['Public hospital', 'Emergency', 'Free treatment'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Jinnah_Postgraduate_Medical_Centre',
@@ -45,7 +43,6 @@ export const health = [
     wiki: ['National Hospital (Karachi)'],
     address: 'Shahrah-e-Noor, DHA Phase 6',
     facilities: ['Cardiac surgery', 'Cath lab', 'ICU', 'Emergency', 'Renal unit', 'Diagnostic'],
-    hours: [{ day: 'Emergency', open: '24 hours' }],
     tags: ['Private', 'Cardiac', 'Emergency'],
   }),
   makeListing({
@@ -54,11 +51,10 @@ export const health = [
     areaId: 'dha',
     name: 'South City Hospital',
     description:
-      'Large private hospital on the DHA phase-8 road with oncology, organ transplant and IVF programmes, plus a 24-hour emergency entrance.',
+      'Large private hospital on the DHA phase-8 road with oncology, organ transplant and IVF programmes.',
     wiki: ['South City Hospital'],
     address: 'Baitul Mukarram Millat Nagar, DHA Phase 8',
     facilities: ['Oncology', 'Transplant', 'IVF', 'Emergency', 'ICU', 'Neurology', 'Imaging'],
-    hours: [{ day: 'Emergency', open: '24 hours' }],
     tags: ['Private', 'Oncology', 'Transplant'],
   }),
   makeListing({
@@ -70,8 +66,7 @@ export const health = [
       'Teaching hospital on the Nazimabad ridge with a large emergency department, burns unit and postgraduate training programmes.',
     wiki: ['Liaquat National Hospital'],
     address: 'N-5/1, Shahrah-e-Quaid-e-Azam, North Nazimabad',
-    facilities: ['Emergency 24/7', 'Burns unit', 'Trauma', 'Teaching', 'ICU', 'Pathology'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
+    facilities: ['Emergency', 'Burns unit', 'Trauma', 'Teaching', 'ICU', 'Pathology'],
     tags: ['Teaching', 'Emergency', 'Burns'],
   }),
   makeListing({
@@ -84,7 +79,6 @@ export const health = [
     wiki: ['Civil Hospital Karachi', 'Dow University of Health Sciences'],
     address: 'Bunder Road, Saddar',
     facilities: ['Free OPD', 'Emergency', 'Surgical wards', 'Teaching', 'Specialist clinics'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Public', 'History', 'Free treatment'],
   }),
   makeListing({
@@ -96,8 +90,7 @@ export const health = [
       'Public superspeciality institute on the Malir road — cardiology, nephrology and neurosurgery at subsidised rates, with a crowded emergency department.',
     wiki: ['Pakistan Institute of Medical Sciences'],
     address: 'Rashid Minhas Road, Malir',
-    facilities: ['Cardiology', 'Nephrology', 'Neurosurgery', 'Emergency 24/7', 'Subsidised care'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
+    facilities: ['Cardiology', 'Nephrology', 'Neurosurgery', 'Emergency', 'Subsidised care'],
     tags: ['Public', 'Superspeciality', 'Emergency'],
   }),
   makeListing({
@@ -110,7 +103,6 @@ export const health = [
     wiki: ['Sindh Institute of Urology and Transplantation'],
     address: 'Sector 26, Korangi Road, near Hospital',
     facilities: ['Dialysis', 'Kidney transplant', 'Liver transplant', 'Urology', 'Free of charge'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Transplant', 'Dialysis', 'Charitable'],
   }),
   makeListing({
@@ -123,7 +115,6 @@ export const health = [
     wiki: ['The Indus Hospital'],
     address: 'DHA Phase 8 boundary, near Korangi',
     facilities: ['Free treatment', 'Emergency', 'Surgery', 'Medicine', 'Day-care'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Charitable', 'Free treatment', 'Emergency'],
   }),
   makeListing({
@@ -136,7 +127,6 @@ export const health = [
     wiki: ['National Institute of Cardiovascular Diseases'],
     address: 'Dr. Dawa Road, near JPMC, Saddar',
     facilities: ['Cath lab', 'Cardiac surgery', 'CCU', 'Ambulance', 'Emergency'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Cardiac', 'Emergency', 'Public'],
   }),
   makeListing({
@@ -149,7 +139,6 @@ export const health = [
     wiki: ['Lyari', 'Karachi hospitals'],
     address: 'Bilal Town, Lyari',
     facilities: ['Maternity', 'Paediatric', 'General surgery', 'Emergency', 'Free OPD'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Public', 'Maternity', 'West Karachi'],
   }),
   makeListing({
@@ -162,7 +151,6 @@ export const health = [
     wiki: ['Kharadar', 'Karachi hospital'],
     address: 'Charasad, Fulsar Road, Saddar',
     facilities: ['Maternity', 'Emergency', 'Surgical wards', 'ICU', 'Community trust'],
-    hours: [{ day: 'Every day', open: '24 hours' }],
     tags: ['Community', 'Maternity', 'Emergency'],
   }),
   makeListing({
@@ -171,11 +159,11 @@ export const health = [
     areaId: 'clifton',
     name: 'MD Drug Store (Clifton branch)',
     description:
-      'Chain pharmacy with a 24-hour counter, chronic-medicine home delivery and a prescription counter — the branch pattern repeats across DHA and Clifton.',
+      'Chain pharmacy with chronic-medicine home delivery and a prescription counter — the branch pattern repeats across DHA and Clifton.',
     wiki: ['Pharmacy', 'Chemist'],
     address: '5th Commercial Lane, Clifton Block 2',
-    facilities: ['24-hour counter', 'Home delivery', 'Prescription desk', 'Baby care'],
-    tags: ['Pharmacy', '24 hour', 'Delivery'],
+    facilities: ['Home delivery', 'Prescription desk', 'Baby care'],
+    tags: ['Pharmacy', 'Delivery'],
   }),
   makeListing({
     slug: 'shaheen-chemist-dha',

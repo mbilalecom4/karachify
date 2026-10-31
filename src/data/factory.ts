@@ -32,7 +32,6 @@ export function makeListing(seed: Seed): Listing {
     ...seed,
   } as Listing;
 
-  if (seed.categoryId === 'emergency') base.hours = [{ day: 'Every day', open: '24 hours' }];
   if (!base.wiki) delete base.wiki;
   return base;
 }

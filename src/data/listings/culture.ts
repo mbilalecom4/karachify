@@ -77,7 +77,6 @@ export const culture = [
     wiki: ['Masjid-e-Tooba, Karachi', 'Tooba Mosque'],
     address: 'DHA Phase 5, near the sea face',
     facilities: ['Wudu area', 'Women\'s section', 'Photography outside prayer times', 'Free entry'],
-    hours: [{ day: 'Every day', open: 'After Fajr to Isha' }],
     tags: ['Mosque', 'Architecture', 'Landmark', 'Free'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Tooba_Mosque',
@@ -92,7 +91,6 @@ export const culture = [
     wiki: ['Grand Mosque of Karachi', 'Masjid-e-Azam Karachi'],
     address: 'Gulistan-e-Johar, Shahrah-e-Faisal',
     facilities: ['Courtyard', 'Women\'s gallery', 'Madressa', 'Parking', 'Eid arrangements'],
-    hours: [{ day: 'Every day', open: 'After Fajr to Isha' }],
     tags: ['Mosque', 'Landmark', 'Free'],
     featured: true,
   }),
@@ -131,7 +129,6 @@ export const culture = [
     wiki: ['Jamia Masjid Karachi', 'Kutchery Bazaar'],
     address: 'Kutchery Bazaar, Saddar',
     facilities: ['Madressa', 'Wudu area', 'Ramadan programme'],
-    hours: [{ day: 'Every day', open: 'After Fajr to Isha' }],
     tags: ['Mosque', 'Old city', 'Free'],
   }),
   makeListing({
