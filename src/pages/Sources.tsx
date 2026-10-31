@@ -472,8 +472,11 @@ export default function Sources() {
             <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
               {noSource} directory records carry no source link at all — their names, areas and descriptions came with
               the build and have not been checked against anything. They appear in search and on maps with an approximate
-              position and no rating, price, review or opening hour. Emergency numbers in the services hub are printed
-              with the note “number not checked against an official source” unless that page lists a source for them.
+              position and no rating, price, review or opening hour. The four emergency numbers in the services hub are
+              the exception that was checked: 1122 Rescue, 15 Madadgar Police, 115 Edhi and 16 KMC Fire Brigade are the
+              numbers the Commissioner Karachi and the Karachi Police emergency directory both publish, and each of
+              those records links the page it was read from. Every other record without a source is labelled
+              “number not checked against an official source”.
             </p>
           </div>
           <div className="card p-5">
