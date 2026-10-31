@@ -1,0 +1,1588 @@
+{
+  "generatedFrom": [
+    "docs/verification/batch-a-heritage.json",
+    "docs/verification/batch-c-coastline.json",
+    "docs/verification/batch-d-attractions.json",
+    "docs/verification/batch-b-museums.json",
+    "docs/verification/batch-f-practical.json"
+  ],
+  "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
+  "records": {
+    "mazar-e-quaid": {
+      "researchName": "Mazar-e-Quaid",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-a-heritage",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Mazar-e-Quaid+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Mazar-e-Quaid",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Mazar-e-Quaid,_or_Jinnah_Mausoleum_in_Karachi,_Pakistan.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://api.wikimedia.org/core/v1/commons/search/page?q=Mazar-e-Quaid%20Karachi&limit=15&format=json",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Mazar-e-Quaid+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-a record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://qmmb.gov.pk/",
+          "supports": [],
+          "note": "supplied: website - official Quaid-i-Azam Mazar Management Board homepage, HTTP 200 fetched 2026-10-31",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://qmmb.gov.pk/contact.html",
+          "supports": [],
+          "note": "supplied: contact phone, fax, email",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://qmmb.gov.pk/mausoleum-1.html",
+          "supports": [],
+          "note": "checked for hours and entry fee: NONE published; supplied the 1971 'opened for the public' history and the AV Hall status note",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://stdc.gos.pk/2024-10-13/mazar-e-quaid/",
+          "supports": [],
+          "note": "checked for hours and entry fee: descriptive tourism page only, no hours/fee published; STDC HQ number 021-99248040 on the site is STDC's own office, not a venue contact - not used",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates and address verified via Nominatim. OSM tagging is anomalous: two co-located nodes named 'Mazar-e-Quaid-e-Azam' exist (node 12151865936 tagged historic=wayside_shrine, used here; and node 12151884013 tagged historic=pillory at 24.8746966,67.0393217, ~18m away). Neither carries a tourism/building tag. Overpass API was unavailable during this run (primary endpoint refused connections / HTTP 000; kumi mirror returned 'server busy'), so the canonical building way could not be cross-checked. No official/government page (Ministry of Heritage & Culture / Quaid-i-Azam Mazar Management Board / Sindh Culture Dept) publishes opening hours or ticket prices, so those are null rather than guessed. Public access to the interior has been subject to security restrictions per news reports, but no acceptable official source was found to state current entry conditions. Photo visually confirmed to depict the white-marble domed mausoleum.",
+          "batch": "batch-a-heritage"
+        }
+      ]
+    },
+    "mohatta-palace": {
+      "researchName": "Mohatta Palace",
+      "status": "verified",
+      "lastVerified": "2026-10-30",
+      "confidence": "verified",
+      "batches": [
+        "batch-a-heritage"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Mohatta+Palace+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://mohattapalacemuseum.com/Visite%20the%20Museum.html",
+          "supports": [
+            "hours",
+            "ticketPrices",
+            "entryConditions",
+            "contact",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Mohatta_Palace",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Mohatta_Palace.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        }
+      ],
+      "notFound": [
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Hours, admission prices, entry conditions and contact read verbatim from the museum's own official website (mohattapalacemuseum.com, 'Visit the Museum' page). The official page states 'Adults Rs. 30 only; Free for seniors, school students, children under 12'; some third-party listings quote Rs. 100 but those are not official and are not used here. OSM tags the way tourism=museum. Accessibility, facilities and family-suitability are not stated on the official page, so left null. Photo visually confirmed to depict the palace exterior; file is Public domain.",
+          "batch": "batch-a-heritage"
+        }
+      ]
+    },
+    "frere-hall": {
+      "researchName": "Frere Hall",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-a-heritage",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Frere+Hall+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Frere_Hall",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://kmc.gos.pk/things-to-do-in-karachi/",
+          "supports": [
+            "hours"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Frere_hall_karachi_3.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Frere+Hall+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-a record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://stdc.gos.pk/2024-10-13/frere-hall/",
+          "supports": [],
+          "note": "checked for hours, entry fee, contact: descriptive page only, states Victorian Gothic building built 1865, no hours/fee/contact published",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/things-to-do-in-karachi/",
+          "supports": [],
+          "note": "checked for hours: lists Frere Hall but no per-attraction hours/tickets; only site-wide KMC Head Office footer hours",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/kmc-heritage/",
+          "supports": [],
+          "note": "checked for hours: mentions heritage sites incl. Empress Market/Frere Hall, no venue hours or fees",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates verified via Nominatim (single hit, node tagged leisure=park named 'Frere Hall'). Managed by the Karachi Metropolitan Corporation (KMC). The only 'opening hours' on any kmc.gos.pk page is the site-wide KMC Head Office footer ('Mon - Fri: 9:00 am - 5:00 pm'), which is NOT Frere Hall's own hours; the official KMC tourism page lists Frere Hall but gives no per-attraction hours/tickets. Library timings circulating online (e.g. '10am-5pm Mon-Sat') appear only on social media / blogs, which are not acceptable sources, so hours are null. Photo visually confirmed to depict the Gothic/Indo-Saracenic Frere Hall building.",
+          "batch": "batch-a-heritage"
+        }
+      ]
+    },
+    "empress-market": {
+      "researchName": "Empress Market",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-a-heritage",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Empress+Market+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Empress_Market",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://kmc.gos.pk/revamping-of-empress-market/",
+          "supports": [
+            "hours"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Empress_Market_Saddar_Karachi_cropped.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Empress+Market+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-a record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/revamping-of-empress-market/",
+          "supports": [],
+          "note": "checked for hours/fee/contact: describes the revamping project, datePublished 2026-09-04, no opening hours, ticket price or venue contact",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/kmc-markets/",
+          "supports": [],
+          "note": "checked for hours: lists Empress Market among KMC markets, no per-market hours or fees",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/kmc-heritage/",
+          "supports": [],
+          "note": "checked for hours: mentions Empress Market as a heritage site, no hours/fees",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates verified via Nominatim; used the node tagged historic=marketplace (osm_id 3191210900). Two other co-located hits exist (amenity=marketplace node 4950372523 and a landuse=commercial way 681523985). It is a functioning public market managed/renovated by KMC; the official KMC 'Revamping of Empress Market' page describes restoration works but states no opening hours, ticket prices or contact, so those are null (it is a free-access public market, but no official source was found to state that explicitly). Photo visually confirmed to depict the market building and its Gothic clock tower.",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "kind": "absence",
+          "text": "No official opening hours, entry fee or venue contact were found. KMC's official pages describe Empress Market and its restoration but publish no timetable or price: the 'Revamping of Empress Market' project page (kmc.gos.pk/revamping-of-empress-market/, datePublished 2026-09-04) and the KMC 'Markets' and 'Heritage' pages mention the market without operating hours. As a covered public bazaar it is generally free to enter, but no official source was found stating that explicitly, so ticketPrices is null. The only hours text is the site-wide KMC Head Office footer (Mon-Fri 9:00-5:00), which is NOT the market's opening time; the published KMC head-office number is not the market's contact, so contact is null.",
+          "batch": "batch-f-practical"
+        }
+      ]
+    },
+    "wazir-mansion": {
+      "researchName": "Wazir Mansion",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-a-heritage",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Wazir+Mansion+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Wazir_Mansion",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://doam.gov.pk/public/heritage-sites/798",
+          "supports": [
+            "description",
+            "contact"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Wazir_Mansion,_Kharadar_01.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-a-heritage"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Wazir+Mansion+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-a record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://doam.gov.pk/public/heritage-sites/798",
+          "supports": [],
+          "note": "supplied: entryConditions history note 'closed for renovation in 2009... reopened for visitors later', description; checked for hours/fee: none published; only DoAM Islamabad HQ phone shown, not used as venue contact",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates verified via Nominatim (single hit, way tagged tourism=museum). The official government page (Department of Archaeology & Museums, doam.gov.pk/public/heritage-sites/798) describes the site but states NO opening hours, ticket prices, entry conditions, accessibility or facilities. DOAM's published contact is its Islamabad HQ (+92 51-9252516, info@doam.gov.pk, Sir Syed Memorial Building, Islamabad), which is the managing authority's general contact, not a site-specific one, so 'contact' is left null to avoid mis-attribution. OSM's town tag reads 'Lyari Town' which conflicts with the commonly cited Kharadar location; address kept close to the OSM display_name. Photo visually confirmed to depict the 3-storey yellow-and-red Wazir Mansion building.",
+          "batch": "batch-a-heritage"
+        }
+      ]
+    },
+    "clifton-beach": {
+      "researchName": "Clifton Beach (Karachi Beach)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-c-coastline"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Clifton+Beach+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [
+            "coordinates",
+            "name",
+            "address"
+          ],
+          "note": "coordinates, name, address",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/uploads/1783601323_bc1970467658df698ebc.pdf (entryConditions: swimming ban notification CK/Home Br./(Swimming)/2026-22)",
+          "supports": [],
+          "note": "",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/downloads/notifications",
+          "supports": [],
+          "note": "notification listing",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Clifton_Beach,_Karachi_-_Pakistan.jpg",
+          "supports": [],
+          "note": "photo; metadata read via en.wikipedia.org action API imageinfo",
+          "batch": "batch-c-coastline"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "OSM maps Clifton Beach as a node (point), not a shoreline way, so the node coordinates were used directly. A beach is a line, not a point: the node sits on the mapped shoreline near the Clifton/Sea View end of the coast. Hours and prices left null: no official authority page (Sindh Tourism, City Government Karachi, KPT) stating 'free and openly accessible' could be found; stdc.gov.pk and tourism.sindh.gov.pk were unreachable and stdc.org.pk is a different organisation (Science & Technology Development Council). Photo depicts Clifton Beach per its Commons description ('Under-construction high-rises at Clifton Beach, Karachi', taken 2019).",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "kind": "absence",
+          "text": "No official entry restriction found. Safety note: per Commissioner Karachi Division notification No. CK/Home Br./(Swimming)/2026-22 (dated 30-06-2026), swimming, bathing, diving and wading were completely banned along the sea coast and beaches within Karachi Division from 01.07.2026 to 23.08.2026 under Section 144 Cr.P.C.; the ban had expired by the verification date, but such bans are re-imposed seasonally on drowning advisories from the Pakistan Maritime Security Agency.",
+          "batch": "batch-c-coastline"
+        }
+      ]
+    },
+    "seaview-point": {
+      "researchName": "Sea View (Seaface / Boat Basin stretch)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-c-coastline"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Seaview+Beach+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [
+            "coordinates",
+            "name",
+            "address"
+          ],
+          "note": "coordinates, name, address",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Boat+Basin+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "Boat Basin bay feature cited in notes",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/uploads/1783601323_bc1970467658df698ebc.pdf",
+          "supports": [],
+          "note": "entryConditions: swimming ban notification",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:HorseBeach.jpg",
+          "supports": [],
+          "note": "photo; source-file title is 'Sea View, Karachi', metadata read via en.wikipedia.org action API imageinfo",
+          "batch": "batch-c-coastline"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "'Sea View' is a shoreline stretch, not a point; coordinates anchored to the OSM node 'Seaview Beach' on the mapped shoreline. A Nominatim query for 'Sea View Point Karachi' returned zero results; 'Seaview Beach Karachi' returned the node used here. The photo's original Flickr title is 'Sea View, Karachi' by Bilal Mirza, so it depicts this specific stretch rather than generic coastline. Hours/prices null: no official statement found.",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "kind": "absence",
+          "text": "No official entry restriction found. The Commissioner Karachi Division swimming-ban notification No. CK/Home Br./(Swimming)/2026-22 (01.07.2026-23.08.2026, Section 144 Cr.P.C.) applies to beaches within the territorial limits of Karachi Division, which includes this stretch.",
+          "batch": "batch-c-coastline"
+        }
+      ]
+    },
+    "hawksbay-beach": {
+      "researchName": "Hawksbay Beach",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-c-coastline"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "description"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Hawke%27s+Bay+Beach+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "beach way, name, address",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/516419993/full",
+          "supports": [],
+          "note": "shoreline geometry used to pick the access-point anchor",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/uploads/1783601323_bc1970467658df698ebc.pdf",
+          "supports": [],
+          "note": "entryConditions: swimming ban notification",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:HawksBay_Beach.jpg",
+          "supports": [],
+          "note": "photo; file is categorised 'Hawksbay Beach, Karachi' on Commons, metadata read via en.wikipedia.org action API imageinfo",
+          "batch": "batch-c-coastline"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The beach is a line, not a point: a Nominatim query for 'Hawksbay Beach Karachi' returned zero results, so the Urdu-named way 'ہاکس بے بیچ' was used. Coordinates anchored to the easternmost node of the OSM beach way (bounding box 24.8432-24.8628, 66.8303-66.8987), the end closest to the mainland road network leading from the Sandspit/Hawksbay-village side; no named parking or jetty feature exists in OSM for this beach. Overpass API (overpass-api.de and mirrors) was unreachable from this network (TLS handshake blocked), so the raw OSM API was used for geometry. Hours/prices null: no official statement found.",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "kind": "absence",
+          "text": "No official entry restriction found. The Commissioner Karachi Division swimming-ban notification No. CK/Home Br./(Swimming)/2026-22 (01.07.2026-23.08.2026, Section 144 Cr.P.C.) prohibits swimming, bathing, diving and wading at beaches within Karachi Division, including this beach; the notification cites drowning incidents at Karachi beaches reported by the Pakistan Maritime Security Agency.",
+          "batch": "batch-c-coastline"
+        }
+      ]
+    },
+    "sandspit-beach": {
+      "researchName": "Sandspit Beach",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-c-coastline"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Sandspit+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "beach way, name, address",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Sandspit+Beach+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "camp-site access POI node/6593664185 on Sandspit Road",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/516413062/full",
+          "supports": [],
+          "note": "shoreline geometry used to pick the access-point anchor",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/uploads/1783601323_bc1970467658df698ebc.pdf",
+          "supports": [],
+          "note": "entryConditions: swimming ban notification",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Sandspit_beach_karachi.jpg",
+          "supports": [],
+          "note": "photo; description names Sandspit beach, metadata read via en.wikipedia.org action API imageinfo",
+          "batch": "batch-c-coastline"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The beach is a line, not a point: coordinates anchored to the node of OSM way 516413062 closest (~40 m) to node 6593664185, a 'Sandspit beach' POI on سینڈ اسپٹ روڈ (Sandspit Road), i.e. the mapped road-side access point. Photo selection was deliberately strict: Commons searches for 'Sandspit Beach' also return Mudeford Sandspit images from England, which were rejected; the chosen file is explicitly titled and described as Sandspit beach, Karachi. Hours/prices null: no official statement found.",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "kind": "absence",
+          "text": "No official entry restriction found. The Commissioner Karachi Division swimming-ban notification No. CK/Home Br./(Swimming)/2026-22 (01.07.2026-23.08.2026, Section 144 Cr.P.C.) prohibits swimming, bathing, diving and wading at beaches within Karachi Division, including this beach.",
+          "batch": "batch-c-coastline"
+        }
+      ]
+    },
+    "manora-island": {
+      "researchName": "Manora (island village and Manora Point beach)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-c-coastline"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Manora+Karachi&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "island settlement node, name, address",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Manora+Beach+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "beach way 516413057",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Manora+jetty&format=jsonv2&limit=3",
+          "supports": [],
+          "note": "PNS Qasim New Jetty slipway way 1280095712",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/516413057/full",
+          "supports": [],
+          "note": "beach geometry for notes",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commissionerkarachi.gos.pk/uploads/1783601323_bc1970467658df698ebc.pdf",
+          "supports": [],
+          "note": "entryConditions: swimming ban notification; Cantonment Board Manora & Korangi Creek as copy recipient",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Manora_Beach,_Karachi,_Pakistan.jpg",
+          "supports": [],
+          "note": "photo; categorised 'Manora Beach' on Commons, metadata read via en.wikipedia.org action API imageinfo",
+          "batch": "batch-c-coastline"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Published coordinates are the OSM suburb node for the Manora island settlement itself; the beach is a ~2.5 km shoreline way (516413057) and 'Manora Point' returned no result in Nominatim, so no separate point is claimed for it. Boat access: the only jetty-like feature found in OSM is the 'PNS Qasim New Jetty' slipway on the island's east side; Karachi Port Trust's site (kpt.gov.pk) mentions Manora only in its history pages and no official page states a boat/ferry fare from Boat Basin or Hawke's Bay, so ticketPrices is null and no crossing price is published. The Commons photo shows Manora beach and is categorised 'Manora Beach' (its description also notes the island is connected to the mainland by a long causeway).",
+          "batch": "batch-c-coastline"
+        },
+        {
+          "kind": "absence",
+          "text": "No official page stating entry conditions or fees for Manora beach could be found. The Commissioner Karachi Division swimming-ban notification No. CK/Home Br./(Swimming)/2026-22 (01.07.2026-23.08.2026, Section 144 Cr.P.C.) applies to beaches within Karachi Division; the notification is copied to the Cantonment Executive Officer, Cantonment Board Clifton, Manora & Korangi Creek, indicating a cantonment authority administers the Manora area.",
+          "batch": "batch-c-coastline"
+        }
+      ]
+    },
+    "port-grand": {
+      "researchName": "Port Grand",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-d-attractions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryConditions",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Port+Grand+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "coordinates, address (queried 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.openstreetmap.org/way/479697908",
+          "supports": [],
+          "note": "OSM element (tourism=attraction, building=yes, addr:street=Nitti Gitti Bridge)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.instagram.com/portgrandofficial/",
+          "supports": [],
+          "note": "opening hours Mon-Thu 5PM-12AM, Fri-Sun 5PM-1AM, Sunday breakfast 8:30AM-12:30PM (from official profile bio via search snippet, 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.facebook.com/PortGrandPakistan/",
+          "supports": [],
+          "note": "phone, address, Rs. 1000 entry (Rs. 500 redeemable) event posts, Ladies Tuesday entry condition (official page)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://cn.linkedin.com/company/portgrandlimited",
+          "supports": [],
+          "note": "official operator description (food & entertainment destination, waterfront promenade, 19th-century Native Jetty Bridge)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Port_Grand_Food_Street,_Karachi.jpg",
+          "supports": [],
+          "note": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)",
+          "batch": "batch-d-attractions"
+        }
+      ],
+      "notFound": [
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "portgrand.com and tbz.com.pk were unreachable from this network (curl/WebFetch failed, HTTP 000/DNS); the domain portgrand.com is recorded because it is listed on the official Facebook page, but its content could not be read. Instagram/Facebook direct fetches hit login walls, so hours/prices were taken from search-result snippets of Port Grand's own official profiles and may have changed since indexing. The Rs. 1000 entry figure appeared in event-specific posts (Azaadi Fest 8-17 Aug 2025 and later promo posts), not a permanent published tariff. OSM coordinates are community-sourced (way last edited 2017).",
+          "batch": "batch-d-attractions"
+        }
+      ]
+    },
+    "karachi-zoo": {
+      "researchName": "Karachi Zoo",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-d-attractions",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "entryFees"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Karachi+Zoo&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "coordinates, address (queried 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.openstreetmap.org/way/10385819",
+          "supports": [],
+          "note": "OSM element: tourism=zoo, operator='Sindh Government', wheelchair=limited, wikidata Q7569286",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.geo.tv/latest/642027-watch-karachi-zoo-gets-new-lion-enclosure-reptile-house",
+          "supports": [],
+          "note": "PRESS, dated 2025-12-29: fees Rs30 children / Rs50 adults; Mayor Murtaza Wahab inaugurated new lion enclosures and renovated Reptile House on Sunday 28 Dec 2025; fetched and read 2026-10-30",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.dawn.com/news/1963821",
+          "supports": [],
+          "note": "PRESS, dated 2025-12-29: same event ('Mayor opens upgraded recreational spots at Karachi Zoo'); article body returned 403 to fetchers, only search snippets of official-press text readable",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Karachi_Zoo",
+          "supports": [],
+          "note": "establishment year 1899, alternate names, 'largest zoo in Pakistan' claim (encyclopedic, not official)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens,_Pakistan_-_Sunday_October_10,2021.jpg",
+          "supports": [],
+          "note": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Karachi+Zoo&format=jsonv2&addressdetails=1&limit=5",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-d record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://kmc.gos.pk/karachi-zoo/",
+          "supports": [],
+          "note": "checked for hours/fee/contact: only states the zoo covers 33 acres; no zoo opening hours, ticket price or venue contact; site-wide KMC Head Office footer only",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://www.geo.tv/latest/642027-watch-karachi-zoo-gets-new-lion-enclosure-reptile-house",
+          "supports": [],
+          "note": "SECONDARY PRESS, 2025-12-29: reports Mayor-announced entry fees Rs 50 adult / Rs 30 child at 28 Dec 2025 reopening - not an official tariff page, so not used as verified price data",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "No official page could be read: thecity.gov.pk (City Government Karachi) and swildlife.gov.pk were unreachable from this network (curl/WebFetch failed); no KMC/City Government zoo page was found via search. Hours therefore null despite third-party claims of 8:00-20:00. Ticket prices are tagged as PRESS (Geo.tv fetched; Dawn body blocked with 403), dated 2025-12-29. Operational status: press reports upgrading works inaugurated 28 Dec 2025, but no official statement confirms current day-to-day operation or any full/partial closure — animal-welfare litigation continued in 2025 (e.g., a Sindh High Court order in Oct 2025 to transfer a bear, seen only in an Instagram snippet, not used as a source). Do not present the zoo as definitively open or closed. OSM wheelchair=limited is community data, deliberately NOT used for the accessibility field per source rules.",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "kind": "absence",
+          "text": "No official statement retrieved. Third-party listings (unverified, not used as source of truth) variously claim the zoo is open daily and that Wednesdays are reserved for women and children.",
+          "batch": "batch-d-attractions"
+        }
+      ]
+    },
+    "bahria-adventure-land": {
+      "researchName": "Bahria Adventure Land",
+      "status": "verified",
+      "lastVerified": "2026-10-30",
+      "confidence": "verified",
+      "batches": [
+        "batch-d-attractions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone",
+        "email",
+        "facilities",
+        "description"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Bahria+Adventure+Land+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "coordinates, address (queried 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.openstreetmap.org/node/12282119198",
+          "supports": [],
+          "note": "OSM node (leisure=park, name=Bahria Adventure Land)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://bahriaadventureland.com/park-overview/",
+          "supports": [],
+          "note": "OFFICIAL (fetched 2026-10-30): operating hours Tue-Sun 03:00 PM-11:00 PM, 5 zones, 25 attractions, F&B, indoor games, parking, ATMs, Italian manufacturers, family positioning",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://bahriaadventureland.com/ticket-info/",
+          "supports": [],
+          "note": "OFFICIAL (fetched 2026-10-30): Green Ticket Rs 3000 (>4ft 3in), Yellow Ticket Rs 2000 (2ft 6in-4ft 3in), counter sales",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://bahriaadventureland.com/contact-us/",
+          "supports": [],
+          "note": "OFFICIAL (fetched 2026-10-30): address, phone 021-37188000, email info@bahriaadventureland.com",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://bahriaadventureland.com/faq/",
+          "supports": [],
+          "note": "OFFICIAL (fetched 2026-10-30): People of Determination accessibility guide reference, no park transport from Karachi city, family park statement, 25 rides, height restrictions",
+          "batch": "batch-d-attractions"
+        }
+      ],
+      "notFound": [
+        "photo"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "All hours, prices, contact, facilities, accessibility and family-suitability values were read directly from the park's own official website on 2026-10-30 (pages fetched successfully, HTTP 200). Monday closure is implied by 'Tuesday to Sunday' hours; no separate official 'closed Monday' statement was captured (the /opening-hours/ URL 404s). The site footer says 'Copyright © 2023' and prices may lag reality — recheck before publication. Wikimedia Commons returned ZERO files for 'Bahria Adventure Land' or 'Adventure Land Bahria Town Karachi', so photo is null rather than using an unrelated Karachi photo; consider the park's own licensed site imagery or a commissioned photo. OSM node was created 2024-10-23 by a single editor; no official geo publish confirms the point.",
+          "batch": "batch-d-attractions"
+        }
+      ]
+    },
+    "chaukhandi-tombs": {
+      "researchName": "Chaukhandi Tombs",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-d-attractions",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://whc.unesco.org/en/tentativelists/1287/",
+          "supports": [],
+          "note": "OFFICIAL UNESCO (fetched 2026-10-30, HTTP 200): tentative-list status, 'Chaukhandi Tombs, Karachi', cultural, submitted 14/12/1993 by Pakistan National Commission for UNESCO, full site description, '40 km east of Karachi'",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Chaukhandi+Tombs+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "coordinates, address (queried 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.openstreetmap.org/way/1427036051",
+          "supports": [],
+          "note": "OSM element: amenity=grave_yard, religion=muslim, wikidata Q5088157, wikipedia en:Chaukhandi tombs, commons Category:Chaukhandi tombs",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://www.facebook.com/AntiquitieSindh/",
+          "supports": [],
+          "note": "OFFICIAL (Directorate General of Antiquities & Archaeology, Govt of Sindh) page: site conserved by Sindh Culture, Tourism and Antiquities Department; tourist visits posted Jan-Feb 2026 (read via search snippets; page itself not fetchable here)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img07.jpg",
+          "supports": [],
+          "note": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Chaukhandi+Tombs+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-d record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://whc.unesco.org/en/tentativelists/1287/",
+          "supports": [],
+          "note": "supplied: description, tentative-list status, '40 km east of Karachi', submitted 14/12/1993; checked for hours/fee/contact: UNESCO lists none",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://www.facebook.com/AntiquitieSindh/",
+          "supports": [],
+          "note": "SECONDARY/official-body page but login-walled: identifies the Sindh Culture, Tourism & Antiquities Department as managing authority; content read only from search snippets, not used for hours/fee/contact - hence those remain null",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Heritage status and description are fully verified from the UNESCO World Heritage Centre page fetched 2026-10-30. Hours and ticket prices are null because NO official source publishes them — the only visit-time figures found (e.g. '07:00-19:00') come from Google/Tripadvisor-style aggregators and were rejected per source rules; entry fee amounts are unknown (do not publish any figure). The managing authority identified is the Sindh Culture, Tourism & Antiquities Department via its official Facebook posts (login-walled for direct fetch; content read from search snippets dated Jan-Feb 2026). No dedicated official website for the monument was found. The OSM polygon (way, 2 sq-mile-scale extent matching UNESCO's description) was last edited 2025-09-24. Wikipedia gives tomb dates 'mid-15th to last quarter of 17th century', which differs slightly from UNESCO's '17th and 18th centuries' wording — UNESCO text was used in the description.",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "kind": "absence",
+          "text": "No official published entry conditions found. The necropolis is managed/conserved by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh) per that department's official Facebook page, which posts guided tourist visits at the site (e.g., Jan-Feb 2026 posts). It is an active Muslim graveyard (OSM amenity=grave_yard, religion=muslim) as well as a heritage site.",
+          "batch": "batch-d-attractions"
+        },
+        {
+          "kind": "absence",
+          "text": "No official published opening hours, entry fee or contact were found. The necropolis is inscribed on Pakistan's UNESCO World Heritage Tentative List (Ref. 1287, submitted 14/12/1993) and is conserved/managed by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh), which posts guided tourist visits via its official Facebook page (facebook.com/AntiquitieSindh) - a login-walled page that could not be fetched here. It is an active Muslim graveyard as well as a heritage site (OSM amenity=grave_yard, religion=muslim), so respectful visiting is implied but no official rules page exists. Visit-time figures circulating online (e.g. '07:00-19:00') and the 'no official entrance fee, tip the caretaker' note come only from Google/Tripadvisor-style aggregators and travel blogs, which are not acceptable sources, so hours and ticketPrices are null and no fee figure is published.",
+          "batch": "batch-f-practical"
+        }
+      ]
+    },
+    "pakistan-maritime-museum": {
+      "researchName": "Pakistan Maritime Museum",
+      "status": "verified",
+      "lastVerified": "2026-10-30",
+      "confidence": "verified",
+      "batches": [
+        "batch-b-museums"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Pakistan+Maritime+Museum+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://pmm.com.pk/visitor-guidelines/",
+          "supports": [
+            "hours",
+            "ticketPrices",
+            "entryConditions",
+            "contact",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://pmm.com.pk/",
+          "supports": [
+            "description",
+            "familySuitability"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Pakistan_Maritime_Museum,_Karachi,_Pakistan_3.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        }
+      ],
+      "notFound": [
+        "accessibility",
+        "facilities"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates taken from the OSM node tagged type=attraction for the museum building; a separate OSM way (26687854) covers the surrounding museum park. Minor inconsistency on the official site: the homepage says '09AM to 10PM. Open all days' while the visitor-guidelines page and the homepage 'Visiting Hours' block give 09:00–22:00 Mon–Fri and 09:00–23:00 Sat–Sun; the per-day schedule is used. Ticket page carries no stated effective date (footer '2020 Pakistan Maritime Museum'); prices may be outdated. Photo was visually verified: it shows the main museum building with the giant ship-propeller sculpture in front.",
+          "batch": "batch-b-museums"
+        }
+      ]
+    },
+    "paaf-museum-karachi": {
+      "researchName": "PAF Museum (Pakistan Air Force Museum)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-b-museums"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone",
+        "email",
+        "facilities"
+      ],
+      "sources": [
+        {
+          "url": "https://overpass-api.de/api/interpreter (name~ query, Karachi bbox)",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.pafmuseum.com.pk/the-museum/",
+          "supports": [
+            "hours",
+            "ticketPrices",
+            "entryConditions",
+            "contact",
+            "accessibility",
+            "facilities"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.pafmuseum.com.pk/",
+          "supports": [],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.pafmuseum.com.pk/news/",
+          "supports": [],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Entrance_to_Pakistan_Air_Force_PAF_Museum_Karachi.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        }
+      ],
+      "notFound": [
+        "address"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Coordinates from the OSM way tagged tourism=museum ('Pakistan Air Force Museum', way 446428313) inside the museum park (way 484255789, which carries website=pafmuseum.com.pk). No street address is stated on the official site, so address is null. Official-site inconsistency: the 'The Museum' page gives closing at 21:00 (Mon–Thu) / 22:00 (Fri–Sun) while the homepage footer gives 2130/2230 Hrs; the 'The Museum' page values are used. Status: the homepage news list shows a 'closed for general public' notice dated Mar 23, 2020 superseded by 'PAF Museum is re-opening for General Public from 21st September 2020' (dated Sep 20, 2020) as the latest item; the site footer is © 2020 and appears not to have been updated since, so hours/prices should be re-confirmed before launch. Photography rules are not stated on the fetched pages (only commercial-shoot-type restrictions are absent); nothing claimed. Photo visually verified: museum entrance gate with the 'PAF Museum Faisal' emblem and aircraft atop the gate.",
+          "batch": "batch-b-museums"
+        }
+      ]
+    },
+    "national-museum-pakistan": {
+      "researchName": "National Museum of Pakistan",
+      "status": "needs-review",
+      "lastVerified": "2026-10-30",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-b-museums",
+        "batch-f-practical"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=National+Museum+of+Pakistan+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://doam.gov.pk/public/heritage-sites/792",
+          "supports": [
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:National_Museum_Front,_Karachi,_Pakistan.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=National+Museum+of+Pakistan+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [],
+          "note": "supplied: osmId, lat, lng, address - same geo source as batch-b record",
+          "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://doam.gov.pk/public/heritage-sites/792",
+          "supports": [],
+          "note": "supplied: description - founded 17 April 1950 in Frere Hall, moved to Burns Garden in 1970, eleven galleries; checked for hours/fee/contact: none published, only DoAM HQ phone shown, not used as venue contact",
+          "batch": "batch-f-practical"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "accessibility",
+        "facilities",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Location, name and founding history verified via OSM (node tagged tourism=museum) and the federal government DoAM heritage-sites page. The DoAM page states no opening hours or ticket prices. The museum's official Facebook page (facebook.com/NationalMuseumPK) appeared in search results with the text 'We're open all week from 09AM to 05PM (except Wednesdays)', but the page itself could not be fetched (Facebook serves a login/JS wall), so per the honesty rules hours remain null and this snippet is recorded only here, not as data. Blog/aggregator claims about ticket prices (e.g. PKR 20) were deliberately not used. Photo visually verified: front view of the National Museum building with its distinctive screen facade and forecourt garden.",
+          "batch": "batch-b-museums"
+        }
+      ]
+    },
+    "state-bank-of-pakistan-museum": {
+      "researchName": "State Bank of Pakistan Museum (SBP Museum)",
+      "status": "verified",
+      "lastVerified": "2026-10-30",
+      "confidence": "verified",
+      "batches": [
+        "batch-b-museums"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone",
+        "email",
+        "facilities"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sbp.org.pk/t_inner/oo-opening-hours/museum/museum",
+          "supports": [
+            "hours"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.sbp.org.pk/t_inner/oo-faqs/museum/museum?i=1",
+          "supports": [
+            "entryConditions",
+            "accessibility",
+            "ticketPrices"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.sbp.org.pk/contact-us",
+          "supports": [],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.sbp.org.pk/museum",
+          "supports": [
+            "website",
+            "description",
+            "ticketPrices"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/480194563/full.json",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Old_building_of_State_Bank_of_Pakistan,_Now_its_known_as_State_Bank_Museum.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Nominatim has no 'State Bank Museum' feature (empty results for three queries); Overpass also has no museum node. Coordinates therefore use the OSM building way named 'State Bank of Pakistan' (building=commercial, 'Built in 1932') at the SBP headquarters on I.I Chundrigar Road, which the official museum pages identify as the museum's location ('State Bank of the Pakistan headquarters'). Sunday hours are null because the official hours statement covers Monday to Saturday only; it does not explicitly say 'closed Sunday'. sbp.org.pk blocks the default WebFetch user-agent (403) but serves content to a descriptive User-Agent via curl. Photo visually verified: the colonnaded stone facade with 'STATE BANK MUSEUM' carved on the entablature. Licence/author from Commons file-page wikitext via api.wikimedia.org (commons.wikimedia.org direct is network-blocked from this machine).",
+          "batch": "batch-b-museums"
+        }
+      ]
+    },
+    "tdf-magnifiscience-centre": {
+      "researchName": "TDF MagnifiScience Centre",
+      "status": "verified",
+      "lastVerified": "2026-10-30",
+      "confidence": "verified",
+      "batches": [
+        "batch-b-museums"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryFees",
+        "entryConditions",
+        "website",
+        "phone",
+        "email",
+        "facilities",
+        "description"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=MagnifiScience+Centre+Karachi&format=jsonv2&addressdetails=1&limit=3",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "osmName",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.magnifiscience.org/",
+          "supports": [
+            "hours",
+            "address",
+            "contact",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://www.magnifiscience.org/passes/",
+          "supports": [
+            "ticketPrices",
+            "entryConditions",
+            "facilities",
+            "contact"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:MSC_building_night.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-b-museums"
+        }
+      ],
+      "notFound": [
+        "accessibility"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "OSM node (8633769213, tourism=museum, website=magnifiscience.org) matches the official contact address 'Plot no 1 RY – 15 Railway Quarter' and the geotag embedded in the Commons photo (24.8468, 67.002647). The homepage 'Timings' block (Mon–Thu 9:00 AM – 5:00 PM, Friday Closed, Sat–Sun 10:00 AM – 7:30 PM) is reproduced exactly; the passes page itself states no per-day timings. Prices carry no effective-date statement on the page. Accessibility is not mentioned on the fetched official pages, so it is null. Photo visually verified: the centre's building at night with a readable illuminated 'The Dawood Foundation MagnifiScience Centre' sign.",
+          "batch": "batch-b-museums"
+        }
+      ]
+    }
+  },
+  "exclusions": [
+    {
+      "slug": "port-grand",
+      "field": "entryFees",
+      "reason": "The entry price circulating for this place came from the operator’s own social posts, where the amount contradicted its own label (“Rs. 1,000 (Rs. 500 redeemable)”). No tariff page could be read, so no price is published."
+    },
+    {
+      "slug": "clifton-beach",
+      "field": "entryConditions",
+      "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
+    },
+    {
+      "slug": "seaview-point",
+      "field": "entryConditions",
+      "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
+    },
+    {
+      "slug": "sandspit-beach",
+      "field": "entryConditions",
+      "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
+    },
+    {
+      "slug": "manora-island",
+      "field": "entryConditions",
+      "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
+    },
+    {
+      "slug": "hawksbay-beach",
+      "field": "entryConditions",
+      "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
+    }
+  ]
+}

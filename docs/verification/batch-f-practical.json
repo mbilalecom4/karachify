@@ -1,0 +1,148 @@
+[
+  {
+    "name": "Mazar-e-Quaid",
+    "osmId": 12151865936,
+    "lat": 24.8748644,
+    "lng": 67.0393359,
+    "address": "Mazar-e-Quaid-e-Azam, M.A. Jinnah Road, Gurmandir, Jacob Lines, Jamshed Town, Karachi Division, Sindh 75000, Pakistan",
+    "website": "https://qmmb.gov.pk/",
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No opening/visiting hours, entry fee or photography rules are published on the official managing body's site (Quaid-i-Azam Mazar Management Board, qmmb.gov.pk - Mausoleum Complex pages) or on the Sindh Tourism Development Corporation's Mazar-e-Quaid page (stdc.gos.pk). QMMB's Mausoleum Complex text is historical only: it states the Mausoleum was 'inaugurated and opened for the public by the then President M. Yahya Khan on January 15, 1971' and that the on-site AV Hall 'will be opened for general public in near future' - these are status/history notes, not a current weekday timetable, so hours are left null rather than guessed.",
+    "contact": {
+      "phone": "+92 21 99230171 / +92 21 99230172 / +92 21 99230173 / +92 21 99230174 (also a Fax listed on the same page)",
+      "email": "info@qmmb.gov.pk (page also lists quaid_mazar@yahoo.com)",
+      "owner": "Quaid-i-Azam Mazar Management Board (federal body that manages the Mazar complex)"
+    },
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Mazar-e-Quaid+Karachi&format=jsonv2&addressdetails=1&limit=5 (supplied: osmId, lat, lng, address - same geo source as batch-a record)",
+      "https://qmmb.gov.pk/ (supplied: website - official Quaid-i-Azam Mazar Management Board homepage, HTTP 200 fetched 2026-10-31)",
+      "https://qmmb.gov.pk/contact.html (supplied: contact phone, fax, email)",
+      "https://qmmb.gov.pk/mausoleum-1.html (checked for hours and entry fee: NONE published; supplied the 1971 'opened for the public' history and the AV Hall status note)",
+      "https://stdc.gos.pk/2024-10-13/mazar-e-quaid/ (checked for hours and entry fee: descriptive tourism page only, no hours/fee published; STDC HQ number 021-99248040 on the site is STDC's own office, not a venue contact - not used)"
+    ],
+    "description": "Mazar-e-Quaid, the mausoleum of Muhammad Ali Jinnah, was completed and 'opened for the public' on 15 January 1971, per the Quaid-i-Azam Mazar Management Board (qmmb.gov.pk), the federal body that manages the complex. QMMB publishes contact telephones (021-99230171 to 174) and an email (info@qmmb.gov.pk) on its official site, but no opening hours or entry fee are published on any official page checked (QMMB Mausoleum Complex page or the Sindh Tourism Development Corporation's Mazar-e-Quaid page), so hours and ticketPrices are null.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "Frere Hall",
+    "osmId": 3735483787,
+    "lat": 24.8475202,
+    "lng": 67.0330882,
+    "address": "Frere Hall, Civil Lines, Saddar Town, Karachi Division, Sindh 74400, Pakistan",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No venue-specific opening hours, entry fee or contact are published. The Sindh Tourism Development Corporation's Frere Hall page (stdc.gos.pk) and KMC's Karachi pages (kmc.gos.pk / things-to-do-in-karachi, kmc-heritage) describe the building but give no per-day timetable or ticket price; the only 'Opening Hours: Mon - Fri 9:00 am - 5:00 pm' text on kmc.gos.pk is the site-wide KMC Head Office footer, not Frere Hall's own hours. Frere Hall houses a public library; library timings circulating online (e.g. '10am-5pm Mon-Sat') appear only on social media / blogs, which are not acceptable sources, so hours stay null. The published KMC number (021-992 1511-7 / mayor@kmc.gos.pk) is the corporation's head office, not a Frere Hall line, so contact is left null to avoid misattribution.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Frere+Hall+Karachi&format=jsonv2&addressdetails=1&limit=5 (supplied: osmId, lat, lng, address - same geo source as batch-a record)",
+      "https://stdc.gos.pk/2024-10-13/frere-hall/ (checked for hours, entry fee, contact: descriptive page only, states Victorian Gothic building built 1865, no hours/fee/contact published)",
+      "https://kmc.gos.pk/things-to-do-in-karachi/ (checked for hours: lists Frere Hall but no per-attraction hours/tickets; only site-wide KMC Head Office footer hours)",
+      "https://kmc.gos.pk/kmc-heritage/ (checked for hours: mentions heritage sites incl. Empress Market/Frere Hall, no venue hours or fees)"
+    ],
+    "description": "Frere Hall is a Victorian Gothic / Indo-Saracenic building in central Karachi (Saddar, Civil Lines), built in 1865 and now used as an exhibition space and public library, managed by the Karachi Metropolitan Corporation (KMC). Both the official KMC pages and the Sindh Tourism Development Corporation's Frere Hall page publish NO opening hours, entry fee or venue contact, so those fields are null rather than guessed.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "Empress Market",
+    "osmId": 3191210900,
+    "lat": 24.8622181,
+    "lng": 67.0296789,
+    "address": "Empress Market, Shahrah-e-Liaquat (Frere Road), Saddar Bazaar, Fowler Lines, Saddar, Karachi Division, Sindh 75530, Pakistan",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No official opening hours, entry fee or venue contact were found. KMC's official pages describe Empress Market and its restoration but publish no timetable or price: the 'Revamping of Empress Market' project page (kmc.gos.pk/revamping-of-empress-market/, datePublished 2026-09-04) and the KMC 'Markets' and 'Heritage' pages mention the market without operating hours. As a covered public bazaar it is generally free to enter, but no official source was found stating that explicitly, so ticketPrices is null. The only hours text is the site-wide KMC Head Office footer (Mon-Fri 9:00-5:00), which is NOT the market's opening time; the published KMC head-office number is not the market's contact, so contact is null.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Empress+Market+Karachi&format=jsonv2&addressdetails=1&limit=5 (supplied: osmId, lat, lng, address - same geo source as batch-a record)",
+      "https://kmc.gos.pk/revamping-of-empress-market/ (checked for hours/fee/contact: describes the revamping project, datePublished 2026-09-04, no opening hours, ticket price or venue contact)",
+      "https://kmc.gos.pk/kmc-markets/ (checked for hours: lists Empress Market among KMC markets, no per-market hours or fees)",
+      "https://kmc.gos.pk/kmc-heritage/ (checked for hours: mentions Empress Market as a heritage site, no hours/fees)"
+    ],
+    "description": "Empress Market is a Victorian-era public marketplace in the Saddar area of Karachi, managed by the Karachi Metropolitan Corporation (KMC), which has run a 'Revamping of Empress Market' restoration project (KMC page dated 4 September 2026). KMC's official pages describe the market and its restoration but publish no opening hours, entry fee or venue contact, so hours and ticketPrices are null rather than guessed.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "Wazir Mansion",
+    "osmId": 692307507,
+    "lat": 24.850975,
+    "lng": 66.9975314,
+    "address": "Wazir Mansion, Chaghla Street, Bunder Quarter, Karachi Division, Sindh 72500, Pakistan",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "The official federal page (Department of Archaeology & Museums, doam.gov.pk/public/heritage-sites/798) states the site's history and that 'In 2009, Wazir Mansion was closed for renovation temporarily but was reopened for visitors later', but publishes NO opening/visiting hours, NO entry fee and NO photography/dress rules. The only contact on that page is the Department of Archaeology & Museums head office (+92 51-9252516, info@doam.gov.pk, Islamabad) - the managing authority's general line, not a site-specific one - so venue contact is left null to avoid misattribution. Hours and ticketPrices are therefore null, not invented.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Wazir+Mansion+Karachi&format=jsonv2&addressdetails=1&limit=5 (supplied: osmId, lat, lng, address - same geo source as batch-a record)",
+      "https://doam.gov.pk/public/heritage-sites/798 (supplied: entryConditions history note 'closed for renovation in 2009... reopened for visitors later', description; checked for hours/fee: none published; only DoAM Islamabad HQ phone shown, not used as venue contact)"
+    ],
+    "description": "Wazir Mansion, officially the Quaid-e-Azam Birthplace Museum, is the former family home in the Kharadar area of Karachi regarded as the birthplace of Muhammad Ali Jinnah; per the federal Department of Archaeology & Museums (doam.gov.pk) it now serves as a museum and national archive and was 'closed for renovation temporarily but reopened for visitors later' after a 2009 closure. The DoAM page publishes no opening hours or entry fee, so those fields are null.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "National Museum of Pakistan",
+    "osmId": "node/5128917944",
+    "lat": 24.8528564,
+    "lng": 67.0176726,
+    "address": "Burns Garden, Dr. Zia-ud-din Ahmed Road, Karachi (per Government of Pakistan Department of Archaeology & Museums heritage-sites page); OSM places the building near Shahrah-e-Quaid area near Pakistan Secretariat, Saddar Town, 75530",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "The official federal page (Department of Archaeology & Museums, doam.gov.pk/public/heritage-sites/792) gives the museum's history and collection but publishes NO opening hours, NO entry fee, NO photography rules and NO Karachi-specific contact. A timetable reading '09AM to 05PM, except Wednesdays' circulates via the museum's Facebook page (facebook.com/NationalMuseumPK), but Facebook serves a login/JS wall and the page could not be fetched, so per the honesty rules hours remain null and that snippet is recorded only as an unverifiable secondary mention, not as data. Blog/aggregator ticket figures (e.g. PKR 20) were not used. The only phone on the DoAM page is the Department's Islamabad head office (+92 51-9252516), not the museum's line, so contact is left null.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=National+Museum+of+Pakistan+Karachi&format=jsonv2&addressdetails=1&limit=3 (supplied: osmId, lat, lng, address - same geo source as batch-b record)",
+      "https://doam.gov.pk/public/heritage-sites/792 (supplied: description - founded 17 April 1950 in Frere Hall, moved to Burns Garden in 1970, eleven galleries; checked for hours/fee/contact: none published, only DoAM HQ phone shown, not used as venue contact)"
+    ],
+    "description": "The National Museum of Pakistan in Karachi was established on 17 April 1950 in Frere Hall, replacing the defunct Victoria Museum, and moved to its present Burns Garden building on Dr. Zia-ud-din Ahmed Road in 1970, where it now houses eleven galleries and a large archaeological and historical collection, per the Government of Pakistan Department of Archaeology & Museums (doam.gov.pk). DoAM's heritage page states no opening hours or ticket prices, and no functioning official website for the museum was found, so practical fields are null rather than guessed.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "Karachi Zoo",
+    "osmId": 10385819,
+    "lat": 24.8767249,
+    "lng": 67.0233099,
+    "address": "Karachi Zoo, D'Silva Street, Madina Colony, Garden West, Karachi District, Sindh 74550, Pakistan (per OpenStreetMap/Nominatim; OSM addr:street tags 'Manghopir Rd;Garden Lane'); commonly known as Garden Zoo, Garden East",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No official zoo timetable or tariff page could be read: the managing body's own KMC page (kmc.gos.pk/karachi-zoo/) states the zoo 'covers an area of 33 acres' but publishes no opening hours or entry fee, and the Sindh Wildlife Department (swildlife.gov.pk) and City Government Karachi (thecity.gov.pk) sites were unreachable from this network (HTTP 000). The only 'Opening Hours: Mon-Fri 9:00-5:00' on kmc.gos.pk is the site-wide KMC Head Office footer, not the zoo's hours. Reputable PRESS coverage (Geo.tv, 29 December 2025) reports that Karachi Mayor Murtaza Wahab announced entry fees of Rs 50 (adults) / Rs 30 (children) at the 28 December 2025 reopening of upgraded facilities (new lion enclosure, renovated Reptile House); this is a press-reported figure, not an official published tariff, so it is recorded as SECONDARY and not placed in ticketPrices. Third-party listings variously claim daily opening and that Wednesdays are reserved for women and children - unverified and not used. Do not present the zoo as definitively open or closed.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Karachi+Zoo&format=jsonv2&addressdetails=1&limit=5 (supplied: osmId, lat, lng, address - same geo source as batch-d record)",
+      "https://kmc.gos.pk/karachi-zoo/ (checked for hours/fee/contact: only states the zoo covers 33 acres; no zoo opening hours, ticket price or venue contact; site-wide KMC Head Office footer only)",
+      "https://www.geo.tv/latest/642027-watch-karachi-zoo-gets-new-lion-enclosure-reptile-house (SECONDARY PRESS, 2025-12-29: reports Mayor-announced entry fees Rs 50 adult / Rs 30 child at 28 Dec 2025 reopening - not an official tariff page, so not used as verified price data)"
+    ],
+    "description": "Karachi Zoo (Karachi Zoological and Botanical Gardens, also called Garden Zoo) in Garden East is a historic zoo - KMC's own page notes it was established in 1878 and covers an area of 33 acres, and OpenStreetMap records its operator as the Sindh Government. No official page publishes its opening hours or entry fee (KMC's zoo page is silent; swildlife.gov.pk and thecity.gov.pk were unreachable), so hours and ticketPrices are null; press coverage (Geo.tv, Dec 2025) reported Mayor-announced fees of Rs 50 / Rs 30, recorded only as secondary.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  },
+  {
+    "name": "Chaukhandi Tombs",
+    "osmId": 1427036051,
+    "lat": 24.8661548,
+    "lng": 67.2713971,
+    "address": "Chaukhandi Tombs, Chowkhandi Road, Abdullah Goth, Bin Qasim Town, Malir District, Karachi Division, Sindh 75030, Pakistan (per OpenStreetMap/Nominatim; UNESCO describes it as '40 km east of Karachi')",
+    "website": null,
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No official published opening hours, entry fee or contact were found. The necropolis is inscribed on Pakistan's UNESCO World Heritage Tentative List (Ref. 1287, submitted 14/12/1993) and is conserved/managed by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh), which posts guided tourist visits via its official Facebook page (facebook.com/AntiquitieSindh) - a login-walled page that could not be fetched here. It is an active Muslim graveyard as well as a heritage site (OSM amenity=grave_yard, religion=muslim), so respectful visiting is implied but no official rules page exists. Visit-time figures circulating online (e.g. '07:00-19:00') and the 'no official entrance fee, tip the caretaker' note come only from Google/Tripadvisor-style aggregators and travel blogs, which are not acceptable sources, so hours and ticketPrices are null and no fee figure is published.",
+    "contact": null,
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=Chaukhandi+Tombs+Karachi&format=jsonv2&addressdetails=1&limit=3 (supplied: osmId, lat, lng, address - same geo source as batch-d record)",
+      "https://whc.unesco.org/en/tentativelists/1287/ (supplied: description, tentative-list status, '40 km east of Karachi', submitted 14/12/1993; checked for hours/fee/contact: UNESCO lists none)",
+      "https://www.facebook.com/AntiquitieSindh/ (SECONDARY/official-body page but login-walled: identifies the Sindh Culture, Tourism & Antiquities Department as managing authority; content read only from search snippets, not used for hours/fee/contact - hence those remain null)"
+    ],
+    "description": "The Chaukhandi necropolis, about 40 km east of Karachi, is a funerary ensemble of elaborately carved stone warriors' tombs, inscribed on Pakistan's UNESCO World Heritage Tentative List (Ref. 1287, submitted 14 December 1993) and conserved by the Sindh Culture, Tourism & Antiquities Department of the Government of Sindh. No official source publishes opening hours, an entry fee or a contact number, so those fields are null; the site is also an active Muslim graveyard.",
+    "confidence": "partially-verified",
+    "lastChecked": "2026-10-31"
+  }
+]

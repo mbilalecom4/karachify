@@ -6,7 +6,7 @@
 // Deliberate exclusions live in DROP_* below so the reasons stay in the repo.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
-const BATCHES = ['batch-a-heritage', 'batch-c-coastline', 'batch-d-attractions', 'batch-b-museums'];
+const BATCHES = ['batch-a-heritage', 'batch-c-coastline', 'batch-d-attractions', 'batch-b-museums', 'batch-f-practical'];
 
 /** Verified name in the research file -> slug used by the catalogue. */
 const SLUG_MAP = {
@@ -79,6 +79,26 @@ const DROP_FEES = new Set(['port-grand']);
 // The Commissioner Karachi swimming-ban notification covers 01.07-23.08.2026, a
 // window that has closed. Showing it as a live entry condition would mislead.
 const DROP_ENTRY_CONDITIONS = new Set(['clifton-beach', 'seaview-point', 'sandspit-beach', 'manora-island', 'hawksbay-beach']);
+
+/**
+ * The same rules that suppress a value are published on /sources, so a reader
+ * can see that a source existed and why its content did not ship. Derived from
+ * the DROP_ sets above: the disclosure cannot drift from the enforcement.
+ */
+const EXCLUSIONS = [
+  ...[...DROP_FEES].map((slug) => ({
+    slug,
+    field: 'entryFees',
+    reason:
+      'The entry price circulating for this place came from the operator’s own social posts, where the amount contradicted its own label (“Rs. 1,000 (Rs. 500 redeemable)”). No tariff page could be read, so no price is published.',
+  })),
+  ...[...DROP_ENTRY_CONDITIONS].map((slug) => ({
+    slug,
+    field: 'entryConditions',
+    reason:
+      'The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown.',
+  })),
+];
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -181,9 +201,10 @@ function contactFrom(c) {
   const email = (raw.match(EMAIL_RE) ?? [])[0];
   const lines = raw
     .replace(EMAIL_RE, '')
-    .replace(/\s*\(stated 24\/7\)/gi, '')
+    .replace(/\((?![\d+\s-])[^\)]*\)/g, '') // "(also a Fax …)" is a note; "(021)" is part of the number
     .replace(/\s+[-–]\s+[^;]*$/, (m) => (/[a-z]/i.test(m) ? '' : m)) // trailing address, not a dash in a number
-    .split(';')
+    .split(/[;]/)
+    .flatMap((s) => s.split(/\s+\/\s+/)) // one line may hold a list of alternate numbers
     .map((s) => s.replace(/^Tel\.?\s*/i, '').replace(/\s+/g, ' ').replace(/[:,]\s*$/, '').trim())
     .filter((s) => /\d/.test(s));
   return { phone: lines.length ? lines.join('; ') : undefined, email };
@@ -202,8 +223,7 @@ function conditionsFrom(record, slug) {
 }
 
 /** Nominatim's "W479576908" -> the OSM element page, a stable citation. */
-function osmUrlFromToken(token) {
-  const m = /^([NWR])(\d+)$/.exec(String(token ?? ''));
+function osmUrlFromToken(token) {  const m = /^([NWR])(\d+)$/.exec(String(token ?? ''));
   if (!m) return null;
   return `https://www.openstreetmap.org/${{ N: 'node', W: 'way', R: 'relation' }[m[1]]}/${m[2]}`;
 }
@@ -217,7 +237,122 @@ function osmIdFrom(r, osm) {
   return r.osmId != null ? String(r.osmId) : undefined;
 }
 
+/**
+ * Research files cite sources two ways: {url, supports:[field…]} (batches a/b)
+ * or "url (what it was used for)" (batches c/d). Normalise both into
+ * {url, supports, note} so the /sources page can print one shape.
+ */
+const FIELD_TOKENS = new Set([
+  'lat', 'lng', 'osmId', 'osmName', 'address', 'name', 'coordinates', 'website', 'hours',
+  'ticketPrices', 'entryConditions', 'contact', 'description', 'photo', 'facilities',
+  'accessibility', 'familySuitability',
+]);
+
+function sourcesFrom(record, batch) {
+  if (!Array.isArray(record.sources)) return [];
+  return record.sources.map((s) => {
+    const raw = typeof s === 'string' ? s : String(s.url ?? '');
+    let url = raw.trim();
+    let note = typeof s === 'string' ? '' : String(typeof s.supports === 'string' ? s.supports : '');
+    if (typeof s === 'string') {
+      const m = url.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
+      if (m) {
+        try {
+          url = new URL(m[1]).href;
+          note = m[2].trim();
+        } catch {
+          /* the parenthesis belonged to the URL itself */
+        }
+      }
+    }
+    const tokens = Array.isArray(s?.supports)
+      ? s.supports.filter((t) => typeof t === 'string' && FIELD_TOKENS.has(t))
+      : note
+          .split(/[,;\s]+/)
+          .map((t) => t.replace(/[^a-zA-Z]/g, ''))
+          .filter(Boolean)
+          .map((t) => t.toLowerCase());
+    // Only a pure list of field names may become "backs". A sentence that happens
+    // to contain the word "hours" — “checked for hours and entry fee: NONE
+    // published” — is evidence of absence, and printing it as a covered field
+    // would claim the opposite of what the researcher wrote.
+    const isFieldList = tokens.length > 0 && tokens.every((t) => FIELD_TOKENS.has(t));
+    return { url, supports: isFieldList ? [...new Set(tokens)] : [], note, batch };
+  });
+}
+
+/**
+ * What the researcher concluded about the evidence is published on /sources, not
+ * on the visitor's page — including the passages that say a rule could not be
+ * found, which `conditionsFrom` keeps out of entryConditions.
+ */
+function notesFrom(record, batch) {
+  const notes = [];
+  if (!isBlank(record.notes)) notes.push({ kind: 'evidence', text: String(record.notes).trim(), batch });
+  if (!isBlank(record.entryConditions) && !conditionsFrom(record, '')) {
+    notes.push({ kind: 'absence', text: String(record.entryConditions).trim(), batch });
+  }
+  return notes;
+}
+
+/** Which fields the shipped override actually carries, so /sources says what a source was allowed to say. */
+function publishedFields(o) {
+  const f = ['lat', 'lng', 'address', 'sourceUrl', 'osmId', 'lastVerified'];
+  if (o.hours?.length) f.push('hours');
+  if (o.entryFees?.length) f.push('entryFees');
+  if (o.entryConditions) f.push('entryConditions');
+  if (o.website) f.push('website');
+  if (o.phone) f.push('phone');
+  if (o.email) f.push('email');
+  if (o.facilities?.length) f.push('facilities');
+  if (o.description) f.push('description');
+  return f;
+}
+
+/**
+ * A place can appear in more than one batch: the first pass pins it and names it,
+ * a later pass re-checks the practical details it could not find. Merge on the
+ * research name before anything ships, so a re-check adds evidence instead of
+ * overwriting the first one.
+ */
+const MERGED_FIELDS = [
+  'lat',
+  'lng',
+  'address',
+  'website',
+  'contact',
+  'hours',
+  'ticketPrices',
+  'entryConditions',
+  'facilities',
+  'description',
+  'osmId',
+  'openStreetMapLink',
+];
+
+/** Field a later batch may fill or correct, except coordinates (see PIN CONFLICT below). */
+function isBlank(v) {
+  return v == null || (Array.isArray(v) && v.length === 0) || (typeof v === 'string' && !v.trim());
+}
+
+/**
+ * batch-f was contracted for opening hours and fees at seven sites and returned
+ * the finding that their official managers publish neither. Its entryConditions
+ * prose is therefore a record of absence, not a visitor rule.
+ */
+const ABSENCE_BATCHES = new Set(['batch-f-practical']);
+
+const CONFIDENCE_RANK = { verified: 0, 'partially-verified': 1, unverified: 2 };
+
+const entries = new Map();
+
 const out = { generatedFrom: [], note: 'Values copied from docs/verification/; absent means no source was found.', overrides: {} };
+const provenance = {
+  generatedFrom: [],
+  note: 'Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.',
+  records: {},
+  exclusions: EXCLUSIONS,
+};
 
 for (const batch of BATCHES) {
   const path = `docs/verification/${batch}.json`;
@@ -226,66 +361,121 @@ for (const batch of BATCHES) {
     continue;
   }
   out.generatedFrom.push(path);
-  for (const r of JSON.parse(readFileSync(path, 'utf8'))) {
-    const known = SLUG_MAP[r.name];
-    const fresh = NEW_RECORDS[r.name];
-    const slug = known ?? fresh?.slug;
-    if (!slug) {
-      console.log(`UNMAPPED: ${r.name} — add it to SLUG_MAP or NEW_RECORDS`);
+  provenance.generatedFrom.push(path);
+  for (const raw of JSON.parse(readFileSync(path, 'utf8'))) {
+    let r = raw;
+    if (ABSENCE_BATCHES.has(batch) && !isBlank(raw.entryConditions)) r = { ...raw, entryConditions: null };
+    const prev = entries.get(r.name);
+    if (!prev) {
+      entries.set(r.name, {
+        record: { ...r },
+        sources: sourcesFrom(raw, batch),
+        notes: notesFrom(raw, batch),
+        missing: [...(Array.isArray(r.missingFields) ? r.missingFields : [])],
+        confidences: [r.confidence].filter(Boolean),
+        dates: [r.lastVerified].filter(Boolean),
+        batches: [batch],
+      });
       continue;
     }
-    if (!r.lat || !r.lng) {
-      console.log(`NO COORDS: ${r.name} — not merged`);
-      continue;
+    for (const k of MERGED_FIELDS) {
+      if (isBlank(r[k])) continue;
+      // A re-check that lands a different pin is a disagreement, not an update:
+      // the first coordinate was chosen deliberately (beach ends, building nodes),
+      // so it is kept and the conflict is reported for a human to resolve.
+      if ((k === 'lat' || k === 'lng') && Math.abs(Number(r[k]) - Number(prev.record[k])) > 0.0009) {
+        console.log(`PIN CONFLICT: ${r.name} ${k} ${prev.record[k]} vs ${r[k]} in ${batch} — kept the first value`);
+        continue;
+      }
+      prev.record[k] = r[k];
     }
-    const osm = OSM_ADDRESSES[r.name] ?? {};
-    const address = cleanAddress(osm.address || r.address || '');
-    if (!address) {
-      console.log(`NO ADDRESS: ${r.name} — check osm-addresses.json`);
-      continue;
-    }
-    // Coordinates come from the research file: for linear features (a 7 km beach
-    // mapped as a way) the researcher picked the reachable end, which Nominatim's
-    // centroid would not. Guard against a typo rather than against a choice.
-    const lat = Number(r.lat);
-    const lng = Number(r.lng);
-    if (!(lat > 23.5 && lat < 26.5 && lng > 66.0 && lng < 68.7)) {
-      console.log(`OUT OF BOUNDS: ${r.name} — ${lat},${lng}. Not merged.`);
-      continue;
-    }
-    const { phone, email } = contactFrom(r.contact);
-    const conditions = conditionsFrom(r, slug);
-    const o = {
-      isNew: !known,
-      ...(fresh
-        ? {
-            categoryId: fresh.categoryId,
-            areaId: fresh.areaId,
-            name: NAME_FROM_OSM[slug] ?? r.name,
-            description: fresh.description,
-          }
-        : {}),
-      lat,
-      lng,
-      coordsVerified: true,
-      address: address.charAt(0).toUpperCase() + address.slice(1),
-      hours: hoursFrom(r),
-      entryFees: feesFrom(r, slug),
-      website: r.website ?? undefined,
-      phone,
-      email,
-      status: r.confidence === 'verified' ? 'verified' : 'needs-review',
-      sourceUrl: osmUrlFromToken(osm.osmToken) ?? r.openStreetMapLink ?? (Array.isArray(r.sources) ? r.sources[0] : undefined),
-      lastVerified: r.lastVerified,
-      osmId: osmIdFrom(r, osm),
-    };
-    if (conditions) o.entryConditions = conditions;
-    if (!DROP_ENTRY_CONDITIONS.has(slug) && r.entryConditions) o.entryConditions = String(r.entryConditions).trim();
-    if (r.facilities?.length) o.facilities = r.facilities;
-    out.overrides[slug] = o;
-    console.log(`merged ${slug} (${r.confidence})`);
+    prev.sources.push(...sourcesFrom(raw, batch));
+    prev.notes.push(...notesFrom(raw, batch));
+    prev.missing.push(...(Array.isArray(r.missingFields) ? r.missingFields : []));
+    if (r.confidence) prev.confidences.push(r.confidence);
+    if (r.lastVerified) prev.dates.push(r.lastVerified);
+    prev.batches.push(batch);
   }
 }
 
+for (const entry of entries.values()) {
+  const r = entry.record;
+  const known = SLUG_MAP[r.name];
+  const fresh = NEW_RECORDS[r.name];
+  const slug = known ?? fresh?.slug;
+  if (!slug) {
+    console.log(`UNMAPPED: ${r.name} — add it to SLUG_MAP or NEW_RECORDS`);
+    continue;
+  }
+  if (!r.lat || !r.lng) {
+    console.log(`NO COORDS: ${r.name} — not merged`);
+    continue;
+  }
+  const osm = OSM_ADDRESSES[r.name] ?? {};
+  const address = cleanAddress(osm.address || r.address || '');
+  if (!address) {
+    console.log(`NO ADDRESS: ${r.name} — check osm-addresses.json`);
+    continue;
+  }
+  // Coordinates come from the research file: for linear features (a 7 km beach
+  // mapped as a way) the researcher picked the reachable end, which Nominatim's
+  // centroid would not. Guard against a typo rather than against a choice.
+  const lat = Number(r.lat);
+  const lng = Number(r.lng);
+  if (!(lat > 23.5 && lat < 26.5 && lng > 66.0 && lng < 68.7)) {
+    console.log(`OUT OF BOUNDS: ${r.name} — ${lat},${lng}. Not merged.`);
+    continue;
+  }
+  const { phone, email } = contactFrom(r.contact);
+  const conditions = conditionsFrom(r, slug);
+  // The worst confidence across the batches wins: a re-check that found no
+  // tariff page cannot upgrade a record the first pass called partial.
+  const confidence = [...entry.confidences].sort((a, b) => (CONFIDENCE_RANK[b] ?? 9) - (CONFIDENCE_RANK[a] ?? 9))[0];
+  // The earliest date, not the latest: `lastVerified` vouches for every field on
+  // the page, so it can only claim the least recently checked one.
+  const lastVerified = [...entry.dates].sort()[0] ?? null;
+  const o = {
+    isNew: !known,
+    ...(fresh
+      ? {
+          categoryId: fresh.categoryId,
+          areaId: fresh.areaId,
+          name: NAME_FROM_OSM[slug] ?? r.name,
+          description: fresh.description,
+        }
+      : {}),
+    lat,
+    lng,
+    coordsVerified: true,
+    address: address.charAt(0).toUpperCase() + address.slice(1),
+    hours: hoursFrom(r),
+    entryFees: feesFrom(r, slug),
+    website: r.website ?? undefined,
+    phone,
+    email,
+    status: confidence === 'verified' ? 'verified' : 'needs-review',
+    sourceUrl: osmUrlFromToken(osm.osmToken) ?? r.openStreetMapLink ?? entry.sources[0]?.url,
+    lastVerified,
+    osmId: osmIdFrom(r, osm),
+  };
+  if (conditions) o.entryConditions = conditions;
+  if (r.facilities?.length) o.facilities = r.facilities;
+  out.overrides[slug] = o;
+  provenance.records[slug] = {
+    researchName: r.name,
+    status: o.status,
+    lastVerified,
+    confidence,
+    batches: entry.batches,
+    published: publishedFields(o),
+    sources: entry.sources,
+    notFound: [...new Set(entry.missing)].filter((f) => isBlank(r[f])),
+    notes: entry.notes,
+  };
+  console.log(`merged ${slug} (${confidence}, ${entry.batches.length} batch${entry.batches.length > 1 ? 'es' : ''})`);
+}
+
 writeFileSync('src/data/verified-overrides.json', JSON.stringify(out, null, 2) + '\n');
+writeFileSync('src/data/provenance.json', JSON.stringify(provenance, null, 2) + '\n');
 console.log(`\nwrote src/data/verified-overrides.json with ${Object.keys(out.overrides).length} records`);
+console.log(`wrote src/data/provenance.json with ${Object.keys(provenance.records).length} citations`);

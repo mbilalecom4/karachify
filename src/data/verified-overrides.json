@@ -3,7 +3,8 @@
     "docs/verification/batch-a-heritage.json",
     "docs/verification/batch-c-coastline.json",
     "docs/verification/batch-d-attractions.json",
-    "docs/verification/batch-b-museums.json"
+    "docs/verification/batch-b-museums.json",
+    "docs/verification/batch-f-practical.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -14,6 +15,9 @@
       "coordsVerified": true,
       "address": "Mazar-e-Quaid-e-Azam, M.A. Jinnah Road, Gurmandir, Jacob Lines, Jamshed Town, Gulshan District, Karachi Division, Sindh, 75000, Pakistan",
       "hours": null,
+      "website": "https://qmmb.gov.pk/",
+      "phone": "+92 21 99230171; +92 21 99230172; +92 21 99230173; +92 21 99230174",
+      "email": "info@qmmb.gov.pk",
       "status": "needs-review",
       "sourceUrl": "https://www.openstreetmap.org/node/12151865936",
       "lastVerified": "2026-10-30",
@@ -217,8 +221,7 @@
       "status": "needs-review",
       "sourceUrl": "https://www.openstreetmap.org/way/10385819",
       "lastVerified": "2026-10-30",
-      "osmId": "W10385819",
-      "entryConditions": "No official statement retrieved. Third-party listings (unverified, not used as source of truth) variously claim the zoo is open daily and that Wednesdays are reserved for women and children."
+      "osmId": "W10385819"
     },
     "bahria-adventure-land": {
       "isNew": true,
@@ -281,8 +284,7 @@
       "status": "needs-review",
       "sourceUrl": "https://www.openstreetmap.org/way/1427036051",
       "lastVerified": "2026-10-30",
-      "osmId": "W1427036051",
-      "entryConditions": "No official published entry conditions found. The necropolis is managed/conserved by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh) per that department's official Facebook page, which posts guided tourist visits at the site (e.g., Jan-Feb 2026 posts). It is an active Muslim graveyard (OSM amenity=grave_yard, religion=muslim) as well as a heritage site."
+      "osmId": "W1427036051"
     },
     "pakistan-maritime-museum": {
       "isNew": false,
