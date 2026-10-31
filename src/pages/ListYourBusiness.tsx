@@ -166,8 +166,8 @@ export default function ListYourBusiness() {
               <Field label="Contact email" required error={errors.email}>
                 <TextInput type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="owner@example.com" error={Boolean(errors.email)} />
               </Field>
-              <Field label="Phone" error={errors.phone} hint="Optional — shown with a (demo) label on the listing.">
-                <TextInput value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+92 21 000 0000" error={Boolean(errors.phone)} />
+              <Field label="Phone" error={errors.phone} hint="Optional — published exactly as you type it, and badged as owner-stated until a source confirms it.">
+                <TextInput value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+92 21 xxxx xxxx" error={Boolean(errors.phone)} />
               </Field>
               <Field label="Website or Instagram" className="sm:col-span-2" hint="Optional.">
                 <TextInput value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="https://…" />
@@ -262,15 +262,15 @@ export default function ListYourBusiness() {
               </ol>
             </div>
             <Note tone="warn">
-              This showcase has no server. Uploaded files are previewed in the browser and then discarded; only image
-              links you paste are stored. Phone numbers and timings added here are presented as demo details, never as
-              verified facts.
+              This build has no server. Uploaded files are previewed in the browser and then discarded; only image links
+              you paste are stored. A phone number or timing entered here is published exactly as you typed it and badged
+              as owner-stated — Karachify does not check it before it appears.
             </Note>
             <div className="card p-5">
               <p className="text-sm font-semibold text-navy-800">Pricing</p>
               <p className="mt-1.5 text-sm text-navy-500">
-                Listings are free. The “Promoted · demo” badge on some cards shows where paid placement would sit — no
-                money changes hands in this build.
+                Listings are free. No card in this build carries a "Promoted" badge, because there is no billing system to
+                sell one from — the advertising page explains where such placement would sit.
               </p>
               <Link to="/advertise" className="btn-ghost btn-sm mt-3">
                 See advertising options

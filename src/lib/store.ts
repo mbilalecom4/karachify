@@ -75,32 +75,7 @@ const seed: DB = {
   ],
   sessionId: null,
   prefs: { guest: emptyPrefs() },
-  submissions: [
-    {
-      id: 'sub-seed-1',
-      kind: 'business',
-      name: 'Sea Breeze Guest House',
-      categoryId: 'hotels',
-      areaId: 'clifton',
-      description: 'Sample pending submission so the admin queue is not empty on first visit.',
-      email: 'owner@example.com',
-      phone: 'Demo number',
-      address: 'Block 2, Clifton',
-      status: 'pending',
-      createdAt: '2026-10-24',
-    },
-    {
-      id: 'sub-seed-2',
-      kind: 'event',
-      name: 'Winter Kite Flying Meet',
-      categoryId: 'events',
-      areaId: 'clifton',
-      description: 'Sample event submission awaiting review.',
-      email: 'organiser@example.com',
-      status: 'pending',
-      createdAt: '2026-10-27',
-    },
-  ],
+  submissions: [],
   enquiries: [],
   reviews: [],
   newListings: [],
@@ -311,7 +286,7 @@ export const actions = {
     update((d) => ({ ...d, submissions: d.submissions.map((s) => (s.id === id ? { ...s, status } : s)) }));
   },
 
-  /** Approving a listing/business submission publishes it as a live demo record. */
+  /** Approving a business submission publishes exactly what the owner stated. */
   publishSubmission(sub: Submission, coords: { lat: number; lng: number }) {
     const slug = uniqueSlug(selectListings(state).map((l) => l.slug), `user-${slugify(sub.name)}`);
     const listing: Listing = {
@@ -327,15 +302,13 @@ export const actions = {
       lat: coords.lat,
       lng: coords.lng,
       phone: sub.phone,
+      email: sub.email,
       facilities: [],
       tags: ['Community submitted'],
-      rating: 4,
-      reviewCount: 0,
       featured: false,
       promoted: false,
       status: 'needs-review',
       createdAt: nowIso().slice(0, 10),
-      hours: [{ day: 'Monday – Saturday', open: '10:00 – 18:00 (demo timing)' }],
     };
     update((d) => ({
       ...d,

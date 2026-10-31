@@ -178,7 +178,7 @@ export default function SubmitEvent() {
                 <TextInput type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@example.com" error={Boolean(errors.email)} />
               </Field>
               <Field label="Contact phone" hint="Optional.">
-                <TextInput value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+92 21 000 0000" />
+                <TextInput value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+92 21 xxxx xxxx" />
               </Field>
               <Field label="Description" required error={errors.description} hint={`${form.description.trim().length} characters`} className="sm:col-span-2">
                 <TextArea value={form.description} onChange={(e) => set('description', e.target.value)} placeholder="What happens, who it suits, how to get in, accessibility…" error={Boolean(errors.description)} />

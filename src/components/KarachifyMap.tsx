@@ -39,8 +39,9 @@ const osmStyle: StyleSpecification = {
 };
 
 /**
- * MapLibre map of Karachi used by the Explore Map page and the homepage
- * preview. Demo coordinates are approximate, so the UI always says so.
+ * MapLibre map of Karachi used by the map page and the homepage preview.
+ * Only OSM-backed coordinates are exact, so every pin carries a caption
+ * saying which kind it is.
  */
 export function KarachifyMap({
   points,

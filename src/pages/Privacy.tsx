@@ -50,8 +50,9 @@ export default function Privacy() {
           </p>
           <h2>Location</h2>
           <p>
-            The site never asks for your geolocation. Map positions come from the approximate coordinates stored with each
-            record, which is why the interface labels pins as approximate rather than precise.
+            The site never asks for your geolocation. Map positions come from the coordinates stored with each record: an
+            OpenStreetMap feature for a verified place, an offset from the locality centre for every other one, which is
+            why each pin states which of the two it is.
           </p>
           <h2>Children</h2>
           <p>

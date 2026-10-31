@@ -8,8 +8,9 @@ import { parksAndBeaches } from './parks';
 import { shopping } from './shopping';
 import { stays } from './stays';
 import type { Listing } from '../../types';
+import { applyVerified, verifiedNewListings } from '../verified';
 
-export const listings: Listing[] = [
+const seeded: Listing[] = [
   ...attractions,
   ...dining,
   ...stays,
@@ -20,6 +21,16 @@ export const listings: Listing[] = [
   ...culture,
   ...civic,
 ];
+
+/**
+ * Verified research beats the seed file, every time: coordinates, address,
+ * opening hours, admission prices and status all come from
+ * src/data/verified-overrides.json when a record has been checked.
+ */
+export const listings: Listing[] = (() => {
+  const merged = seeded.map(applyVerified);
+  return [...merged, ...verifiedNewListings(merged)];
+})();
 
 const bySlug = new Map(listings.map((l) => [l.slug, l]));
 const byId = new Map(listings.map((l) => [l.id, l]));

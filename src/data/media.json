@@ -313,15 +313,15 @@
   },
   "karachi-zoo": {
     "key": "karachi-zoo",
-    "subject": "Karachi Zoo (Empress Zoo)",
-    "via": "Karachi Zoo",
-    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/PK_Karachi_asv2020-02_img86_Zoo_gate.jpg/500px-PK_Karachi_asv2020-02_img86_Zoo_gate.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/PK_Karachi_asv2020-02_img86_Zoo_gate.jpg/1280px-PK_Karachi_asv2020-02_img86_Zoo_gate.jpg",
-    "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img86_Zoo_gate.jpg",
-    "artist": "A.Savin",
-    "license": "FAL",
+    "subject": "Karachi Zoo",
+    "via": "An elephant bathing at the Karachi Zoological and Botanical Gardens, Pakistan - Sunday October 10,2021.jpg",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/500px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
+    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/1280px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "filePage": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
+    "artist": "Framjiarnaz",
+    "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "related"
+    "kind": "subject"
   },
   "manora-island": {
     "key": "manora-island",
@@ -1584,5 +1584,41 @@
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related"
+  },
+  "hawksbay-beach": {
+    "key": "hawksbay-beach",
+    "subject": "Hawke's Bay Beach",
+    "via": "HawksBay_Beach.jpg",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/HawksBay_Beach.jpg/500px-HawksBay_Beach.jpg",
+    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/HawksBay_Beach.jpg/1280px-HawksBay_Beach.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "filePage": "https://commons.wikimedia.org/wiki/File:HawksBay_Beach.jpg",
+    "artist": "NomanAhmed96",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
+  },
+  "state-bank-of-pakistan-museum": {
+    "key": "state-bank-of-pakistan-museum",
+    "subject": "State Bank of Pakistan Museum",
+    "via": "Old building of State Bank of Pakistan, Now its known as State Bank Museum.jpg",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg/500px-Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
+    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg/1280px-Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
+    "artist": "Asim Iftikhar Nagi",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
+  },
+  "tdf-magnifiscience-centre": {
+    "key": "tdf-magnifiscience-centre",
+    "subject": "TDF MagnifiScience Centre",
+    "via": "MSC building night.jpg",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/MSC_building_night.jpg/500px-MSC_building_night.jpg",
+    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/MSC_building_night.jpg/1280px-MSC_building_night.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "filePage": "https://commons.wikimedia.org/wiki/File:MSC_building_night.jpg",
+    "artist": "Crosji",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
   }
 }

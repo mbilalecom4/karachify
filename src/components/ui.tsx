@@ -124,9 +124,9 @@ export function ImageWithFallback({
 
 export function StatusBadge({ status, className = '' }: { status: 'demo' | 'verified' | 'needs-review'; className?: string }) {
   const map = {
-    demo: { label: 'Sample data', cls: 'badge-demo' },
+    demo: { label: 'Sample record', cls: 'badge-demo' },
     verified: { label: 'Verified', cls: 'badge-verified' },
-    'needs-review': { label: 'Needs review', cls: 'badge-demo' },
+    'needs-review': { label: 'Not verified yet', cls: 'badge-demo' },
   } as const;
   const m = map[status];
   return <span className={`${m.cls} ${className}`}>{m.label}</span>;

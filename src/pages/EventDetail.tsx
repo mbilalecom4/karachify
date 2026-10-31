@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Calendar,
@@ -8,7 +8,6 @@ import {
   MapPin,
   Share2,
   Ticket,
-  UserRound,
   Heart,
   Navigation,
 } from 'lucide-react';
@@ -17,8 +16,8 @@ import { imageFor } from '../lib/media';
 import { EventCard } from '../components/cards';
 import { KarachifyMap } from '../components/KarachifyMap';
 import { Note } from '../components/Page';
-import { Breadcrumbs, EmptyState, Field, Modal, SectionHeading, StatusBadge, TextArea, TextInput, useToast } from '../components/ui';
-import { coordText, dateRange, isValidEmail, plural, timeRange, toICS } from '../lib/format';
+import { Breadcrumbs, EmptyState, SectionHeading, StatusBadge, useToast } from '../components/ui';
+import { coordText, dateRange, timeRange, toICS } from '../lib/format';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 export default function EventDetail() {
@@ -30,7 +29,6 @@ export default function EventDetail() {
 
   const event = events.find((e) => e.slug === slug);
   useDocumentTitle(event ? event.name : 'Event');
-  const [registerOpen, setRegisterOpen] = useState(false);
   const past = event ? event.date < new Date().toISOString().slice(0, 10) : false;
 
   const similar = useMemo(
@@ -48,7 +46,7 @@ export default function EventDetail() {
       <div className="shell section">
         <EmptyState
           title="Event not found"
-          body="This event may have been removed in the demo admin. The full board is still browsable by date, area and type."
+          body="The event board ships empty, so this page can only have come from one created locally in the admin panel — and it may have been deleted since. The board is still browsable by date, area and type."
           action={
             <Link to="/events" className="btn-primary">
               Back to events
@@ -76,7 +74,7 @@ export default function EventDetail() {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    toast.push('Calendar file downloaded (sample event)');
+    toast.push('Calendar file downloaded');
   };
 
   return (
@@ -131,9 +129,16 @@ export default function EventDetail() {
             </div>
           </dl>
           <div className="mt-6 flex flex-wrap gap-2.5">
-            <button className="btn btn-sm bg-teal-500 text-white hover:bg-teal-600" onClick={() => setRegisterOpen(true)}>
-              <UserRound className="h-4 w-4" /> {past ? 'Register interest' : 'Register / enquire'}
-            </button>
+            {event.sourceUrl && (
+              <a
+                className="btn btn-sm bg-teal-500 text-white hover:bg-teal-600"
+                href={event.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" /> Event source
+              </a>
+            )}
             <button
               className={`btn btn-sm ${saved ? 'bg-rose-500 text-white' : 'border border-white/40 bg-white/10 text-white hover:bg-white/20'}`}
               onClick={() => {
@@ -179,9 +184,22 @@ export default function EventDetail() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div className="min-w-0 space-y-8">
             <div>
-              <Note tone="warn">
-                This is <strong>sample programming</strong> created for the Karachify showcase. The name, date, venue
-                and ticket price are not a real event, and no tickets are sold here.
+              <Note tone={event.status === 'verified' ? 'info' : 'warn'}>
+                {event.status === 'verified' ? (
+                  <>
+                    This event is dated against the source that announced it —{' '}
+                    <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">
+                      {event.sourceUrl} <ExternalLink className="h-3 w-3" />
+                    </a>
+                    . Karachify sells no tickets and takes no registrations; book through the organiser.
+                  </>
+                ) : (
+                  <>
+                    This event was <strong>published from a submission</strong>, not from a source we checked. The date,
+                    venue and price are what the submitter wrote. Karachify sells no tickets and takes no registrations —
+                    confirm with the organiser before you travel.
+                  </>
+                )}
               </Note>
             </div>
 
@@ -190,34 +208,25 @@ export default function EventDetail() {
               <p className="text-[15px] leading-relaxed text-navy-600">{event.description}</p>
               <h3 className="mt-5 font-display text-lg font-bold text-navy-800">Who is running it</h3>
               <p className="mt-1 text-[15px] text-navy-600">
-                Listed organiser: <strong className="text-navy-800">{event.organiser}</strong> (demo value).
+                Stated organiser: <strong className="text-navy-800">{event.organiser}</strong>
+                {event.organiser === 'Not stated' ? ' — the submission did not name one.' : '.'}
               </p>
             </article>
 
             <article>
               <h2 className="section-title mb-3">Tickets</h2>
               <div className="card divide-y divide-navy-100">
-                {[
-                  { tier: 'General admission', price: event.ticketPrice, note: event.ticketNote },
-                  { tier: 'Group of 4+', price: 'PKR 6,000', note: 'Demo tier — sample discount logic.' },
-                  { tier: 'Student (with ID)', price: 'PKR 1,200', note: 'Demo tier.' },
-                ].map((t) => (
-                  <div key={t.tier} className="flex flex-wrap items-center justify-between gap-3 p-4">
-                    <div>
-                      <p className="font-semibold text-navy-800">{t.tier}</p>
-                      <p className="text-[13px] text-navy-500">{t.note}</p>
-                    </div>
-                    <p className="font-display font-bold text-navy-800">
-                      {t.price} <span className="text-[11px] font-semibold uppercase text-amber-600">demo</span>
-                    </p>
+                <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+                  <div>
+                    <p className="font-semibold text-navy-800">As published by the source</p>
+                    <p className="text-[13px] text-navy-500">{event.ticketNote}</p>
                   </div>
-                ))}
+                  <p className="font-display font-bold text-navy-800">{event.ticketPrice}</p>
+                </div>
               </div>
-              <button className="btn-primary mt-4" onClick={() => setRegisterOpen(true)}>
-                <UserRound className="h-4 w-4" /> Reserve / ask a question
-              </button>
               <p className="mt-2 text-[13px] text-navy-500">
-                Payment is not connected. In production this block would link to a ticketing provider API.
+                Karachify lists the one price its source stated and invents no tiers. Payment is not connected to this
+                site — buy from the organiser.
               </p>
             </article>
 
@@ -231,7 +240,7 @@ export default function EventDetail() {
                     {
                       id: event.id,
                       title: event.venue,
-                      subtitle: `${area?.name ?? 'Karachi'} · approximate demo location`,
+                      subtitle: `${area?.name ?? 'Karachi'} · locality centre, not a doorway`,
                       path: `/events/${event.slug}`,
                       lat: event.lat,
                       lng: event.lng,
@@ -291,8 +300,8 @@ export default function EventDetail() {
                 ))}
               </dl>
               <Note className="mt-4">
-                Dates on this board are rebased against today so the upcoming tab always has something to show — that
-                is a demo convenience, not a real calendar.
+                A date here is never shifted to keep the event looking upcoming. When it passes, the entry simply moves to
+                the past list, and Karachify sells no tickets for it either way.
               </Note>
             </div>
             <div className="card p-5">
@@ -309,7 +318,7 @@ export default function EventDetail() {
       {similar.length > 0 && (
         <section className="bg-white py-12">
           <div className="shell">
-            <SectionHeading eyebrow="You might also like" title="Similar sample events" />
+            <SectionHeading eyebrow="You might also like" title="Similar events" />
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {similar.map((e) => (
                 <EventCard key={e.id} event={e} />
@@ -319,67 +328,7 @@ export default function EventDetail() {
         </section>
       )}
 
-      <RegisterModal open={registerOpen} onClose={() => setRegisterOpen(false)} eventId={event.id} name={event.name} slug={event.slug} />
     </div>
   );
 }
 
-function RegisterModal({ open, onClose, eventId, name, slug }: { open: boolean; onClose: () => void; eventId: string; name: string; slug: string }) {
-  const db = useDB();
-  const toast = useToast();
-  const user = db.users.find((u) => u.id === db.sessionId);
-  const [form, setForm] = useState({ name: user?.name ?? '', email: user?.email ?? '', seats: '2', message: '' });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  return (
-    <Modal open={open} onClose={onClose} title={`Register interest — ${name}`}>
-      <form
-        className="space-y-4"
-        onSubmit={(e) => {
-          e.preventDefault();
-          const next: Record<string, string> = {};
-          if (form.name.trim().length < 2) next.name = 'Your name is required';
-          if (!isValidEmail(form.email)) next.email = 'Enter a valid email address';
-          const seats = Number(form.seats);
-          if (!Number.isFinite(seats) || seats < 1 || seats > 20) next.seats = 'Choose between 1 and 20 seats';
-          setErrors(next);
-          if (Object.keys(next).length) return;
-          actions.addEnquiry({
-            kind: 'event-registration',
-            subject: `${name} — registration interest (${seats} seats)`,
-            refId: eventId,
-            name: form.name.trim(),
-            email: form.email.trim(),
-            message: form.message.trim() || `${seats} seats requested on the demo event page #${slug}.`,
-            userId: db.sessionId ?? undefined,
-          });
-          setForm({ ...form, message: '' });
-          onClose();
-          toast.push('Registration saved locally (demo mode)');
-        }}
-      >
-        <Note tone="warn">
-          No ticketing service is connected to this build, so this form records the request in your browser and in the
-          demo admin queue only.
-        </Note>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Full name" required error={errors.name}>
-            <TextInput value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} error={Boolean(errors.name)} />
-          </Field>
-          <Field label="Email" required error={errors.email}>
-            <TextInput type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} error={Boolean(errors.email)} />
-          </Field>
-        </div>
-        <Field label="Seats" required error={errors.seats}>
-          <TextInput type="number" min={1} max={20} value={form.seats} onChange={(e) => setForm({ ...form, seats: e.target.value })} error={Boolean(errors.seats)} />
-        </Field>
-        <Field label="Anything the organiser should know?" hint="Optional.">
-          <TextArea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-        </Field>
-        <button type="submit" className="btn-primary">
-          Submit registration (demo)
-        </button>
-      </form>
-    </Modal>
-  );
-}

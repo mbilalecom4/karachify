@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarDays, LayoutGrid, List, Search, X } from 'lucide-react';
+import { ArrowRight, CalendarDays, LayoutGrid, List, Search, X } from 'lucide-react';
 import type { CityEvent } from '../types';
 import { selectAreas, selectEvents, useDB } from '../lib/store';
 import { EventCard } from '../components/cards';
 import { PageHero, Note } from '../components/Page';
-import { EmptyState, Select, Tabs, TextInput } from '../components/ui';
+import { EmptyState, SectionHeading, Select, Tabs, TextInput } from '../components/ui';
 import { eventCategories } from '../data/events';
 
 const iso = (d: Date) => d.toISOString().slice(0, 10);
@@ -49,32 +49,76 @@ export default function Events() {
   const dirty = q !== '' || eventCategory !== 'all' || areaId !== 'all' || from !== '' || to !== '';
   const visible: CityEvent[] = filtered.slice(0, shown);
 
+  const hero = (
+    <PageHero
+      mediaKey="banner-events"
+      label="Events in Karachi"
+      eyebrow="What's on"
+      title="Events in Karachi"
+      sub="Karachify lists a Karachi event only when a dated source names it — the organiser, the venue's own programme, or news coverage that states the day and the ground. Until that evidence exists for an event, it is not on this page."
+      trail={[{ label: 'Home', to: '/' }, { label: 'Events' }]}
+    >
+      <div className="flex flex-wrap gap-2">
+        <Link to="/submit-event" className="btn-primary btn-sm">
+          Submit an event
+        </Link>
+        <Link to="/category/events" className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20">
+          Event venues
+        </Link>
+      </div>
+    </PageHero>
+  );
+
+  if (events.length === 0) {
+    return (
+      <div>
+        {hero}
+        <section className="shell section">
+          <EmptyState
+            title="No verified events on the board yet"
+            body="This section used to hold invented programming. It is empty now because Karachify has not yet found a dated, attributable source for a Karachi event it can publish — an event appears here as soon as one does, with the source and the date it was checked attached."
+            action={
+              <Link to="/submit-event" className="btn-primary">
+                Submit an event for review
+              </Link>
+            }
+            icon={<CalendarDays className="h-6 w-6" />}
+          />
+          <div className="mt-6">
+            <Note tone="info">
+              For what is actually running this week, go to the venue rather than a directory: the Karachi Expo Centre,
+              Pakistan Steel Auditorium, Mohatta Palace Museum, Frere Hall and TDF MagnifiScience Centre each publish
+              their own programme. Every one of those venues has a Karachify page with the contact details we could
+              verify.
+            </Note>
+          </div>
+          <div className="mt-8">
+            <SectionHeading
+              eyebrow="Plan around the calendar you can check"
+              title="Verified places, with the hours that are published"
+              sub="Events are the hardest thing on this site to state honestly, so they are last. Places are not — 19 Karachi destinations already carry opening hours, admission and addresses taken from named sources."
+              action={
+                <Link to="/category/tourist-places" className="btn-outline btn-sm">
+                  Browse places <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              }
+            />
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <PageHero
-        mediaKey="banner-events"
-        label="Events in Karachi"
-        eyebrow="What's on"
-        title="Events in Karachi"
-        sub="Concerts, festivals, exhibitions, sports, conferences, workshops and community days — with the filters, detail pages, ticket blocks and registration flow the real system will use."
-        trail={[{ label: 'Home', to: '/' }, { label: 'Events' }]}
-      >
-        <div className="flex flex-wrap gap-2">
-          <Link to="/submit-event" className="btn-primary btn-sm">
-            Submit an event
-          </Link>
-          <Link to="/category/events" className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20">
-            Event venues
-          </Link>
-        </div>
-      </PageHero>
+      {hero}
 
       <section className="shell section">
         <div className="mb-5">
-          <Note tone="warn">
-            Every event on this page is invented sample programming for the showcase — dates, venues and ticket prices
-            are not real. For actual listings check the organiser and venues such as the Karachi Expo Centre or Pakistan
-            Steel Auditorium directly.
+          <Note tone="info">
+            Each event here is dated against the source that announced it, and the source is linked on the event page.
+            Ticket prices are quoted from that source, not estimated — if a page did not publish a price, the event says
+            so.
           </Note>
         </div>
 
@@ -155,7 +199,7 @@ export default function Events() {
         {visible.length === 0 ? (
           <EmptyState
             title="No events match those filters"
-            body="Sample programming is deliberately small. Try another date range, clear the area filter, or switch to the All events tab."
+            body="Widen the date range, clear the area or event-type filter, or switch to the All events tab."
             action={
               <button
                 className="btn-outline"

@@ -8,27 +8,27 @@ import { isValidEmail } from '../lib/format';
 
 const packages = [
   {
-    name: 'Listing upgrade',
-    price: 'PKR 0 (demo)',
-    real: 'Would be a one-time verification fee',
-    best: 'New businesses that want a complete page',
+    name: 'Owner-edited listing',
+    price: 'Free',
+    real: 'Working today — submit a claim from any listing page',
+    best: 'Any Karachi business whose page needs correcting',
     features: ['Full listing with gallery and map pin', 'Category and area placement', 'Editable from the owner dashboard'],
     tone: 'border-navy-100',
   },
   {
     name: 'Featured place',
-    price: 'PKR 15,000 / month (demo)',
-    real: 'Illustrative price only — nothing is charged',
+    price: 'Not priced yet',
+    real: 'No payment is taken, quoted or invoiced anywhere on this site',
     best: 'Restaurants, hotels and venues with something to announce',
     features: ['Featured badge on category and area pages', 'Slot in the homepage featured strip', 'Priority in “recommended” sorting'],
     tone: 'border-teal-300',
   },
   {
     name: 'Promoted placement',
-    price: 'PKR 40,000 / month (demo)',
-    real: 'Illustrative price only — nothing is charged',
-    best: 'Seasonal campaigns and big event promotion',
-    features: ['“Promoted · demo” label in search and listing grids', 'Area-level banner on the busiest pages', 'Monthly impression summary'],
+    price: 'Not priced yet',
+    real: 'A price would be agreed by email before anything runs — never invented here',
+    best: 'Seasonal campaigns, once there is measured traffic to sell against',
+    features: ['“Promoted” label on the card, never a disguised one', 'Enquiry form so we can agree scope and cost first', 'Monthly impression summary'],
     tone: 'border-navy-200',
   },
 ];
@@ -74,7 +74,7 @@ export default function Advertise() {
               <button
                 className={`btn mt-6 w-full ${p.name === 'Featured place' ? 'btn-primary' : 'btn-outline'}`}
                 onClick={() => {
-                  setForm((f) => ({ ...f, package: p.name === 'Listing upgrade' ? 'upgrade' : p.name === 'Featured place' ? 'featured' : 'promoted' }));
+                  setForm((f) => ({ ...f, package: p.name === 'Owner-edited listing' ? 'upgrade' : p.name === 'Featured place' ? 'featured' : 'promoted' }));
                   document.getElementById('advertise-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   toast.push(`${p.name} selected — send us the details`, 'info');
                 }}
@@ -104,14 +104,14 @@ export default function Advertise() {
                 description: form.message.trim() || 'Enquiry submitted from the advertising page.',
                 email: form.email.trim().toLowerCase(),
               });
-              toast.push('Enquiry saved in the demo queue — no payment is taken');
+              toast.push('Saved in this browser — no payment is taken and nothing is emailed', 'info');
               setSent(sub.id);
             }}
           >
             <h2 className="font-display text-xl font-bold text-navy-800">Request a slot</h2>
             <p className="mt-1.5 text-sm text-navy-500">
-              This form records your enquiry so you can follow the flow end to end. Payments, invoicing and campaign
-              reporting are out of scope for a demo.
+              This form records your enquiry in this browser so you can follow the flow end to end. There is no payment,
+              invoicing or campaign reporting behind it — nothing on this page is priced because nothing is for sale yet.
             </p>
 
             {sent && (
@@ -130,7 +130,7 @@ export default function Advertise() {
               </Field>
               <Field label="Package">
                 <Select value={form.package} onChange={(e) => setForm({ ...form, package: e.target.value })}>
-                  <option value="upgrade">Listing upgrade</option>
+                  <option value="upgrade">Owner-edited listing</option>
                   <option value="featured">Featured place</option>
                   <option value="promoted">Promoted placement</option>
                 </Select>
@@ -178,8 +178,9 @@ export default function Advertise() {
               </ul>
             </div>
             <Note tone="warn">
-              Prices above are illustrative for the showcase. No money changes hands here, and the “Promoted · demo” badge
-              you see on some cards is applied by the admin dashboard, not by a billing system.
+              Nothing here is priced, because Karachify takes no money and has no billing system. The “Promoted” badge is
+              switched on from the admin dashboard to show what a paid slot would look like; no listing on this site
+              carries it right now, and no advertiser has paid for one.
             </Note>
           </aside>
         </div>

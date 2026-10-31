@@ -323,14 +323,12 @@ function Listings() {
       lat: (area?.lat ?? 24.86) + jitter(slug, 0.02),
       lng: (area?.lng ?? 67.01) + jitter(`${slug}lng`, 0.02),
       facilities: [],
-      tags: ['Added in admin demo'],
-      rating: 4,
-      reviewCount: 0,
+      tags: ['Added in admin'],
       featured: false,
       promoted: false,
+      coordsVerified: false,
       status: draft.status as Listing['status'],
       createdAt: new Date().toISOString().slice(0, 10),
-      hours: [{ day: 'Monday – Saturday', open: '10:00 – 18:00 (demo timing)' }],
     });
     toast.push(`“${name}” created — coordinates are estimated from the area centre`, 'info');
     setCreating(false);
@@ -531,8 +529,8 @@ function Listings() {
           <Field label="Verification status" className="sm:col-span-2">
             <Select value={draft.status} onChange={(e) => setDraft({ ...draft, status: e.target.value })}>
               <option value="verified">Verified source</option>
-              <option value="demo">Sample data</option>
-              <option value="needs-review">Needs review</option>
+              <option value="demo">Sample record</option>
+              <option value="needs-review">Not verified yet</option>
             </Select>
           </Field>
           <Field label="Tagline" className="sm:col-span-2">
@@ -738,7 +736,7 @@ function EventsAdmin() {
                   ticketPrice: draft.ticketPrice || editing.ticketPrice,
                   status: 'needs-review',
                 });
-                toast.push('Event updated — sample programming stays badged as demo');
+                toast.push('Event updated — it stays badged as not verified', 'info');
                 setEditing(null);
               }}
             >
@@ -849,25 +847,24 @@ function Submissions() {
     const sub = db.submissions.find((s) => s.id === id);
     if (!sub) return;
     const area = areas.find((a) => a.id === sub.areaId) ?? areas[0];
-    const listing = actions.publishSubmission(sub, {
-      lat: area.lat + jitter(sub.id, 0.02),
-      lng: area.lng + jitter(`${sub.id}lng`, 0.02),
-    });
-    toast.push(`${listing.name} published as a live demo listing`);
+    /* The submitter named an area, not a doorway — so the pin sits on the area
+       centre rather than on a fabricated exact coordinate. */
+    const listing = actions.publishSubmission(sub, { lat: area.lat, lng: area.lng });
+    toast.push(`${listing.name} published from the submission — details not verified`, 'info');
   };
 
   /** A claim points at a record that already exists, so approval badges it instead of duplicating it. */
   const approveClaim = (id: string) => {
     const sub = db.submissions.find((s) => s.id === id);
     if (!sub) return;
-    if (sub.listingId) actions.patchListing(sub.listingId, { status: 'verified' });
+    if (sub.listingId) actions.patchListing(sub.listingId, { status: 'needs-review' });
     actions.setSubmissionStatus(id, 'approved');
-    toast.push('Claim approved — the listing is now badged as a verified source', 'info');
+    toast.push('Claim recorded — the listing stays unverified until a document check or the operator’s own page backs it', 'info');
   };
 
   const markRead = (id: string) => {
     actions.setSubmissionStatus(id, 'approved');
-    toast.push('Marked as read — replying still happens outside this demo', 'info');
+    toast.push('Marked as read — this build has no mail service, so nothing was sent or received', 'info');
   };
 
   return (
@@ -1002,21 +999,21 @@ function Submissions() {
                   name: reviewing.name,
                   description: db.submissions.find((s) => s.id === reviewing.id)?.description ?? '',
                   date: reviewing.date,
-                  startTime: '17:00',
-                  endTime: '21:00',
-                  venue: reviewing.venue || area.name,
+                  startTime: '',
+                  endTime: '',
+                  venue: reviewing.venue || `in ${area.name}`,
                   areaId: area.id,
                   eventCategory: reviewing.eventCategory,
-                  ticketPrice: 'To confirm',
-                  ticketNote: 'Community submission — ticketing not verified in this demo.',
-                  organiser: db.submissions.find((s) => s.id === reviewing.id)?.email ?? 'Community organiser',
-                  lat: area.lat + jitter(reviewing.id, 0.02),
-                  lng: area.lng + jitter(`${reviewing.id}lng`, 0.02),
-                  status: 'demo',
+                  ticketPrice: 'Stated by the organiser',
+                  ticketNote: 'Published from what the submitter wrote. Karachify has not checked the date, the ground or the price.',
+                  organiser: 'Not stated',
+                  lat: area.lat,
+                  lng: area.lng,
+                  status: 'needs-review',
                 };
                 actions.createEvent(event);
                 actions.setSubmissionStatus(reviewing.id, 'approved');
-                toast.push(`${event.name} added to the calendar as sample programming`);
+                toast.push(`${event.name} published from the submission — details not verified`, 'info');
                 setReviewing(null);
               }}
             >
@@ -1260,7 +1257,7 @@ function Reviews() {
         <EmptyState
           icon={<Star className="h-6 w-6" />}
           title="No resident reviews yet"
-          body="Seeded reviews are generated deterministically for the demo and are labelled as such. Write one from any listing page and it will appear here for moderation."
+          body="The shipped dataset carries no reviews at all — none came from a real visitor. Write one from any listing page and it appears here for moderation."
         />
       ) : (
         <ul className="space-y-3">
@@ -1278,7 +1275,7 @@ function Reviews() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="badge-demo">{r.demo ? 'Demo' : 'Resident'}</span>
+                  <span className="badge-demo">Written on this device</span>
                   <button
                     className="btn-ghost btn-sm"
                     aria-label="Remove review"
@@ -1315,8 +1312,9 @@ function Media() {
       />
       <Note>
         {rows.length} photographs are hotlinked from Wikimedia and validated at request time; anything unresolved
-        renders a designed Karachify placeholder naming the subject instead of showing an unrelated city. Coordinate
-        pins are approximate and labelled as demo data.
+        renders a designed Karachify placeholder naming the subject instead of showing an unrelated city. A pin on a
+        verified record is that place's own OpenStreetMap feature; the rest are offsets from a locality centre and are
+        labelled as approximate.
       </Note>
 
       <div className="max-w-sm">
@@ -1390,7 +1388,7 @@ function SettingsPanel() {
               checked={form.demoBanner}
               onChange={(e) => setForm({ ...form, demoBanner: e.target.checked })}
             />
-            Show the “sample data” transparency band on the homepage
+            Show the sourcing transparency band on the homepage
           </label>
         </div>
         <div className="mt-5 flex gap-3">

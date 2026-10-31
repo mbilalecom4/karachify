@@ -25,7 +25,7 @@ export default function CategoryPage() {
       <div className="shell section">
         <EmptyState
           title="That category does not exist"
-          body="The link may be outdated, or the category was removed in the demo admin. Browse every category from the explore page."
+          body="The link may be outdated, or the category was removed in the admin panel on this device. Browse every category from the explore page."
           action={
             <Link to="/explore" className="btn-primary">
               Back to explore
@@ -56,7 +56,7 @@ export default function CategoryPage() {
       >
         <div className="flex flex-wrap items-center gap-3 text-sm text-navy-100">
           <span className="badge bg-white/15 text-white ring-1 ring-inset ring-white/25">
-            {items.length} demo listing{items.length === 1 ? '' : 's'}
+            {items.length} listing{items.length === 1 ? '' : 's'}
           </span>
           <Link to="/map" className="inline-flex items-center gap-1.5 font-semibold text-teal-200 hover:text-teal-100">
             <MapPin className="h-4 w-4" /> See them on the map
@@ -81,7 +81,7 @@ export default function CategoryPage() {
         <SectionHeading
           eyebrow="Browse"
           title={`Everything in ${category.name}`}
-          sub="Filter by area, search inside the category, switch between grid and list, and load more as you go. All records are demo data."
+          sub="Filter by area, search inside the category, switch between grid and list, and load more as you go. Every page states which of its details were checked against a source."
         />
         <ListingExplorer
           items={items}

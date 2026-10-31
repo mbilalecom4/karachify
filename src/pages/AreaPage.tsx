@@ -8,7 +8,7 @@ import { ListingExplorer } from '../components/Explorer';
 import { KarachifyMap } from '../components/KarachifyMap';
 import { PageHero } from '../components/Page';
 import { EmptyState, SectionHeading } from '../components/ui';
-import { coordText, plural } from '../lib/format';
+import { coordText, pinCaption, plural } from '../lib/format';
 
 export default function AreaPage() {
   const { slug = '' } = useParams();
@@ -30,7 +30,7 @@ export default function AreaPage() {
       items.slice(0, 60).map((l) => ({
         id: l.id,
         title: l.name,
-        subtitle: `${categories.find((c) => c.id === l.categoryId)?.name ?? 'Listing'} · approximate demo location`,
+        subtitle: `${categories.find((c) => c.id === l.categoryId)?.name ?? 'Listing'} · ${pinCaption(l.coordsVerified)}`,
         path: `/place/${l.slug}`,
         lat: l.lat,
         lng: l.lng,
@@ -51,7 +51,7 @@ export default function AreaPage() {
       <div className="shell section">
         <EmptyState
           title="Unknown area"
-          body="That locality is not part of the Karachify demo dataset. Every covered locality is listed on the areas page."
+          body="That locality is not one Karachify covers yet. Every covered locality is listed on the areas page."
           action={
             <Link to="/areas" className="btn-primary">
               Browse all areas
@@ -93,7 +93,8 @@ export default function AreaPage() {
           </a>
         </div>
         <p className="mt-3 max-w-xl text-[13px] text-navy-200">
-          Coordinates shown are approximate demo locations for the locality, not verified addresses.
+          A pin labelled "OpenStreetMap position" is that place's own mapped feature. The rest sit near the locality
+          centre and are not addresses — open a listing for the address its source states.
         </p>
       </PageHero>
 
@@ -119,7 +120,7 @@ export default function AreaPage() {
           showArea={false}
           pageSize={db.settings.listingsPerPage}
           emptyTitle="Nothing in this area matches those filters"
-          emptyBody="This locality has a smaller slice of the demo dataset. Try clearing the search, or browse the whole category."
+          emptyBody="This locality has fewer records in that category than others. Try clearing the search, or browse the whole category."
         />
       </section>
 
@@ -129,7 +130,7 @@ export default function AreaPage() {
             <SectionHeading
               eyebrow="Map"
               title={`${area.name} on the map`}
-              sub="Pins use approximate demo coordinates. Click one for a preview card and a link to the full listing."
+              sub="Pins for verified destinations sit on their OpenStreetMap node; the rest mark the neighbourhood, not the doorway. Click one for a preview card and a link to the full listing."
               action={
                 <Link to="/map" className="btn-outline btn-sm">
                   Open full map <ArrowRight className="h-3.5 w-3.5" />
@@ -146,7 +147,7 @@ export default function AreaPage() {
       {areaEvents.length > 0 && (
         <section className="shell section">
           <SectionHeading
-            eyebrow="Sample programming"
+            eyebrow="What's on"
             title={`Events in ${area.name}`}
             action={
               <Link to="/events" className="btn-outline btn-sm">

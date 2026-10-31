@@ -11,10 +11,12 @@ import {
   Star,
   GraduationCap,
   Landmark,
+  Mail,
   MapPin,
   Navigation,
   Phone,
   ShoppingBag,
+  Ticket,
   Trees,
   Building2,
   Images,
@@ -44,7 +46,7 @@ import {
   TextInput,
   useToast,
 } from '../components/ui';
-import { coordText, copyText, directionsUrl, mapLinkUrl, isValidEmail, plural, priceLabel } from '../lib/format';
+import { admissionLabel, coordText, copyText, directionsUrl, mapLinkUrl, isValidEmail, pinCaption, plural, priceLabel } from '../lib/format';
 
 const LAYOUT_META: Record<DetailLayout, { icon: typeof Landmark; kicker: string }> = {
   attraction: { icon: Landmark, kicker: 'Visitor guide' },
@@ -120,7 +122,7 @@ export default function ListingDetail() {
       listing
         ? listings
             .filter((l) => l.id !== listing.id && l.categoryId === listing.categoryId)
-            .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.rating ?? 0) - (a.rating ?? 0))
+            .sort((a, b) => Number(b.featured) - Number(a.featured) || a.name.localeCompare(b.name))
             .slice(0, 4)
         : [],
     [listings, listing]
@@ -133,7 +135,7 @@ export default function ListingDetail() {
       <div className="shell section">
         <EmptyState
           title="Listing not found"
-          body="This record may have been deleted in the demo admin, or the link is out of date. Browse the catalogue instead."
+          body="This record may have been deleted in the admin panel, or the link is out of date. Browse the catalogue instead."
           action={
             <Link to="/explore" className="btn-primary">
               Back to explore
@@ -147,6 +149,8 @@ export default function ListingDetail() {
   const category = categories.find((c) => c.id === listing.categoryId);
   const area = areas.find((a) => a.id === listing.areaId);
   const layout = (category?.detailLayout ?? 'service') as DetailLayout;
+  const admission =
+    admissionLabel(listing.entryFees) ?? (listing.priceRange ? priceLabel(listing.priceRange) : null);
   const meta = LAYOUT_META[layout];
   const media = imageFor(listing.slug, listing.name);
   const gallery = buildGallery(listing);
@@ -198,7 +202,7 @@ export default function ListingDetail() {
               <meta.icon className="h-4 w-4 text-teal-300" />
               {meta.kicker}
             </span>
-            {listing.priceRange && <span className="inline-flex items-center gap-1.5">{priceLabel(listing.priceRange)}</span>}
+            {admission && <span className="inline-flex items-center gap-1.5">{admission}</span>}
           </div>
           <div className="mt-6 flex flex-wrap gap-2.5">
             <button
@@ -264,7 +268,7 @@ export default function ListingDetail() {
               </span>
               <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-gradient-to-t from-navy-950/90 to-transparent px-3 py-2">
                 <span className="text-[12px] font-semibold text-white">{f.caption}</span>
-                <span className={`badge ${f.real ? 'bg-teal-500/85 text-white' : 'bg-amber-400/90 text-navy-900'}`}>{f.real ? 'Photo' : 'Demo'}</span>
+                <span className={`badge ${f.real ? 'bg-teal-500/85 text-white' : 'bg-amber-400/90 text-navy-900'}`}>{f.real ? 'Photo' : 'Placeholder'}</span>
               </span>
             </button>
           ))}
@@ -289,7 +293,7 @@ export default function ListingDetail() {
                 <a href={media.entry.filePage} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">
                   File page <ExternalLink className="h-3 w-3" />
                 </a>
-                . Frames marked “Demo” are designed placeholders used until a licensed photo of this exact subject is
+                . Frames marked “Placeholder” are designed panels used until a licensed photo of this exact subject is
                 sourced.
               </>
             )
@@ -430,6 +434,45 @@ export default function ListingDetail() {
                     <span className="text-navy-400">Opening hours have not been verified for this place.</span>
                   )}
                 </Row>
+                <Row icon={<Ticket className="h-4 w-4" />} label="Admission">
+                  {listing.entryFees?.length ? (
+                    <>
+                      <ul className="space-y-1">
+                        {listing.entryFees.map((fee) => (
+                          <li key={`${fee.label}-${fee.amount}`} className="flex justify-between gap-3">
+                            <span className="text-navy-500">{fee.label}</span>
+                            <span className="font-medium text-navy-800">
+                              {fee.amount === 0 ? 'Free' : `${fee.amount.toLocaleString('en-PK')} ${fee.currency}`}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="mt-1 block text-[12px] text-navy-400">
+                        {listing.entryFees.some((f) => f.basis === 'press')
+                          ? 'Reported by news coverage, not the operator — confirm before you go.'
+                          : `Published by the operator and checked on ${listing.lastVerified}.`}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-navy-400">
+                      {listing.lastVerified
+                        ? 'No entry fee is published by the sources checked for this place.'
+                        : 'Admission has not been verified for this place.'}
+                    </span>
+                  )}
+                </Row>
+                {listing.entryConditions && (
+                  <Row icon={<Info className="h-4 w-4" />} label="Visiting rules">
+                    {listing.entryConditions}
+                  </Row>
+                )}
+                {listing.email && (
+                  <Row icon={<Mail className="h-4 w-4" />} label="Email">
+                    <a href={`mailto:${listing.email}`} className="link break-all">
+                      {listing.email}
+                    </a>
+                  </Row>
+                )}
               </dl>
               <div className="mt-4 grid gap-2">
                 <a className="btn-dark btn-sm" href={directionsUrl(listing.lat, listing.lng, listing.name)} target="_blank" rel="noopener noreferrer">
@@ -521,7 +564,7 @@ export default function ListingDetail() {
           <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[13px] text-navy-500">
             <span>
               Photo {active + 1} of {gallery.length}
-              {gallery[active]?.real && media.entry ? ` · ${media.entry.artist ?? 'Wikimedia Commons contributor'} · ${media.entry.license ?? 'licence see file page'}` : ' · designed demo placeholder'}
+              {gallery[active]?.real && media.entry ? ` · ${media.entry.artist ?? 'Wikimedia Commons contributor'} · ${media.entry.license ?? 'licence see file page'}` : ' · designed placeholder, not a photograph'}
             </span>
             <span className="flex gap-2">
               <button className="btn-outline btn-sm" onClick={() => setActive((i) => (i - 1 + gallery.length) % gallery.length)}>
@@ -573,7 +616,7 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
       {
         id: listing.id,
         title: listing.name,
-        subtitle: `${area} · approximate demo location`,
+        subtitle: `${area} · ${pinCaption(listing.coordsVerified)}`,
         path: `/place/${listing.slug}`,
         lat: listing.lat,
         lng: listing.lng,
@@ -589,8 +632,10 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
         <KarachifyMap points={points} compact interactive className="h-[300px] w-full" />
       </div>
       <p className="mt-2 text-[13px] leading-relaxed text-navy-500">
-        The pin sits at an approximate demo location so the map interactions can be demonstrated. Base map tiles are
-        provided by OpenStreetMap contributors; directions open in your preferred map service.
+        {listing.coordsVerified
+          ? 'This pin is the place’s own OpenStreetMap feature — the node, way or relation linked above — not an area-centre guess.'
+          : 'The pin marks the neighbourhood this record belongs to, offset so the map stays readable. It is not a doorway: use the address and the operator’s own contact details to find the entrance.'}{' '}
+        Base map tiles are provided by OpenStreetMap contributors; directions open in your preferred map service.
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         <a className="btn-outline btn-sm" href={directionsUrl(listing.lat, listing.lng, listing.name)} target="_blank" rel="noopener noreferrer">
@@ -632,7 +677,7 @@ function AddReview({ listingId, name }: { listingId: string; name: string }) {
           demo: true,
         });
         setText('');
-        toast.push('Review added locally (demo data)');
+        toast.push('Review added — it stays in this browser and is never published');
       }}
     >
       <p className="font-display text-[15px] font-bold text-navy-800">Add your own sample review</p>
@@ -700,13 +745,13 @@ function EnquiryModal({ open, onClose, listing, kind }: { open: boolean; onClose
           });
           setForm((f) => ({ ...f, message: '', phone: '' }));
           onClose();
-          toast.push('Enquiry saved in this browser (demo mode — no email is sent)');
+          toast.push('Enquiry saved in this browser — no email is sent');
         }}
         className="space-y-4"
       >
         <Note tone="warn">
-          Karachify is running without a backend in this build, so enquiries are recorded locally and appear in the
-          demo admin queue. Connect Supabase plus an email provider to deliver them for real.
+          This build has no backend, so the enquiry is saved on this device and shows up in the admin queue here. Nothing
+          is delivered to the business — use the phone number or website on the page to actually reach them.
         </Note>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Your name" required error={errors.name}>
@@ -723,7 +768,7 @@ function EnquiryModal({ open, onClose, listing, kind }: { open: boolean; onClose
           <TextArea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} error={Boolean(errors.message)} />
         </Field>
         <button type="submit" className="btn-primary">
-          Save enquiry (demo)
+          Save enquiry on this device
         </button>
       </form>
     </Modal>
@@ -758,13 +803,13 @@ function ClaimModal({ open, onClose, listing }: { open: boolean; onClose: () => 
             description: `${form.relationship}: ${form.notes.trim()}`,
           });
           onClose();
-          toast.push('Claim submitted for review (you can approve it in the demo admin)');
+          toast.push('Claim recorded on this device — the admin panel is where you would review it');
         }}
         className="space-y-4"
       >
         <Note>
           A real claim needs document verification — a Sindh Revenue Board or KMC registration, a utility bill or an
-          authorised letterhead. This demo only records the request in the admin queue.
+          authorised letterhead. This build only records the request, in the admin queue on your own device.
         </Note>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Your name" required error={errors.name}>
@@ -785,7 +830,7 @@ function ClaimModal({ open, onClose, listing }: { open: boolean; onClose: () => 
           <TextArea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} error={Boolean(errors.notes)} />
         </Field>
         <button type="submit" className="btn-primary">
-          Submit claim (demo)
+          Save claim on this device
         </button>
       </form>
     </Modal>
@@ -794,20 +839,34 @@ function ClaimModal({ open, onClose, listing }: { open: boolean; onClose: () => 
 
 /* -------------------------- category-intelligent bits ------------------------- */
 
+/**
+ * These blocks used to generate a sample menu, a rate card, a department list
+ * and a programme table from a hash of the record id. None of it came from a
+ * source, so it is gone: each layout now states what the record really carries
+ * and says so where it carries nothing.
+ */
 function LayoutSection({ listing, layout, category }: { listing: Listing; layout: DetailLayout; category: string }) {
-  const hash = [...listing.id].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 9973, 7);
-  const pick = <T,>(arr: T[], n: number, offset = 0) => Array.from({ length: n }, (_, i) => arr[(hash + offset + i) % arr.length]);
+  const site = listing.website ? (
+    <a href={listing.website} target="_blank" rel="noopener noreferrer" className="link">
+      {listing.website.replace(/^https?:\/\//, '')}
+    </a>
+  ) : null;
+
+  const admissionLine = () => {
+    if (!listing.entryFees?.length)
+      return listing.lastVerified
+        ? 'No admission price is published by the sources checked for this place.'
+        : 'Admission has not been verified for this place.';
+    const first = listing.entryFees[0];
+    const price = first.amount === 0 ? 'free' : `PKR ${first.amount.toLocaleString('en-PK')}`;
+    const rest = listing.entryFees.length > 1 ? ` plus ${listing.entryFees.length - 1} more published rate(s)` : '';
+    return `${first.label}: ${price}${rest}.`;
+  };
 
   if (layout === 'restaurant') {
-    const menu = [
-      { item: listing.cuisine?.[0] ? `${listing.cuisine[0]} signature` : 'House signature dish', price: 'PKR 850', note: 'demo' },
-      { item: 'Breakfast plate', price: 'PKR 650', note: 'demo' },
-      { item: 'Sharing platter (2–3 people)', price: 'PKR 2,400', note: 'demo' },
-      { item: 'Chai & mithai', price: 'PKR 250', note: 'demo' },
-    ];
     return (
       <article>
-        <h2 className="section-title mb-3">Food & prices</h2>
+        <h2 className="section-title mb-3">Food &amp; drink</h2>
         {listing.cuisine?.length ? (
           <div className="flex flex-wrap gap-2">
             {listing.cuisine.map((c) => (
@@ -817,69 +876,51 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
             ))}
           </div>
         ) : null}
-        <p className="mt-3 text-sm text-navy-500">
-          Price band: <strong className="text-navy-800">{listing.priceRange ?? 'Demo'}</strong> · {priceLabel(listing.priceRange)}
+        <p className="mt-3 text-sm leading-relaxed text-navy-500">
+          {site ? (
+            <>Menu and prices are published by the restaurant itself — see {site}.</>
+          ) : (
+            'Karachify does not invent dish names or prices. This record has no menu source, so the cuisine tags above are all the food information it holds.'
+          )}
         </p>
-        <h3 className="mt-5 font-display font-bold text-navy-800">Sample menu</h3>
-        <ul className="mt-2 divide-y divide-navy-100 overflow-hidden rounded-xl border border-navy-100 bg-white">
-          {menu.map((m) => (
-            <li key={m.item} className="flex items-center justify-between gap-4 px-4 py-3">
-              <span className="text-sm text-navy-700">{m.item}</span>
-              <span className="whitespace-nowrap text-sm font-semibold text-navy-800">
-                {m.price} <span className="text-[11px] font-normal uppercase text-amber-600">demo</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-2 text-[13px] text-navy-500">Menu items and prices are invented for this showcase.</p>
       </article>
     );
   }
 
   if (layout === 'hotel') {
-    const rooms = ['Standard double', 'Deluxe twin', 'Executive suite', 'Family room'];
     return (
       <article>
-        <h2 className="section-title mb-3">Rooms & rates</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {pick(rooms, 4).map((r, i) => (
-            <div key={r + i} className="card p-4">
-              <p className="flex items-center gap-2 font-semibold text-navy-800">
-                <Bed className="h-4 w-4 text-teal-600" /> {r}
-              </p>
-              <p className="mt-1 text-sm text-navy-500">
-                From <strong className="text-navy-800">PKR {(12 + i * 6) * 10000 - (i % 2) * 5000}</strong>{' '}
-                <span className="text-[11px] uppercase text-amber-600">demo rate</span> per night
-              </p>
-              <ul className="mt-2 space-y-1 text-[13px] text-navy-500">
-                <li>Air conditioning, backup power</li>
-                <li>Breakfast {i % 2 ? 'included' : 'available'}</li>
-              </ul>
-            </div>
-          ))}
+        <h2 className="section-title mb-3">Rooms &amp; rates</h2>
+        <p className="text-sm leading-relaxed text-navy-500">
+          Room types and nightly rates are set by the property and move with the season, so they are not stored here.
+          {site ? (
+            <> The property publishes its own rates at {site}.</>
+          ) : (
+            <> No rate source has been recorded for this property, so use the enquiry button to ask directly.</>
+          )}
+        </p>
+        <div className="mt-3">
+          <Note tone="warn">
+            Karachify does not take reservations and does not show live availability. Anything you send through the
+            enquiry form is stored on this device only.
+          </Note>
         </div>
-        <p className="mt-2 text-[13px] text-navy-500">Room types and rates are invented for this showcase; use the booking enquiry button to see how the flow works.</p>
       </article>
     );
   }
 
   if (layout === 'hospital') {
-    const departments = ['Emergency & trauma', 'Medicine', 'Surgery', 'Paediatrics', 'Obstetrics', 'Cardiology', 'Orthopaedics', 'Diagnostic imaging'];
     return (
       <article>
-        <h2 className="section-title mb-3">Departments & access</h2>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {pick(departments, 6).map((d, i) => (
-            <div key={d + i} className="flex items-center justify-between gap-3 rounded-xl border border-navy-100 bg-white px-4 py-3 text-sm">
-              <span className="text-navy-700">{d}</span>
-              <span className="badge bg-navy-50 text-navy-600">Demo</span>
-            </div>
-          ))}
-        </div>
+        <h2 className="section-title mb-3">Departments &amp; access</h2>
+        <p className="text-sm leading-relaxed text-navy-500">
+          This record does not carry a verified department list. Karachify does not publish live bed, ambulance or
+          waiting-time status either — confirm emergency availability by phone with the hospital directly.
+        </p>
         <div className="mt-3">
           <Note tone="warn">
-            Karachify does not publish live bed, ambulance or waiting-time status. Confirm emergency availability by
-            phone with the hospital directly.
+            In an emergency call 15 (Rescue) or 1122 (Edhi). Numbers are listed on the emergency services category
+            page and are the city-wide helplines, not this facility&apos;s switchboard.
           </Note>
         </div>
       </article>
@@ -889,18 +930,15 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
   if (layout === 'education') {
     return (
       <article>
-        <h2 className="section-title mb-3">Programmes & admissions</h2>
-        <ul className="grid gap-2 sm:grid-cols-2">
-          {['Undergraduate', 'Postgraduate', 'Evening / weekend', 'Short certifications'].map((p, i) => (
-            <li key={p} className="flex items-center justify-between gap-3 rounded-xl border border-navy-100 bg-white px-4 py-3 text-sm">
-              <span className="text-navy-700">{p}</span>
-              <span className="text-[12px] uppercase text-amber-600">{i % 2 ? 'demo' : 'sample'}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-2 text-[13px] text-navy-500">
-          Fee structures, intake dates and programme lists are illustrative — always check the institution&apos;s own
-          admissions office.
+        <h2 className="section-title mb-3">Programmes &amp; admissions</h2>
+        <p className="text-sm leading-relaxed text-navy-500">
+          Fee structures, intake dates and programme lists are set by the institution and change every session, so they
+          are not stored here.
+          {site ? (
+            <> See {site} for the admissions office.</>
+          ) : (
+            <> No website has been recorded for this institution — check the campus admissions counter.</>
+          )}
         </p>
       </article>
     );
@@ -912,9 +950,12 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
         <h2 className="section-title mb-3">Visitor information</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           {[
-            { t: 'Getting there', d: 'Rideshare and route-hailing work door to door; the area around most landmarks has limited parked-car space on weekends.' },
+            {
+              t: 'Getting there',
+              d: 'Rideshare and route-hailing work door to door; the area around most landmarks has limited parked-car space on weekends.',
+            },
             { t: 'Best time', d: 'October to March is comfortable. Monsoon afternoons and May heat both change the plan.' },
-            { t: 'Costs', d: 'Ticket and parking prices in this listing are demo values until verified.' },
+            { t: 'Costs', d: admissionLine() },
           ].map((b) => (
             <div key={b.t} className="card p-4">
               <p className="font-display font-bold text-navy-800">{b.t}</p>
@@ -931,13 +972,11 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
       <article>
         <h2 className="section-title mb-3">What you will find</h2>
         <p className="text-[15px] leading-relaxed text-navy-600">
-          {listing.facilities?.length
-            ? listing.facilities.slice(0, 6).join(' · ')
-            : 'Mixed retail, food court and services floors.'}
+          {listing.facilities?.length ? listing.facilities.slice(0, 6).join(' · ') : 'No tenant mix is recorded for this place.'}
         </p>
         <p className="mt-2 text-sm text-navy-500">
-          Brand mixes and sale calendars change constantly; treat {category.toLowerCase()} details here as a starting
-          point and confirm before travelling across the city.
+          Brand mixes and sale calendars change constantly, so treat the {category.toLowerCase()} details here as a
+          starting point and confirm before travelling across the city.
         </p>
       </article>
     );
@@ -950,15 +989,18 @@ function LayoutSection({ listing, layout, category }: { listing: Listing; layout
         <li className="flex gap-2.5">
           <Info className="mt-1 h-4 w-4 shrink-0 text-teal-600" />
           <span>
-            {listing.address} — in {listing.tags[0] ? `${listing.tags[0].toLowerCase()}, ` : ''}Karachi. Access and
-            entry details on this page are demo values.
+            {listing.address}
+            {listing.lastVerified
+              ? ` — checked against a source on ${listing.lastVerified}.`
+              : ' — not yet checked against an official source.'}
           </span>
         </li>
         <li className="flex gap-2.5">
           <CalendarClock className="mt-1 h-4 w-4 shrink-0 text-teal-600" />
           <span>
-            {(listing.hours?.[0]?.open ?? 'No published timings in this record')} — verify before you rely on it,
-            especially on Fridays and public holidays.
+            {listing.hours?.[0]
+              ? `${listing.hours[0].day}: ${listing.hours[0].open}${listing.lastVerified ? '' : ' — verify before you rely on it, especially on Fridays and public holidays.'}`
+              : 'No verified timings for this place.'}
           </span>
         </li>
       </ul>

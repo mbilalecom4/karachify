@@ -22,22 +22,49 @@ export function dateRange(start: string, end?: string) {
 }
 
 export function timeRange(start: string, end: string) {
+  if (!start && !end) return 'Time not stated';
+  if (!start || !end) return start || end;
   return `${start} – ${end}`;
 }
 
+/** How a pin may be described: only an OSM-backed coordinate is called a position. */
+export function pinCaption(coordsVerified?: boolean) {
+  return coordsVerified ? 'OpenStreetMap position' : 'approximate position';
+}
+
+/**
+ * The $ bands are only ever set by a business about itself (owner dashboard),
+ * so the label says who is speaking rather than implying a measured price.
+ * Verified admission prices come through `listing.entryFees` instead.
+ */
 export function priceLabel(range?: string) {
   switch (range) {
     case 'Free':
       return 'Free entry';
     case '$':
-      return 'Under PKR 1,000 (demo)';
+      return 'Budget — stated by the owner';
     case '$$':
-      return 'PKR 1,000 – 3,000 (demo)';
+      return 'Mid-range — stated by the owner';
     case '$$$':
-      return 'PKR 3,000+ (demo)';
+      return 'Premium — stated by the owner';
     default:
       return 'Pricing to confirm';
   }
+}
+
+/**
+ * One honest line for a card. Fee tables mix adults, children and per-ride
+ * prices, so quoting the cheapest row would understate the visit: use the adult
+ * or general row when the source names one, otherwise the lowest paid ticket.
+ */
+export function admissionLabel(fees?: { label: string; amount: number; basis: string }[]) {
+  if (!fees?.length) return null;
+  if (fees.every((f) => f.amount === 0)) return 'Free entry';
+  const press = fees.every((f) => f.basis === 'press') ? ' (reported)' : '';
+  const adult = fees.find((f) => /adult|general|entry/i.test(f.label));
+  if (adult) return `Admission PKR ${adult.amount.toLocaleString('en-PK')}${press}`;
+  const paid = fees.filter((f) => f.amount > 0).map((f) => f.amount);
+  return `From PKR ${Math.min(...paid).toLocaleString('en-PK')}${press}`;
 }
 
 export function plural(count: number, one: string, many = `${one}s`) {
@@ -108,27 +135,38 @@ export function toICS(event: {
   startTime: string;
   endTime: string;
 }) {
-  const stamp = (isoDate: string, hhmm: string) =>
-    `${isoDate.replace(/-/g, '')}T${hhmm.replace(':', '')}00`;
-  const dtstart = stamp(event.date, event.startTime);
-  const dtend = stamp(event.endDate ?? event.date, event.endTime);
+  const day = (isoDate: string) => isoDate.replace(/-/g, '');
+  /* A source that never stated a start time is recorded as an all-day event,
+     not silently padded to midnight. */
+  const timed = Boolean(event.startTime && event.endTime);
+  const stamp = (isoDate: string, hhmm: string) => `${day(isoDate)}T${hhmm.replace(':', '')}00`;
+  const dtstart = timed ? `DTSTART:${stamp(event.date, event.startTime)}` : `DTSTART;VALUE=DATE:${day(event.date)}`;
+  const dtend = timed
+    ? `DTEND:${stamp(event.endDate ?? event.date, event.endTime)}`
+    : `DTEND;VALUE=DATE:${day(addOneDay(event.endDate ?? event.date))}`;
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Karachify//Demo//EN',
+    'PRODID:-//Karachify//Visit Karachi//EN',
     'CALSCALE:GREGORIAN',
     'BEGIN:VEVENT',
-    `UID:${dtstart}-${Math.random().toString(36).slice(2, 8)}@karachify.demo`,
+    `UID:${day(event.date)}-${Math.random().toString(36).slice(2, 8)}@karachify`,
     `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
-    `DTSTART:${dtstart}`,
-    `DTEND:${dtend}`,
-    `SUMMARY:${event.title} (demo event)`,
+    dtstart,
+    dtend,
+    `SUMMARY:${event.title}`,
     `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
     `LOCATION:${event.location.replace(/,/g, '\\,')}`,
     'END:VEVENT',
     'END:VCALENDAR',
   ];
   return lines.join('\r\n');
+}
+
+function addOneDay(isoDate: string) {
+  const d = new Date(`${isoDate}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 1);
+  return d.toISOString().slice(0, 10);
 }
 
 export function copyText(value: string) {

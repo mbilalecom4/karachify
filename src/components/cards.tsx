@@ -5,7 +5,7 @@ import { areaImageKey, imageFor } from '../lib/media';
 import { actions, prefsFor, useDB } from '../lib/store';
 import { useToast } from './ui';
 import { CategoryIcon } from '../lib/icons';
-import { dateRange, plural, priceLabel, timeRange } from '../lib/format';
+import { admissionLabel, dateRange, plural, priceLabel, timeRange } from '../lib/format';
 import { areaById, categoryById } from '../data/taxonomy';
 
 /* ------------------------------- badges ---------------------------------- */
@@ -82,7 +82,7 @@ export function ListingCard({
           Rating not verified
         </span>
       )}
-      {listing.priceRange && <span>{priceLabel(listing.priceRange)}</span>}
+      {admissionLabel(listing.entryFees) ?? (listing.priceRange && <span>{priceLabel(listing.priceRange)}</span>)}
     </>
   );
 
@@ -166,7 +166,8 @@ function CategoryPill({ category }: { category?: Category }) {
 
 function StatusInline({ status }: { status: Listing['status'] }) {
   if (status === 'verified') return <span className="badge-verified">Verified source</span>;
-  return <span className="badge-demo">Sample data</span>;
+  if (status === 'demo') return <span className="badge-demo">Sample record</span>;
+  return <span className="badge-demo">Not verified yet</span>;
 }
 
 /* -------------------------------- event -------------------------------- */
@@ -207,7 +208,9 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex flex-wrap items-center gap-2">
           <span className="badge bg-navy-50 text-navy-700">{event.eventCategory}</span>
-          <span className="badge-demo">Sample event</span>
+          {event.status !== 'verified' && (
+            <span className="badge-demo">{event.status === 'demo' ? 'Sample event' : 'Not verified yet'}</span>
+          )}
         </div>
         <h3 className="text-[17px] font-bold leading-snug">
           <Link to={`/events/${event.slug}`} className="hover:text-teal-700">

@@ -58,7 +58,7 @@ export default function SearchResults() {
             {q ? `Results for “${q}”` : 'Search Karachify'}
           </h1>
           <p className="mt-2 max-w-2xl text-[15px] text-navy-100">
-            Global search runs against every demo record — {plural(listings.length, 'listing')},{' '}
+            Global search runs against every record Karachify holds — {plural(listings.length, 'listing')},{' '}
             {plural(events.length, 'event')}, {plural(areas.length, 'area')}, {plural(categories.length, 'category')} and the city guides.
           </p>
           <div className="mt-5 max-w-3xl">
@@ -71,7 +71,7 @@ export default function SearchResults() {
         {!q.trim() ? (
           <EmptyState
             title="Type something to search"
-            body="Try “biryani”, “Clifton”, “museum”, “hospital”, “Mazar-e-Quaid” or “kite festival”. The dataset is demo data, so results are illustrative but the matching, filters and links all behave for real."
+            body="Try “biryani”, “Clifton”, “museum”, “hospital” or “Mazar-e-Quaid”. Search only knows the records in this dataset — it never invents a result to fill an empty page, and each hit opens the place's own sourcing notes."
             action={
               <div className="flex flex-wrap justify-center gap-2">
                 {['beach', 'nihari', 'DHA', 'university', 'mall'].map((t) => (

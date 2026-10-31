@@ -5,12 +5,10 @@ import { selectAreas, useDB } from '../lib/store';
 import { ListingCard } from './cards';
 import { EmptyState, Select, SkeletonGrid, TextInput } from './ui';
 
-export type SortKey = 'recommended' | 'rating' | 'reviews' | 'az' | 'area';
+export type SortKey = 'recommended' | 'az' | 'area';
 
 const SORTS: { id: SortKey; label: string }[] = [
-  { id: 'recommended', label: 'Recommended' },
-  { id: 'rating', label: 'Top rated' },
-  { id: 'reviews', label: 'Most reviewed' },
+  { id: 'recommended', label: 'Karachify picks' },
   { id: 'az', label: 'Name (A–Z)' },
   { id: 'area', label: 'Group by area' },
 ];
@@ -21,21 +19,16 @@ export function useListingSort(items: Listing[], sort: SortKey) {
   return useMemo(() => {
     const list = [...items];
     switch (sort) {
-      case 'rating':
-        return list.sort(
-          (a, b) =>
-            (b.rating ?? 0) - (a.rating ?? 0) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name)
-        );
-      case 'reviews':
-        return list.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name));
       case 'az':
         return list.sort((a, b) => a.name.localeCompare(b.name));
       case 'area':
-        return list.sort((a, b) => a.areaId.localeCompare(b.areaId) || (b.rating ?? 0) - (a.rating ?? 0));
+        return list.sort((a, b) => a.areaId.localeCompare(b.areaId) || a.name.localeCompare(b.name));
       default:
+        /* Editorial order only: the featured flag, then the name. No record on
+           this site carries a rating, so nothing can rank on one. */
         return list.sort(
           (a, b) =>
-            Number(b.featured || b.promoted) - Number(a.featured || a.promoted) || (b.rating ?? 0) - (a.rating ?? 0)
+            Number(b.featured || b.promoted) - Number(a.featured || a.promoted) || a.name.localeCompare(b.name)
         );
     }
   }, [items, sort]);
@@ -53,7 +46,7 @@ export function ListingExplorer({
   showArea = true,
   pageSize = 12,
   emptyTitle = 'No listings match these filters',
-  emptyBody = 'Try a different area, clear the search box, or browse another category — every record in Karachify is demo data you can filter freely.',
+  emptyBody = 'Try a different area, clear the search box, or switch category — these are real Karachi records, so a blank page means the filters are too narrow, not that the city has nothing.',
 }: {
   items: Listing[];
   /** Restrict the area dropdown to the areas actually present in these items. */

@@ -27,7 +27,7 @@ function hash(s: string) {
  * Designed stand-in used whenever no licensed Karachi photograph could be
  * matched — preferred over an unrelated photo of another city.
  */
-export function placeholderImage(label: string, kicker = 'Karachify demo image') {
+export function placeholderImage(label: string, kicker = 'Photo not sourced') {
   const h = hash(label);
   const hue = 168 + (h % 3) * 6;
   const words = label.split(/\s+/).slice(0, 4);

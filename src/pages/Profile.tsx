@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CalendarCheck, Heart, LogOut, Mail, Search, ShieldCheck, Store } from 'lucide-react';
 import { actions, currentUser, prefsFor, selectEvents, selectListings, useDB } from '../lib/store';
-import { EmptyState, StatusBadge, useToast } from '../components/ui';
+import { EmptyState, useToast } from '../components/ui';
 import { Note } from '../components/Page';
 import { formatDate, plural } from '../lib/format';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
@@ -158,7 +158,7 @@ export default function Profile() {
                 <li key={e.id} className="card p-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="font-semibold text-navy-800">{e.subject}</p>
-                    <StatusBadge status="demo" />
+                    <span className="badge bg-navy-50 text-navy-600">Saved on this device</span>
                   </div>
                   <p className="mt-1 line-clamp-2 text-sm text-navy-500">{e.message}</p>
                   <p className="mt-2 text-[13px] text-navy-400">{e.kind} enquiry · {dateTime(e.createdAt)}</p>

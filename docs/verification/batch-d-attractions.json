@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Port Grand",
+    "suggestedSlug": "port-grand",
+    "osmName": "Port Grand",
+    "osmId": 479697908,
+    "lat": 24.8455063,
+    "lng": 66.9922451,
+    "address": "Port Grand, Jinnah (Native Jetty/Nitti Gitti) Bridge, West Wharf, Keamari Town, Karachi District, Sindh 72500, Pakistan (per OpenStreetMap; operator's Facebook lists 'Road Opposite PNSC Building, Port Grand Food Street, Karachi 75850')",
+    "category": "dining",
+    "subcategory": "waterfront food & entertainment complex",
+    "website": "https://portgrand.com",
+    "openStreetMapLink": "https://www.openstreetmap.org/way/479697908",
+    "googleMapsLink": "https://www.google.com/maps/search/?api=1&query=24.8455063%2C66.9922451",
+    "hours": [
+      { "day": "Monday", "open": "17:00", "close": "00:00" },
+      { "day": "Tuesday", "open": "17:00", "close": "00:00" },
+      { "day": "Wednesday", "open": "17:00", "close": "00:00" },
+      { "day": "Thursday", "open": "17:00", "close": "00:00" },
+      { "day": "Friday", "open": "17:00", "close": "01:00" },
+      { "day": "Saturday", "open": "17:00", "close": "01:00" },
+      { "day": "Sunday", "open": "17:00", "close": "01:00" }
+    ],
+    "ticketPrices": [
+      { "label": "General entry (Rs. 500 redeemable on food/rides; stated in official Facebook page event posts, e.g. Aug 2025 Azaadi Fest and late-2025/2026 'Beat the Heat' posts — not confirmed as a permanent tariff)", "amount": 1000, "currency": "PKR" }
+    ],
+    "entryConditions": "Official Facebook page (Oct 2026 posts): promotional 'Ladies Tuesday' events with free ladies entry subject to a mandatory PKR 500 condition (post text truncated in search result); Mon–Thu entertainment stated as included with entry ticket. Entry ticketing applies during advertised event periods.",
+    "contact": { "phone": "+92 348 8311111", "source": "official Facebook page 'Port Grand Pakistan' details block" },
+    "accessibility": null,
+    "facilities": [],
+    "familySuitability": null,
+    "description": "Port Grand is a food and entertainment destination overlooking Karachi Port, with a waterfront promenade along the 19th-century Native Jetty (Nitti Gitti) Bridge, per the operator's LinkedIn page. Restaurants are housed along the food street and on boat moorings off Keamari. Coordinates come from the OpenStreetMap way tagged tourism=attraction.",
+    "photo": {
+      "file": "File:Port Grand Food Street, Karachi.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Nazia Iqbal",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:Port_Grand_Food_Street,_Karachi.jpg"
+    },
+    "sources": [
+      { "url": "https://nominatim.openstreetmap.org/search?q=Port+Grand+Karachi&format=jsonv2&addressdetails=1&limit=3", "supports": "coordinates, address (queried 2026-10-30)" },
+      { "url": "https://www.openstreetmap.org/way/479697908", "supports": "OSM element (tourism=attraction, building=yes, addr:street=Nitti Gitti Bridge)" },
+      { "url": "https://www.instagram.com/portgrandofficial/", "supports": "opening hours Mon-Thu 5PM-12AM, Fri-Sun 5PM-1AM, Sunday breakfast 8:30AM-12:30PM (from official profile bio via search snippet, 2026-10-30)" },
+      { "url": "https://www.facebook.com/PortGrandPakistan/", "supports": "phone, address, Rs. 1000 entry (Rs. 500 redeemable) event posts, Ladies Tuesday entry condition (official page)" },
+      { "url": "https://cn.linkedin.com/company/portgrandlimited", "supports": "official operator description (food & entertainment destination, waterfront promenade, 19th-century Native Jetty Bridge)" },
+      { "url": "https://commons.wikimedia.org/wiki/File:Port_Grand_Food_Street,_Karachi.jpg", "supports": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)" }
+    ],
+    "lastVerified": "2026-10-30",
+    "missingFields": ["accessibility", "facilities", "familySuitability"],
+    "confidence": "partially-verified",
+    "notes": "portgrand.com and tbz.com.pk were unreachable from this network (curl/WebFetch failed, HTTP 000/DNS); the domain portgrand.com is recorded because it is listed on the official Facebook page, but its content could not be read. Instagram/Facebook direct fetches hit login walls, so hours/prices were taken from search-result snippets of Port Grand's own official profiles and may have changed since indexing. The Rs. 1000 entry figure appeared in event-specific posts (Azaadi Fest 8-17 Aug 2025 and later promo posts), not a permanent published tariff. OSM coordinates are community-sourced (way last edited 2017)."
+  },
+  {
+    "name": "Karachi Zoo",
+    "suggestedSlug": "karachi-zoo",
+    "osmName": "Karachi Zoo",
+    "osmId": 10385819,
+    "lat": 24.8767249,
+    "lng": 67.0233099,
+    "address": "Karachi Zoo, D'Silva Street, Madina Colony, Garden West, Karachi District, Sindh 74550, Pakistan (per OpenStreetMap/Nominatim; OSM addr:street tags 'Manghopir Rd;Garden Lane'); commonly known as Garden Zoo, Garden East",
+    "category": "park-garden",
+    "subcategory": "zoo & botanical garden (Karachi Zoological and Botanical Gardens / Mazhar-e-Qaid-e-Azam Park / Gandhi Garden)",
+    "website": null,
+    "openStreetMapLink": "https://www.openstreetmap.org/way/10385819",
+    "googleMapsLink": "https://www.google.com/maps/search/?api=1&query=24.8767249%2C67.0233099",
+    "hours": null,
+    "ticketPrices": [
+      { "label": "Adult (press: entry fee set at Rs 50, reported by Geo.tv and Dawn around the 28 Dec 2025 reopening of upgraded facilities)", "amount": 50, "currency": "PKR" },
+      { "label": "Child (press: entry fee set at Rs 30, reported by Geo.tv and Dawn, 29 Dec 2025)", "amount": 30, "currency": "PKR" }
+    ],
+    "entryConditions": "No official statement retrieved. Third-party listings (unverified, not used as source of truth) variously claim the zoo is open daily and that Wednesdays are reserved for women and children.",
+    "contact": null,
+    "accessibility": null,
+    "facilities": [],
+    "familySuitability": null,
+    "description": "Karachi Zoo (Karachi Zoological and Botanical Gardens, also called Gandhi Garden / Garden Zoo) in Garden East was established in 1899 and is described by Wikipedia as the largest zoo in Pakistan and the country's second oldest after Lahore Zoo. OpenStreetMap tags the site's operator as 'Sindh Government'. Per press coverage dated 29 Dec 2025, Karachi Mayor Barrister Murtaza Wahab inaugurated a new lion enclosure and a renovated Reptile House on 28 Dec 2025 and announced entry fees of Rs 50 (adults) / Rs 30 (children).",
+    "photo": {
+      "file": "File:An elephant bathing at the Karachi Zoological and Botanical Gardens, Pakistan - Sunday October 10,2021.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Framjiarnaz",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens,_Pakistan_-_Sunday_October_10,2021.jpg"
+    },
+    "sources": [
+      { "url": "https://nominatim.openstreetmap.org/search?q=Karachi+Zoo&format=jsonv2&addressdetails=1&limit=5", "supports": "coordinates, address (queried 2026-10-30)" },
+      { "url": "https://www.openstreetmap.org/way/10385819", "supports": "OSM element: tourism=zoo, operator='Sindh Government', wheelchair=limited, wikidata Q7569286" },
+      { "url": "https://www.geo.tv/latest/642027-watch-karachi-zoo-gets-new-lion-enclosure-reptile-house", "supports": "PRESS, dated 2025-12-29: fees Rs30 children / Rs50 adults; Mayor Murtaza Wahab inaugurated new lion enclosures and renovated Reptile House on Sunday 28 Dec 2025; fetched and read 2026-10-30" },
+      { "url": "https://www.dawn.com/news/1963821", "supports": "PRESS, dated 2025-12-29: same event ('Mayor opens upgraded recreational spots at Karachi Zoo'); article body returned 403 to fetchers, only search snippets of official-press text readable" },
+      { "url": "https://en.wikipedia.org/wiki/Karachi_Zoo", "supports": "establishment year 1899, alternate names, 'largest zoo in Pakistan' claim (encyclopedic, not official)" },
+      { "url": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens,_Pakistan_-_Sunday_October_10,2021.jpg", "supports": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)" }
+    ],
+    "lastVerified": "2026-10-30",
+    "missingFields": ["website", "hours", "contact", "accessibility", "facilities", "familySuitability", "entryConditions"],
+    "confidence": "partially-verified",
+    "notes": "No official page could be read: thecity.gov.pk (City Government Karachi) and swildlife.gov.pk were unreachable from this network (curl/WebFetch failed); no KMC/City Government zoo page was found via search. Hours therefore null despite third-party claims of 8:00-20:00. Ticket prices are tagged as PRESS (Geo.tv fetched; Dawn body blocked with 403), dated 2025-12-29. Operational status: press reports upgrading works inaugurated 28 Dec 2025, but no official statement confirms current day-to-day operation or any full/partial closure — animal-welfare litigation continued in 2025 (e.g., a Sindh High Court order in Oct 2025 to transfer a bear, seen only in an Instagram snippet, not used as a source). Do not present the zoo as definitively open or closed. OSM wheelchair=limited is community data, deliberately NOT used for the accessibility field per source rules."
+  },
+  {
+    "name": "Bahria Adventure Land",
+    "suggestedSlug": "bahria-adventure-land",
+    "osmName": "Bahria Adventure Land",
+    "osmId": 12282119198,
+    "lat": 25.0203732,
+    "lng": 67.3116821,
+    "address": "Bahria Town Karachi, Super Highway, Gadap Town, Malir District, Karachi Division, Sindh, Pakistan (official site address: 'Bahria Town, Super Highway, Karachi'; OSM node in Gadap Town)",
+    "category": "attraction",
+    "subcategory": "theme/amusement park",
+    "website": "https://bahriaadventureland.com",
+    "openStreetMapLink": "https://www.openstreetmap.org/node/12282119198",
+    "googleMapsLink": "https://www.google.com/maps/search/?api=1&query=25.0203732%2C67.3116821",
+    "hours": [
+      { "day": "Monday", "closed": true },
+      { "day": "Tuesday", "open": "15:00", "close": "23:00" },
+      { "day": "Wednesday", "open": "15:00", "close": "23:00" },
+      { "day": "Thursday", "open": "15:00", "close": "23:00" },
+      { "day": "Friday", "open": "15:00", "close": "23:00" },
+      { "day": "Saturday", "open": "15:00", "close": "23:00" },
+      { "day": "Sunday", "open": "15:00", "close": "23:00" }
+    ],
+    "ticketPrices": [
+      { "label": "Green Ticket (visitors above 4 feet 3 inches) — official Ticket Info page", "amount": 3000, "currency": "PKR" },
+      { "label": "Yellow Ticket (visitors 2 feet 6 inches to 4 feet 3 inches) — official Ticket Info page", "amount": 2000, "currency": "PKR" }
+    ],
+    "entryConditions": "Per official pages: daily admission tickets are sold at the ticketing counter at the entrance (online ticketing announced as 'starting soon'); ticket categories are by height (Green above 4ft 3in, Yellow 2ft 6in-4ft 3in); individual rides have height restrictions listed on the Rides page; the site also has a 'Height and Safety' support page.",
+    "contact": { "phone": "021-37188000 (stated 24/7)", "email": "info@bahriaadventureland.com", "altEmail": "M.Shahnawaz@btkarachi.com", "source": "official bahriaadventureland.com Contact Us / footer" },
+    "accessibility": "Official FAQ states a 'People of Determination Accessibility Guide' is available on the Rides page (guide content itself not captured in this pass).",
+    "facilities": ["5 zones", "25 rides and attractions", "F&B / niche restaurants", "indoor games and arcade games", "ample parking", "ATMs (two stated on Park Overview)"],
+    "familySuitability": "Official FAQ: 'Bahria Adventure Land is a family park and as such, there will be plenty for all the family to do.' Park Overview markets rides and characters 'for the entire family'.",
+    "description": "Bahria Adventure Land is a theme park inside Bahria Town Karachi on the Super Highway (Gadap, Malir District), developed with ride manufacturers from Italy per the official Park Overview. The official site lists five zones, 25 attractions, F&B, indoor/arcade games, parking and ATMs, with operating hours Tuesday-Sunday 3:00 PM to 11:00 PM and height-based tickets of Rs 3,000 / Rs 2,000. Coordinates are from the OSM node named 'Bahria Adventure Land' (leisure=park, added Oct 2024).",
+    "photo": null,
+    "sources": [
+      { "url": "https://nominatim.openstreetmap.org/search?q=Bahria+Adventure+Land+Karachi&format=jsonv2&addressdetails=1&limit=3", "supports": "coordinates, address (queried 2026-10-30)" },
+      { "url": "https://www.openstreetmap.org/node/12282119198", "supports": "OSM node (leisure=park, name=Bahria Adventure Land)" },
+      { "url": "https://bahriaadventureland.com/park-overview/", "supports": "OFFICIAL (fetched 2026-10-30): operating hours Tue-Sun 03:00 PM-11:00 PM, 5 zones, 25 attractions, F&B, indoor games, parking, ATMs, Italian manufacturers, family positioning" },
+      { "url": "https://bahriaadventureland.com/ticket-info/", "supports": "OFFICIAL (fetched 2026-10-30): Green Ticket Rs 3000 (>4ft 3in), Yellow Ticket Rs 2000 (2ft 6in-4ft 3in), counter sales" },
+      { "url": "https://bahriaadventureland.com/contact-us/", "supports": "OFFICIAL (fetched 2026-10-30): address, phone 021-37188000, email info@bahriaadventureland.com" },
+      { "url": "https://bahriaadventureland.com/faq/", "supports": "OFFICIAL (fetched 2026-10-30): People of Determination accessibility guide reference, no park transport from Karachi city, family park statement, 25 rides, height restrictions" }
+    ],
+    "lastVerified": "2026-10-30",
+    "missingFields": ["photo"],
+    "confidence": "verified",
+    "notes": "All hours, prices, contact, facilities, accessibility and family-suitability values were read directly from the park's own official website on 2026-10-30 (pages fetched successfully, HTTP 200). Monday closure is implied by 'Tuesday to Sunday' hours; no separate official 'closed Monday' statement was captured (the /opening-hours/ URL 404s). The site footer says 'Copyright © 2023' and prices may lag reality — recheck before publication. Wikimedia Commons returned ZERO files for 'Bahria Adventure Land' or 'Adventure Land Bahria Town Karachi', so photo is null rather than using an unrelated Karachi photo; consider the park's own licensed site imagery or a commissioned photo. OSM node was created 2024-10-23 by a single editor; no official geo publish confirms the point."
+  },
+  {
+    "name": "Chaukhandi Tombs",
+    "suggestedSlug": "chaukhandi-tombs",
+    "osmName": "Chaukhandi Tombs",
+    "osmId": 1427036051,
+    "lat": 24.8661548,
+    "lng": 67.2713971,
+    "address": "Chaukhandi Tombs, Chowkhandi Road, Abdullah Goth, Bin Qasim Town, Malir District, Karachi Division, Sindh 75030, Pakistan (per OpenStreetMap/Nominatim; UNESCO describes it as '40 km east of Karachi')",
+    "category": "historical-place",
+    "subcategory": "funerary ensemble / necropolis (UNESCO Tentative List, cultural)",
+    "website": null,
+    "openStreetMapLink": "https://www.openstreetmap.org/way/1427036051",
+    "googleMapsLink": "https://www.google.com/maps/search/?api=1&query=24.8661548%2C67.2713971",
+    "hours": null,
+    "ticketPrices": null,
+    "entryConditions": "No official published entry conditions found. The necropolis is managed/conserved by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh) per that department's official Facebook page, which posts guided tourist visits at the site (e.g., Jan-Feb 2026 posts). It is an active Muslim graveyard (OSM amenity=grave_yard, religion=muslim) as well as a heritage site.",
+    "contact": null,
+    "accessibility": null,
+    "facilities": [],
+    "familySuitability": null,
+    "description": "The Chaukhandi necropolis spreads over about two square miles and contains elaborately carved stone tombs of warriors of Saloch families settled in the area during the 17th-18th centuries A.D., per the UNESCO World Heritage Centre tentative-list description (Ref. 1287). Tombs rise on raised platforms in pyramid form with relief-carved stone slabs showing horsemen with arms (shield, sword, bow and arrow), women's ornaments, and turban-holding bosses; some graves sit under pillar canopies finished in Hindu style. It was submitted to Pakistan's UNESCO Tentative List on 14/12/1993 as a cultural property.",
+    "photo": {
+      "file": "File:PK Chaukhandi Necropolis near Karachi asv2020-02 img07.jpg",
+      "license": "FAL (Freie-Autoren-Lizenz / Free Documentation-style artist licence)",
+      "author": "A.Savin",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img07.jpg"
+    },
+    "sources": [
+      { "url": "https://whc.unesco.org/en/tentativelists/1287/", "supports": "OFFICIAL UNESCO (fetched 2026-10-30, HTTP 200): tentative-list status, 'Chaukhandi Tombs, Karachi', cultural, submitted 14/12/1993 by Pakistan National Commission for UNESCO, full site description, '40 km east of Karachi'" },
+      { "url": "https://nominatim.openstreetmap.org/search?q=Chaukhandi+Tombs+Karachi&format=jsonv2&addressdetails=1&limit=3", "supports": "coordinates, address (queried 2026-10-30)" },
+      { "url": "https://www.openstreetmap.org/way/1427036051", "supports": "OSM element: amenity=grave_yard, religion=muslim, wikidata Q5088157, wikipedia en:Chaukhandi tombs, commons Category:Chaukhandi tombs" },
+      { "url": "https://www.facebook.com/AntiquitieSindh/", "supports": "OFFICIAL (Directorate General of Antiquities & Archaeology, Govt of Sindh) page: site conserved by Sindh Culture, Tourism and Antiquities Department; tourist visits posted Jan-Feb 2026 (read via search snippets; page itself not fetchable here)" },
+      { "url": "https://commons.wikimedia.org/wiki/File:PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img07.jpg", "supports": "photo file, author, licence (via imageinfo/extmetadata, 2026-10-30)" }
+    ],
+    "lastVerified": "2026-10-30",
+    "missingFields": ["website", "hours", "ticketPrices", "contact", "accessibility", "facilities", "familySuitability"],
+    "confidence": "partially-verified",
+    "notes": "Heritage status and description are fully verified from the UNESCO World Heritage Centre page fetched 2026-10-30. Hours and ticket prices are null because NO official source publishes them — the only visit-time figures found (e.g. '07:00-19:00') come from Google/Tripadvisor-style aggregators and were rejected per source rules; entry fee amounts are unknown (do not publish any figure). The managing authority identified is the Sindh Culture, Tourism & Antiquities Department via its official Facebook posts (login-walled for direct fetch; content read from search snippets dated Jan-Feb 2026). No dedicated official website for the monument was found. The OSM polygon (way, 2 sq-mile-scale extent matching UNESCO's description) was last edited 2025-09-24. Wikipedia gives tomb dates 'mid-15th to last quarter of 17th century', which differs slightly from UNESCO's '17th and 18th centuries' wording — UNESCO text was used in the description."
+  }
+]

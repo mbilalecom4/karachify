@@ -2,11 +2,6 @@ import { makeListing } from '../factory';
 
 const S = 'shopping';
 
-const mallHours = [
-  { day: 'Monday – Thursday', open: '11:00 – 23:00 (demo timing)' },
-  { day: 'Friday', open: '11:00 – 00:00 (demo timing)' },
-  { day: 'Saturday – Sunday', open: '11:00 – 00:00 (demo timing)' },
-];
 
 export const shopping = [
   makeListing({
@@ -19,8 +14,6 @@ export const shopping = [
     wiki: ['Dolmen Mall Clifton', 'Shopping mall'],
     address: 'Clifton Block 4, Shahrah-e-Faisal',
     facilities: ['Anchor retailers', 'Food court', 'Cinema', 'Ice rink', 'Basement parking'],
-    priceRange: '$$',
-    hours: mallHours,
     tags: ['Mall', 'Brands', 'Cinema', 'Family'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Dolmen_Mall_Clifton',
@@ -35,8 +28,6 @@ export const shopping = [
     wiki: ['Dolmen Mall Tariq Road', 'Shopping mall'],
     address: 'Tariq Road, Gulshan-e-Iqbal',
     facilities: ['Brands', 'Food court', 'Cinema', 'Parking'],
-    priceRange: '$$',
-    hours: mallHours,
     tags: ['Mall', 'Brands', 'Family'],
   }),
   makeListing({
@@ -49,8 +40,6 @@ export const shopping = [
     wiki: ['Lucky One Mall', 'Shopping mall'],
     address: 'Shaheed-e-Millat Road, Gulshan-e-Iqbal',
     facilities: ['Hypermarket', 'Amusement park', 'Cinema', 'Food court', 'Large parking'],
-    priceRange: '$$',
-    hours: mallHours,
     tags: ['Mega mall', 'Kids', 'Hypermarket'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Lucky_One_Mall',
@@ -65,8 +54,6 @@ export const shopping = [
     wiki: ['Polyverse Mall', 'Shopping mall'],
     address: 'Regal Chowk, Saddar',
     facilities: ['Brands', 'Food court', 'Cinema', 'Parking'],
-    priceRange: '$$',
-    hours: mallHours,
     tags: ['Mall', 'Saddar', 'Cinema'],
   }),
   makeListing({
@@ -79,8 +66,6 @@ export const shopping = [
     wiki: ['Shopping mall', 'Supermarket'],
     address: '12th Street, DHA Phase 4',
     facilities: ['Grocery', 'Pharmacy', 'Restaurants', 'Parking'],
-    priceRange: '$$',
-    hours: mallHours,
     tags: ['Mall', 'Grocery', 'Neighbourhood'],
   }),
   makeListing({
@@ -93,8 +78,6 @@ export const shopping = [
     wiki: ['Bazaar', 'Saddar Karachi', 'Fabric market'],
     address: 'Ahmadpur, Saddar',
     facilities: ['Covered lanes', 'Wholesale rates', 'Fabric', 'Jewellery'],
-    priceRange: '$',
-    hours: [{ day: 'Monday – Saturday', open: '10:00 – 20:00 (demo timing)' }],
     tags: ['Bazaar', 'Fabric', 'Bargaining', 'Wholesale'],
   }),
   makeListing({
@@ -107,8 +90,6 @@ export const shopping = [
     wiki: ['High street', 'Clothing store'],
     address: 'Johar Block 5 main strip',
     facilities: ['Boutiques', 'Tailors', 'Shoe stores', 'Street parking'],
-    priceRange: '$$',
-    hours: [{ day: 'Monday – Saturday', open: '11:00 – 22:30 (demo timing)' }],
     tags: ['High street', 'Boutiques', 'Tailoring'],
   }),
   makeListing({
@@ -121,8 +102,6 @@ export const shopping = [
     wiki: ['Flea market', 'Second hand'],
     address: 'Ziafat Market, Lyari',
     facilities: ['Stall rows', 'Electronics', 'Spare parts', 'Cash only'],
-    priceRange: '$',
-    hours: [{ day: 'Monday – Saturday', open: '10:00 – 19:00 (demo timing)' }],
     tags: ['Second hand', 'Electronics', 'Bargaining'],
   }),
   makeListing({
@@ -135,8 +114,6 @@ export const shopping = [
     wiki: ['Timber', 'Leather', 'Hardware store'],
     address: 'Log Street, Saddar',
     facilities: ['Wholesale', 'Timber', 'Leather', 'Cut-to-size'],
-    priceRange: '$',
-    hours: [{ day: 'Monday – Saturday', open: '09:30 – 18:30 (demo timing)' }],
     tags: ['Trade', 'Wholesale', 'Materials'],
   }),
   makeListing({
@@ -149,8 +126,6 @@ export const shopping = [
     wiki: ['Fruit market', 'Mandi'],
     address: '11th Street, PECHS Block 6',
     facilities: ['Fruit and vegetable', 'Grocery', 'Laundry', 'Evening footpath'],
-    priceRange: '$',
-    hours: [{ day: 'Every day', open: '08:00 – 22:00 (demo timing)' }],
     tags: ['Neighbourhood market', 'Grocery', 'Fruit'],
   }),
   makeListing({
@@ -163,8 +138,6 @@ export const shopping = [
     wiki: ['Electronics retail', 'Mobile phone repair'],
     address: 'Hillside, Saleh Market, Saddar',
     facilities: ['Repairs', 'Accessories', 'Wholesale', 'Card payment'],
-    priceRange: '$$',
-    hours: [{ day: 'Monday – Saturday', open: '11:00 – 21:00 (demo timing)' }],
     tags: ['Electronics', 'Repairs', 'Accessories'],
   }),
   makeListing({
@@ -177,8 +150,6 @@ export const shopping = [
     wiki: ['Wholesale market', 'Vegetable market'],
     address: 'Korangi 8×4, Malir',
     facilities: ['Wholesale only', 'Cold storage', 'Loading bays', 'Crate hire'],
-    priceRange: '$',
-    hours: [{ day: 'Every day', open: '02:00 – 12:00 (demo timing)' }],
     tags: ['Wholesale', 'Produce', 'Early morning'],
   }),
 ];

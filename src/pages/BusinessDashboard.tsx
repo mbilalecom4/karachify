@@ -26,7 +26,7 @@ export default function BusinessDashboard() {
   const toast = useToast();
   const user = currentUser(db);
   const [editing, setEditing] = useState<Listing | null>(null);
-  const [draft, setDraft] = useState({ name: '', tagline: '', description: '', phone: '', address: '', facilities: '', priceRange: 'Demo' });
+  const [draft, setDraft] = useState({ name: '', tagline: '', description: '', phone: '', address: '', facilities: '', priceRange: '' });
 
   const listings = selectListings(db);
   const categories = selectCategories(db);
@@ -51,7 +51,7 @@ export default function BusinessDashboard() {
       phone: l.phone ?? '',
       address: l.address,
       facilities: l.facilities.join(', '),
-      priceRange: l.priceRange ?? 'Demo',
+      priceRange: l.priceRange ?? '',
     });
   };
 
@@ -146,7 +146,7 @@ export default function BusinessDashboard() {
                         className="btn-ghost btn-sm"
                         onClick={() => {
                           actions.patchListing(l.id, { featured: !l.featured });
-                          toast.push(l.featured ? `${l.name} unflagged as featured` : `${l.name} flagged featured (demo)`);
+                          toast.push(l.featured ? `${l.name} unflagged as featured` : `${l.name} flagged featured`);
                         }}
                       >
                         {l.featured ? 'Remove featured' : 'Flag as featured'}
@@ -213,7 +213,7 @@ export default function BusinessDashboard() {
                   description: draft.description.trim(),
                   phone: draft.phone.trim() || undefined,
                   address: draft.address.trim(),
-                  priceRange: draft.priceRange as Listing['priceRange'],
+                  priceRange: (draft.priceRange || undefined) as Listing['priceRange'],
                   facilities: draft.facilities
                     .split(',')
                     .map((f) => f.trim())
@@ -240,13 +240,13 @@ export default function BusinessDashboard() {
             <TextArea value={draft.description} onChange={(e) => setDraft({ ...draft, description: e.target.value })} />
           </Field>
           <Field label="Phone">
-            <TextInput value={draft.phone} onChange={(e) => setDraft({ ...draft, phone: e.target.value })} placeholder="+92 21 000 0000 (demo)" />
+            <TextInput value={draft.phone} onChange={(e) => setDraft({ ...draft, phone: e.target.value })} placeholder="+92 21 xxxx xxxx" />
           </Field>
-          <Field label="Price band">
+          <Field label="Price band" hint="Stated by you, the operator. Karachify never assigns a band itself, and visitors see it labelled as owner-stated.">
             <Select value={draft.priceRange} onChange={(e) => setDraft({ ...draft, priceRange: e.target.value })}>
-              {['Free', '$', '$$', '$$$', 'Demo'].map((p) => (
-                <option key={p} value={p}>
-                  {p}
+              {['', 'Free', '$', '$$', '$$$'].map((p) => (
+                <option key={p || 'unset'} value={p}>
+                  {p === '' ? 'Not stated' : p}
                 </option>
               ))}
             </Select>

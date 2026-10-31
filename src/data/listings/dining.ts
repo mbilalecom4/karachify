@@ -2,8 +2,6 @@ import { makeListing } from '../factory';
 
 const R = 'restaurants-cafes';
 
-const evening = [{ day: 'Every day', open: '16:00 – 00:00 (demo timing)' }];
-const allDay = [{ day: 'Every day', open: '08:00 – 23:30 (demo timing)' }];
 
 export const dining = [
   makeListing({
@@ -17,8 +15,6 @@ export const dining = [
     address: 'Khayaban-e-Iqbal, DHA Phase 5',
     cuisine: ['Mughlai', 'Pakistani', 'Chinese'],
     facilities: ['Family seating', 'Private room', 'Parking', 'Card payment'],
-    priceRange: '$$',
-    hours: allDay,
     tags: ['Family', 'Dinner', 'Mughlai', 'Platters'],
     featured: true,
   }),
@@ -33,8 +29,6 @@ export const dining = [
     address: 'Wharf Road, Clifton Block 1',
     cuisine: ['Grill', 'Continental', 'Seafood'],
     facilities: ['Family hall', 'Parking', 'Heritage interiors'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Old school', 'Steak', 'Seafood'],
   }),
   makeListing({
@@ -48,8 +42,6 @@ export const dining = [
     address: 'Burns Road, Saddar',
     cuisine: ['Sindhi', 'Biryani', 'Mughlai'],
     facilities: ['Late night', 'Family seating', 'Takeaway'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Biryani', 'Late night', 'Budget', 'Heritage'],
     featured: true,
   }),
@@ -64,8 +56,6 @@ export const dining = [
     address: 'Bolton Market, Saddar',
     cuisine: ['North West Frontier', 'Grill'],
     facilities: ['Set lunch', 'Takeaway', 'Tandoor'],
-    priceRange: '$',
-    hours: allDay,
     tags: ['Kabab', 'Lunch', 'Budget'],
   }),
   makeListing({
@@ -79,8 +69,6 @@ export const dining = [
     address: 'Wharf Road, Sea View',
     cuisine: ['Seafood'],
     facilities: ['Counter ordering', 'Takeaway', 'Cash only'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Seafood', 'Prawns', 'Evening'],
   }),
   makeListing({
@@ -94,8 +82,6 @@ export const dining = [
     address: 'Ghari Kabab Road, Chalisan, Lyari',
     cuisine: ['Kabab house', 'Pakistani'],
     facilities: ['Late night', 'Tandoor', 'Floor seating'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Kabab', 'Budget', 'Late night'],
   }),
   makeListing({
@@ -109,8 +95,6 @@ export const dining = [
     address: 'Palm Quarters, Saddar',
     cuisine: ['Pakistani', 'Breakfast'],
     facilities: ['Breakfast service', 'Takeaway', 'Family hall'],
-    priceRange: '$',
-    hours: [{ day: 'Every day', open: '07:00 – 15:00 (demo timing)' }],
     tags: ['Breakfast', 'Nihari', 'Heritage'],
   }),
   makeListing({
@@ -124,8 +108,6 @@ export const dining = [
     address: 'Karsaz Road, Federal B Area',
     cuisine: ['Chai', 'Snacks'],
     facilities: ['Outdoor seating', 'Late night', 'Cash only'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Chai', 'Snacks', 'Late night', 'Budget'],
   }),
   makeListing({
@@ -139,8 +121,6 @@ export const dining = [
     address: 'Burns Road, Saddar',
     cuisine: ['Breakfast', 'Mithai', 'Paratha'],
     facilities: ['All-day breakfast', 'Mithai counter', 'Late night'],
-    priceRange: '$',
-    hours: [{ day: 'Every day', open: '06:30 – 01:00 (demo timing)' }],
     tags: ['Breakfast', 'Halwa puri', 'Budget'],
   }),
   makeListing({
@@ -154,8 +134,6 @@ export const dining = [
     address: 'Main Shahrah-e-Ayyub Khan, Landhi',
     cuisine: ['Biryani', 'Pakistani'],
     facilities: ['Takeaway', 'Bulk orders', 'Parking'],
-    priceRange: '$',
-    hours: allDay,
     tags: ['Biryani', 'Budget', 'East Karachi'],
   }),
   makeListing({
@@ -169,8 +147,6 @@ export const dining = [
     address: 'Boat Basin, Sea View',
     cuisine: ['Seafood', 'Fish fry'],
     facilities: ['Waterfront seating', 'Daily catch', 'Family hall'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Seafood', 'Waterfront', 'Evening'],
   }),
   makeListing({
@@ -184,8 +160,6 @@ export const dining = [
     address: 'Bund Road, Clifton Block 8',
     cuisine: ['Cafe', 'Grill', 'Chai'],
     facilities: ['Wi-Fi', 'Outdoor seating', 'Card payment', 'Work-friendly'],
-    priceRange: '$$',
-    hours: allDay,
     tags: ['Cafe', 'Chai', 'Work spot'],
   }),
   makeListing({
@@ -199,8 +173,6 @@ export const dining = [
     address: 'DHA-Phase 6 boundary road, Gulshan-e-Iqbal',
     cuisine: ['Cafe', 'Brunch', 'Bakery'],
     facilities: ['Wi-Fi', 'Study tables', 'Patio', 'Card payment'],
-    priceRange: '$$',
-    hours: allDay,
     tags: ['Coffee', 'Brunch', 'Study'],
   }),
   makeListing({
@@ -214,8 +186,6 @@ export const dining = [
     address: 'Khayaban-e-Seekhu, DHA Phase 4',
     cuisine: ['Continental', 'Fast food', 'Bakery'],
     facilities: ['Outdoor tables', 'Breakfast', 'Delivery', 'Card payment'],
-    priceRange: '$$',
-    hours: allDay,
     tags: ['Breakfast', 'Casual', 'Outdoor'],
   }),
   makeListing({
@@ -229,8 +199,6 @@ export const dining = [
     address: 'Beach Road, Clifton Block 1',
     cuisine: ['Sindhi', 'Mughlai', 'Seafood'],
     facilities: ['Sea view', 'Private room', 'Parking', 'Family hall'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Sea view', 'Family', 'Dinner'],
   }),
   makeListing({
@@ -244,8 +212,6 @@ export const dining = [
     address: 'Shahrah-e-Faisal, Gulberg',
     cuisine: ['Tandoor', 'Pakistani'],
     facilities: ['Tandoor', 'Takeaway', 'Family seating'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Tikka', 'Tandoor', 'Dinner'],
   }),
   makeListing({
@@ -259,8 +225,6 @@ export const dining = [
     address: 'Shahrah-e-Quaid-e-Azam, PECHS',
     cuisine: ['Pashtun', 'Karahi'],
     facilities: ['Floor seating', 'Family hall', 'Late night'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Chapli kabab', 'Karahi', 'Budget'],
   }),
   makeListing({
@@ -274,8 +238,6 @@ export const dining = [
     address: 'Burns Road, Saddar',
     cuisine: ['Mithai', 'Snacks'],
     facilities: ['Counter service', 'Gift boxes', 'Takeaway'],
-    priceRange: '$',
-    hours: allDay,
     tags: ['Sweets', 'Namkeen', 'Gifting'],
   }),
   makeListing({
@@ -289,8 +251,6 @@ export const dining = [
     address: 'Gulistan-e-Johar Block 10',
     cuisine: ['Pizza', 'Fast food'],
     facilities: ['Delivery', 'Takeaway', 'Family seating', 'Card payment'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Pizza', 'Delivery', 'Kids'],
   }),
   makeListing({
@@ -304,8 +264,6 @@ export const dining = [
     address: 'Korangi 8×4, Main Super Highway',
     cuisine: ['Burgers', 'Fast food'],
     facilities: ['Takeaway', 'Late night', 'Delivery'],
-    priceRange: '$$',
-    hours: evening,
     tags: ['Burger', 'Late night'],
   }),
   makeListing({
@@ -319,8 +277,6 @@ export const dining = [
     address: 'Dolmen Mall road, Clifton Block 2',
     cuisine: ['Dessert', 'Kulfi'],
     facilities: ['Outdoor seating', 'Family', 'Takeaway'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Dessert', 'Kulfi', 'Evening'],
   }),
   makeListing({
@@ -334,8 +290,6 @@ export const dining = [
     address: 'Malir Colony main bazaar',
     cuisine: ['Chai', 'Snacks'],
     facilities: ['Roadside counter', 'Late night', 'Cash only'],
-    priceRange: '$',
-    hours: evening,
     tags: ['Taftri', 'Chai', 'Budget'],
   }),
   makeListing({
@@ -349,8 +303,6 @@ export const dining = [
     address: 'I.I. Chundrigar Road, Saddar',
     cuisine: ['Home-style Pakistani', 'Lunch'],
     facilities: ['Set lunch', 'Tiffin service', 'Fast seating'],
-    priceRange: '$',
-    hours: [{ day: 'Monday – Saturday', open: '11:30 – 16:30 (demo timing)' }],
     tags: ['Lunch', 'Budget', 'Home style'],
   }),
   makeListing({
@@ -364,8 +316,6 @@ export const dining = [
     address: 'Bahadurabad Yarsat Road',
     cuisine: ['Baloch', 'Grill'],
     facilities: ['Pre-order', 'Family hall', 'Private room'],
-    priceRange: '$$$',
-    hours: evening,
     tags: ['Shinzozi', 'Special occasion', 'Pre-order'],
   }),
 ];

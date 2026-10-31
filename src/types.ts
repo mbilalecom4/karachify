@@ -86,6 +86,15 @@ export interface Review {
   demo: boolean;
 }
 
+export interface EntryFee {
+  label: string;
+  /** 0 means the source states free admission, not "price unknown". */
+  amount: number;
+  currency: string;
+  /** Where the number came from: the operator's own tariff page, or press coverage. */
+  basis: 'official' | 'press';
+}
+
 export interface Listing {
   id: string;
   slug: string;
@@ -105,7 +114,12 @@ export interface Listing {
   website?: string;
   email?: string;
   hours?: { day: string; open: string }[];
-  priceRange?: 'Free' | '$' | '$$' | '$$$' | 'Demo';
+  /** Admission prices as published by the operator (or, failing that, by press). */
+  entryFees?: EntryFee[];
+  /** Visitor rules stated by the operator or a government page. */
+  entryConditions?: string;
+  /** Self-declared band from the owner dashboard; never invented by Karachify. */
+  priceRange?: 'Free' | '$' | '$$' | '$$$';
   cuisine?: string[];
   facilities: string[];
   /** Only ever set from a verified source; absent means "no rating", not "unrated by visitors". */
@@ -116,6 +130,8 @@ export interface Listing {
   promoted: boolean;
   status: VerificationStatus;
   sourceUrl?: string;
+  /** OpenStreetMap element the verified coordinates and address were read from. */
+  osmId?: string;
   /** Date the verified fields below were last checked against their source. */
   lastVerified?: string;
   /** True only when lat/lng came from a real geocode, not from the area-centre jitter. */

@@ -76,10 +76,10 @@ export default function Saved() {
           <EmptyState
             icon={<CalendarCheck className="h-6 w-6" />}
             title="No saved events yet"
-            body="Open an event and use “Save event” to keep it here. Every event in this showcase is sample programming, never a confirmed listing."
+            body="Open an event and use “Save event” to keep it here. The board is empty until Karachify can date-source an event, so there may be nothing to save yet."
             action={
               <Link to="/events" className="btn-primary mt-1">
-                Browse the sample calendar
+                Browse the event board
               </Link>
             }
           />

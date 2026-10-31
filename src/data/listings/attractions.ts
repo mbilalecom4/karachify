@@ -15,10 +15,6 @@ export const attractions = [
     facilities: ['Landscaped plaza', 'Museum display', 'Photography allowed', 'Security check', 'Wheelchair ramp'],
     tags: ['Landmark', 'Heritage', 'Free to visit', 'Evening light show'],
     featured: true,
-    hours: [
-      { day: 'Every day', open: '09:00 – 20:00 (demo timing)' },
-    ],
-    priceRange: 'Free',
     sourceUrl: 'https://en.wikipedia.org/wiki/Mazar-e-Quaid',
   }),
   makeListing({
@@ -33,7 +29,6 @@ export const attractions = [
     facilities: ['Museum galleries', 'Exhibition hall', 'Courtyard', 'Guided tours', 'Photography'],
     tags: ['Museum', 'Architecture', 'Exhibitions', 'Wedding shoots'],
     featured: true,
-    priceRange: '$',
     sourceUrl: 'https://en.wikipedia.org/wiki/Mohatta_Palace',
   }),
   makeListing({
@@ -48,7 +43,6 @@ export const attractions = [
     facilities: ['Public library', 'Art gallery', 'Lawns', 'Events', 'Heritage architecture'],
     tags: ['Heritage', 'Culture', 'Library', 'Events'],
     featured: true,
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'clifton-beach',
@@ -62,8 +56,6 @@ export const attractions = [
     facilities: ['Public access', 'Food carts', 'Rides', 'Sunset point', 'Park benches'],
     tags: ['Beach', 'Free', 'Sunset', 'Family'],
     featured: true,
-    hours: [{ day: 'Every day', open: 'Open 24 hours (demo)' }],
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'port-grand',
@@ -77,7 +69,6 @@ export const attractions = [
     facilities: ['Restaurants', 'Promenade', 'Play area', 'Parking', 'Live seating'],
     tags: ['Waterfront', 'Dining', 'Evening', 'Family'],
     featured: true,
-    priceRange: '$$',
   }),
   makeListing({
     slug: 'pakistan-maritime-museum',
@@ -90,7 +81,6 @@ export const attractions = [
     address: 'Marine Drive, Sea View, Saddar',
     facilities: ['Outdoor naval displays', 'Planetarium', 'Auditorium', 'Garden', 'Ticketed entry'],
     tags: ['Museum', 'Kids', 'Naval history', 'Planetarium'],
-    priceRange: '$',
     sourceUrl: 'https://en.wikipedia.org/wiki/Pakistan_Maritime_Museum',
   }),
   makeListing({
@@ -104,7 +94,6 @@ export const attractions = [
     address: 'MQ Road / Connie Observation Basement, Saddar',
     facilities: ['Covered stalls', 'Produce', 'Spice market', 'Flower market'],
     tags: ['Market', 'Heritage', 'Shopping', 'Budget'],
-    priceRange: '$',
     sourceUrl: 'https://en.wikipedia.org/wiki/Empress_Market',
   }),
   makeListing({
@@ -118,7 +107,6 @@ export const attractions = [
     address: 'Flagstaff House, near Frere Hall, Saddar',
     facilities: ['Period rooms', 'Archive library', 'Garden', 'Guided visits'],
     tags: ['Museum', 'Heritage', 'Quiet visit'],
-    priceRange: '$',
   }),
   makeListing({
     slug: 'karachi-zoo',
@@ -131,7 +119,6 @@ export const attractions = [
     address: 'Cantonment, Saddar',
     facilities: ['Animal houses', 'Bird sanctuary', 'Botanical garden', 'Amusement rides', 'Ticketed entry'],
     tags: ['Family', 'Kids', 'Park', 'Weekend'],
-    priceRange: '$',
     sourceUrl: 'https://karachizoo.gov.pk/',
   }),
   makeListing({
@@ -145,7 +132,6 @@ export const attractions = [
     address: 'Manora, Kemari (boat from Sea View)',
     facilities: ['Beach', 'Boat access', 'Lighthouse', 'Temple', 'Seafood shacks'],
     tags: ['Island', 'Boat', 'Sunset', 'Seafood'],
-    priceRange: '$',
   }),
   makeListing({
     slug: 'chaukhandi-tombs',
@@ -158,7 +144,6 @@ export const attractions = [
     address: 'Jhampir Road, Chaukhandi, Korangi',
     facilities: ['Protected monument', 'Open site', 'Photography', 'Local guides'],
     tags: ['Heritage', 'Architecture', 'Quiet visit', 'History'],
-    priceRange: 'Free',
     sourceUrl: 'https://en.wikipedia.org/wiki/Chaukhandi_Tombs',
   }),
   makeListing({
@@ -172,7 +157,6 @@ export const attractions = [
     address: 'Dr. Islamia Milliga Street, Burness Road, Saddar',
     facilities: ['Galleries', 'Archive', 'Library', 'Ticketed entry', 'Study rooms'],
     tags: ['Museum', 'History', 'Indus Valley', 'Students'],
-    priceRange: '$',
     sourceUrl: 'https://en.wikipedia.org/wiki/National_Museum_of_Pakistan',
   }),
   makeListing({
@@ -186,7 +170,6 @@ export const attractions = [
     address: 'Kucha Mena, Baori Road, Saddar',
     facilities: ['Monument', 'Display rooms', 'Restricted entry'],
     tags: ['Heritage', 'Free', 'Old city'],
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'paaf-museum-karachi',
@@ -199,7 +182,6 @@ export const attractions = [
     address: 'Museum Road, near DHA Phase 1',
     facilities: ['Aircraft displays', 'Garden', 'Ticketed entry', 'Photography'],
     tags: ['Museum', 'Kids', 'Aviation'],
-    priceRange: '$',
   }),
   makeListing({
     slug: 'data-darbar',
@@ -212,8 +194,6 @@ export const attractions = [
     address: 'Data Ganj Bakhsh Road, Liari, Saddar',
     facilities: ['Shrine', 'Langar kitchen', 'Courtyard', 'Loudspeaker-free zones'],
     tags: ['Sufi', 'Spiritual', 'Evening', 'Free'],
-    hours: [{ day: 'Every day', open: 'Sunrise – late night (demo)' }],
-    priceRange: 'Free',
     sourceUrl: 'https://en.wikipedia.org/wiki/Data_Darbar_Shrine',
   }),
   makeListing({
@@ -227,7 +207,6 @@ export const attractions = [
     address: 'Alexander Vincent Road, Saddar',
     facilities: ['Worship', 'Heritage architecture', 'Courtyard'],
     tags: ['Heritage', 'Architecture', 'Worship'],
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'seaview-point',
@@ -240,7 +219,6 @@ export const attractions = [
     address: 'Marine Drive, Sea View',
     facilities: ['Viewpoint', 'Breakwater walk', 'Food stalls', 'Parking'],
     tags: ['Viewpoint', 'Sunset', 'Free', 'Evening'],
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'boat-basin',
@@ -253,7 +231,6 @@ export const attractions = [
     address: 'Boat Basin Road, Sea View',
     facilities: ['Seafood restaurants', 'Harbour view', 'Boatyard'],
     tags: ['Seafood', 'Waterfront', 'Evening'],
-    priceRange: '$$',
   }),
   makeListing({
     slug: 'karachi-port-terminal',
@@ -266,7 +243,6 @@ export const attractions = [
     address: 'King George Dock Road, Kemari',
     facilities: ['Working port', 'Cruise terminal', 'Pre-arranged visits'],
     tags: ['Industry', 'Waterfront', 'Pre-booking'],
-    priceRange: 'Free',
   }),
   makeListing({
     slug: 'hills-park-karachi',
@@ -279,6 +255,5 @@ export const attractions = [
     address: 'Hill Park Road, North Nazimabad',
     facilities: ['Viewpoint', 'Amusement rides', 'Picnic lawns', 'Ticketed entry'],
     tags: ['Viewpoint', 'Kids', 'Weekend', 'Family'],
-    priceRange: '$',
   }),
 ];

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Camera, Database, Eye, Heart, Layers, Search } from 'lucide-react';
-import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
+import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { resolvedMediaCount } from '../lib/media';
 import { plural } from '../lib/format';
 import { Note, PageHero, Prose } from '../components/Page';
@@ -9,15 +9,15 @@ import { SectionHeading } from '../components/ui';
 export default function About() {
   const db = useDB();
   const listings = selectListings(db);
-  const events = selectEvents(db);
   const areas = selectAreas(db);
   const categories = selectCategories(db);
+  const verifiedCount = listings.filter((l) => l.status === 'verified').length;
 
   const facts = [
     { icon: Database, label: 'Directory records', value: String(listings.length) },
     { icon: Layers, label: 'Categories', value: String(categories.length) },
     { icon: Eye, label: 'Areas mapped', value: String(areas.length) },
-    { icon: Heart, label: 'Sample events', value: String(events.length) },
+    { icon: Heart, label: 'Source-checked records', value: String(verifiedCount) },
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function About() {
         label="Karachi"
         eyebrow="About"
         title="A city index built for the way Karachi is actually visited"
-        sub="Karachify gathers places, events, services and areas into one searchable map — then tells you honestly which parts are verified and which are sample data."
+        sub="Karachify gathers places, services and areas into one searchable map — then tells you, field by field, which part came from a named source and which part nobody has checked yet."
         trail={[{ label: 'Home', to: '/' }, { label: 'About' }]}
       />
 
@@ -60,14 +60,21 @@ export default function About() {
 
             <h2>What is honest in this build</h2>
             <p>
-              This deployment is a working demonstration, and it says so on screen. Sample listings carry a
-              <span className="badge-demo mx-1 align-middle">Sample data</span> badge, generated reviews are labelled as
-              demo, prices and phone numbers are marked, and event programming is invented rather than copied from a real
-              organiser. Coordinates are approximate pins, not surveyed locations.
+              {verifiedCount} records are source-checked: the address, opening hours, admission, contact numbers and map
+              pin on those pages were read from the operator’s own website, a museum’s published tariff or
+              OpenStreetMap, and each page links the source together with the date it was checked. Those pages carry a
+              <span className="badge-verified mx-1 align-middle">Verified</span> badge.
             </p>
             <p>
-              Where a fact could not be confirmed, the record shows “Pricing to confirm” or “Needs review” instead of
-              guessing. That is deliberate: a directory that invents opening hours is worse than no directory.
+              Everything else is a real Karachi place whose details nobody at Karachify has checked yet. Those records
+              carry no star rating, no review count, no invented price band and no survey-grade pin — the page says
+              “Rating not verified”, “Pricing to confirm” or “Approximate position” instead of offering a plausible
+              guess. The fabricated ratings, demo phone numbers and sample opening hours that shipped with the earlier
+              build were deleted, not relabelled.
+            </p>
+            <p>
+              The event board is empty for the same reason. Karachify has not found a dated, attributable source for a
+              Karachi event it can publish, so it publishes none — an invented calendar looked better and was worse.
             </p>
 
             <h2>Photography</h2>
@@ -84,16 +91,20 @@ export default function About() {
 
             <h2>How it is built</h2>
             <p>
-              React and TypeScript with Tailwind CSS, MapLibre GL for the interactive map and OpenStreetMap raster tiles for
-              the demo. The data layer is a single store module whose shape mirrors the SQL schema in
-              <code>docs/database-schema.sql</code>, so moving from localStorage to Supabase means replacing selectors,
-              not rewriting pages. Routing uses hash URLs so a static host never 404s on a deep link.
+              React and TypeScript with Tailwind CSS, MapLibre GL for the interactive map and OpenStreetMap raster tiles —
+              no API key, no quota and no billing account anywhere in the stack. Verified data is never typed into the
+              app by hand: it is written up as research JSON under <code>docs/verification</code>, generated into
+              <code>src/data/verified-overrides.json</code> by <code>.tools/apply-verification.mjs</code>, and merged over
+              the seed records at load. The client-side store is shaped to match
+              <code>docs/database-schema.sql</code>, so moving off browser storage means replacing selectors, not
+              rewriting pages. Routing uses hash URLs so a static host never 404s on a deep link.
             </p>
 
             <h2>What comes next</h2>
             <ul>
               <li>Verified business claims with a document check, so owners can edit their own listings.</li>
               <li>Real event sourcing from venue pages, with a “confirmed” badge and an organiser contact.</li>
+              <li>Working through the directory category by category until every record has a source and a date.</li>
               <li>Self-hosted or licensed map tiles, and saved public-transport routes to each place.</li>
               <li>Second city on the same data model, with Karachi as the reference implementation.</li>
             </ul>
@@ -104,7 +115,7 @@ export default function About() {
               <h2 className="font-display text-[17px] font-bold text-navy-800">Principles</h2>
               <ul className="mt-3 space-y-3 text-sm text-navy-600">
                 {[
-                  ['Label the fiction', 'Demo records look like demo records.'],
+                  ['Blank beats invented', 'An unsourced field stays empty and says so.'],
                   ['Search the real dataset', 'No results page should ever claim a place exists.'],
                   ['Karachi imagery only', 'Placeholder beats a wrong photograph.'],
                   ['Free to explore', 'No account, no paywall, no tracking pixel.'],
@@ -120,8 +131,8 @@ export default function About() {
                 <Search className="h-4 w-4 text-teal-600" /> Try it
               </h2>
               <p className="mt-2 text-sm text-navy-500">
-                Search “biryani”, filter to Clifton, sort by rating and open a listing. Then try the map and the event
-                calendar — the same dataset drives all of it.
+                Search “biryani”, filter to Clifton and open a record — then open Mazar-e-Quaid and compare it: the
+                verified page names the source for every hour, rupee and coordinate, with the date it was checked.
               </p>
               <div className="mt-4 space-y-2">
                 <Link to="/explore" className="btn-primary w-full">

@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   Building2,
+  CalendarDays,
   Compass,
   Flame,
   Info,
   Layers,
-  Mail,
   Map as MapIcon,
   Search as SearchIcon,
   ShieldCheck,
@@ -15,13 +15,13 @@ import {
 } from 'lucide-react';
 import { guides } from '../data/guides';
 import type { Listing } from '../types';
-import { selectAreas, selectCategories, selectEvents, selectListings, actions, useDB } from '../lib/store';
+import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
 import { imageFor } from '../lib/media';
+import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
 import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, categoryTileCounts } from '../components/cards';
 import { KarachifyMap } from '../components/KarachifyMap';
-import { Field, Reveal, SectionHeading, TextInput, useToast } from '../components/ui';
-import { isValidEmail } from '../lib/format';
+import { EmptyState, Reveal, SectionHeading } from '../components/ui';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 const POPULAR_PLACE_SLUGS = [
@@ -66,10 +66,12 @@ export default function Home() {
     [events, today]
   );
 
+  const verifiedCount = useMemo(() => listings.filter((l) => l.status === 'verified').length, [listings]);
+
   const byCategory = (id: string, n: number, featuredFirst = true) =>
     listings
       .filter((l) => l.categoryId === id)
-      .sort((a, b) => Number(featuredFirst && b.featured) - Number(featuredFirst && a.featured) || (b.rating ?? 0) - (a.rating ?? 0))
+      .sort((a, b) => Number(featuredFirst && b.featured) - Number(featuredFirst && a.featured) || a.name.localeCompare(b.name))
       .slice(0, n);
 
   const restaurants = byCategory('restaurants-cafes', 4);
@@ -85,7 +87,7 @@ export default function Home() {
       popularPlaces.map((l) => ({
         id: l.id,
         title: l.name,
-        subtitle: `${categories.find((c) => c.id === l.categoryId)?.name ?? 'Karachi'} · approximate demo location`,
+        subtitle: `${categories.find((c) => c.id === l.categoryId)?.name ?? 'Karachi'} · ${pinCaption(l.coordsVerified)}`,
         path: `/place/${l.slug}`,
         lat: l.lat,
         lng: l.lng,
@@ -145,10 +147,10 @@ export default function Home() {
           </div>
           <dl className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
             {[
-              { k: `${listings.length}`, v: 'Listings' },
+              { k: `${listings.length}`, v: 'Directory records' },
               { k: `${categories.length}`, v: 'Categories' },
               { k: `${areas.length}`, v: 'Areas covered' },
-              { k: `${events.length}`, v: 'Events on the board' },
+              { k: `${verifiedCount}`, v: 'Sources checked' },
             ].map((s) => (
               <div key={s.v} className="rounded-xl border border-white/15 bg-white/10 px-3 py-4 backdrop-blur">
                 <dt className="font-display text-2xl font-extrabold text-white">{s.k}</dt>
@@ -165,9 +167,11 @@ export default function Home() {
           <div className="shell flex flex-wrap items-center gap-x-3 gap-y-1 py-3 text-[13px] leading-relaxed text-amber-900">
             <Info className="h-4 w-4 shrink-0" />
             <span>
-              <strong className="font-bold">Showcase build.</strong> Listings, timings, prices, phone numbers and reviews
-              are realistic demo records, clearly labelled. Photographs are real, licence-checked Karachi images from
-              Wikimedia Commons with attribution on the credits page.
+              <strong className="font-bold">How this data is sourced.</strong> {verifiedCount} Karachi destinations carry
+              opening hours, addresses, admission and contacts taken from named sources — each page links the source and
+              the date it was checked. The rest of the directory lists real places that have not been individually
+              verified — they carry no invented price, rating or review, and each page shows what is still unconfirmed.
+              Photographs are licence-checked Karachi images from Wikimedia Commons.
             </span>
             <Link to="/image-credits" className="font-semibold underline underline-offset-2">
               Image credits
@@ -223,18 +227,31 @@ export default function Home() {
         <SectionHeading
           eyebrow="What's on"
           title="Upcoming events"
-          sub="Sample programming so you can see how the events system works — dates, venues, ticket tiers and the enquiry form."
+          sub="An event appears here only when a dated source names it — organiser, venue programme or news coverage. Nothing here is invented programming."
           action={
             <Link to="/events" className="btn-outline btn-sm">
               All events <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           }
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {upcoming.map((e) => (
-            <EventCard key={e.id} event={e} />
-          ))}
-        </div>
+        {upcoming.length === 0 ? (
+          <EmptyState
+            title="No verified events yet"
+            body="Karachify has not found a dated, attributable source for a Karachi event it can publish. Run filters and verified place pages in the meantime, or submit an event with a link to the organiser's own page."
+            action={
+              <Link to="/submit-event" className="btn-primary">
+                Submit an event
+              </Link>
+            }
+            icon={<CalendarDays className="h-6 w-6" />}
+          />
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {upcoming.map((e) => (
+              <EventCard key={e.id} event={e} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* ---------------------------- E. areas ----------------------------- */}
@@ -313,7 +330,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <SectionHeading eyebrow="Interactive" title="Karachi map preview" sub="Every pin below is a real demo record with an approximate location. Open the full map to filter by category and area." />
+            <SectionHeading eyebrow="Interactive" title="Karachi map preview" sub="Pins marked as an OpenStreetMap position are that place's own mapped feature; the rest sit near the middle of their locality. Open the full map to filter by category and area." />
             <div className="card overflow-hidden p-2">
               <KarachifyMap points={mapPoints} compact className="h-[340px] w-full" />
             </div>
@@ -328,9 +345,9 @@ export default function Home() {
       <section className="bg-mist py-12 sm:py-16">
         <div className="shell">
           <SectionHeading
-            eyebrow="Promotional placements"
-            title="Featured businesses"
-            sub="Paid and featured slots are always labelled. In this showcase they are demo records, not real advertisers."
+            eyebrow="Featured places"
+            title="Karachify picks"
+            sub="These records were chosen to surface, not sold. Nothing here is a paid placement — the build takes no money, so no card carries a promoted badge."
             action={
               <Link to="/advertise" className="btn-outline btn-sm">
                 Advertise with us <ArrowRight className="h-3.5 w-3.5" />
@@ -381,16 +398,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* -------------------------- L. newsletter -------------------------- */}
-      <NewsletterBand />
+      {/* --------------------- L. sourcing / corrections ------------------- */}
+      <SourcingBand />
 
       {/* ------------------------- trust strip ----------------------------- */}
       <section className="shell pb-14">
         <div className="grid gap-4 sm:grid-cols-3">
           {[
-            { icon: ShieldCheck, t: 'Honest demo data', d: 'Nothing pretends to be verified. Sample records say "Sample data"; real landmarks link to their source.' },
+            { icon: ShieldCheck, t: 'Sourced, not invented', d: 'A verified page names the source it came from and the date it was checked. Where no source published a detail, the page says so instead of guessing one.' },
             { icon: Flame, t: 'Built for the city', d: 'Areas, zones and travel time matter here more than star ratings — every page is organised by locality.' },
-            { icon: SearchIcon, t: 'Free to run', d: 'Static build, local storage persistence and open-licence imagery: no paid services anywhere in this demo.' },
+            { icon: SearchIcon, t: 'Free to run', d: 'Static build, browser-local storage, open data and open-licence imagery — no paid API keys or subscriptions anywhere in the stack.' },
           ].map((f) => (
             <div key={f.t} className="card p-5">
               <f.icon className="h-5 w-5 text-teal-600" />
@@ -404,10 +421,7 @@ export default function Home() {
   );
 }
 
-function NewsletterBand() {
-  const toast = useToast();
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState<string | undefined>();
+function SourcingBand() {
   const band = imageFor('hero-karachi-night', 'Karachi at night');
 
   return (
@@ -418,46 +432,33 @@ function NewsletterBand() {
       </div>
       <div className="shell grid gap-8 py-14 lg:grid-cols-2 lg:items-center">
         <div>
-          <p className="eyebrow mb-2 text-teal-300">Newsletter</p>
-          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Get the Karachi briefing</h2>
+          <p className="eyebrow mb-2 text-teal-300">Sources</p>
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Every detail has a paper trail</h2>
           <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-navy-100">
-            One email a week: what is on this weekend, which new place opened, and the seasonal practical stuff —
-            monsoon routes, beach weather, Eid shopping hours. In this demo your address is stored locally and never
-            sent anywhere.
+            Opening hours, admission, addresses and coordinates are read from the operator’s own page, a published tariff
+            or OpenStreetMap, written up as a research file, and merged into the app by a script. Nothing is typed into
+            the interface by hand — and nothing is guessed when a source did not publish it.
           </p>
         </div>
-        <form
-          className="card p-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (!isValidEmail(email)) {
-              setError('Enter a valid email address, e.g. you@example.com');
-              return;
-            }
-            setError(undefined);
-            actions.addSubmission({ kind: 'newsletter', name: email, email, description: 'Newsletter signup from the homepage band.' });
-            setEmail('');
-            toast.push('Subscribed (demo). You can review this signup in the admin queue.');
-          }}
-        >
-          <Field label="Email address" error={error} required>
-            <TextInput
-              type="email"
-              inputMode="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              error={Boolean(error)}
-            />
-          </Field>
-          <button type="submit" className="btn-primary mt-2 w-full">
-            <Mail className="h-4 w-4" /> Subscribe to the demo newsletter
-          </button>
-          <p className="mt-2 text-[12px] leading-relaxed text-navy-400">
-            Demo only: no email service is connected. Production would use a keyed provider such as Resend, Postmark or
-            Mailchimp.
+        <div className="card p-5">
+          <p className="font-display text-[17px] font-bold text-navy-800">Seen something wrong?</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-navy-500">
+            Send the listing, the field and a link to the correct source. A change is applied only against that source,
+            and the page then carries the new date it was checked.
           </p>
-        </form>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <Link to="/contact" className="btn-primary btn-sm">
+              Report a correction
+            </Link>
+            <Link to="/help" className="btn-outline btn-sm">
+              How verification works
+            </Link>
+          </div>
+          <p className="mt-3 text-[12px] leading-relaxed text-navy-400">
+            There is no newsletter to join: this build runs without a server, so it asks for no email address and sends
+            nothing anywhere.
+          </p>
+        </div>
       </div>
     </section>
   );

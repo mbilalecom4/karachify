@@ -27,10 +27,7 @@ export default function Explore() {
   const featuredFirst = useMemo(
     () =>
       [...listings]
-        .sort(
-          (a, b) =>
-            Number(b.featured) - Number(a.featured) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0) || a.name.localeCompare(b.name)
-        )
+        .sort((a, b) => Number(b.featured) - Number(a.featured) || a.name.localeCompare(b.name))
         .slice(0, 12),
     [listings]
   );

@@ -1,0 +1,672 @@
+{
+  "generatedFrom": [
+    "docs/verification/batch-a-heritage.json",
+    "docs/verification/batch-c-coastline.json",
+    "docs/verification/batch-d-attractions.json",
+    "docs/verification/batch-b-museums.json"
+  ],
+  "note": "Values copied from docs/verification/; absent means no source was found.",
+  "overrides": {
+    "mazar-e-quaid": {
+      "isNew": false,
+      "lat": 24.8748644,
+      "lng": 67.0393359,
+      "coordsVerified": true,
+      "address": "Mazar-e-Quaid-e-Azam, M.A. Jinnah Road, Gurmandir, Jacob Lines, Jamshed Town, Gulshan District, Karachi Division, Sindh, 75000, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/12151865936",
+      "lastVerified": "2026-10-30",
+      "osmId": "N12151865936"
+    },
+    "mohatta-palace": {
+      "isNew": false,
+      "lat": 24.8142749,
+      "lng": 67.0326631,
+      "coordsVerified": true,
+      "address": "Mohatta Palace, Motilal Goverdhandas Road, Old Clifton, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+      "hours": [
+        {
+          "day": "Monday",
+          "open": "Closed"
+        },
+        {
+          "day": "Tuesday – Sunday",
+          "open": "11:00 – 18:00"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "Adult",
+          "amount": 30,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Senior citizen",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "School student",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Child under 12 years",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://mohattapalacemuseum.com",
+      "phone": "0092 21 35837669, 35374879",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/479576906",
+      "lastVerified": "2026-10-30",
+      "osmId": "W479576906",
+      "entryConditions": "Photography not permitted inside the Museum. The Museum is also closed on public holidays and during Ramzan."
+    },
+    "frere-hall": {
+      "isNew": false,
+      "lat": 24.8475202,
+      "lng": 67.0330882,
+      "coordsVerified": true,
+      "address": "Frere Hall, Civil Lines, Saddar Town, Karachi District, Karachi Division, Sindh, 74400, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/3735483787",
+      "lastVerified": "2026-10-30",
+      "osmId": "N3735483787"
+    },
+    "empress-market": {
+      "isNew": false,
+      "lat": 24.8622181,
+      "lng": 67.0296789,
+      "coordsVerified": true,
+      "address": "Empress Market, Shahrah-e-Liaquat (Frere Road), Saddar Bazaar, Fowler Lines, Saddar, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/3191210900",
+      "lastVerified": "2026-10-30",
+      "osmId": "N3191210900"
+    },
+    "wazir-mansion": {
+      "isNew": false,
+      "lat": 24.850975,
+      "lng": 66.9975314,
+      "coordsVerified": true,
+      "address": "Wazir Mansion, Chaghla Street, Bunder Quarter, Lyari Town, Karachi District, Karachi Division, Sindh, 72500, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/692307507",
+      "lastVerified": "2026-10-30",
+      "osmId": "W692307507"
+    },
+    "clifton-beach": {
+      "isNew": false,
+      "lat": 24.8105323,
+      "lng": 67.0103862,
+      "coordsVerified": true,
+      "address": "Clifton Beach, Karachi, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/12201291956",
+      "lastVerified": "2026-10-30",
+      "osmId": "N12201291956"
+    },
+    "seaview-point": {
+      "isNew": false,
+      "lat": 24.793906,
+      "lng": 67.0388626,
+      "coordsVerified": true,
+      "address": "Seaview Beach, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/5041193103",
+      "lastVerified": "2026-10-30",
+      "osmId": "N5041193103"
+    },
+    "hawksbay-beach": {
+      "isNew": true,
+      "categoryId": "beaches",
+      "areaId": "kemari",
+      "name": "Hawke's Bay Beach",
+      "description": "A long, quiet stretch of open coast in Keamari Town — OpenStreetMap maps it as roughly seven kilometres of shoreline, with the pin set at the road-accessible end nearest Sandspit. No official page publishes hours, fees or facilities for it, so plan on daylight and carry what you need.",
+      "lat": 24.8432819,
+      "lng": 66.898748,
+      "coordsVerified": true,
+      "address": "Hawke's Bay Beach, Keamari Town, Keamari District, Karachi Division, Sindh, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/516419993",
+      "lastVerified": "2026-10-30",
+      "osmId": "W516419993"
+    },
+    "sandspit-beach": {
+      "isNew": false,
+      "lat": 24.8372649,
+      "lng": 66.9161046,
+      "coordsVerified": true,
+      "address": "Sandspit, Keamari Town, Keamari District, Karachi Division, Sindh, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/516413062",
+      "lastVerified": "2026-10-30",
+      "osmId": "W516413062"
+    },
+    "manora-island": {
+      "isNew": false,
+      "lat": 24.7965723,
+      "lng": 66.9751739,
+      "coordsVerified": true,
+      "address": "Manora, Keamari Town, Keamari District, Karachi Division, Sindh, 75640, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/6681694153",
+      "lastVerified": "2026-10-30",
+      "osmId": "N6681694153"
+    },
+    "port-grand": {
+      "isNew": false,
+      "lat": 24.8455063,
+      "lng": 66.9922451,
+      "coordsVerified": true,
+      "address": "Port Grand, Jinnah Bridge, West Wharf, Keamari Town, Keamari District, Karachi Division, Sindh, 72500, Pakistan",
+      "hours": [
+        {
+          "day": "Monday – Thursday",
+          "open": "17:00 – 00:00"
+        },
+        {
+          "day": "Friday – Sunday",
+          "open": "17:00 – 01:00"
+        }
+      ],
+      "website": "https://portgrand.com",
+      "phone": "+92 348 8311111",
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/479697908",
+      "lastVerified": "2026-10-30",
+      "osmId": "W479697908",
+      "entryConditions": "Official Facebook page (Oct 2026 posts): promotional 'Ladies Tuesday' events with free ladies entry subject to a mandatory PKR 500 condition (post text truncated in search result); Mon–Thu entertainment stated as included with entry ticket. Entry ticketing applies during advertised event periods."
+    },
+    "karachi-zoo": {
+      "isNew": false,
+      "lat": 24.8767249,
+      "lng": 67.0233099,
+      "coordsVerified": true,
+      "address": "Karachi Zoo, D'Silva Street, Madina Colony, Garden West, Lyari Town, Karachi District, Karachi Division, Sindh, 74550, Pakistan",
+      "hours": null,
+      "entryFees": [
+        {
+          "label": "Adult",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "press"
+        },
+        {
+          "label": "Child",
+          "amount": 30,
+          "currency": "PKR",
+          "basis": "press"
+        }
+      ],
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/10385819",
+      "lastVerified": "2026-10-30",
+      "osmId": "W10385819",
+      "entryConditions": "No official statement retrieved. Third-party listings (unverified, not used as source of truth) variously claim the zoo is open daily and that Wednesdays are reserved for women and children."
+    },
+    "bahria-adventure-land": {
+      "isNew": true,
+      "categoryId": "parks-recreation",
+      "areaId": "gadap",
+      "name": "Bahria Adventure Land",
+      "description": "A theme park inside Bahria Town Karachi on the Super Highway, built with Italian ride manufacturers. The official site lists five zones and 25 attractions with food outlets, arcade games, parking and ATMs; entry is by height-based ticket, sold at the gate.",
+      "lat": 25.0203732,
+      "lng": 67.3116821,
+      "coordsVerified": true,
+      "address": "Bahria Adventure Land, Gadap Town, Malir District, Karachi Division, Karachi District, Sindh, Pakistan",
+      "hours": [
+        {
+          "day": "Monday",
+          "open": "Closed"
+        },
+        {
+          "day": "Tuesday – Sunday",
+          "open": "15:00 – 23:00"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "Green Ticket (visitors above 4 feet 3 inches)",
+          "amount": 3000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Yellow Ticket (visitors 2 feet 6 inches to 4 feet 3 inches)",
+          "amount": 2000,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://bahriaadventureland.com",
+      "phone": "021-37188000",
+      "email": "info@bahriaadventureland.com",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/node/12282119198",
+      "lastVerified": "2026-10-30",
+      "osmId": "N12282119198",
+      "entryConditions": "Per official pages: daily admission tickets are sold at the ticketing counter at the entrance (online ticketing announced as 'starting soon'); ticket categories are by height (Green above 4ft 3in, Yellow 2ft 6in-4ft 3in); individual rides have height restrictions listed on the Rides page; the site also has a 'Height and Safety' support page.",
+      "facilities": [
+        "5 zones",
+        "25 rides and attractions",
+        "F&B / niche restaurants",
+        "indoor games and arcade games",
+        "ample parking",
+        "ATMs (two stated on Park Overview)"
+      ]
+    },
+    "chaukhandi-tombs": {
+      "isNew": false,
+      "lat": 24.8661548,
+      "lng": 67.2713971,
+      "coordsVerified": true,
+      "address": "Chaukhandi Tombs, Chowkhandi Road, Abdullah Goth, Bin Qasim Town, Malir District, Karachi Division, Sindh, 75030, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/1427036051",
+      "lastVerified": "2026-10-30",
+      "osmId": "W1427036051",
+      "entryConditions": "No official published entry conditions found. The necropolis is managed/conserved by the Sindh Culture, Tourism & Antiquities Department (Government of Sindh) per that department's official Facebook page, which posts guided tourist visits at the site (e.g., Jan-Feb 2026 posts). It is an active Muslim graveyard (OSM amenity=grave_yard, religion=muslim) as well as a heritage site."
+    },
+    "pakistan-maritime-museum": {
+      "isNew": false,
+      "lat": 24.8869931,
+      "lng": 67.0890607,
+      "coordsVerified": true,
+      "address": "Museum, Karsaz Service Road, KDA Scheme 1 Extension, Karsaz, Gulshan-e-Iqbal Town, Gulshan District, Karachi Division, Sindh, 75100, Pakistan",
+      "hours": [
+        {
+          "day": "Monday – Friday",
+          "open": "09:00 – 22:00"
+        },
+        {
+          "day": "Saturday – Sunday",
+          "open": "09:00 – 23:00"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "Adult Ticket",
+          "amount": 100,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Children (3–11 Years)",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Armed Forces",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Children Package",
+          "amount": 180,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Adult Package",
+          "amount": 150,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "VIP Boat Ride",
+          "amount": 100,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Submarine",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Aircraft",
+          "amount": 30,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Large Jumping Castle",
+          "amount": 100,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Small Jumping Castle",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Trampoline",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Remote Racing Car",
+          "amount": 100,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://pmm.com.pk/",
+      "phone": "+92-332-3111599",
+      "email": "info@pmm.com.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/node/4948587023",
+      "lastVerified": "2026-10-30",
+      "osmId": "N4948587023",
+      "entryConditions": "Official visitor guidelines: visitors are not allowed to touch any exhibits/paintings/artifacts; school bags/lunch boxes and any eatables are not allowed inside the museum building; commercial photography and video making is not allowed without official permission; museum recommends a teacher/student ratio of 1:10 for school visits."
+    },
+    "paaf-museum-karachi": {
+      "isNew": false,
+      "lat": 24.8697887,
+      "lng": 67.0947315,
+      "coordsVerified": true,
+      "address": "Pakistan Air Force Museum, Main Road, Falcon Complex, Gulshan-e-Iqbal Town, Gulshan District, Karachi Division, Sindh, 75100, Pakistan",
+      "hours": [
+        {
+          "day": "Monday – Thursday",
+          "open": "09:00 – 21:00"
+        },
+        {
+          "day": "Friday",
+          "open": "15:00 – 22:00"
+        },
+        {
+          "day": "Saturday – Sunday",
+          "open": "09:00 – 22:00"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "Adults",
+          "amount": 150,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Children (3-12 years)",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Students (16 Years age / only for schools up to Matric)",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Army, Navy, Air Force",
+          "amount": 50,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "PAF Personnel (Mon, Wed & Sat)",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Senior Citizens (60 years & above)",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "People with disability",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://www.pafmuseum.com.pk/",
+      "phone": "+92-21-34604411",
+      "email": "info@pafmuseum.com.pk",
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/446428313",
+      "lastVerified": "2026-10-30",
+      "osmId": "W446428313",
+      "entryConditions": "Official 'The Museum' page rules: 'Individuals without family are not permitted to enter'; proper dress code required (wearing of 'Shorts' is not allowed); no littering; no sporting activity within museum premises; do not touch the aircraft, radars and other exhibits; children must not be left unattended; the museum is a completely smoke-free zone; management reserves the right to refuse admission. Homepage notice (fetched 2026-10-30): 'Archives Gallery is closed for renovation'.",
+      "facilities": [
+        "Souvenir shop",
+        "Canteen",
+        "Fun land for children with swings and merry-go-rounds",
+        "Entertainment simulator"
+      ]
+    },
+    "national-museum-pakistan": {
+      "isNew": false,
+      "lat": 24.8528564,
+      "lng": 67.0176726,
+      "coordsVerified": true,
+      "address": "National Museum of Pakistan, Shahrah e Kamal Ata Turk, Pakistan Secretariat, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/5128917944",
+      "lastVerified": "2026-10-30",
+      "osmId": "N5128917944"
+    },
+    "state-bank-of-pakistan-museum": {
+      "isNew": false,
+      "lat": 24.848463,
+      "lng": 66.9994,
+      "coordsVerified": true,
+      "address": "State Bank of Pakistan, Mumtaz Hasan Road (Dunolly Road), State Bank of Pakistan, Khadda Memon, Lyari Town, Karachi District, Karachi Division, Sindh, 72500, Pakistan",
+      "hours": [
+        {
+          "day": "Monday – Saturday",
+          "open": "09:30 – 17:00"
+        },
+        {
+          "day": "Sunday",
+          "open": "Closed"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "General admission (official wording: 'Free, without any charges')",
+          "amount": 0,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://www.sbp.org.pk/museum",
+      "phone": "Museum: 021-3311-3051; SBP UAN +92-21-111-727-111",
+      "email": "sbpmuseum.visit@sbp.org.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/480194563",
+      "lastVerified": "2026-10-30",
+      "osmId": "W480194563",
+      "entryConditions": "Official FAQ: all guided and self-guided school groups and all adult groups must make advance reservations (first-come, first-served); guided tours by museum-trained Gallery Officers are free with admission but must be scheduled in advance; eating not allowed in the premises of the Museum; parking lot exists but must be requested through email in advance; no street parking. Hours page notes a 1:30 p.m - 2:30 p.m lunch break.",
+      "facilities": [
+        "Coins Gallery",
+        "Stamps Gallery",
+        "Currency Gallery",
+        "Art Gallery",
+        "SBP Governors Gallery",
+        "History of State Bank of Pakistan gallery",
+        "Souvenir Shop",
+        "Museum Library",
+        "Virtual tour (online)",
+        "Parking (by advance email request)"
+      ]
+    },
+    "tdf-magnifiscience-centre": {
+      "isNew": true,
+      "categoryId": "museums-galleries",
+      "areaId": "saddar",
+      "name": "TDF MagnifiScience Centre",
+      "description": "The Dawood Foundation's interactive science centre, described on its own website as Pakistan's first, a few minutes from Karachi City Railway Station. Exhibitions spread over several floors plus a science garden, with weekday, weekend and annual passes; closed Fridays.",
+      "lat": 24.8467603,
+      "lng": 67.0029824,
+      "coordsVerified": true,
+      "address": "TDF MagnifiScience Centre, Plot no 1 RY-15, Wood Street, Central Business District, Nanakwara, Lyari Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": [
+        {
+          "day": "Monday – Thursday",
+          "open": "09:00 – 17:00"
+        },
+        {
+          "day": "Friday",
+          "open": "Closed"
+        },
+        {
+          "day": "Saturday – Sunday",
+          "open": "10:00 – 19:30"
+        }
+      ],
+      "entryFees": [
+        {
+          "label": "Ground Floor Pass (per child; 1 accompanying adult free)",
+          "amount": 500,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Building Pass (Weekdays; ground + 2 floors + science garden, 3rd floor not included)",
+          "amount": 800,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Building Pass (Weekends)",
+          "amount": 900,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Building Pass (Weekdays; all floors incl. third floor and science garden)",
+          "amount": 1300,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Building Pass (Weekends/Public Holidays)",
+          "amount": 1400,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Annual Pass Gift Voucher (redeemable within 3 months)",
+          "amount": 4000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Single",
+          "amount": 6000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Family of 2",
+          "amount": 11800,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Family of 3",
+          "amount": 17500,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Family of 4",
+          "amount": 23000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Family of 5",
+          "amount": 28500,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Full Annual Pass — Family of 6",
+          "amount": 34000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Single",
+          "amount": 4000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Family of 2",
+          "amount": 7800,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Family of 3",
+          "amount": 11500,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Family of 4",
+          "amount": 15000,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Family of 5",
+          "amount": 18500,
+          "currency": "PKR",
+          "basis": "official"
+        },
+        {
+          "label": "Limited Annual Pass — Family of 6",
+          "amount": 22000,
+          "currency": "PKR",
+          "basis": "official"
+        }
+      ],
+      "website": "https://www.magnifiscience.org/",
+      "phone": "General enquiries: +92 (021) 388 99 672; Birthday bookings: 0300 045 8674; School visit bookings: 0300 859 1689; MSC Travels bookings: 0303 8466631",
+      "email": "msc@dawoodfoundation.org",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/node/8633769213",
+      "lastVerified": "2026-10-30",
+      "osmId": "N8633769213",
+      "entryConditions": "Official passes page: tickets can be bought one at a time or up to 9 tickets at a time, for a visit up to 14 days before the visit date; pass type determines floor access (Limited passes exclude the third floor, science shows and food services; Full passes include all floors and the science garden). Separate phone lines exist for birthday bookings, school visit bookings and MSC Travels bookings.",
+      "facilities": [
+        "Science garden",
+        "Multi-floor interactive exhibition (ground floor plus upper floors including a third floor)",
+        "Science shows",
+        "Food services"
+      ]
+    }
+  }
+}

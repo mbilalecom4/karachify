@@ -14,12 +14,12 @@ const FAQS: Faq[] = [
   {
     group: 'Browsing',
     q: 'How do I find places near me?',
-    a: 'Open the map, or start from an area page. Every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable or drivable cluster. Searching “near me” needs your browser location, which the demo does not request.',
+    a: 'Open the map, or start from an area page. Every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable or drivable cluster. There is no “near me” search: this site never asks for your location.',
   },
   {
     group: 'Browsing',
     q: 'What do the filters on a category page do?',
-    a: 'The text box filters within that category only. The area selector restricts to one locality, sorting covers recommended, rating, review count, A–Z and area, and the grid/list toggle changes density. All three combine, and the result count updates as you type.',
+    a: 'The text box filters within that category only. The area selector restricts to one locality, sorting covers Karachify picks, A–Z and group-by-area, and the grid/list toggle changes density. All three combine, and the result count updates as you type. Nothing sorts by rating, because no record carries one.',
   },
   {
     group: 'Browsing',
@@ -44,27 +44,27 @@ const FAQS: Faq[] = [
   {
     group: 'Your account',
     q: 'Is the login secure?',
-    a: 'No, and it does not claim to be. Passcodes are stored in plain text for the demo. Use the profile page’s reset button to return the dataset to its shipped state.',
+    a: 'No, and it does not claim to be. There is no server behind this build: passcodes sit in plain text inside your own browser’s storage. Use the profile page’s reset button to return the dataset to its shipped state.',
   },
   {
     group: 'Businesses',
     q: 'How do I list my business?',
-    a: 'Use the “List your business” form: name, category, area, address, description and contact. It enters the review queue; approving it publishes a page with its own URL and map pin.',
+    a: 'Use the “List your business” form: name, category, area, address, description and contact. It enters the review queue; approving it publishes a page with its own URL and an area-level pin, badged as not yet verified.',
   },
   {
     group: 'Businesses',
     q: 'What is “Claim This Business”?',
-    a: 'It tells the moderation team you represent a listing that already exists. In a production build, the claim starts a document check before editing rights are granted; in the demo it records the request against your account.',
+    a: 'It tells the moderation team you represent a listing that already exists. In a hosted build, the claim starts a document check before editing rights are granted; here it records the request in your browser so you can follow the flow.',
   },
   {
     group: 'Businesses',
     q: 'Can I change my opening hours or photos?',
-    a: 'Owner accounts can edit name, tagline, description, phone, price band, address and facilities from the dashboard. Edits set the record back to “Needs review” so a moderator sees them.',
+    a: 'Owner accounts can edit name, tagline, description, phone, price band, address and facilities from the dashboard. Edits set the record back to “Not verified yet” so a moderator sees them.',
   },
   {
     group: 'Events',
     q: 'Are the events real?',
-    a: 'No. Every event in this build is sample programming and is badged as such, including tickets and venues. Treat dates as illustrations of the layout, not as something you can attend.',
+    a: 'The board is empty rather than filled. Karachify removed the invented sample calendar it shipped with: an event appears here when a dated source names it, or when a submitted event is published from what the organiser wrote — and that case is badged “Not verified yet”, never presented as confirmed.',
   },
   {
     group: 'Events',
@@ -74,12 +74,12 @@ const FAQS: Faq[] = [
   {
     group: 'Events',
     q: 'Can I submit an event for the calendar?',
-    a: 'Use the submit-an-event form. The entry waits for moderation, and a published community event still carries a sample badge until a source is attached.',
+    a: 'Use the submit-an-event form. The entry waits for moderation, and a published community event carries a “Not verified yet” badge until a dated source is attached to it.',
   },
   {
     group: 'Data & accuracy',
     q: 'How are coordinates chosen?',
-    a: 'Each area has a centre point and records are offset from it deterministically. That keeps pins plausible and stable between reloads, but they are approximate. The interface says so wherever a map appears.',
+    a: 'A source-checked record sits on the OpenStreetMap node or way for that place, and the page links the OSM feature so you can see the evidence. Everything else is placed on an offset from its area centre so the map stays readable — those pages say “Approximate position” and never claim a doorway.',
   },
   {
     group: 'Data & accuracy',
@@ -88,8 +88,13 @@ const FAQS: Faq[] = [
   },
   {
     group: 'Data & accuracy',
-    q: 'What are the ratings?',
-    a: 'Generated for the demo. They show how review layouts, star maths and sorting behave with realistic volume — they are not resident opinions.',
+    q: 'What happened to the ratings?',
+    a: 'Deleted. Every record used to carry a generated star rating and review count; none of them came from a real visitor, so they were removed rather than relabelled. Cards now say “Rating not verified”, and a review you write here stays in your own browser.',
+  },
+  {
+    group: 'Data & accuracy',
+    q: 'How do I know a verified page is really verified?',
+    a: 'The page itself says so field by field: the sidebar names the source it was read from, the date it was checked and a link to the OpenStreetMap feature the pin came from. The research behind those pages lives in the repository under docs/verification and is generated into the app by a script — nobody types an opening hour or a price into the interface by hand.',
   },
   {
     group: 'Data & accuracy',
@@ -99,7 +104,7 @@ const FAQS: Faq[] = [
   {
     group: 'Data & accuracy',
     q: 'Why is map data from OpenStreetMap?',
-    a: 'The demo uses public raster tiles, which is fine for a showcase but not for heavy traffic. A production build self-hosts tiles or licenses a provider so the tile servers are respected.',
+    a: 'OSM’s public raster tiles need no API key and no billing account, which suits a static site, and the data itself is openly licensed. They are shared public infrastructure, so a build with real traffic self-hosts tiles or licenses a provider instead of leaning on them.',
   },
 ];
 
@@ -126,7 +131,7 @@ export default function Help() {
         label="Karachi"
         eyebrow="Help centre"
         title="Answers about using Karachify"
-        sub="How browsing, accounts, submissions, events and the honesty labels work — written for the demo that is actually running."
+        sub="How browsing, accounts, submissions, events and the honesty labels work — written for the build that is actually running."
         trail={[{ label: 'Home', to: '/' }, { label: 'Help' }]}
         height="min-h-[240px] sm:min-h-[300px]"
       />

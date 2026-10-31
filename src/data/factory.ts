@@ -26,7 +26,7 @@ export function makeListing(seed: Seed): Listing {
     facilities: [],
     featured: false,
     promoted: false,
-    status: 'demo',
+    status: 'needs-review',
     createdAt: '2026-01-12',
     tagline: seed.description.split('.')[0].slice(0, 110),
     ...seed,

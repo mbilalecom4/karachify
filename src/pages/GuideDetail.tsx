@@ -65,8 +65,9 @@ export default function GuideDetail() {
       <section className="shell section">
         <div className="mx-auto max-w-3xl">
           <Note>
-            Guides on this showcase are written as realistic demo editorial — the places named exist, but timings,
-            prices and availability must be confirmed with each venue before you plan around them.
+            This guide is Karachify's own editorial writing, not a sourced document. The places it names are real, but it
+            carries no per-step source or verification date — confirm timings, prices and opening availability with each
+            venue before planning around it.
           </Note>
 
           <article className="mt-8 space-y-8">

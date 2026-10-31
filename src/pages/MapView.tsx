@@ -6,7 +6,7 @@ import { categoryById } from '../data/taxonomy';
 import { KarachifyMap, type MapPoint } from '../components/KarachifyMap';
 import { PageHero, Note } from '../components/Page';
 import { EmptyState, Select, TextInput } from '../components/ui';
-import { plural } from '../lib/format';
+import { pinCaption, plural } from '../lib/format';
 
 const PALETTE = ['#13A89E', '#102A43', '#0EA5E9', '#F59E0B', '#8B5CF6', '#EF4444', '#10B981', '#EC4899'];
 
@@ -43,7 +43,7 @@ export default function MapView() {
       .map((x) => ({
         id: x.id,
         title: x.name,
-        subtitle: `${categoryById.get(x.categoryId)?.name ?? 'Listing'} · ${areas.find((a) => a.id === x.areaId)?.name ?? 'Karachi'}`,
+        subtitle: `${categoryById.get(x.categoryId)?.name ?? 'Listing'} · ${pinCaption(x.coordsVerified)}`,
         path: `/place/${x.slug}`,
         lat: x.lat,
         lng: x.lng,
@@ -57,7 +57,7 @@ export default function MapView() {
           .map((x) => ({
             id: x.id,
             title: x.name,
-            subtitle: `Sample event · ${x.venue}`,
+            subtitle: `${x.eventCategory} · ${x.venue} · locality centre, not a doorway`,
             path: `/events/${x.slug}`,
             lat: x.lat,
             lng: x.lng,
@@ -90,7 +90,7 @@ export default function MapView() {
         label="Karachi map"
         eyebrow="Interactive map"
         title="Explore Karachi on the map"
-        sub="Filter the demo dataset by category and locality, click a pin for a preview card, then open the full listing. Coordinates are approximate on purpose."
+        sub="Filter by category and locality, click a pin for a preview card, then open the full listing. A pin on a verified record is that place's own OpenStreetMap feature; the rest sit near the middle of their locality."
         trail={[{ label: 'Home', to: '/' }, { label: 'Map' }]}
         height="min-h-[240px] sm:min-h-[260px]"
       />
@@ -149,13 +149,13 @@ export default function MapView() {
         </div>
 
         <p className="mb-3 text-sm text-navy-500" aria-live="polite">
-          {plural(points.length, 'place')} shown{dirty ? ' after filtering' : ''} · demo data
+          {plural(points.length, 'place')} shown{dirty ? ' after filtering' : ''} · each pin states how it was positioned
         </p>
 
         {points.length === 0 ? (
           <EmptyState
             title="No pins for this combination"
-            body="Every filter is combined, so an area plus one narrow category can legitimately be empty in the demo dataset. Reset the filters to see the whole catalogue."
+            body="Every filter is combined, so an area plus one narrow category can legitimately have nothing in it. Reset the filters to see the whole catalogue."
             action={
               <button
                 className="btn-outline"
@@ -225,10 +225,11 @@ export default function MapView() {
         <div className="mt-5 flex items-start gap-3">
           <Info className="mt-1 h-4 w-4 shrink-0 text-navy-500" />
           <Note className="flex-1">
-            This build uses OpenStreetMap raster tiles through MapLibre, which is fine for a demo but not for heavy
-            production traffic — before launch, switch to a self-hosted tile stack or a licensed provider (the provider
-            policy explicitly asks commercial sites not to hammer the public servers). Pins sit on approximate demo
-            coordinates derived from the locality, never a verified address.
+            Tiles come from the public OpenStreetMap raster servers through MapLibre, which is fine at this traffic level
+            but not for heavy production use — before launch, switch to a self-hosted tile stack or a licensed provider
+            (the provider policy explicitly asks commercial sites not to hammer the public servers). A pin on a verified
+            record is that place's own OpenStreetMap feature; every other pin is offset from the centre of its locality
+            and is not an address.
           </Note>
         </div>
       </section>

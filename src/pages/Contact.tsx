@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Clock3, Mail, MapPin, MessageSquare, Phone } from 'lucide-react';
+import { CheckCircle2, Mail, MapPin, MessageSquare } from 'lucide-react';
 import { actions, useDB } from '../lib/store';
 import { Field, Select, TextArea, TextInput, useToast } from '../components/ui';
 import { Note, PageHero, Prose } from '../components/Page';
@@ -37,9 +37,9 @@ export default function Contact() {
                 </span>
                 <h2 className="mt-4 font-display text-2xl font-bold text-navy-800">Message logged</h2>
                 <p className="mt-2 text-[15px] leading-relaxed text-navy-500">
-                  Reference <span className="font-mono text-[13px] text-navy-700">{sent}</span>. In this showcase the
-                  message is stored in your browser and appears in your profile — no email is sent, because there is no
-                  server behind the demo.
+                  Reference <span className="font-mono text-[13px] text-navy-700">{sent}</span>. The message is stored in
+                  your browser and appears in your profile — nothing is emailed, because this build has no server and no
+                  inbox at the other end.
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   <Link to="/profile" className="btn-primary">
@@ -91,7 +91,7 @@ export default function Contact() {
                     phone: form.phone.trim() || undefined,
                     status: 'pending',
                   });
-                  toast.push('Message recorded in the demo queue');
+                  toast.push('Message saved on this device');
                   setSent(enq.id);
                 }}
               >
@@ -137,36 +137,20 @@ export default function Contact() {
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <div className="card p-5">
                   <h3 className="flex items-center gap-2 font-semibold text-navy-800">
-                    <MapPin className="h-4 w-4 text-teal-600" /> Editorial office
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    I.I. Chundrigar Road, Karachi, Sindh, Pakistan. Visits are by appointment — this demo does not have a
-                    real front desk.
-                  </p>
-                </div>
-                <div className="card p-5">
-                  <h3 className="flex items-center gap-2 font-semibold text-navy-800">
                     <Mail className="h-4 w-4 text-teal-600" /> Email
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    hello@karachify.demo for general questions, data@karachify.demo for source corrections. Addresses are
-                    placeholders.
+                    No Karachify address is configured, so none is printed here. A message that needs to reach a person has
+                    to go through the form above until this build is hosted with a mail service.
                   </p>
                 </div>
                 <div className="card p-5">
                   <h3 className="flex items-center gap-2 font-semibold text-navy-800">
-                    <Phone className="h-4 w-4 text-teal-600" /> Phone
+                    <MapPin className="h-4 w-4 text-teal-600" /> Office
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    +92 21 000 0000 (demo number). Do not call it — it is not a Karachify line.
-                  </p>
-                </div>
-                <div className="card p-5">
-                  <h3 className="flex items-center gap-2 font-semibold text-navy-800">
-                    <Clock3 className="h-4 w-4 text-teal-600" /> Response times
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    A live Karachify would aim for one working day on corrections and three on partnerships.
+                    There is no street address to visit. Karachify is a static site: the pages, the data files and the
+                    verification records all live in one public repository.
                   </p>
                 </div>
               </div>
@@ -212,8 +196,8 @@ export default function Contact() {
               <h3>Reporting a factual error</h3>
               <p>
                 Tell us the listing, the field that is wrong and a source — an official site, a licence notice or a recent
-                photograph. We mark the record “Needs review” until it is checked, rather than silently editing numbers
-                like phone calls or opening hours.
+                photograph. The record is badged "Not verified yet" until a source is attached, rather than quietly edited
+                on the strength of an email.
               </p>
             </Prose>
           </aside>

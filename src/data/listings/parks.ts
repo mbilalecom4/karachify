@@ -2,7 +2,6 @@ import { makeListing } from '../factory';
 
 const P = 'parks-recreation';
 const B = 'beaches';
-const parkHours = [{ day: 'Every day', open: '06:00 – 22:00 (demo timing)' }];
 
 export const parksAndBeaches = [
   makeListing({
@@ -15,8 +14,6 @@ export const parksAndBeaches = [
     wiki: ['Ibn-e-Qasim Bagh Stadium', 'Karachi'],
     address: 'Cape Monze Road, near Kiamahani',
     facilities: ['Open lawns', 'Stadium', 'Parking', 'Kite flying', 'Family picnics'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Park', 'Cricket', 'Free', 'Kite flying'],
     featured: true,
   }),
@@ -30,8 +27,6 @@ export const parksAndBeaches = [
     wiki: ['Hill Park, Karachi'],
     address: 'Hill Park, North Nazimabad',
     facilities: ['Lake', 'Amusement rides', 'Maze', 'Viewpoint', 'Ticketed entry'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Park', 'Kids', 'Rides', 'Viewpoint'],
   }),
   makeListing({
@@ -44,8 +39,6 @@ export const parksAndBeaches = [
     wiki: ['Lumbini Park, Karachi'],
     address: 'Burns Road, Saddar',
     facilities: ['Garden', 'Lake', 'Play area', 'Ticketed entry', 'Seating'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Garden', 'Quiet', 'Kids', 'Heritage'],
   }),
   makeListing({
@@ -58,8 +51,6 @@ export const parksAndBeaches = [
     wiki: ['Ocean Park, Karachi'],
     address: 'Hawke\'s Bay Road, near DHA',
     facilities: ['Water rides', 'Wave pool', 'Coaster', 'Food court', 'Ticketed entry'],
-    priceRange: '$$',
-    hours: [{ day: 'Tuesday – Sunday', open: '11:00 – 20:00 (demo timing)' }],
     tags: ['Theme park', 'Water park', 'Kids', 'Summer'],
     featured: true,
     sourceUrl: 'https://en.wikipedia.org/wiki/Ocean_Park,_Karachi',
@@ -74,8 +65,6 @@ export const parksAndBeaches = [
     wiki: ['Park', 'Karachi'],
     address: 'Zaibunnisa Street, Saddar',
     facilities: ['Walking path', 'Play area', 'Benches', 'Free entry'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Park', 'Walking', 'Free', 'Evening'],
   }),
   makeListing({
@@ -88,8 +77,6 @@ export const parksAndBeaches = [
     wiki: ['Dolphin Park, Clifton'],
     address: 'Marine Drive, Clifton Block 9',
     facilities: ['Beach access', 'Play area', 'Aquarium', 'Walking track', 'Ticketed entry'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Beach', 'Park', 'Family', 'Evening'],
   }),
   makeListing({
@@ -102,8 +89,6 @@ export const parksAndBeaches = [
     wiki: ['Mazar-e-Quaid', 'Garden'],
     address: 'Jamshed Road, Saddar',
     facilities: ['Formal lawns', 'Fountains', 'Walkways', 'Free entry', 'Lighting'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Garden', 'Walking', 'Free', 'Landmark'],
   }),
   makeListing({
@@ -116,8 +101,6 @@ export const parksAndBeaches = [
     wiki: ['Jogging track', 'Urban park'],
     address: 'Khayaban-e-Bukhari, DHA Phase 5',
     facilities: ['Jogging loop', 'Green belt', 'Cricket ground', 'Free entry'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Running', 'Park', 'Free', 'Evening'],
   }),
   makeListing({
@@ -130,8 +113,6 @@ export const parksAndBeaches = [
     wiki: ['Community park', 'Walking path'],
     address: 'Gulshan-e-Iqbal Block 6',
     facilities: ['Walking path', 'Outdoor gym', 'Children\'s area', 'Free entry'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Park', 'Walking', 'Free'],
   }),
   makeListing({
@@ -144,8 +125,6 @@ export const parksAndBeaches = [
     wiki: ['Malir Dam', 'Garden'],
     address: 'Malir Cantt, near the nullah',
     facilities: ['Gardens', 'Picnic lawns', 'Boating', 'Ticketed entry', 'Parking'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Garden', 'Picnic', 'Weekend', 'Boating'],
   }),
   makeListing({
@@ -158,8 +137,6 @@ export const parksAndBeaches = [
     wiki: ['Hawke\'s Bay, Karachi', 'Karachi coastline'],
     address: 'Hawke\'s Bay Road, Kemari',
     facilities: ['Beach access', 'Resort', 'Food shacks', 'Parking', 'Changing rooms'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Beach', 'Weekend', 'Family', 'Sunset'],
     featured: true,
   }),
@@ -173,8 +150,6 @@ export const parksAndBeaches = [
     wiki: ['Sandspit, Karachi', 'Karachi beach'],
     address: 'Sandspit, Do Darya Road',
     facilities: ['Beach', 'Seafood huts', 'Kite flying', 'Parking'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Beach', 'Seafood', 'Kite flying'],
   }),
   makeListing({
@@ -187,8 +162,6 @@ export const parksAndBeaches = [
     wiki: ['Marine Drive, Karachi', 'Sea View, Karachi'],
     address: 'Marine Drive, Sea View',
     facilities: ['Promenade', 'Viewpoints', 'Food stalls', 'Museum', 'Parking'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Coastline', 'Evening', 'Free', 'Walk'],
   }),
   makeListing({
@@ -201,8 +174,6 @@ export const parksAndBeaches = [
     wiki: ['Brigo', 'Karachi coast'],
     address: 'Brigo, Cape Monze Road',
     facilities: ['Beach', 'Village', 'Fish market', 'Boats'],
-    priceRange: '$',
-    hours: parkHours,
     tags: ['Beach', 'Quiet', 'Fishing village'],
   }),
   makeListing({
@@ -215,8 +186,6 @@ export const parksAndBeaches = [
     wiki: ['Seaview, Karachi', 'Point (landform)'],
     address: 'Clifton Block 9 end',
     facilities: ['Viewpoint', 'Park path', 'Photography', 'Free entry'],
-    priceRange: 'Free',
-    hours: parkHours,
     tags: ['Sunset', 'Viewpoint', 'Free'],
   }),
   makeListing({
@@ -229,8 +198,6 @@ export const parksAndBeaches = [
     wiki: ['French Creek, Karachi', 'Karachi mangroves'],
     address: 'Phase 8 extension, DHA',
     facilities: ['Birding', 'Mangroves', 'Boat access', 'No facilities'],
-    priceRange: 'Free',
-    hours: [{ day: 'Daylight only', open: '06:00 – 18:00 (demo timing)' }],
     tags: ['Nature', 'Birding', 'Mangrove'],
   }),
 ];

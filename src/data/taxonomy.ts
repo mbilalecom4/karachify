@@ -243,6 +243,7 @@ export const areas: Area[] = [
   { id: 'orangi-town', cityId: 'karachi', name: 'Orangi Town', slug: 'orangi-town', zone: 'North', lat: 24.85, lng: 66.945, blurb: 'One of Asia\'s largest townships, with an enormous informal manufacturing base.' },
   { id: 'landhi', cityId: 'karachi', name: 'Landhi', slug: 'landhi', zone: 'East', lat: 24.815, lng: 67.18, blurb: 'Landhi Industrial Estate, Jinnah Housing Society and the eastern commuter belt.' },
   { id: 'surjani-town', cityId: 'karachi', name: 'Surjani Town', slug: 'surjani-town', zone: 'North', lat: 24.932, lng: 66.985, blurb: 'Newer northern housing schemes along the Super Highway.' },
+  { id: 'gadap', cityId: 'karachi', name: 'Gadap', slug: 'gadap', zone: 'North', lat: 25.1316623, lng: 67.2330726, blurb: 'Gadap Town — the Super Highway corridor north of the city, with the dam, the hills and Bahria Town Karachi.' },
 ];
 
 export const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));

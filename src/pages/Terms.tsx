@@ -22,11 +22,14 @@ export default function Terms() {
             your browser. It is not a booking service, not an official tourism platform, and not a directory you can rely
             on to reach a business.
           </p>
-          <h2>2. Sample data</h2>
+          <h2>2. Verified and unverified records</h2>
           <p>
-            Listings, events, opening hours, prices, phone numbers, reviews and map positions are generated for
-            illustration and are badged accordingly — “Sample data”, “Sample event”, “Promoted · demo”, “(demo)”. You may
-            not republish them as verified facts about a real Karachi business, venue or event.
+            A page badged <span className="badge-verified mx-0.5 align-middle">Verified</span> states the source it was
+            built from and the date it was checked. A page badged
+            <span className="badge-demo mx-0.5 align-middle">Not verified yet</span> is a real Karachi place whose details
+            have not been checked — those records carry no star rating, no review count and no invented price band, and
+            anything the source did not publish is left blank rather than guessed. Do not republish either kind as proof
+            of a business’s current trading status; confirm with the operator before you travel.
           </p>
           <h2>3. Real places mentioned</h2>
           <p>
@@ -48,9 +51,9 @@ export default function Terms() {
           </p>
           <h2>6. Acceptable use</h2>
           <ul>
-            <li>Do not present demo records as live information about a real business.</li>
+            <li>Do not present unverified records as live information about a real business.</li>
             <li>Do not hammer the third-party services this page loads from — Wikimedia and OpenStreetMap tiles are shared public infrastructure.</li>
-            <li>Do not use the admin dashboard as if it were access control; it is a UI demonstration.</li>
+            <li>Do not use the admin dashboard as if it were access control; it is a UI demonstration with local storage and no server.</li>
           </ul>
           <h2>7. Disclaimer of warranty</h2>
           <p>

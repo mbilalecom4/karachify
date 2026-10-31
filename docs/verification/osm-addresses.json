@@ -1,0 +1,116 @@
+{
+  "Mazar-e-Quaid": {
+    "osmToken": "N12151865936",
+    "address": "Mazar-e-Quaid-e-Azam, M.A. Jinnah Road, Gurmandir, Jacob Lines, Jamshed Town, Gulshan District, Karachi Division, Sindh, 75000, Pakistan",
+    "lat": "24.8748644",
+    "lon": "67.0393359"
+  },
+  "Mohatta Palace": {
+    "osmToken": "W479576906",
+    "address": "Mohatta Palace, Motilal Goverdhandas Road, Old Clifton, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+    "lat": "24.8142749",
+    "lon": "67.0326631"
+  },
+  "Frere Hall": {
+    "osmToken": "N3735483787",
+    "address": "Frere Hall, Civil Lines, Saddar Town, Karachi District, Karachi Division, Sindh, 74400, Pakistan",
+    "lat": "24.8475202",
+    "lon": "67.0330882"
+  },
+  "Empress Market": {
+    "osmToken": "N3191210900",
+    "address": "Empress Market, Shahrah-e-Liaquat (Frere Road), Saddar Bazaar, Fowler Lines, Saddar, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+    "lat": "24.8622181",
+    "lon": "67.0296789"
+  },
+  "Wazir Mansion": {
+    "osmToken": "W692307507",
+    "address": "Wazir Mansion, Chaghla Street, Bunder Quarter, Lyari Town, Karachi District, Karachi Division, Sindh, 72500, Pakistan",
+    "lat": "24.8509750",
+    "lon": "66.9975314"
+  },
+  "Clifton Beach (Karachi Beach)": {
+    "osmToken": "N12201291956",
+    "address": "Clifton Beach, Karachi, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+    "lat": "24.8105323",
+    "lon": "67.0103862"
+  },
+  "Sea View (Seaface / Boat Basin stretch)": {
+    "osmToken": "N5041193103",
+    "address": "Seaview Beach, Saddar Town, Karachi District, Karachi Division, Sindh, 75600, Pakistan",
+    "lat": "24.7939060",
+    "lon": "67.0388626"
+  },
+  "Hawksbay Beach": {
+    "osmToken": "W516419993",
+    "address": "Hawke's Bay Beach, Keamari Town, Keamari District, Karachi Division, Sindh, Pakistan",
+    "lat": "24.8531740",
+    "lon": "66.8810691"
+  },
+  "Sandspit Beach": {
+    "osmToken": "W516413062",
+    "address": "Sandspit, Keamari Town, Keamari District, Karachi Division, Sindh, Pakistan",
+    "lat": "24.8294049",
+    "lon": "66.9280365"
+  },
+  "Manora (island village and Manora Point beach)": {
+    "osmToken": "N6681694153",
+    "address": "Manora, Keamari Town, Keamari District, Karachi Division, Sindh, 75640, Pakistan",
+    "lat": "24.7965723",
+    "lon": "66.9751739"
+  },
+  "Port Grand": {
+    "osmToken": "W479697908",
+    "address": "Port Grand, Jinnah Bridge, West Wharf, Keamari Town, Keamari District, Karachi Division, Sindh, 72500, Pakistan",
+    "lat": "24.8455063",
+    "lon": "66.9922451"
+  },
+  "Karachi Zoo": {
+    "osmToken": "W10385819",
+    "address": "Karachi Zoo, D'Silva Street, Madina Colony, Garden West, Lyari Town, Karachi District, Karachi Division, Sindh, 74550, Pakistan",
+    "lat": "24.8767249",
+    "lon": "67.0233099"
+  },
+  "Bahria Adventure Land": {
+    "osmToken": "N12282119198",
+    "address": "Bahria Adventure Land, Gadap Town, Malir District, Karachi Division, Karāchi District, Sindh, Pakistan",
+    "lat": "25.0203732",
+    "lon": "67.3116821"
+  },
+  "Chaukhandi Tombs": {
+    "osmToken": "W1427036051",
+    "address": "Chaukhandi Tombs, Chowkhandi Road, Abdullah Goth, Bin Qasim Town, Malir District, Karachi Division, Sindh, 75030, Pakistan",
+    "lat": "24.8661548",
+    "lon": "67.2713971"
+  },
+  "Pakistan Maritime Museum": {
+    "osmToken": "N4948587023",
+    "address": "museum, Karsaz Service Road, KDA Scheme 1 Extension, Karsaz, Gulshan-e-Iqbal Town, Gulshan District, Karachi Division, Sindh, 75100, Pakistan",
+    "lat": "24.8869931",
+    "lon": "67.0890607"
+  },
+  "PAF Museum (Pakistan Air Force Museum)": {
+    "osmToken": "W446428313",
+    "address": "Pakistan Air Force Museum, Main Road, Falcon Complex, Gulshan-e-Iqbal Town, Gulshan District, Karachi Division, Sindh, 75100, Pakistan",
+    "lat": "24.8698102",
+    "lon": "67.0947496"
+  },
+  "National Museum of Pakistan": {
+    "osmToken": "N5128917944",
+    "address": "National Museum of Pakistan, Shahrah e Kamal Ata Turk, Pakistan Secretariat, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+    "lat": "24.8528564",
+    "lon": "67.0176726"
+  },
+  "State Bank of Pakistan Museum (SBP Museum)": {
+    "osmToken": "W480194563",
+    "address": "State Bank of Pakistan, Mumtaz Hasan Road (Dunolly Road), State Bank of Pakistan, Khadda Memon, Lyari Town, Karachi District, Karachi Division, Sindh, 72500, Pakistan",
+    "lat": "24.8484166",
+    "lon": "66.9994065"
+  },
+  "TDF MagnifiScience Centre": {
+    "osmToken": "N8633769213",
+    "address": "TDF MagnifiScience Centre, Plot no 1 RY-15, Wood Street, Central Business District, Nanakwara, Lyari Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+    "lat": "24.8467603",
+    "lon": "67.0029824"
+  }
+}

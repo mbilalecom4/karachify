@@ -13,7 +13,7 @@ import {
   User,
   X,
 } from 'lucide-react';
-import { useDB, currentUser, actions, prefsFor, selectCategories } from '../lib/store';
+import { useDB, currentUser, actions, prefsFor, selectCategories, selectListings } from '../lib/store';
 import { BrandLogo } from './BrandLogo';
 import { SearchBox } from './SearchBox';
 
@@ -27,6 +27,8 @@ export function Header() {
   const db = useDB();
   const user = currentUser(db);
   const categories = selectCategories(db);
+  const listings = selectListings(db);
+  const verifiedCount = listings.filter((l) => l.status === 'verified').length;
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -145,7 +147,9 @@ export function Header() {
         <div className="shell flex h-9 items-center justify-between text-[12.5px]">
           <p className="flex items-center gap-2 text-navy-100">
             <Info className="h-3.5 w-3.5 text-teal-300" />
-            Launch preview · content is realistic <strong className="font-semibold text-white">sample data</strong> for Karachi, not a verified directory yet.
+            Launch preview · <strong className="font-semibold text-white">{verifiedCount} destinations</strong> are
+            source-checked and dated; every other record lists a real place but carries no invented price, rating or
+            review, and says what has not been checked.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/list-your-business" className="text-navy-100 hover:text-teal-200">
@@ -351,7 +355,9 @@ export function Header() {
               </Link>
             </div>
             <p className="mt-5 rounded-xl bg-mist px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">
-              Demo build: listings, timings, prices and reviews are realistic sample records so the whole experience can be reviewed before the data-collection phase.
+              Karachify publishes two kinds of record: {verifiedCount} destinations whose hours, address and admission
+              come from a named source with the date it was checked, and the wider directory — real places whose details
+              are not verified yet, so no price, rating or review is invented for them.
             </p>
           </nav>
         </div>

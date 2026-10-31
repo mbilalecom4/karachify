@@ -16,3 +16,4 @@ dist
 # verification scratch: fetched HTML snapshots and source images stay local,
 # the batch-*.json files (with their source URLs) are what we commit
 /docs/verification/raw/
+/.tmp/
