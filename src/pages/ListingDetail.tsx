@@ -48,6 +48,14 @@ import {
 } from '../components/ui';
 import { admissionLabel, coordText, copyText, directionsUrl, mapLinkUrl, isValidEmail, pinCaption, plural, priceLabel } from '../lib/format';
 
+/** Names what the record actually carries: "its map position, address and contact". */
+function andList(items: (string | false | null | undefined)[]) {
+  const kept = items.filter(Boolean) as string[];
+  if (kept.length < 2) return kept.join('');
+  const last = kept[kept.length - 1];
+  return kept.slice(0, -1).join(', ') + ' and ' + last;
+}
+
 const LAYOUT_META: Record<DetailLayout, { icon: typeof Landmark; kicker: string }> = {
   attraction: { icon: Landmark, kicker: 'Visitor guide' },
   restaurant: { icon: Utensils, kicker: 'Food & drink' },
@@ -495,7 +503,13 @@ export default function ListingDetail() {
               </div>
               <p className="mt-3 text-[13px] leading-relaxed text-navy-500">
                 {listing.status === 'verified'
-                  ? 'Verified against the sources listed here, including coordinates and opening hours. Anything the source did not state is left blank rather than guessed.'
+                  ? `Verified against the sources listed here — ${andList([
+                      'its map position',
+                      listing.address && 'address',
+                      !!listing.hours?.length && 'opening hours',
+                      !!listing.entryFees?.length && 'admission',
+                      (listing.phone || listing.email || listing.website) && 'contact',
+                    ])}. Anything the source did not state is left blank rather than guessed.`
                   : listing.coordsVerified
                     ? 'Its map position and address were read from a source, as cited below. Any field the source did not state — opening hours, admission, a contact — is left blank here rather than estimated, so check those before you rely on them.'
                     : listing.sourceUrl

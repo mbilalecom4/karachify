@@ -6,7 +6,14 @@
 // Deliberate exclusions live in DROP_* below so the reasons stay in the repo.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
-const BATCHES = ['batch-a-heritage', 'batch-c-coastline', 'batch-d-attractions', 'batch-b-museums', 'batch-f-practical'];
+const BATCHES = [
+  'batch-a-heritage',
+  'batch-c-coastline',
+  'batch-d-attractions',
+  'batch-b-museums',
+  'batch-f-practical',
+  'batch-g-institutions',
+];
 
 /** Verified name in the research file -> slug used by the catalogue. */
 const SLUG_MAP = {
@@ -26,6 +33,24 @@ const SLUG_MAP = {
   'PAF Museum (Pakistan Air Force Museum)': 'paaf-museum-karachi',
   'National Museum of Pakistan': 'national-museum-pakistan',
   'State Bank of Pakistan Museum (SBP Museum)': 'state-bank-of-pakistan-museum',
+  // batch-g: the city's institutions — hospitals, universities, malls, transit.
+  'Aga Khan University Hospital': 'aga-khan-university-hospital',
+  'Data Darbar Shrine': 'data-darbar',
+  'Dolmen Mall Clifton': 'dolmen-mall-clifton',
+  'Edhi Foundation Ambulance Service': 'edhi-foundation-karachi',
+  'Jinnah International Airport': 'jinnah-international-airport',
+  'Jinnah Postgraduate Medical Centre (JPMC)': 'jinnah-postgraduate-medical-centre',
+  'Karachi Circular Railway (KCR)': 'karachi-circular-railway',
+  'Karachi Expo Centre': 'karachi-expo-centre',
+  'Karachi Grammar School': 'karachi-grammar-school',
+  'Karachi Metropolitan Corporation (KMC)': 'karachi-metropolitan-corporation',
+  'Lucky One Mall': 'lucky-one-mall',
+  'Masjid-e-Tooba (Gol Mahal Masjid)': 'masjid-e-tooba',
+  'National Stadium Karachi': 'national-stadium-karachi',
+  'NED University of Engineering & Technology': 'ned-university',
+  'Ocean Park Karachi': 'ocean-park-karachi',
+  'Rescue 1122': 'rescue-1122-karachi',
+  'University of Karachi': 'university-of-karachi',
 };
 
 /**
@@ -65,12 +90,26 @@ const NAME_FROM_OSM = { 'hawksbay-beach': "Hawke's Bay Beach" };
 /** The Latin-script address re-read from Nominatim with accept-language=en. */
 const OSM_ADDRESSES = JSON.parse(readFileSync('docs/verification/osm-addresses.json', 'utf8'));
 
-/** Nominatim returns "Karāchi District" for some records; keep one spelling. */
+/**
+ * Nominatim returns "Karāchi District" for some records; keep one spelling.
+ * batch-g writes its addresses with the provenance pasted on the end —
+ * "…Karachi 75270, Pakistan (official neduet.edu.pk Contact Us page); OSM: the
+ * Admin Block way" — which is evidence for the audit file, not something a
+ * visitor can navigate to. The note stays in the research file and on /sources;
+ * the catalogue gets the postal line only.
+ */
+const PROVENANCE_OPEN = /^\(\s*[^()]*\b(?:official|per|OSM|OpenStreetMap|Nominatim|Wikipedia|addr|tags?|script|page|site|source)\b/i;
+
 function cleanAddress(s) {
-  return String(s)
-    .replace(/\s+/g, ' ')
-    .replace(/Karāchi/g, 'Karachi')
-    .trim();
+  const value = String(s);
+  const open = value.indexOf('(');
+  // Cut from the first parenthesis that opens a provenance note — the note is
+  // sometimes closed and sometimes runs past a semicolon inside it.
+  const postal = open >= 0 && PROVENANCE_OPEN.test(value.slice(open)) ? value.slice(0, open) : value.split(';')[0];
+  // A note that was the whole string would leave nothing: keep the original
+  // rather than ship an empty address.
+  const kept = postal.trim() ? postal : value;
+  return kept.replace(/\s+/g, ' ').replace(/Karāchi/g, 'Karachi').trim().replace(/[,;:]\s*$/, '');
 }
 
 // The amount (Rs 1,000) contradicts its own label ("Rs. 500 redeemable"), and
@@ -79,6 +118,28 @@ const DROP_FEES = new Set(['port-grand']);
 // The Commissioner Karachi swimming-ban notification covers 01.07-23.08.2026, a
 // window that has closed. Showing it as a live entry condition would mislead.
 const DROP_ENTRY_CONDITIONS = new Set(['clifton-beach', 'seaview-point', 'sandspit-beach', 'manora-island', 'hawksbay-beach']);
+
+/**
+ * Evidence about one element is not evidence about the record the reader is
+ * looking at, so some verified fields are held back even though a source named
+ * them. The reason travels to /sources with the suppression.
+ */
+const SUPPRESS_FIELDS = {
+  coordinates: ['lat', 'lng', 'coordsVerified', 'osmId', 'sourceUrl'],
+  address: ['address'],
+};
+const SUPPRESS = {
+  'rescue-1122-karachi': {
+    groups: ['coordinates', 'address'],
+    reason:
+      'OpenStreetMap maps one Rescue station (SIEHS-1122 North Nazimabad Station 7), not the service. Pinning the city-wide Rescue 1122 record to that one station, or printing its street as the service’s address, would claim a verified headquarters that no source states — so the record keeps only the 1122 number, which is the thing the reader actually needs.',
+  },
+  'karachi-grammar-school': {
+    groups: ['coordinates'],
+    reason:
+      'The only Karachi node OpenStreetMap names “Karachi Grammar School” sits in North Nazimabad, while the school’s own published address is Clifton Block 5 (the campus has three sites). The mismatch is recorded in the research notes; until one of the two is shown to be the senior school, no verified pin is published for it.',
+  },
+};
 
 /**
  * The same rules that suppress a value are published on /sources, so a reader
@@ -91,6 +152,11 @@ const EXCLUSIONS = [
     field: 'entryFees',
     reason:
       'The entry price circulating for this place came from the operator’s own social posts, where the amount contradicted its own label (“Rs. 1,000 (Rs. 500 redeemable)”). No tariff page could be read, so no price is published.',
+  })),
+  ...Object.entries(SUPPRESS).map(([slug, v]) => ({
+    slug,
+    field: v.groups.includes('coordinates') ? 'coordinates' : 'address',
+    reason: v.reason,
   })),
   ...[...DROP_ENTRY_CONDITIONS].map((slug) => ({
     slug,
@@ -297,7 +363,7 @@ function notesFrom(record, batch) {
 
 /** Which fields the shipped override actually carries, so /sources says what a source was allowed to say. */
 function publishedFields(o) {
-  const f = ['lat', 'lng', 'address', 'sourceUrl', 'osmId', 'lastVerified'];
+  const f = ['lat', 'lng', 'address', 'sourceUrl', 'osmId', 'lastVerified'].filter((k) => o[k] != null);
   if (o.hours?.length) f.push('hours');
   if (o.entryFees?.length) f.push('entryFees');
   if (o.entryConditions) f.push('entryConditions');
@@ -329,6 +395,15 @@ const MERGED_FIELDS = [
   'osmId',
   'openStreetMapLink',
 ];
+
+/**
+ * "contact.phone" is a path inside the research record; the field the catalogue
+ * actually carries is "phone". Published lists (missingFields, notFound) must name
+ * the shipped field, or /sources reports a gap in something that does not exist.
+ */
+function canonicalField(f) {
+  return String(f).replace(/^contact./, '');
+}
 
 /** Field a later batch may fill or correct, except coordinates (see PIN CONFLICT below). */
 function isBlank(v) {
@@ -371,7 +446,7 @@ for (const batch of BATCHES) {
         record: { ...r },
         sources: sourcesFrom(raw, batch),
         notes: notesFrom(raw, batch),
-        missing: [...(Array.isArray(r.missingFields) ? r.missingFields : [])],
+        missing: [...(Array.isArray(r.missingFields) ? r.missingFields : [])].map(canonicalField),
         confidences: [r.confidence].filter(Boolean),
         dates: [r.lastVerified].filter(Boolean),
         batches: [batch],
@@ -391,7 +466,7 @@ for (const batch of BATCHES) {
     }
     prev.sources.push(...sourcesFrom(raw, batch));
     prev.notes.push(...notesFrom(raw, batch));
-    prev.missing.push(...(Array.isArray(r.missingFields) ? r.missingFields : []));
+    prev.missing.push(...(Array.isArray(r.missingFields) ? r.missingFields : []).map(canonicalField));
     if (r.confidence) prev.confidences.push(r.confidence);
     if (r.lastVerified) prev.dates.push(r.lastVerified);
     prev.batches.push(batch);
@@ -460,6 +535,17 @@ for (const entry of entries.values()) {
   };
   if (conditions) o.entryConditions = conditions;
   if (r.facilities?.length) o.facilities = r.facilities;
+  for (const group of SUPPRESS[slug]?.groups ?? []) {
+    for (const key of SUPPRESS_FIELDS[group]) delete o[key];
+  }
+  // A refused pin also refuses the link that pointed at it: the record's one
+  // "read the source" link must back a field the page actually shows.
+  if (SUPPRESS[slug] && entry.sources.length) {
+    const shipped = new Set(publishedFields(o));
+    const fits = (c) => (c.supports ?? []).some((t) => shipped.has(t) || (t === 'contact' && (o.phone || o.email)));
+    const better = entry.sources.find((c) => fits(c) && !/openstreetmap|nominatim|overpass/i.test(c.url));
+    if (better) o.sourceUrl = better.url;
+  }
   out.overrides[slug] = o;
   provenance.records[slug] = {
     researchName: r.name,

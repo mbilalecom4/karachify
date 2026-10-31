@@ -4,7 +4,8 @@
     "docs/verification/batch-c-coastline.json",
     "docs/verification/batch-d-attractions.json",
     "docs/verification/batch-b-museums.json",
-    "docs/verification/batch-f-practical.json"
+    "docs/verification/batch-f-practical.json",
+    "docs/verification/batch-g-institutions.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -669,6 +670,214 @@
         "Science shows",
         "Food services"
       ]
+    },
+    "aga-khan-university-hospital": {
+      "isNew": false,
+      "lat": 24.8927752,
+      "lng": 67.0740719,
+      "coordsVerified": true,
+      "address": "Stadium Road, P.O. Box 3500, Karachi 74800, Pakistan",
+      "hours": null,
+      "website": "https://hospitals.aku.edu/pakistan",
+      "phone": "+92 21 111-911-911",
+      "email": "akuh.information@aku.edu",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/relation/17336276",
+      "lastVerified": "2026-10-31",
+      "osmId": "relation/17336276"
+    },
+    "dolmen-mall-clifton": {
+      "isNew": false,
+      "lat": 24.8020451,
+      "lng": 67.0301788,
+      "coordsVerified": true,
+      "address": "Dolmen Mall, Abdul Sattar Edhi Road, Clifton Block 4, Clifton, Karachi, Sindh 75600, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/479353842",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/479353842"
+    },
+    "edhi-foundation-karachi": {
+      "isNew": false,
+      "lat": 24.8487042,
+      "lng": 66.9957548,
+      "coordsVerified": true,
+      "address": "Edhi Foundation, Nakhuda Road, Kharadar, Lyari Town, Karachi, Sindh 72500, Pakistan",
+      "hours": null,
+      "website": "https://edhi.org/",
+      "phone": "Emergency: 115; +92 (21) 32413232",
+      "email": "info@edhi.org",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/node/5142802061",
+      "lastVerified": "2026-10-31",
+      "osmId": "node/5142802061"
+    },
+    "jinnah-international-airport": {
+      "isNew": false,
+      "lat": 24.9058248,
+      "lng": 67.1614489,
+      "coordsVerified": true,
+      "address": "Jinnah International Airport, Begum Khursheed Road, Malir Small Industrial Area, Malir Town, Karachi Division, Sindh, Pakistan",
+      "hours": null,
+      "website": "https://karachiairport.com.pk/",
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/435769885",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/435769885"
+    },
+    "jinnah-postgraduate-medical-centre": {
+      "isNew": false,
+      "lat": 24.8517423,
+      "lng": 67.0471346,
+      "coordsVerified": true,
+      "address": "Rafiqui Shaheed Road, Bizerta Lines, Cantonment, Saddar Town, Karachi",
+      "hours": null,
+      "website": "https://www.jpmc.edu.pk/",
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/4785947197",
+      "lastVerified": "2026-10-31",
+      "osmId": "node/4785947197"
+    },
+    "karachi-circular-railway": {
+      "isNew": false,
+      "lat": 24.9130278,
+      "lng": 67.0869993,
+      "coordsVerified": true,
+      "address": "Nipa Station Karachi Circular Railway, Gulshan-e-Iqbal Block 13C, Gulshan-e-Iqbal Town, Karachi, Sindh 74300, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/4762593144",
+      "lastVerified": "2026-10-31",
+      "osmId": "node/4762593144"
+    },
+    "karachi-grammar-school": {
+      "isNew": false,
+      "address": "Plot ST-20, Khayaban-e-Saadi, Clifton Block 5, Karachi, Sindh 75600, Pakistan",
+      "hours": null,
+      "website": "https://www.kgs.edu.pk/",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "sourceUrl": "https://www.kgs.edu.pk/"
+    },
+    "karachi-metropolitan-corporation": {
+      "isNew": false,
+      "lat": 24.8555988,
+      "lng": 67.0078283,
+      "coordsVerified": true,
+      "address": "KMC Head Office, 1st Floor, M.A. Jinnah Road, Karachi",
+      "hours": [
+        {
+          "day": "Monday – Friday",
+          "open": "09:00 – 17:00"
+        },
+        {
+          "day": "Saturday – Sunday",
+          "open": "Closed"
+        }
+      ],
+      "website": "https://kmc.gos.pk/",
+      "phone": "+92 21 992 1511-7",
+      "email": "mayor@kmc.gos.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/526478282",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/526478282"
+    },
+    "lucky-one-mall": {
+      "isNew": false,
+      "lat": 24.9322928,
+      "lng": 67.0870913,
+      "coordsVerified": true,
+      "address": "LuckyOne Mall, Opp. UBL Sports Complex, Main Rashid Minhas Road, Karachi",
+      "hours": [
+        {
+          "day": "Monday – Thursday",
+          "open": "11:00 AM - 11:00 PM (retail outlets)"
+        },
+        {
+          "day": "Friday",
+          "open": "03:00 PM - 12:00 AM (retail outlets)"
+        },
+        {
+          "day": "Saturday",
+          "open": "11:00 AM - 12:00 AM (retail outlets)"
+        },
+        {
+          "day": "Sunday",
+          "open": "11:00 AM - 11:00 PM (retail outlets)"
+        }
+      ],
+      "website": "https://luckyone.com.pk/",
+      "phone": "(+92) 21 36321311",
+      "email": "info@luckyone.com.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/549120622",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/549120622",
+      "entryConditions": "Official Mall Timings page: 'Friday prayer break will be observed from 12:30 PM to 02:00 PM' and 'Placement of orders at Food Outlets will be stopped one hour before the mall closure'; information desks are situated on the Ground and Lower Ground floors."
+    },
+    "masjid-e-tooba": {
+      "isNew": false,
+      "lat": 24.8432788,
+      "lng": 67.0541319,
+      "coordsVerified": true,
+      "address": "Tooba Masjid, Old Korangi Road, Saddar Town, Karachi, Sindh 75220, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/12134251807",
+      "lastVerified": "2026-10-31",
+      "osmId": "node/12134251807"
+    },
+    "national-stadium-karachi": {
+      "isNew": false,
+      "lat": 24.8952212,
+      "lng": 67.0816725,
+      "coordsVerified": true,
+      "address": "National Stadium Karachi, Sir Shah Muhammad Suleman Road, Gulshan-e-Iqbal Block 17, Essa Nagri, Gulshan-e-Iqbal Town, Karachi, Sindh 74300, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/1178255967",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/1178255967"
+    },
+    "ned-university": {
+      "isNew": false,
+      "lat": 24.932737,
+      "lng": 67.1102796,
+      "coordsVerified": true,
+      "address": "Main Campus: NED University of Engineering & Technology, University Road, Karachi 75270, Pakistan",
+      "hours": null,
+      "website": "https://www.neduet.edu.pk/",
+      "phone": "(92-21) 99261261-8",
+      "email": "registrar@neduet.edu.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/376064879",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/376064879"
+    },
+    "rescue-1122-karachi": {
+      "isNew": false,
+      "hours": null,
+      "website": "https://rescue1122.org/",
+      "phone": "1122",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "sourceUrl": "https://rescue1122.org/"
+    },
+    "university-of-karachi": {
+      "isNew": false,
+      "lat": 24.9437348,
+      "lng": 67.1206228,
+      "coordsVerified": true,
+      "address": "University Road, Karachi-75270",
+      "hours": null,
+      "website": "https://uok.edu.pk/",
+      "email": "registrar@uok.edu.pk",
+      "status": "verified",
+      "sourceUrl": "https://www.openstreetmap.org/way/687471093",
+      "lastVerified": "2026-10-31",
+      "osmId": "way/687471093"
     }
   }
 }

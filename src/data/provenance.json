@@ -4,7 +4,8 @@
     "docs/verification/batch-c-coastline.json",
     "docs/verification/batch-d-attractions.json",
     "docs/verification/batch-b-museums.json",
-    "docs/verification/batch-f-practical.json"
+    "docs/verification/batch-f-practical.json",
+    "docs/verification/batch-g-institutions.json"
   ],
   "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
   "records": {
@@ -1551,6 +1552,1033 @@
           "batch": "batch-b-museums"
         }
       ]
+    },
+    "aga-khan-university-hospital": {
+      "researchName": "Aga Khan University Hospital",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Aga+Khan+University+Hospital+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://hospitals.aku.edu/pakistan/contact-us",
+          "supports": [
+            "address",
+            "contact",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Aga_Khan_University_Hospital,_Karachi",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Allamah_Nasir_Hunzai_Pictured_In_Front_Of_The_Aga_Khan_University_Hospital,_Karachi.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Pin is the OSM relation named 'Aga Khan University Hospital' (amenity=hospital, addr:street Stadium Road); Nominatim also returns it as the top hit for Karachi. Official contact page states Stadium Road, P.O. Box 3500, Karachi 74800 with UAN +92 21 111-911-911 and akuh.information@aku.edu, so confidence is verified. No opening hours or tariff are published on the fetched official pages (a hospital is not 'timed' like a tourist venue), so hours/ticketPrices are null. Common domains www.akuh.org.pk / www.akuh.edu.pk do not resolve (NXDOMAIN on public resolvers) - the live official domain is hospitals.aku.edu. The Commons photo is a 2000 image of a person standing in front of the hospital (filename and file-page caption name the hospital explicitly); the hospital building is shown as the subject's setting - a people-photograph, not a clean building view.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "dolmen-mall-clifton": {
+      "researchName": "Dolmen Mall Clifton",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://overpass-api.de/api/interpreter (way[name~\"Dolmen\"] in Karachi bbox via maps.mail.ru mirror; result: way 479353842, shop=mall)",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Dolmen+Mall+Clifton+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Dolmen_Malls",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://www.dolmengroup.com/contact/",
+          "supports": [],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img56_Dolmen_Mall_Clifton.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Pin/address from OSM: building way 479353842 'Dolmen Mall' (shop=mall, building:levels=7, addr:street 'Abdul Sattar Edhi Road'); the mall's own way carries no addr:place/postcode, so the fuller string (Clifton Block 4, 75600) comes from Nominatim address components of tenant nodes inside the same building. The dedicated mall site https://dolmenmalls.com/ returned HTTP 500 on three attempts 2026-10-31 (WordPress error page) and the earlier domain dolmenmall.com now JS-redirects to a lander, so no official timings/contact page could be read; website is therefore left null. The corporate site dolmengroup.com works and lists 'Dolmen Mall Clifton' among group properties and gives Head Office +92 (21) 35296062 / info@dolmengroup.com at 17th Floor The Harbour Front, Dolmen City - a group head-office switchboard, not the mall's venue line, so contact is omitted per rules (and its exclusion noted here). Facebook/Instagram posts appear in search results claiming mall timings but are login-walled and not used. Photo filename and file-page caption name Dolmen Mall Clifton explicitly.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "edhi-foundation-karachi": {
+      "researchName": "Edhi Foundation Ambulance Service",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Edhi+Foundation+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://edhi.org/",
+          "supports": [
+            "website",
+            "contact",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Edhi_Foundation",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Edhi_Foundation_Pakistan.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "OSM node 5142802061 is tagged emergency (ambulance) with name 'Edhi Foundation' in Kharadar, consistent with the catalogue's head-office description (Sarafa Bazar/Boulton Market area is immediately adjacent; OSM street tags differ between the node's addr:street 'Machi Miani Road' and the Nominatim display road 'Nakhuda Road' - both kept in the address string). edhi.org states 'Emergency Call 115' in its header/navigation and prints +92(21) 32413232 and info@edhi.org; because a venue contact printed on the operator's own site was supplied, confidence is verified. 'Hours' are not published as a timetable - the 24-hour nature comes from Wikipedia's description (recorded in description, not invented into hours). Commons photo shows an Edhi Foundation ambulance in Karachi, March 2015 (per file-page description); note its PD status is US-only (US-government VOA work), so the licence wording is quoted exactly. Missing per-day timetable, tickets, entry rules, facilities, accessibility, family suitability - none on the fetched official page.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "jinnah-international-airport": {
+      "researchName": "Jinnah International Airport",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Jinnah+International+Airport+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/435769885/full.json",
+          "supports": [
+            "osmId",
+            "website",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jinnah_International_Airport",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Karachi_Jinnah_Airport.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The official airport site karachiairport.com.pk (domain taken from the airport's own OSM website tag; page <title> is 'Jinnah International Airport, Karachi') is a client-side-rendered single-page app: the served HTML is a ~2 KB shell and the content is loaded by JavaScript; I parsed its main JS bundle (~800 KB) and found no extractable phone/hours/address strings (only map data), so no official contact or hours could be verified and those fields are null. The parent bodies' sites are also SPAs or notice walls (caapakistan.com.pk serves a static 'Important Notice' page linking pcaa.gov.pk and paa.gov.pk, both SPA shells). Wikipedia is used for descriptive facts only. Photo shows the Jinnah Terminal per its file-page description.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "jinnah-postgraduate-medical-centre": {
+      "researchName": "Jinnah Postgraduate Medical Centre (JPMC)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Jinnah+Hospital+Karachi&format=jsonv2&addressdetails=1&limit=6&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jinnah_Postgraduate_Medical_Centre",
+          "supports": [
+            "description",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://www.jpmc.edu.pk/",
+          "supports": [
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "OSM node 4785947197 (amenity=hospital, name:en 'Jinnah Post Graduate Medical Centre') is the correct facility; Nominatim returns it top for 'Jinnah Hospital Karachi'. The official site www.jpmc.edu.pk exists (it is the domain listed for the hospital in search results, page title 'Jinnah Postgraduate Medical Centre JPMC Karachi 75510') but every fetch from this machine returned only a 'Bot Verification' reCAPTCHA wall (fetched 2026-10-31), so no page content - including the address 'Karachi-75510' visible in its search snippet - could be read directly; consequently hours, fees and contacts are null and the website URL is published with this caveat. Guessed alternate domains (jpmc.gov.pk, thejmmc.gov.pk) are NXDOMAIN on public resolvers. Photo shows the JPMC campus in 2011 per its file page (USAID work, PD in US only).",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "karachi-circular-railway": {
+      "researchName": "Karachi Circular Railway (KCR)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Karachi+Circular+Railway&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Karachi_Circular_Railway",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Karachi_Circular_Railway.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "IMPORTANT PIN CAVEAT: the KCR is a rail service/route, and no OSM element maps the route or the service as a whole (Overpass relation name~'Circular' and 'KCR' queries in the Karachi bbox return nothing). The pin used is the OSM node named 'Nipa Station Karachi Circular Railway' - a KCR-named station element that is itself tagged amenity=bus_station (the Nipa station building, whose rail use is superseded/repurposed per OSM tagging) - so the coordinates identify a KCR station in Gulshan-e-Iqbal, NOT the corridor. The catalogue's address 'KCR Road, Saddar to Landhi' could not be confirmed against any OSM element. No official KCR website was found (no *.gov.pk service site located from here; Pakistan Railways site not specific to KCR), so hours/fares/contact are null; Wikipedia explicitly notes the revived service's status instead (kept in description). Photo shows a KCR train at Karachi City Railway Station per its file-page caption.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "karachi-grammar-school": {
+      "researchName": "Karachi Grammar School",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "address",
+        "sourceUrl",
+        "lastVerified",
+        "website"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Karachi+Grammar+School&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://www.kgs.edu.pk/",
+          "supports": [
+            "website",
+            "address",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Karachi_Grammar_School",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability",
+        "photo"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "PIN/ADDRESS DISCREPANCY flagged: the only OSM element named 'Karachi Grammar School' (node 5330850896, amenity=school) sits in North Nazimabad (Buffer Zone Sector 16-A), while the official website footer states the school address as Plot ST-20, Khayaban-e-Saadi, Clifton Block 5, Karachi 75600, and the English Wikipedia page carries yet another coordinate (24.8648, 67.0284 - the historic Saddar-era location per the article's map). Wikipedia's 'three sites' statement suggests multiple campuses, so which campus a visitor means is genuinely ambiguous; the OSM pin is published with its own road, and the official Clifton address is kept verbatim, with the mismatch recorded here rather than papered over. No phone or email appears on the fetched official pages (footer carries address only), so contact is null and confidence stays partially-verified despite the official site resolving. Commons has no file that names Karachi Grammar School ('File:KGS JS.jpg' is ambiguous and not verifiably the school - photo null). Note: the catalogue's own address ('St. Thomas's Road, Clifton Block 1') matches none of the sources checked and should not be relied on.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "karachi-metropolitan-corporation": {
+      "researchName": "Karachi Metropolitan Corporation (KMC)",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/reverse?lat=24.85538889&lon=67.00772222&format=jsonv2&zoom=19&addressdetails=1&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://kmc.gos.pk/",
+          "supports": [
+            "website",
+            "address",
+            "hours",
+            "contact"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Karachi_Metropolitan_Corporation",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Karachi_Metropolitan_Corporation_Building",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Karachi_Metropolitan_Corporation_building.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "ticketPrices",
+        "entryConditions",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Here the venue IS the KMC head office, so unlike the Frere Hall / Empress Market records in batch-f, publishing the site's own head-office hours ('Opening Hours: Mon-Fri 9:00am-5:00pm', printed in the kmc.gos.pk footer) and phone/email is correct attribution rather than misattribution; Saturday/Sunday are left with open:null because the footer states only Mon-Fri. Pin: Nominatim zoom-19 reverse geocode at the Wikipedia building coordinates (24.8554, 67.0077, taken from the 'Karachi Metropolitan Corporation Building' article only to locate the search, not published) lands exactly on OSM way 526478282, whose OSM name is misspelled 'Karachi Muncipal Corporation Building' - kept verbatim in the address string. The kmc.gos.pk homepage carries a 'We're currently working on updating our website' placeholder banner. Commons file caption reads 'Karachi Municipal Corporation (KMC) Head Office' and the file page flags it as a protected Pakistani monument (SD-P-16).",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "lucky-one-mall": {
+      "researchName": "Lucky One Mall",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "hours",
+        "entryConditions",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Lucky+One+Mall+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://luckyone.com.pk/mall-timings/",
+          "supports": [
+            "hours",
+            "entryConditions",
+            "contact",
+            "address",
+            "familySuitability",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://luckyone.com.pk/contact-luckyone/",
+          "supports": [
+            "contact"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/LuckyOne_Mall",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Lucky_One_Mall.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "ticketPrices",
+        "facilities",
+        "accessibility"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "The official Mall Timings page gives different hours per section: retail outlets Sun-Thu 11:00-23:00, Fri 15:00-24:00, Sat 11:00-24:00 (used for the per-day hours array, marked '(retail outlets)'); Food Court Sun-Thu 12:00-24:00 and Fri-Sat 12:00-01:00; Onederland Mon-Thu 12:00-23:00, Fri 14:00-24:00, Sat 11:00-24:00, Sun 11:00-23:00; Carrefour Sun-Thu 10:00-24:00, Fri-Sat 10:00-01:00; TriFit Mon-Sat 06:00-23:00, Sun 10:00-19:00 - the non-retail sections are summarised here rather than flattened into the hours array. Phone (+92) 21 36321311 and info@luckyone.com.pk are printed on the timings page itself ('NEED INFORMATION? CALL: (+92) 21 36321311') as the mall's own line (the contact page also lists a corporate landline (+92) 21 3632 2586 with office hours 'Monday To Friday - 10AM To 07PM' - the corporate office line, deliberately not used as the venue contact). Entry is free to walk in but no official page states a ticket price, so ticketPrices is null. Commons photo caption: 'Outside view at night' of Lucky One Mall (May 2020).",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "masjid-e-tooba": {
+      "researchName": "Masjid-e-Tooba (Gol Mahal Masjid)",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=Tooba+Masjid+Karachi&format=jsonv2&addressdetails=1&limit=4&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://overpass-api.de/api/interpreter (node[name~\"Tooba\"] in Karachi bbox via maps.mail.ru mirror; result: node 12134251807)",
+          "supports": [
+            "osmId"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Masjid-e-Tooba",
+          "supports": [
+            "description",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Node 12134251807 (amenity=place_of_worship, religion=muslim, name 'Tooba Masjid') sits at 24.8433, 67.0541, which matches the English Wikipedia article's coordinate (24.8430, 67.0544) to within about 50 m, confirming it is THIS mosque; a second, different 'Jamia Masjid Tooba' (node 4764688490) exists near Lyari and was excluded. The catalogue's address ('DHA Phase 5, near the sea face') matches no checked source and should be replaced by the OSM/Wikipedia wording above; note OSM/Nominatim place it on Old Korangi Road under Saddar Town administration while Wikipedia says DHA Phase II - the boundary line runs through the area, both strings are reproduced verbatim. No managing body publishes hours, fees or visitor rules on any fetched official page (a working mosque opens for prayers, not visiting hours), so those fields are null; entryConditions left null because the only sources are descriptive (Wikipedia), not operator rules. Photo is from A.Savin's 2020 Karachi set; its file-page caption names the Tooba Mosque explicitly.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "national-stadium-karachi": {
+      "researchName": "National Stadium Karachi",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=National+Stadium+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/National_Stadium,_Karachi",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://www.wikidata.org/wiki/Q3007369",
+          "supports": [
+            "osmId",
+            "lat",
+            "lng"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:National_Stadium_Karachi.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "website",
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "contact",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "OSM AMBIGUITY: three Karachi elements claim the name - way 1178255967 (leisure=stadium, centre 24.8952, 67.0817, Essa Nagri Block 17), node 5091305056 (leisure=stadium, 'National Stadium, Karachi', Stadium Road, KDA Scheme 1 Extension, 24.8928, 67.0829) and way 480397211 (leisure=pitch, 24.8961, 67.0814). The Wikidata coordinate for 'National Stadium, Karachi' (Q3007369) is 24.8961, 67.0814, closest to the pitch/stadium polygon in Block 17, so way 1178255967 is published as the pin with the caveat that the Stadium-Road node lies ~350 m away (the old ground footprint vs the redeveloped complex may explain the split - unverified). No official venue page (PCB or Sindh Sports Board) publishing standing hours or a tariff was found; the PCB's own press release for the 28 April 2025 qualifier (fetched in search listing only, pcb.com.pk) lists a match-day ticket of PKR 500 for all enclosures - event-specific, so it is recorded here as PRESS-style secondary context and kept OUT of ticketPrices per rules. Entry conditions (bag checks, gates opening match-day only) are unverified and omitted. Photo filename and caption name the National Stadium, Karachi (September 2021).",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "ned-university": {
+      "researchName": "NED University of Engineering & Technology",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=NED+University+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://www.neduet.edu.pk/Contact-Us",
+          "supports": [
+            "website",
+            "address",
+            "contact",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/NED_University_of_Engineering_and_Technology",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:NED_University_Karachi.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Pin: OSM has no single university-boundary element for the main campus; the named elements are individual campus buildings - way 376064879 'NED University (Admin Block)' (24.9327, 67.1103) and way 376064880 'NED University (Library)' on NED Circular Road, Gulshan-e-Iqbal, which sit at the coordinate given by Wikipedia's article (24.9318, 67.1126), i.e. the Main Campus; a separate 'NED University (City Campus)' building way (789869567, Dr. Ziauddin Road, Civil Lines) matches the site's City Campus address and was NOT used for the pin. The catalogue's address ('University Road, near Manghopir, Saddar') is a garbled mix and was replaced by the official Contact-Us strings. Contact (main-campus phone range and registrar@neduet.edu.pk) is printed on the official site, hence verified - but it is the registrar's office line, not a public visitor line, and the university publishes no visiting hours, so hours stays null. Earlier guesses nedu.edu.pk / ned.edu.pk are NXDOMAIN on public resolvers; the live official domain is www.neduet.edu.pk.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "rescue-1122-karachi": {
+      "researchName": "Rescue 1122",
+      "status": "needs-review",
+      "lastVerified": "2026-10-31",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "sourceUrl",
+        "lastVerified",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://overpass-api.de/api/interpreter (name~\"1122\" and fire_station/ambulance queries in Karachi bbox via maps.mail.ru mirror; result: node 12227788485)",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://rescue1122.org/",
+          "supports": [
+            "website",
+            "contact",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Rescue_1122",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:RESCUE_1122_okara_-_panoramio.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "PIN CAVEAT: there is no OSM element for 'Rescue 1122 Sindh/Karachi headquarters' (Overpass searches for 'Rescue 1122', '1122', amenity=fire_station and emergency=ambulance_station across the Karachi bbox returned exactly one Karachi 1122 element); node 12227788485 is a single named station ('SIEHS-1122 North Nazimabad Station (7)') and the coordinates describe that station, not the service area. The official site rescue1122.org is a JavaScript app; its served HTML carries the 1122 emergency number in title/meta text ('Rescue1122 Emergency Services'), which is the only contact value published - no email and no Karachi line printed, so email is null and confidence stays partially-verified (a hotline, not a venue contact/timetable). The catalogue's 'Stations across all seven districts' was not verifiable from official pages. Commons photo explicitly names 'RESCUE 1122' but shows the Okara (Punjab) station, not a Karachi one - kept because the record subject is the Rescue 1122 service itself, with this caveat published rather than implying a Karachi scene.",
+          "batch": "batch-g-institutions"
+        }
+      ]
+    },
+    "university-of-karachi": {
+      "researchName": "University of Karachi",
+      "status": "verified",
+      "lastVerified": "2026-10-31",
+      "confidence": "verified",
+      "batches": [
+        "batch-g-institutions"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified",
+        "website",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?q=University+of+Karachi&format=jsonv2&addressdetails=1&limit=5&accept-language=en",
+          "supports": [
+            "lat",
+            "lng",
+            "osmId",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://uok.edu.pk/",
+          "supports": [
+            "website",
+            "address",
+            "contact",
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/University_of_Karachi",
+          "supports": [
+            "description"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Silver_Jubilee_Gate_Karachi_University.jpg",
+          "supports": [
+            "photo"
+          ],
+          "note": "",
+          "batch": "batch-g-institutions"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "ticketPrices",
+        "entryConditions",
+        "phone",
+        "facilities",
+        "accessibility",
+        "familySuitability"
+      ],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Pin is the large OSM campus way (amenity=university, name:en 'University of Karachi'), centre 24.9437, 67.1206, matching Wikipedia's coordinate (~24.94, 67.12). The official homepage footer/contact block prints 'Address: University Road, Karachi-75270' and 'Email: registrar@uok.edu.pk' - a registrar office email rather than a public visitor contact, and no phone number or visiting hours appear in the fetchable HTML (the site is partly JS-rendered), so phone is null and the record is marked verified only on the strength of the printed venue email; if the generator treats registrar email as insufficient, this is a candidate for downgrade to partially-verified. Catalogue address 'Stadium Road, Gulshan-e-Iqbal' conflicts with the official 'University Road' and was replaced. Commons photo names the campus's Silver Jubilee Gate explicitly (November 2022).",
+          "batch": "batch-g-institutions"
+        }
+      ]
     }
   },
   "exclusions": [
@@ -1558,6 +2586,16 @@
       "slug": "port-grand",
       "field": "entryFees",
       "reason": "The entry price circulating for this place came from the operator’s own social posts, where the amount contradicted its own label (“Rs. 1,000 (Rs. 500 redeemable)”). No tariff page could be read, so no price is published."
+    },
+    {
+      "slug": "rescue-1122-karachi",
+      "field": "coordinates",
+      "reason": "OpenStreetMap maps one Rescue station (SIEHS-1122 North Nazimabad Station 7), not the service. Pinning the city-wide Rescue 1122 record to that one station, or printing its street as the service’s address, would claim a verified headquarters that no source states — so the record keeps only the 1122 number, which is the thing the reader actually needs."
+    },
+    {
+      "slug": "karachi-grammar-school",
+      "field": "coordinates",
+      "reason": "The only Karachi node OpenStreetMap names “Karachi Grammar School” sits in North Nazimabad, while the school’s own published address is Clifton Block 5 (the campus has three sites). The mismatch is recorded in the research notes; until one of the two is shown to be the senior school, no verified pin is published for it."
     },
     {
       "slug": "clifton-beach",
