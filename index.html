@@ -9,6 +9,53 @@
       content="Karachify is a city-discovery platform for Karachi: places, attractions, restaurants, hotels, events, shopping, services and an interactive map."
     />
     <meta name="theme-color" content="#102A43" />
+    <link rel="canonical" href="https://mbilalecom4.github.io/karachify/" />
+    <!-- One address, hash-routed pages: social cards describe the directory itself,
+         because a per-place card would need that place's tags in this static file. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Karachify" />
+    <meta property="og:title" content="Karachify — Discover Everything Karachi" />
+    <meta
+      property="og:description"
+      content="A city directory for Karachi with per-field sources: every address, opening hour, price and phone number is either linked to the page it was read from or labelled unverified — never guessed."
+    />
+    <meta property="og:url" content="https://mbilalecom4.github.io/karachify/" />
+    <meta property="og:locale" content="en_PK" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Karachify — Discover Everything Karachi" />
+    <meta
+      name="twitter:description"
+      content="A city directory for Karachi with per-field sources: every address, opening hour, price and phone number is either linked to the page it was read from or labelled unverified — never guessed."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://mbilalecom4.github.io/karachify/#website",
+            "name": "Karachify",
+            "alternateName": "Discover Everything Karachi",
+            "url": "https://mbilalecom4.github.io/karachify/",
+            "description": "A city directory for Karachi: places, attractions, restaurants, hotels, shopping and services, each field linked to the source it came from or marked as unverified.",
+            "inLanguage": "en",
+            "publisher": { "@type": "Organization", "name": "Karachify" }
+          },
+          {
+            "@type": "CollectionPage",
+            "@id": "https://mbilalecom4.github.io/karachify/#directory",
+            "name": "Karachi place directory",
+            "url": "https://mbilalecom4.github.io/karachify/",
+            "isPartOf": { "@id": "https://mbilalecom4.github.io/karachify/#website" },
+            "about": {
+              "@type": "City",
+              "name": "Karachi",
+              "containedInPlace": { "@type": "Country", "name": "Pakistan" }
+            }
+          }
+        ]
+      }
+    </script>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23102A43'/%3E%3Cpath d='M8 22V10h3v5l5-5h3.6l-5.2 5.4L22.6 22H18.6l-4.4-4.8L11 19.6V22z' fill='%2313A89E'/%3E%3C/svg%3E"

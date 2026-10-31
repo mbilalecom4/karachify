@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Hash routes (#/place/...) are fragments of one URL, so the sitemap lists the
+# one address the whole app is served from rather than a page that does not exist.
+Sitemap: https://mbilalecom4.github.io/karachify/sitemap.xml
