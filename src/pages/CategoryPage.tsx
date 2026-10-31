@@ -86,7 +86,12 @@ export default function CategoryPage() {
         <ListingExplorer
           items={items}
           defaultAreaId={areas.some((a) => a.id === areaParam) ? areaParam : undefined}
-          emptyTitle={`No ${category.name.toLowerCase()} match those filters`}
+          emptyTitle={items.length === 0 ? `Nothing is listed under ${category.name} yet` : `No ${category.name.toLowerCase()} match those filters`}
+          emptyBody={
+            items.length === 0
+              ? 'This category held placeholder records that stood in for a business type rather than naming a checkable one, and they were removed instead of republished. Something appears here when an owner submits it or when Karachify can source it.'
+              : undefined
+          }
           pageSize={db.settings.listingsPerPage}
         />
       </section>

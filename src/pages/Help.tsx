@@ -84,12 +84,17 @@ const FAQS: Faq[] = [
   {
     group: 'Data & accuracy',
     q: 'Where do the photographs come from?',
-    a: 'Wikimedia Commons and Wikipedia articles, hotlinked rather than copied, each checked for subject and Karachi locality. Unresolved subjects get a designed placeholder naming the real place. The full credit list is on the image credits page.',
+    a: 'Wikimedia Commons and Wikipedia articles, hotlinked rather than copied, each checked for subject and Karachi locality. Unresolved subjects get a designed placeholder naming the record instead of an unrelated photograph. The full credit list is on the image credits page.',
   },
   {
     group: 'Data & accuracy',
     q: 'What happened to the ratings?',
     a: 'Deleted. Every record used to carry a generated star rating and review count; none of them came from a real visitor, so they were removed rather than relabelled. Cards now say “Rating not verified”, and a review you write here stays in your own browser.',
+  },
+  {
+    group: 'Data & accuracy',
+    q: 'Why did some listings disappear from the directory?',
+    a: 'Forty-one records were removed because their own data entries described them as placeholders — generic slots written to demonstrate a clinic, salon, agency or hotel layout, with a name that reads like a business but no source that shows one exists. A directory that sends you to a shop which was never there is worse than a shorter directory, so they were deleted rather than badged. Listings for real places remain.',
   },
   {
     group: 'Data & accuracy',

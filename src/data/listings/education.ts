@@ -200,30 +200,4 @@ export const education = [
     facilities: ['Cambridge', 'Labs', 'Auditorium', 'Swimming', 'Transport'],
     tags: ['Chain', 'Cambridge', 'Private'],
   }),
-  makeListing({
-    slug: 'national-college-of-business-administration',
-    categoryId: SC,
-    areaId: 'saddar',
-    name: 'Affiliated Intermediate College, Saddar',
-    description:
-      'Demo record for the intermediate-college type that Karachi students actually enrol in: FBISE and BISE boards, pre-medical, pre-engineering and commerce groups.',
-    wiki: ['Intermediate of Commerce', 'College'],
-    address: 'Shahrah-e-Quaid-e-Azam, Saddar',
-    facilities: ['Pre-medical', 'Pre-engineering', 'Commerce', 'Computer science'],
-    tags: ['Intermediate', 'Board', 'Demo record'],
-    status: 'needs-review',
-  }),
-  makeListing({
-    slug: 'vocational-training-institute',
-    categoryId: SC,
-    areaId: 'orangi-town',
-    name: 'Government Vocational Training Institute',
-    description:
-      'Demo record for the technical-training listing: short courses in electrical, refrigeration, tailoring, mobile repair and the NAVTEC certification route.',
-    wiki: ['Vocational education', 'Technical institute'],
-    address: 'Sector 11, Orangi Town',
-    facilities: ['Short courses', 'Workshops', 'Certification', 'Evening batches'],
-    tags: ['Skills', 'Vocational', 'Demo record'],
-    status: 'needs-review',
-  }),
 ];

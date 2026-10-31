@@ -12,12 +12,13 @@ export default function About() {
   const areas = selectAreas(db);
   const categories = selectCategories(db);
   const verifiedCount = listings.filter((l) => l.status === 'verified').length;
+  const sourcedCount = listings.filter((l) => l.coordsVerified).length;
 
   const facts = [
     { icon: Database, label: 'Directory records', value: String(listings.length) },
     { icon: Layers, label: 'Categories', value: String(categories.length) },
     { icon: Eye, label: 'Areas mapped', value: String(areas.length) },
-    { icon: Heart, label: 'Source-checked records', value: String(verifiedCount) },
+    { icon: Heart, label: 'Sourced records', value: String(sourcedCount) },
   ];
 
   return (
@@ -60,17 +61,25 @@ export default function About() {
 
             <h2>What is honest in this build</h2>
             <p>
-              {verifiedCount} records are source-checked: the address, opening hours, admission, contact numbers and map
-              pin on those pages were read from the operator’s own website, a museum’s published tariff or
+              {verifiedCount} records are fully source-checked: the address, opening hours, admission, contact numbers and
+              map pin on those pages were read from the operator’s own website, a museum’s published tariff or
               OpenStreetMap, and each page links the source together with the date it was checked. Those pages carry a
               <span className="badge-verified mx-1 align-middle">Verified</span> badge.
             </p>
             <p>
-              Everything else is a real Karachi place whose details nobody at Karachify has checked yet. Those records
-              carry no star rating, no review count, no invented price band and no survey-grade pin — the page says
-              “Rating not verified”, “Pricing to confirm” or “Approximate position” instead of offering a plausible
-              guess. The fabricated ratings, demo phone numbers and sample opening hours that shipped with the earlier
-              build were deleted, not relabelled.
+              A further {sourcedCount - verifiedCount} destinations sit between the two states: their position is the
+              place’s own OpenStreetMap feature and their address was copied from that record, dated, but their hours,
+              admission and contacts have not been confirmed against the operator. Those pages show the sourced fields
+              with their date and leave the unchecked ones blank.
+            </p>
+            <p>
+              Everything else is a record nobody at Karachify has checked yet. Those pages carry no star rating, no review
+              count, no invented price band and no survey-grade pin — they say “Rating not verified”, “Pricing to confirm”
+              or “Approximate position” instead of offering a plausible guess, and Karachify does not claim the business
+              still trades under the name shown. Records whose own data files described them as placeholder entries —
+              generic clinics, salons, agencies and hotels written to demonstrate a layout — were deleted rather than
+              relabelled, along with the fabricated ratings, demo phone numbers and sample opening hours that shipped in
+              the earlier build.
             </p>
             <p>
               The event board is empty for the same reason. Karachify has not found a dated, attributable source for a

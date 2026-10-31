@@ -680,8 +680,8 @@ function AddReview({ listingId, name }: { listingId: string; name: string }) {
         toast.push('Review added — it stays in this browser and is never published');
       }}
     >
-      <p className="font-display text-[15px] font-bold text-navy-800">Add your own sample review</p>
-      <p className="mt-1 text-[13px] text-navy-500">Stored in your browser only — nothing is published or sent.</p>
+      <p className="font-display text-[15px] font-bold text-navy-800">Write a review</p>
+      <p className="mt-1 text-[13px] text-navy-500">Stored in your browser only — nothing is published, sent, or counted into a rating.</p>
       <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_140px]">
         <Field label="Your name" required>
           <TextInput value={author} onChange={(e) => setAuthor(e.target.value)} placeholder="e.g. Ayesha K." />
@@ -700,7 +700,7 @@ function AddReview({ listingId, name }: { listingId: string; name: string }) {
         <TextArea value={text} onChange={(e) => setText(e.target.value)} placeholder={`What should someone know about ${name}?`} />
       </Field>
       <button type="submit" className="btn-primary btn-sm mt-3">
-        Save sample review
+        Save review on this device
       </button>
     </form>
   );

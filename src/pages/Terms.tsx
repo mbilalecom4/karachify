@@ -26,16 +26,18 @@ export default function Terms() {
           <p>
             A page badged <span className="badge-verified mx-0.5 align-middle">Verified</span> states the source it was
             built from and the date it was checked. A page badged
-            <span className="badge-demo mx-0.5 align-middle">Not verified yet</span> is a real Karachi place whose details
-            have not been checked — those records carry no star rating, no review count and no invented price band, and
-            anything the source did not publish is left blank rather than guessed. Do not republish either kind as proof
-            of a business’s current trading status; confirm with the operator before you travel.
+            <span className="badge-demo mx-0.5 align-middle">Not verified yet</span> has not been confirmed against a
+            source — those records carry no star rating, no review count and no invented price band, and anything a source
+            did not publish is left blank rather than guessed. Do not republish either kind as proof of a business’s
+            current trading status; confirm with the operator before you travel.
           </p>
-          <h2>3. Real places mentioned</h2>
+          <h2>3. Records and their names</h2>
           <p>
-            Some records name genuine Karachi landmarks because a city index with invented names would not demonstrate
-            anything. Names and photographs belong to their owners; their presence here does not imply endorsement,
-            partnership or accuracy about their current trading status.
+            Landmark entries name genuine Karachi places because a city index of invented names would tell a visitor
+            nothing. The directory's unverified entries, however, have not been confirmed to exist, to be open, or to
+            still trade under the name shown — Karachify states that on the page rather than implying a check it has not
+            done. Names and photographs belong to their owners; their presence here does not imply endorsement,
+            partnership or accuracy about their current status.
           </p>
           <h2>4. Photographs and third-party licences</h2>
           <p>

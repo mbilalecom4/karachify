@@ -35,19 +35,6 @@ export const stays = [
     featured: true,
   }),
   makeListing({
-    slug: 'chundrigar-business-hotel',
-    categoryId: H,
-    areaId: 'saddar',
-    name: 'Chundrigar Business Hotel',
-    description:
-      'A demo record used to show the brand-hotel layout: room categories, amenities, enquiry flow and the facilities grid. Replace with a verified property before launch.',
-    address: 'I.I. Chundrigar Road, Saddar',
-    facilities: [...hfac, 'Executive lounge', 'Pool'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
-    tags: ['Demo record', 'Business'],
-    status: 'needs-review',
-  }),
-  makeListing({
     slug: 'residency-hotel-dha',
     categoryId: H,
     areaId: 'dha',
@@ -83,7 +70,6 @@ export const stays = [
     wiki: ['Serviced apartment', 'Apartment building'],
     address: 'University Road, Gulshan-e-Iqbal',
     facilities: ['Kitchen', 'Laundry', 'Security', 'Parking', 'Weekly rates'],
-    hours: [{ day: 'Every day', open: 'Office 09:00 – 21:00' }],
     tags: ['Long stay', 'Family', 'Kitchen'],
   }),
   makeListing({
@@ -96,7 +82,6 @@ export const stays = [
     wiki: ['Guest house', 'Colonial architecture Karachi'],
     address: 'Zaibunnisa Street, Saddar',
     facilities: ['Courtyard', 'Attached bath', 'Parking', 'Quiet rooms'],
-    hours: [{ day: 'Every day', open: 'Reception 08:00 – 23:00' }],
     tags: ['Budget', 'Heritage', 'Central'],
   }),
   makeListing({
@@ -111,20 +96,6 @@ export const stays = [
     facilities: ['Beach access', 'Cottages', 'Restaurant', 'Parking', 'Pool'],
     hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
     tags: ['Beach', 'Weekend', 'Family'],
-  }),
-  makeListing({
-    slug: 'corporate-tower-shahrah',
-    categoryId: H,
-    areaId: 'shahrah-e-faisal',
-    name: 'Shahrah-e-Faisal Corporate Hotel',
-    description:
-      'Demo record for the corporate-hotel layout along the ten-lane spine: trading desk, conference rooms and the airport run.',
-    wiki: ['Conference room', 'Hotel exterior'],
-    address: 'Shahrah-e-Faisal, near NED University',
-    facilities: [...hfac, 'Ballroom', 'Executive floors'],
-    hours: [{ day: 'Every day', open: 'Reception 24 hours' }],
-    tags: ['Demo record', 'Business', 'Conferences'],
-    status: 'needs-review',
   }),
   makeListing({
     slug: 'budget-inn-nazimabad',
@@ -149,7 +120,6 @@ export const stays = [
     wiki: ['Wedding venue', 'Banquet hall'],
     address: 'Gulshan-e-Iqbal Block 7',
     facilities: ['Two halls', 'Lawn', 'In-house catering', 'Valet parking', 'Dressing rooms'],
-    hours: [{ day: 'Every day', open: '12:00 – 01:00 (event hours, demo)' }],
     tags: ['Wedding', 'Convention', 'Lawn'],
     featured: true,
   }),

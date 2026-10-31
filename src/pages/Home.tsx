@@ -67,6 +67,7 @@ export default function Home() {
   );
 
   const verifiedCount = useMemo(() => listings.filter((l) => l.status === 'verified').length, [listings]);
+  const sourcedCount = useMemo(() => listings.filter((l) => l.coordsVerified).length, [listings]);
 
   const byCategory = (id: string, n: number, featuredFirst = true) =>
     listings
@@ -148,9 +149,9 @@ export default function Home() {
           <dl className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
             {[
               { k: `${listings.length}`, v: 'Directory records' },
-              { k: `${categories.length}`, v: 'Categories' },
               { k: `${areas.length}`, v: 'Areas covered' },
-              { k: `${verifiedCount}`, v: 'Sources checked' },
+              { k: `${verifiedCount}`, v: 'Fully source-checked' },
+              { k: `${sourcedCount}`, v: 'Sourced map pins' },
             ].map((s) => (
               <div key={s.v} className="rounded-xl border border-white/15 bg-white/10 px-3 py-4 backdrop-blur">
                 <dt className="font-display text-2xl font-extrabold text-white">{s.k}</dt>
@@ -161,16 +162,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --------------------- demo transparency band ---------------------- */}
+      {/* ----------------------- sourcing band ----------------------------- */}
       {db.settings.demoBanner && (
         <div className="border-y border-amber-200 bg-amber-50">
           <div className="shell flex flex-wrap items-center gap-x-3 gap-y-1 py-3 text-[13px] leading-relaxed text-amber-900">
             <Info className="h-4 w-4 shrink-0" />
             <span>
               <strong className="font-bold">How this data is sourced.</strong> {verifiedCount} Karachi destinations carry
-              opening hours, addresses, admission and contacts taken from named sources — each page links the source and
-              the date it was checked. The rest of the directory lists real places that have not been individually
-              verified — they carry no invented price, rating or review, and each page shows what is still unconfirmed.
+              address, opening hours, admission and contacts taken from named sources, each linked with the date it was
+              checked; a further {sourcedCount - verifiedCount} have a sourced OpenStreetMap pin and address but no
+              checked practical details. Everything else in the directory is unconfirmed — this site generates no price,
+              rating, review or opening hour for those records, and each page shows what has not been checked.
               Photographs are licence-checked Karachi images from Wikimedia Commons.
             </span>
             <Link to="/image-credits" className="font-semibold underline underline-offset-2">

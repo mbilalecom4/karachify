@@ -29,6 +29,7 @@ export function Header() {
   const categories = selectCategories(db);
   const listings = selectListings(db);
   const verifiedCount = listings.filter((l) => l.status === 'verified').length;
+  const sourcedCount = listings.filter((l) => l.coordsVerified).length;
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -147,9 +148,11 @@ export function Header() {
         <div className="shell flex h-9 items-center justify-between text-[12.5px]">
           <p className="flex items-center gap-2 text-navy-100">
             <Info className="h-3.5 w-3.5 text-teal-300" />
-            Launch preview · <strong className="font-semibold text-white">{verifiedCount} destinations</strong> are
-            source-checked and dated; every other record lists a real place but carries no invented price, rating or
-            review, and says what has not been checked.
+            Launch preview · <strong className="font-semibold text-white">{sourcedCount} destinations</strong> have a
+            sourced address and OpenStreetMap pin with the date it was checked,{' '}
+            <strong className="font-semibold text-white">{verifiedCount}</strong> also carry operator-published hours,
+            admission and contacts; everything else is unconfirmed and generates no rating, review, price or opening
+            hour.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/list-your-business" className="text-navy-100 hover:text-teal-200">
@@ -355,9 +358,11 @@ export function Header() {
               </Link>
             </div>
             <p className="mt-5 rounded-xl bg-mist px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">
-              Karachify publishes two kinds of record: {verifiedCount} destinations whose hours, address and admission
-              come from a named source with the date it was checked, and the wider directory — real places whose details
-              are not verified yet, so no price, rating or review is invented for them.
+              Karachify publishes three kinds of record: {verifiedCount} destinations whose address, hours, admission and
+              contacts all come from a named source with the date it was checked; {sourcedCount - verifiedCount} more
+              whose location and address are sourced but whose practical details are not; and the rest of the directory,
+              which has not been confirmed against a source at all — so the site invents no price, rating or review for
+              any of it.
             </p>
           </nav>
         </div>

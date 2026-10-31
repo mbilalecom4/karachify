@@ -46,7 +46,7 @@ export function ListingExplorer({
   showArea = true,
   pageSize = 12,
   emptyTitle = 'No listings match these filters',
-  emptyBody = 'Try a different area, clear the search box, or switch category — these are real Karachi records, so a blank page means the filters are too narrow, not that the city has nothing.',
+  emptyBody = 'Try a different area, clear the search box, or switch category — a blank page here means the filters are too narrow, not that the city has nothing.',
 }: {
   items: Listing[];
   /** Restrict the area dropdown to the areas actually present in these items. */
