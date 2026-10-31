@@ -53,6 +53,8 @@ export function Header() {
         { label: 'Explore map', to: '/map' },
       ],
     },
+    { label: '24/7 Open', to: '/open-now' },
+    { label: 'Plan Your Day', to: '/plan' },
     {
       label: 'Places',
       to: cat(byId('tourist-places')?.slug ?? 'tourist-places'),
@@ -99,6 +101,7 @@ export function Header() {
       to: '/about',
       children: [
         { label: 'About Karachify', to: '/about' },
+        { label: 'Our services', to: '/our-services' },
         { label: 'Contact us', to: '/contact' },
         { label: 'Advertise with us', to: '/advertise' },
         { label: 'List your business', to: '/list-your-business' },

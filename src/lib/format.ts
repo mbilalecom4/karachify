@@ -196,3 +196,12 @@ export function isValidEmail(value: string) {
 export function looksLikePhone(value: string) {
   return /^[+\d][\d\s-]{6,}$/.test(value.trim());
 }
+
+/** A published hours row that itself claims round-the-clock availability. */
+export function aroundTheClock(hours?: { day: string; open: string }[]) {
+  return (
+    hours?.find((h) =>
+      /\b24\s*(?:\/\s*7|hours?|h)\b|round[\s-]the[\s-]clock|open\s+all\s+night/i.test(h.open)
+    ) ?? null
+  );
+}

@@ -1,8 +1,14 @@
 import provenanceData from '../data/provenance.json';
 
-type ProvRecord = { published?: string[]; notFound?: string[] } | undefined;
+type Citation = { url: string; supports?: string[]; batch?: string };
+type ProvRecord = { published?: string[]; notFound?: string[]; sources?: Citation[] } | undefined;
 
 const records = (provenanceData as unknown as { records: Record<string, ProvRecord> }).records;
+
+/** The citations whose own "supports" list names this field. */
+export function citationsFor(slug: string, field: string) {
+  return (records[slug]?.sources ?? []).filter((c) => c.supports?.includes(field));
+}
 
 /**
  * True when a citation-backed override actually shipped one of these fields.
