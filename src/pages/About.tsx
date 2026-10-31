@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Camera, Database, Eye, Heart, Layers, Search } from 'lucide-react';
+import { Camera, Database, Eye, Heart, Layers, Search, ShieldCheck } from 'lucide-react';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { resolvedMediaCount } from '../lib/media';
 import { plural } from '../lib/format';
@@ -149,6 +149,9 @@ export default function About() {
                 </Link>
                 <Link to="/map" className="btn-outline w-full">
                   Open the map
+                </Link>
+                <Link to="/sources" className="btn-ghost w-full">
+                  <ShieldCheck className="h-4 w-4" /> Sources &amp; verification
                 </Link>
                 <Link to="/image-credits" className="btn-ghost w-full">
                   <Camera className="h-4 w-4" /> Image credits

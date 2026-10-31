@@ -105,6 +105,7 @@ export function Header() {
         { label: 'List your business', to: '/list-your-business' },
         { label: 'Submit an event', to: '/submit-event' },
         { label: 'Help centre & FAQ', to: '/help' },
+        { label: 'Sources & verification', to: '/sources' },
         { label: 'Image credits', to: '/image-credits' },
         { label: 'Privacy policy', to: '/privacy' },
         { label: 'Terms & conditions', to: '/terms' },
@@ -145,14 +146,19 @@ export function Header() {
   return (
     <>
       <div className="hidden bg-navy-800 text-white lg:block">
-        <div className="shell flex h-9 items-center justify-between text-[12.5px]">
-          <p className="flex items-center gap-2 text-navy-100">
-            <Info className="h-3.5 w-3.5 text-teal-300" />
-            Launch preview · <strong className="font-semibold text-white">{sourcedCount} destinations</strong> have a
-            sourced address and OpenStreetMap pin with the date it was checked,{' '}
-            <strong className="font-semibold text-white">{verifiedCount}</strong> also carry operator-published hours,
-            admission and contacts; everything else is unconfirmed and generates no rating, review, price or opening
-            hour.
+        <div className="shell flex items-center justify-between gap-6 py-1.5 text-[12.5px]">
+          <p className="flex items-start gap-2 text-navy-100">
+            <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-300" />
+            <span>
+              Launch preview · <strong className="font-semibold text-white">{sourcedCount} destinations</strong> have a
+              sourced address and OpenStreetMap pin with the date it was checked,{' '}
+              <strong className="font-semibold text-white">{verifiedCount} of them</strong> also carry operator-published
+              hours, admission and contacts; everything else is unconfirmed and generates no rating, review, price or
+              opening hour.{' '}
+              <Link to="/sources" className="font-semibold text-teal-200 underline underline-offset-2">
+                See every source
+              </Link>
+            </span>
           </p>
           <div className="flex items-center gap-4">
             <Link to="/list-your-business" className="text-navy-100 hover:text-teal-200">

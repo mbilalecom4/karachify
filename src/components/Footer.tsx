@@ -65,6 +65,7 @@ export function Footer() {
               <FooterLink to="/submit-event">Submit an event</FooterLink>
               <FooterLink to="/guides">City guides</FooterLink>
               <FooterLink to="/help">Help centre</FooterLink>
+              <FooterLink to="/sources">Sources & verification</FooterLink>
               <FooterLink to="/image-credits">Image credits & sources</FooterLink>
               <FooterLink to="/privacy">Privacy policy</FooterLink>
               <FooterLink to="/terms">Terms & conditions</FooterLink>

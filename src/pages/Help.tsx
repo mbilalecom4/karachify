@@ -99,7 +99,7 @@ const FAQS: Faq[] = [
   {
     group: 'Data & accuracy',
     q: 'How do I know a verified page is really verified?',
-    a: 'The page itself says so field by field: the sidebar names the source it was read from, the date it was checked and a link to the OpenStreetMap feature the pin came from. The research behind those pages lives in the repository under docs/verification and is generated into the app by a script — nobody types an opening hour or a price into the interface by hand.',
+    a: 'The page itself says so field by field: the sidebar names the source it was read from, the date it was checked and a link to the OpenStreetMap feature the pin came from. Every citation in the build is listed on the Sources & verification page in the footer, with the fields each source was allowed to support. The research behind those pages lives in the repository under docs/verification and is generated into the app by a script — nobody types an opening hour or a price into the interface by hand.',
   },
   {
     group: 'Data & accuracy',

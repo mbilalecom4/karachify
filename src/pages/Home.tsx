@@ -175,6 +175,9 @@ export default function Home() {
               rating, review or opening hour for those records, and each page shows what has not been checked.
               Photographs are licence-checked Karachi images from Wikimedia Commons.
             </span>
+            <Link to="/sources" className="font-semibold underline underline-offset-2">
+              Sources &amp; verification
+            </Link>
             <Link to="/image-credits" className="font-semibold underline underline-offset-2">
               Image credits
             </Link>

@@ -29,6 +29,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Advertise = lazy(() => import('./pages/Advertise'));
 const Help = lazy(() => import('./pages/Help'));
 const ImageCredits = lazy(() => import('./pages/ImageCredits'));
+const Sources = lazy(() => import('./pages/Sources'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -73,6 +74,7 @@ export default function App() {
           <Route path="advertise" element={<Advertise />} />
           <Route path="help" element={<Help />} />
           <Route path="image-credits" element={<ImageCredits />} />
+          <Route path="sources" element={<Sources />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />

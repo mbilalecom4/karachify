@@ -496,13 +496,18 @@ export default function ListingDetail() {
               <p className="mt-3 text-[13px] leading-relaxed text-navy-500">
                 {listing.status === 'verified'
                   ? 'Verified against the sources listed here, including coordinates and opening hours. Anything the source did not state is left blank rather than guessed.'
-                  : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
+                  : listing.coordsVerified
+                    ? 'Its map position and address were read from a source, as cited below. Any field the source did not state — opening hours, admission, a contact — is left blank here rather than estimated, so check those before you rely on them.'
+                    : 'This record has not been checked against an official source yet. Do not treat its address, prices or timings as fact.'}
               </p>
               {listing.sourceUrl && (
                 <a href={listing.sourceUrl} target="_blank" rel="noopener noreferrer" className="link mt-2 inline-flex items-center gap-1 text-[13px]">
                   Read the source <ExternalLink className="h-3 w-3" />
                 </a>
               )}
+              <Link to="/sources" className="link mt-2 block text-[13px]">
+                Every citation behind this record, and what each one was allowed to say
+              </Link>
               <p className="mt-3 text-[12px] text-navy-400">
                 {listing.coordsVerified
                   ? `Map position verified via OpenStreetMap: ${coordText(listing.lat, listing.lng)}`
