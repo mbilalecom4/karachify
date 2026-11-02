@@ -42,11 +42,17 @@ export default function Privacy() {
           <ul>
             <li>Photographs load from Wikimedia project domains, so those servers see a normal image request with this page as the referrer.</li>
             <li>Map tiles load from OpenStreetMap's public raster tile service for the demo map.</li>
+            <li>
+              The "Karachi weather" and "Prayer times" panels fetch from Open-Meteo and Aladhan. Both requests carry only
+              the fixed coordinates of central Karachi that the site already publishes — no account, no name, nothing you
+              typed — and your IP address is visible to those two servers as it is to any website you load.
+            </li>
             <li>Fonts are loaded from Google Fonts when available and fall back to system fonts offline.</li>
           </ul>
           <p>
-            No other network calls are made. If this build is forked and pointed at a hosted backend such as Supabase, that
-            provider's own terms begin to apply to whatever is sent to it.
+            No other network calls are made. Saved places, the day plan and anything written into a form stay in this
+            browser. If this build is forked and pointed at a hosted backend such as Supabase, that provider's own terms
+            begin to apply to whatever is sent to it.
           </p>
           <h2>Location</h2>
           <p>

@@ -19,6 +19,7 @@ import { coverage, selectAreas, selectCategories, selectEvents, selectListings, 
 import { imageFor, pictureSubject } from '../lib/media';
 import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
+import { KarachiToday } from '../components/KarachiToday';
 import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, populatedCategoryTiles } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { EmptyState, Reveal, SectionHeading } from '../components/ui';
@@ -195,6 +196,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* --------------------------- A2. today ------------------------------- */}
+      <section className="shell pt-8">
+        <KarachiToday />
       </section>
 
       {/* ----------------------- sourcing band ----------------------------- */}

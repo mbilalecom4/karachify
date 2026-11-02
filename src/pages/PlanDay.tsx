@@ -7,6 +7,7 @@ import { aroundTheClock, copyText, distanceKm, plural } from '../lib/format';
 import { Note, PageHero } from '../components/Page';
 import { SectionHeading, useToast } from '../components/ui';
 import { LazyMap } from '../components/LazyMap';
+import { KarachiToday } from '../components/KarachiToday';
 import type { MapPoint, MapRoute } from '../components/KarachifyMap';
 
 type Group = 'solo' | 'couple' | 'family' | 'friends';
@@ -195,6 +196,9 @@ export default function PlanDay() {
       />
 
       <section className="plan-page shell section space-y-8">
+        {/* Live, so it does not print: the itinerary has to stand on its own on paper. */}
+        <KarachiToday />
+
         {/* 1 — who */}
         <div className="card p-5">
           <SectionHeading eyebrow="Step 1" title="Who is going, and for how long?" />
