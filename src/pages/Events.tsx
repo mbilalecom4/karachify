@@ -62,7 +62,7 @@ export default function Events() {
         <Link to="/submit-event" className="btn-primary btn-sm">
           Submit an event
         </Link>
-        <Link to="/category/events" className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20">
+        <Link to="/category/events" className="btn btn-sm btn-on-media">
           Event venues
         </Link>
       </div>

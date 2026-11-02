@@ -55,7 +55,7 @@ export default function CategoryPage() {
         trail={[{ label: 'Home', to: '/' }, { label: 'Explore', to: '/explore' }, { label: category.name }]}
       >
         <div className="flex flex-wrap items-center gap-3 text-sm text-navy-100">
-          <span className="badge bg-white/15 text-white ring-1 ring-inset ring-white/25">
+          <span className="chip-light">
             {items.length} listing{items.length === 1 ? '' : 's'}
           </span>
           <Link to="/map" className="inline-flex items-center gap-1.5 font-semibold text-teal-200 hover:text-teal-100">

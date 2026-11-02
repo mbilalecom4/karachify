@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarRange, Check, Copy, MapPin, Route, RotateCcw, Users } from 'lucide-react';
 import type { Listing } from '../types';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
-import { aroundTheClock, copyText, distanceKm } from '../lib/format';
+import { aroundTheClock, copyText, distanceKm, plural } from '../lib/format';
 import { Note, PageHero } from '../components/Page';
 import { SectionHeading, useToast } from '../components/ui';
+import { LazyMap } from '../components/LazyMap';
+import type { MapPoint, MapRoute } from '../components/KarachifyMap';
 
 type Group = 'solo' | 'couple' | 'family' | 'friends';
 
@@ -18,6 +20,10 @@ const GROUPS: { id: Group; label: string; note: string }[] = [
 
 const MAX_STOPS = 15;
 const KEY = 'karachify.plan.v1';
+
+// Dark enough to read over the base map, distinct enough for five days.
+const DAY_COLORS = ['#0A6A63', '#B45309', '#0369A1', '#6D28D9', '#BE123C'];
+const dayColor = (i: number) => DAY_COLORS[i % DAY_COLORS.length];
 
 type Saved = { group: Group; days: number; areaIds: string[]; categoryIds: string[]; picked: string[] } | null;
 
@@ -113,6 +119,30 @@ export default function PlanDay() {
 
   const areaName = (id: string) => areas.find((a) => a.id === id)?.name ?? id;
   const categoryName = (id: string) => categories.find((c) => c.id === id)?.name ?? id;
+
+  const planMap = useMemo(() => {
+    if (!plan) return null;
+    const points: MapPoint[] = [];
+    const routes: MapRoute[] = [];
+    plan.forEach((stops, d) => {
+      const color = dayColor(d);
+      stops.forEach((l, i) => {
+        points.push({
+          id: l.slug,
+          title: l.name,
+          subtitle: `Day ${d + 1} · stop ${i + 1} · ${areaName(l.areaId)}`,
+          path: `/place/${l.slug}`,
+          lat: l.lat,
+          lng: l.lng,
+          color,
+          kind: 'listing',
+        });
+      });
+      if (stops.length > 1) routes.push({ id: `day-${d + 1}`, color, stops: stops.map((l) => ({ lat: l.lat, lng: l.lng })) });
+    });
+    return { points, routes };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan]);
 
   const pick = (slug: string) => {
     if (picked.includes(slug)) {
@@ -216,7 +246,7 @@ export default function PlanDay() {
                   key={a.id}
                   type="button"
                   onClick={() => setAreaIds(toggle(areaIds, a.id))}
-                  className={`chip ${areaIds.includes(a.id) ? 'bg-teal-600 text-white' : ''}`}
+                  className={`chip ${areaIds.includes(a.id) ? 'bg-teal-700 text-white' : ''}`}
                   aria-pressed={areaIds.includes(a.id)}
                 >
                   {a.name}
@@ -232,7 +262,7 @@ export default function PlanDay() {
                   key={c.id}
                   type="button"
                   onClick={() => setCategoryIds(toggle(categoryIds, c.id))}
-                  className={`chip ${categoryIds.includes(c.id) ? 'bg-teal-600 text-white' : ''}`}
+                  className={`chip ${categoryIds.includes(c.id) ? 'bg-teal-700 text-white' : ''}`}
                   aria-pressed={categoryIds.includes(c.id)}
                 >
                   {c.name}
@@ -266,7 +296,7 @@ export default function PlanDay() {
                   >
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border ${
-                        chosen ? 'border-teal-600 bg-teal-600 text-white' : 'border-navy-300 bg-white text-transparent'
+                        chosen ? 'border-teal-700 bg-teal-700 text-white' : 'border-navy-300 bg-white text-transparent'
                       }`}
                     >
                       <Check className="h-3.5 w-3.5" />
@@ -322,10 +352,27 @@ export default function PlanDay() {
                 </div>
               }
             />
+            {planMap && planMap.points.length > 0 && (
+              <figure className="card overflow-hidden p-1.5">
+                <LazyMap points={planMap.points} routes={planMap.routes} className="h-[340px] w-full sm:h-[440px]" compact />
+                <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-1.5 px-3 py-2.5">
+                  {plan.map((stops, d) => (
+                    <span key={d} className="flex items-center gap-1.5 text-[12.5px] font-semibold text-navy-700">
+                      <span className="h-2.5 w-2.5 rounded-full" style={{ background: dayColor(d) }} />
+                      Day {d + 1} · {stops.length ? plural(stops.length, 'stop') : 'free'}
+                    </span>
+                  ))}
+                  <span className="text-[12.5px] text-navy-600">
+                    Each colour is one day. The dashed line joins the recorded pins in the suggested order — it is not a driving route.
+                  </span>
+                </figcaption>
+              </figure>
+            )}
             <div className="grid gap-4 lg:grid-cols-2">
               {plan.map((stops, dayIndex) => (
                 <article key={dayIndex} className="card p-5">
                   <header className="flex items-center gap-2 border-b border-navy-100 pb-3">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: dayColor(dayIndex) }} />
                     <CalendarRange className="h-4 w-4 text-teal-600" />
                     <h3 className="font-display text-[17px] font-bold text-navy-800">Day {dayIndex + 1}</h3>
                     <span className="ml-auto text-[12px] font-semibold uppercase tracking-[0.1em] text-navy-400">

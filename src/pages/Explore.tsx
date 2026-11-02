@@ -76,14 +76,14 @@ export default function Explore() {
         </div>
       </section>
 
-      <section className="bg-navy-800 py-12">
+      <section className="bg-mist py-14">
         <div className="shell">
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow mb-1.5 text-teal-300">Localities</p>
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Karachi by area</h2>
+              <p className="eyebrow mb-2">Localities</p>
+              <h2 className="section-title">Karachi by area</h2>
             </div>
-            <Link to="/areas" className="btn btn-sm border border-white/30 text-white hover:bg-white/10">
+            <Link to="/areas" className="btn-outline btn-sm">
               All {areas.length} areas <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>

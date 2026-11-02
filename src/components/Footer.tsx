@@ -22,14 +22,14 @@ export function Footer() {
               first, structured for more cities later.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Link to="/contact" className="btn btn-sm border border-navy-700 bg-navy-800 text-white hover:border-teal-400">
+              <Link to="/contact" className="btn btn-sm border border-navy-700 bg-navy-800 text-white hover:border-lime-400">
                 Report a correction
               </Link>
-              <Link to="/help" className="btn btn-sm border border-navy-700 bg-navy-800 text-white hover:border-teal-400">
+              <Link to="/help" className="btn btn-sm border border-navy-700 bg-navy-800 text-white hover:border-lime-400">
                 How we verify
               </Link>
             </div>
-            <p className="mt-3 max-w-sm text-[11.5px] leading-relaxed text-navy-400">
+            <p className="mt-3 max-w-sm text-[11.5px] leading-relaxed text-navy-300">
               No newsletter, no email list, no tracking: this build has no server, so it asks for nothing it cannot send.
             </p>
           </div>
@@ -63,6 +63,8 @@ export function Footer() {
               <FooterLink to="/advertise">Advertise with us</FooterLink>
               <FooterLink to="/list-your-business">List your business</FooterLink>
               <FooterLink to="/submit-event">Submit an event</FooterLink>
+              <FooterLink to="/plan">Plan your day</FooterLink>
+              <FooterLink to="/open-now">Open right now</FooterLink>
               <FooterLink to="/guides">City guides</FooterLink>
               <FooterLink to="/help">Help centre</FooterLink>
               <FooterLink to="/sources">Sources & verification</FooterLink>
@@ -88,19 +90,19 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 border-t border-navy-800 pt-6 text-[12.5px] text-navy-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-navy-800 pt-6 text-[12.5px] text-navy-300 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Karachify. Open data, licensed photography and honest gaps.</p>
           <p className="flex flex-wrap gap-4">
-            <Link to="/privacy" className="hover:text-teal-200">
+            <Link to="/privacy" className="hover:text-lime-300">
               Privacy
             </Link>
-            <Link to="/terms" className="hover:text-teal-200">
+            <Link to="/terms" className="hover:text-lime-300">
               Terms
             </Link>
-            <Link to="/help" className="hover:text-teal-200">
+            <Link to="/help" className="hover:text-lime-300">
               Help
             </Link>
-            <Link to="/admin" className="hover:text-teal-200">
+            <Link to="/admin" className="hover:text-lime-300">
               Admin
             </Link>
           </p>
@@ -122,7 +124,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link to={to} className="text-[13.5px] text-navy-200 transition-colors hover:text-teal-200">
+      <Link to={to} className="text-[13.5px] text-navy-200 transition-colors hover:text-lime-300">
         {children}
       </Link>
     </li>

@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, MapPin, Search, Sparkles, Tag, TrendingUp, X } from 'lucide-react';
-import { buildIndex, search, TYPE_LABEL, type SearchDoc } from '../lib/search';
+import { ArrowRight, Clock, MapPin, Search, Sparkles, Tag, TrendingUp, X } from 'lucide-react';
+import { groupByType, search, TYPE_LABEL, type ResultType, type SearchDoc } from '../lib/search';
 import { actions, prefsFor, useDB } from '../lib/store';
-import { imageFor } from '../lib/media';
+import { imageFor, pictureSubject } from '../lib/media';
 import { ImageWithFallback } from './ui';
 
 const ICONS = {
@@ -13,6 +13,20 @@ const ICONS = {
   category: Tag,
   guide: Clock,
 } as const;
+
+/** Underlines the part of a suggestion the user actually typed. */
+function Match({ text, term }: { text: string; term: string }) {
+  const needle = term.trim().toLowerCase();
+  const at = needle.length >= 2 ? text.toLowerCase().indexOf(needle) : -1;
+  if (at < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, at)}
+      <mark className="rounded bg-teal-100 px-0.5 text-navy-900">{text.slice(at, at + needle.length)}</mark>
+      {text.slice(at + needle.length)}
+    </>
+  );
+}
 
 export function SearchBox({
   variant = 'hero',
@@ -30,13 +44,27 @@ export function SearchBox({
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
   const [cursor, setCursor] = useState(0);
+  // Enter should only jump to a suggestion the person actually aimed at; otherwise
+  // it opens the full results page for the words on the screen.
+  const [aimed, setAimed] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const index = useMemo(() => buildIndex(db), [db]);
-  const results = useMemo(() => (q.trim().length >= 2 ? search(db, q, { limit: 8 }) : []), [db, q]);
+  const results = useMemo(() => (q.trim().length >= 2 ? search(db, q, { limit: 12 }) : []), [db, q]);
   const recent = prefsFor(db).recentSearches;
-  const suggestions = q.trim().length >= 2 ? results : [];
+
+  // Everyone reads suggestions in buckets — places, then areas, then the rest — the
+  // same order the results page uses for its tabs. Cursor walks this flattened order.
+  const groups = useMemo(() => {
+    const order: ResultType[] = ['listing', 'area', 'category', 'event', 'guide'];
+    const byType = groupByType(results);
+    const buckets = order
+      .map((t) => ({ type: t, items: byType.get(t) ?? [] }))
+      .filter((b) => b.items.length > 0);
+    let start = 0;
+    return buckets.map((b) => ({ ...b, start: (start += b.items.length) - b.items.length }));
+  }, [results]);
+  const suggestions = useMemo(() => groups.flatMap((g) => g.items), [groups]);
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -46,7 +74,10 @@ export function SearchBox({
     return () => document.removeEventListener('mousedown', onDocClick);
   }, []);
 
-  useEffect(() => setCursor(0), [q]);
+  useEffect(() => {
+    setCursor(0);
+    setAimed(false);
+  }, [q]);
 
   const go = (doc: SearchDoc) => {
     actions.pushRecentSearch(doc.title);
@@ -89,11 +120,12 @@ export function SearchBox({
           onFocus={() => setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              if (suggestions[cursor]) go(suggestions[cursor]);
+              if (aimed && suggestions[cursor]) go(suggestions[cursor]);
               else submit();
             }
             if (e.key === 'ArrowDown') {
               e.preventDefault();
+              setAimed(true);
               setOpen(true);
               setCursor((c) => Math.min(c + 1, Math.max(suggestions.length - 1, 0)));
             }
@@ -103,7 +135,7 @@ export function SearchBox({
             }
             if (e.key === 'Escape') setOpen(false);
           }}
-          className={`min-w-0 flex-1 bg-transparent font-medium text-navy-800 placeholder:text-navy-300 focus:outline-none ${
+          className={`min-w-0 flex-1 bg-transparent font-medium text-navy-800 placeholder:text-navy-400 focus:outline-none ${
             isHero ? 'py-2.5 text-[15px] sm:text-base' : 'py-1.5 text-sm'
           }`}
         />
@@ -151,7 +183,7 @@ export function SearchBox({
                   }}
                   className="flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left text-sm font-medium text-navy-700 hover:bg-mist"
                 >
-                  <Clock className="h-4 w-4 text-navy-300" />
+                  <Clock className="h-4 w-4 text-navy-400" />
                   {r}
                 </button>
               ))}
@@ -183,36 +215,48 @@ export function SearchBox({
             </div>
           )}
 
-          {suggestions.map((doc, i) => {
-            const Icon = ICONS[doc.type];
-            const media = imageFor(doc.mediaKey, doc.title);
-            const on = i === cursor;
+          {groups.map((g) => {
+            const GroupIcon = ICONS[g.type];
             return (
-              <button
-                key={`${doc.type}-${doc.id}`}
-                role="option"
-                aria-selected={on}
-                onMouseEnter={() => setCursor(i)}
-                onClick={() => go(doc)}
-                className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors ${on ? 'bg-mist' : 'hover:bg-mist'}`}
-              >
-                <ImageWithFallback
-                  src={media.thumb}
-                  alt=""
-                  label={doc.title}
-                  wrapperClass="hidden h-11 w-11 shrink-0 rounded-lg sm:block"
-                />
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-navy-800">{doc.title}</span>
-                  <span className="mt-0.5 flex items-center gap-1.5 text-[12.5px] text-navy-500">
-                    <Icon className="h-3.5 w-3.5 text-teal-600" />
-                    {TYPE_LABEL[doc.type]} · {doc.subtitle}
-                  </span>
-                </span>
-                <span className="hidden shrink-0 rounded-full bg-navy-50 px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-navy-500 sm:block">
-                  {doc.type}
-                </span>
-              </button>
+            <div key={g.type} role="group" aria-label={TYPE_LABEL[g.type]} className="pb-1">
+              <p className="flex items-center gap-1.5 px-3 pb-1 pt-2 text-[11px] font-bold uppercase tracking-wider text-navy-400">
+                <GroupIcon className="h-3.5 w-3.5 text-teal-700" aria-hidden />
+                {TYPE_LABEL[g.type]} · {g.items.length}
+              </p>
+              {g.items.map((doc, j) => {
+                const i = g.start + j;
+                const media = imageFor(doc.mediaKey, doc.title);
+                const on = i === cursor;
+                return (
+                  <button
+                    key={`${doc.type}-${doc.id}`}
+                    role="option"
+                    aria-selected={on}
+                    onMouseEnter={() => {
+                      setCursor(i);
+                      setAimed(true);
+                    }}
+                    onClick={() => go(doc)}
+                    className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors ${on ? 'bg-mist' : 'hover:bg-mist'}`}
+                  >
+                    <ImageWithFallback
+                      src={media.thumb}
+                      alt=""
+                      label={doc.title}
+                      title={media.entry?.kind === 'related' ? `Illustrative photo — shows ${pictureSubject(media.entry)}` : undefined}
+                      wrapperClass="hidden h-11 w-11 shrink-0 rounded-lg sm:block"
+                    />
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-semibold text-navy-800">
+                        <Match text={doc.title} term={q} />
+                      </span>
+                      <span className="mt-0.5 block truncate text-[12.5px] text-navy-500">{doc.subtitle}</span>
+                    </span>
+                    <ArrowRight className={`h-4 w-4 shrink-0 transition-opacity ${on ? 'text-teal-700 opacity-100' : 'opacity-0'}`} aria-hidden />
+                  </button>
+                );
+              })}
+            </div>
             );
           })}
 

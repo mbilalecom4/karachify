@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
-import type { MapPoint } from './KarachifyMap';
+import type { MapPoint, MapRoute } from './KarachifyMap';
 
 const Map = lazy(() => import('./KarachifyMap').then((m) => ({ default: m.KarachifyMap })));
 
@@ -10,6 +10,7 @@ const Map = lazy(() => import('./KarachifyMap').then((m) => ({ default: m.Karach
  */
 export function LazyMap({
   points,
+  routes,
   activeId,
   onSelect,
   interactive = true,
@@ -17,6 +18,7 @@ export function LazyMap({
   compact = false,
 }: {
   points: MapPoint[];
+  routes?: MapRoute[];
   activeId?: string | null;
   onSelect?: (p: MapPoint) => void;
   interactive?: boolean;
@@ -50,7 +52,7 @@ export function LazyMap({
     return (
       <div
         ref={host}
-        className={`grid place-items-center rounded-xl2 border border-navy-100 bg-navy-50/60 text-[13px] text-navy-400 ${className}`}
+        className={`grid place-items-center rounded-xl2 border border-navy-100 bg-navy-50/60 text-[13px] text-navy-500 ${className}`}
       >
         Map loads when it scrolls into view
       </div>
@@ -65,7 +67,15 @@ export function LazyMap({
         </div>
       }
     >
-      <Map points={points} activeId={activeId} onSelect={onSelect} interactive={interactive} compact={compact} className={className} />
+      <Map
+        points={points}
+        routes={routes}
+        activeId={activeId}
+        onSelect={onSelect}
+        interactive={interactive}
+        compact={compact}
+        className={className}
+      />
     </Suspense>
   );
 }

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, ExternalLink } from 'lucide-react';
-import { attributionRows, placeholderImage, resolvedMediaCount } from '../lib/media';
+import { attributionRows, pictureSubject, placeholderImage, resolvedMediaCount } from '../lib/media';
 import { selectListings, useDB } from '../lib/store';
 import { Field, TextInput } from '../components/ui';
 import { Note, PageHero } from '../components/Page';
@@ -13,7 +13,7 @@ export default function ImageCredits() {
   const [q, setQ] = useState('');
 
   const shown = useMemo(
-    () => rows.filter((m) => `${m.key} ${m.subject} ${m.artist ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())),
+    () => rows.filter((m) => `${m.key} ${m.subject} ${pictureSubject(m)} ${m.artist ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())),
     [rows, q]
   );
 
@@ -94,8 +94,16 @@ export default function ImageCredits() {
                     />
                   </td>
                   <td className="px-4 py-2.5 font-medium text-navy-800">
-                    {m.subject}
-                    {m.kind === 'related' && <span className="badge-demo ml-2">Illustrative</span>}
+                    {m.kind === 'related' ? (
+                      <>
+                        {pictureSubject(m)}
+                        <span className="mt-1 block text-[12px] font-normal leading-snug text-navy-500">
+                          Illustrative — attached to <span className="text-navy-700">{m.subject}</span>, same kind of scene, not this record
+                        </span>
+                      </>
+                    ) : (
+                      m.subject
+                    )}
                   </td>
                   <td className="px-4 py-2.5 font-mono text-[12px] text-navy-400">{m.key}</td>
                   <td className="max-w-[220px] truncate px-4 py-2.5 text-navy-600" title={m.artist}>
@@ -108,7 +116,7 @@ export default function ImageCredits() {
                         File page <ExternalLink className="h-3 w-3" />
                       </a>
                     ) : (
-                      <span className="text-navy-300">—</span>
+                      <span className="text-navy-400">—</span>
                     )}
                   </td>
                 </tr>

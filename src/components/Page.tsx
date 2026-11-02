@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { imageFor } from '../lib/media';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
-import { Breadcrumbs } from './ui';
+import { Breadcrumbs, IllustrativeStamp } from './ui';
 
-/** Standard interior-page header: Karachi banner photo, navy scrim, title block. */
+/** Standard interior-page header: Karachi photograph, opaque scrim, title block. */
 export function PageHero({
   mediaKey,
   label,
@@ -12,7 +12,7 @@ export function PageHero({
   sub,
   trail,
   children,
-  height = 'min-h-[300px] sm:min-h-[360px]',
+  height = 'min-h-[320px] sm:min-h-[380px]',
 }: {
   mediaKey: string;
   label: string;
@@ -36,18 +36,31 @@ export function PageHero({
             if (e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback;
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/92 via-navy-950/70 to-navy-950/45" />
+        {/* Flat scrim: the whole frame is darkened, not just the bottom, so the
+            breadcrumbs and eyebrow at the top are never set on open sky. */}
+        <div className="media-scrim-flat absolute inset-0" />
       </div>
-      <div className="shell pb-9 pt-20">
-        {trail && (
-          <div className="[&_a]:text-teal-200 [&_span]:text-navy-200">
-            <Breadcrumbs trail={trail} />
-          </div>
-        )}
-        {eyebrow && <p className="eyebrow mb-2 text-teal-300">{eyebrow}</p>}
-        <h1 className="max-w-3xl font-display text-3xl font-extrabold leading-tight text-white sm:text-[42px]">{title}</h1>
-        {sub && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-navy-100">{sub}</p>}
-        {children && <div className="mt-6">{children}</div>}
+      <span className="absolute bottom-4 right-4 z-10">
+        <IllustrativeStamp entry={media.entry} />
+      </span>
+      <div className="shell pb-10 pt-24">
+        {/* Solid panel, not a gradient: a banner photo can be a white marble
+            facade under an open sky, and no alpha ramp makes 13px white text
+            safe on that. The panel is opaque, so contrast does not depend on
+            what the photograph happens to contain. */}
+        <div className="max-w-3xl rounded-[28px] bg-navy-900 p-6 shadow-lift sm:p-8">
+          {trail && (
+            <div className="[&_a]:text-teal-200 [&_a:hover]:text-white [&_span]:text-navy-200">
+              <Breadcrumbs trail={trail} />
+            </div>
+          )}
+          {eyebrow && <p className="eyebrow mb-2 text-teal-300 before:bg-teal-400">{eyebrow}</p>}
+          <h1 className="font-display text-[clamp(1.9rem,4.6vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.03em] text-white">
+            {title}
+          </h1>
+          {sub && <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-navy-100">{sub}</p>}
+          {children && <div className="mt-6">{children}</div>}
+        </div>
       </div>
     </section>
   );

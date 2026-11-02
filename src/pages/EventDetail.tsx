@@ -12,11 +12,11 @@ import {
   Navigation,
 } from 'lucide-react';
 import { actions, prefsFor, selectAreas, selectEvents, useDB } from '../lib/store';
-import { imageFor } from '../lib/media';
+import { imageFor, pictureSubject } from '../lib/media';
 import { EventCard } from '../components/cards';
 import { KarachifyMap } from '../components/KarachifyMap';
 import { Note } from '../components/Page';
-import { Breadcrumbs, EmptyState, SectionHeading, StatusBadge, useToast } from '../components/ui';
+import { Breadcrumbs, EmptyState, IllustrativeStamp, SectionHeading, StatusBadge, useToast } from '../components/ui';
 import { coordText, dateRange, timeRange, toICS } from '../lib/format';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
@@ -81,21 +81,25 @@ export default function EventDetail() {
     <div>
       <section className="relative isolate overflow-hidden bg-navy-900">
         <div className="absolute inset-0 -z-10">
-          <img src={media.wide} alt={event.name} className="h-full w-full object-cover opacity-65" onError={(e) => (e.currentTarget.src = media.fallback)} />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/85 to-navy-950/50" />
+          <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : event.name} className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = media.fallback)} />
+          <div className="media-scrim-flat absolute inset-0" />
         </div>
+        <span className="absolute right-4 top-20 z-10">
+          <IllustrativeStamp entry={media.entry} />
+        </span>
         <div className="shell pb-9 pt-8">
-          <div className="[&_a]:text-teal-200 [&_span]:text-navy-200">
+          <div className="max-w-4xl rounded-[28px] bg-navy-900 p-6 shadow-lift sm:p-7">
+          <div className="[&_a]:text-teal-200 [&_a:hover]:text-white [&_span]:text-navy-100">
             <Breadcrumbs trail={[{ label: 'Home', to: '/' }, { label: 'Events', to: '/events' }, { label: event.name }]} />
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="badge bg-teal-500 text-white">{event.eventCategory}</span>
-            <StatusBadge status={event.status} />
+            <span className="badge bg-teal-700 text-white">{event.eventCategory}</span>
+            <StatusBadge status={event.status} className="bg-white text-navy-800 ring-1 ring-inset ring-navy-200" />
             {past && <span className="badge bg-navy-100 text-navy-700">Past event</span>}
           </div>
-          <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold leading-tight text-white sm:text-[40px]">{event.name}</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-navy-100">{event.description}</p>
-          <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-sm text-navy-100">
+          <h1 className="on-media mt-3 max-w-3xl font-display text-[clamp(1.8rem,4.4vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white sm:text-[40px]">{event.name}</h1>
+          <p className="on-media mt-3 max-w-2xl text-[16px] leading-relaxed text-white">{event.description}</p>
+          <dl className="on-media mt-5 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-teal-300" />
               <div>
@@ -131,7 +135,7 @@ export default function EventDetail() {
           <div className="mt-6 flex flex-wrap gap-2.5">
             {event.sourceUrl && (
               <a
-                className="btn btn-sm bg-teal-500 text-white hover:bg-teal-600"
+                className="btn btn-sm bg-teal-700 text-white hover:bg-teal-800"
                 href={event.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -140,7 +144,7 @@ export default function EventDetail() {
               </a>
             )}
             <button
-              className={`btn btn-sm ${saved ? 'bg-rose-500 text-white' : 'border border-white/40 bg-white/10 text-white hover:bg-white/20'}`}
+              className={`btn btn-sm ${saved ? 'bg-rose-500 text-white' : 'bg-white text-navy-900 hover:bg-navy-50'}`}
               onClick={() => {
                 const next = actions.toggleSavedEvent(event.id);
                 toast.push(next ? 'Event saved to your list' : 'Event removed from your list', next ? 'success' : 'info');
@@ -148,11 +152,11 @@ export default function EventDetail() {
             >
               <Heart className={`h-4 w-4 ${saved ? 'fill-white' : ''}`} /> {saved ? 'Saved' : 'Save event'}
             </button>
-            <button className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20" onClick={downloadICS}>
+            <button className="btn btn-sm btn-on-media" onClick={downloadICS}>
               <CalendarPlus className="h-4 w-4" /> Add to calendar
             </button>
             <button
-              className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20"
+              className="btn btn-sm btn-on-media"
               onClick={async () => {
                 const url = `${window.location.origin}${window.location.pathname}#/events/${event.slug}`;
                 if (navigator.share) {
@@ -173,9 +177,10 @@ export default function EventDetail() {
             >
               <Share2 className="h-4 w-4" /> Share
             </button>
-            <a className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20" href={`https://www.google.com/maps/dir/?api=1&destination=${event.lat},${event.lng}&travelmode=driving`} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-sm btn-on-media" href={`https://www.google.com/maps/dir/?api=1&destination=${event.lat},${event.lng}&travelmode=driving`} target="_blank" rel="noopener noreferrer">
               <Navigation className="h-4 w-4" /> Directions to venue
             </a>
+          </div>
           </div>
         </div>
       </section>
@@ -244,7 +249,7 @@ export default function EventDetail() {
                       path: `/events/${event.slug}`,
                       lat: event.lat,
                       lng: event.lng,
-                      color: '#102A43',
+                      color: '#0A6A63',
                     },
                   ]}
                 />
@@ -261,11 +266,14 @@ export default function EventDetail() {
             <article>
               <h2 className="section-title mb-3">Photo</h2>
               <figure>
-                <img src={media.wide} alt={event.name} className="w-full rounded-xl border border-navy-100" onError={(e) => (e.currentTarget.src = media.fallback)} />
+                <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : event.name} className="w-full rounded-xl border border-navy-100" onError={(e) => (e.currentTarget.src = media.fallback)} />
                 <figcaption className="mt-2 text-[13px] text-navy-500">
                   {media.entry ? (
                     <>
-                      Karachi-related image via Wikimedia Commons
+                      {media.entry.kind === 'related'
+                        ? `Illustrative photograph — shows ${pictureSubject(media.entry)}, a like-for-like Karachi picture, not this event. `
+                        : `Photograph of ${event.name} `}
+                      via Wikimedia Commons
                       {media.entry.artist ? ` · ${media.entry.artist}` : ''}
                       {media.entry.license ? ` · ${media.entry.license}` : ''} ·{' '}
                       <a href={media.entry.filePage} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">

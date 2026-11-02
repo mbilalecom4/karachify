@@ -8,7 +8,7 @@ import { PageHero, Note } from '../components/Page';
 import { EmptyState, Select, TextInput } from '../components/ui';
 import { pinCaption, plural } from '../lib/format';
 
-const PALETTE = ['#13A89E', '#102A43', '#0EA5E9', '#F59E0B', '#8B5CF6', '#EF4444', '#10B981', '#EC4899'];
+const PALETTE = ['#0A6A63', '#063231', '#0EA5E9', '#F59E0B', '#8B5CF6', '#EF4444', '#10B981', '#EC4899'];
 
 export default function MapView() {
   const db = useDB();
@@ -23,7 +23,16 @@ export default function MapView() {
   const [withEvents, setWithEvents] = useState(true);
   const [q, setQ] = useState('');
   const [active, setActive] = useState<string | null>(params.get('focus') ?? null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
+
+  // Clicking a pin has to reveal its card in the list, and hovering either one has to
+  // light up the other, which is how every map product trains people to read the pair.
+  useEffect(() => {
+    if (!active) return;
+    const card = listRef.current?.querySelector<HTMLElement>(`[data-point="${active}"]`);
+    card?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [active]);
 
   const focusSlug = params.get('focus');
   useEffect(() => {
@@ -172,7 +181,14 @@ export default function MapView() {
         ) : (
           <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
             <div className="card order-2 min-w-0 overflow-hidden p-1.5 lg:order-1">
-              <KarachifyMap points={points} activeId={active} onSelect={(p) => setActive(p.id)} className="h-[420px] w-full sm:h-[560px]" />
+              <KarachifyMap
+                points={points}
+                activeId={active}
+                highlightId={hovered ?? active}
+                onSelect={(p) => setActive(p.id)}
+                onHover={setHovered}
+                className="h-[420px] w-full sm:h-[560px]"
+              />
             </div>
             <div ref={listRef} className="order-1 min-w-0 lg:order-2">
               <div className="card max-h-[420px] overflow-x-hidden overflow-y-auto p-3 sm:max-h-[560px]">
@@ -185,11 +201,18 @@ export default function MapView() {
                       {items.slice(0, 40).map((p) => (
                         <li key={p.id}>
                           <div
+                            data-point={p.id}
+                            onMouseEnter={() => setHovered(p.id)}
+                            onMouseLeave={() => setHovered(null)}
                             className={`rounded-xl border p-3 transition-colors ${
-                              active === p.id ? 'border-teal-400 bg-teal-50' : 'border-navy-100 bg-white hover:border-teal-200'
+                              active === p.id
+                                ? 'border-teal-500 bg-teal-50'
+                                : hovered === p.id
+                                  ? 'border-teal-300 bg-mist'
+                                  : 'border-navy-100 bg-white hover:border-teal-200'
                             }`}
                           >
-                            <button onClick={() => setActive(p.id)} className="w-full text-left" aria-pressed={active === p.id}>
+                            <button onClick={() => setActive(p.id)} onFocus={() => setHovered(p.id)} onBlur={() => setHovered(null)} className="w-full text-left" aria-pressed={active === p.id}>
                               <span className="flex items-start gap-2">
                                 <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: p.color }} />
                                 <span className="min-w-0">

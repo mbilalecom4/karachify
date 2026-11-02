@@ -49,12 +49,8 @@ export function Header() {
         { label: 'Home', to: '/', note: 'Discover Everything Karachi' },
         { label: 'All categories', to: '/explore', note: 'Every section in one place' },
         ...categories.filter((c) => c.group === 'Discover').map((c) => ({ label: c.name, to: cat(c.slug) })),
-        { label: 'City guides', to: '/guides', note: 'How to spend a day here' },
-        { label: 'Explore map', to: '/map' },
       ],
     },
-    { label: '24/7 Open', to: '/open-now' },
-    { label: 'Plan Your Day', to: '/plan' },
     {
       label: 'Places',
       to: cat(byId('tourist-places')?.slug ?? 'tourist-places'),
@@ -69,17 +65,16 @@ export function Header() {
         { label: 'Browse by area', to: '/areas' },
       ],
     },
-    { label: 'Events', to: '/events' },
-    { label: 'Restaurants', to: cat('restaurants-and-cafes') },
     {
-      label: 'Hotels',
-      to: cat('hotels-and-accommodation'),
+      label: 'Eat & Stay',
+      to: cat('restaurants-and-cafes'),
       children: [
+        { label: 'Restaurants & cafes', to: cat('restaurants-and-cafes') },
         { label: 'Hotels & accommodation', to: cat('hotels-and-accommodation') },
         { label: 'Wedding & event venues', to: cat('wedding-and-event-venues') },
+        { label: 'Shopping & markets', to: cat('shopping-and-markets') },
       ],
     },
-    { label: 'Shopping', to: cat('shopping-and-markets') },
     {
       label: 'Services',
       to: '/services',
@@ -95,6 +90,16 @@ export function Header() {
         { label: 'Professional & local services', to: cat('professional-and-local-services') },
       ],
     },
+    {
+      label: 'Plan',
+      to: '/plan',
+      children: [
+        { label: 'Plan your day', to: '/plan', note: 'Pick stops, get an ordered route' },
+        { label: 'Open right now', to: '/open-now', note: '24/7 and currently open' },
+        { label: 'City guides', to: '/guides', note: 'How to spend a day here' },
+      ],
+    },
+    { label: 'Events', to: '/events' },
     { label: 'Map', to: '/map' },
     {
       label: 'About',
@@ -172,7 +177,7 @@ export function Header() {
               Advertise
             </Link>
             <span className="h-3 w-px bg-navy-600" />
-            <Link to="/admin" className="rounded-full bg-teal-500/15 px-2.5 py-1 font-semibold text-teal-200 hover:bg-teal-500/25">
+            <Link to="/admin" className="rounded-full border border-navy-500 bg-navy-700 px-2.5 py-1 font-semibold text-teal-200 hover:border-teal-400 hover:bg-navy-600 hover:text-white">
               Admin
             </Link>
           </div>
@@ -180,17 +185,17 @@ export function Header() {
       </div>
 
       <header
-        className={`sticky top-0 z-[60] border-b transition-all duration-300 ${
-          scrolled ? 'border-navy-100 bg-white/95 shadow-card backdrop-blur' : 'border-transparent bg-white'
+        className={`sticky top-0 z-[60] border-b bg-white transition-shadow duration-300 ${
+          scrolled ? 'border-navy-100 shadow-card' : 'border-transparent'
         }`}
       >
-        <div className="shell flex h-16 items-center gap-3 lg:h-[68px] lg:gap-2 2xl:gap-3">
+        <div className="shell flex h-16 items-center gap-3 lg:h-[72px] lg:gap-2 2xl:gap-3">
           <Link to="/" className="mr-1 shrink-0" aria-label="Karachify home">
             <BrandLogo />
           </Link>
 
           <nav className="hidden items-center xl:flex" aria-label="Main">
-            {nav.map((item) =>
+            {nav.map((item, i) =>
               item.children ? (
                 <div key={item.label} className="relative" onMouseEnter={() => hoverOpen(item.label)} onMouseLeave={hoverClose}>
                   <button
@@ -202,7 +207,11 @@ export function Header() {
                     <ChevronDown className={`h-4 w-4 text-navy-400 transition-transform ${openMenu === item.label ? 'rotate-180' : ''}`} />
                   </button>
                   {openMenu === item.label && (
-                    <div className="absolute left-0 top-[calc(100%+6px)] w-[318px] rounded-2xl border border-navy-100 bg-white p-2 shadow-lift animate-fade-up">
+                    <div
+                      className={`absolute top-[calc(100%+6px)] max-h-[min(70vh,560px)] overflow-y-auto rounded-2xl border border-navy-100 bg-white p-2 shadow-lift animate-fade-up ${
+                        item.children.length > 6 ? 'grid w-[540px] grid-cols-2 gap-x-1' : 'w-[318px]'
+                      } ${i === nav.length - 1 ? 'right-0' : 'left-0'}`}
+                    >
                       {item.children.map((child) => (
                         <Link
                           key={child.to + child.label}
@@ -244,7 +253,7 @@ export function Header() {
             <span className="relative block">
               <Heart className="h-5 w-5" />
               {favourites > 0 && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-teal-500 px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-teal-700 px-1 text-[10px] font-bold text-white">
                   {favourites}
                 </span>
               )}
@@ -298,7 +307,7 @@ export function Header() {
               <Link to="/login" className="btn-ghost btn-sm">
                 Log in
               </Link>
-              <Link to="/signup" className="btn-primary btn-sm">
+              <Link to="/signup" className="btn-accent btn-sm">
                 Sign up
               </Link>
             </div>

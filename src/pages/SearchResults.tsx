@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { BookOpen, FolderSearch, MapPin, Sparkles, Tag } from 'lucide-react';
+import { BookOpen, FolderSearch, MapPin, Sparkles, Tag, X } from 'lucide-react';
 import { search, TYPE_LABEL, type ResultType, type SearchDoc } from '../lib/search';
 import { selectAreas, selectCategories, selectListings, selectEvents, useDB } from '../lib/store';
-import { imageFor } from '../lib/media';
+import { imageFor, pictureSubject } from '../lib/media';
 import { EventCard, ListingCard } from '../components/cards';
 import { SearchBox } from '../components/SearchBox';
 import { EmptyState, Select, Tabs } from '../components/ui';
@@ -51,13 +51,13 @@ export default function SearchResults() {
 
   return (
     <div>
-      <section className="bg-navy-800">
+      <section className="border-b border-navy-100 bg-mist">
         <div className="shell py-10">
-          <p className="eyebrow text-teal-300">Search</p>
-          <h1 className="mt-1 font-display text-3xl font-extrabold text-white sm:text-4xl">
+          <p className="eyebrow mb-1">Search</p>
+          <h1 className="font-display text-[clamp(1.7rem,4vw,2.4rem)] font-extrabold leading-tight tracking-[-0.03em] text-navy-900">
             {q ? `Results for “${q}”` : 'Search Karachify'}
           </h1>
-          <p className="mt-2 max-w-2xl text-[15px] text-navy-100">
+          <p className="mt-2 max-w-2xl text-[15px] text-navy-600">
             Global search runs against every record Karachify holds — {plural(listings.length, 'listing')},{' '}
             {plural(events.length, 'event')}, {plural(areas.length, 'area')}, {plural(categories.length, 'category')} and the city guides.
           </p>
@@ -125,20 +125,49 @@ export default function SearchResults() {
             </div>
 
             {scoped.length === 0 ? (
-              <EmptyState
-                title={`Nothing matched “${q}”`}
-                body="Karachify only knows what is in the dataset. Shorter words match better, and the spelling used in the record matters — try the category pages if you cannot find it."
-                action={
-                  <div className="flex flex-wrap justify-center gap-2">
-                    <Link to="/explore" className="btn-primary">
-                      Browse categories
-                    </Link>
-                    <button className="btn-outline" onClick={() => navigate('/map')}>
-                      Open the map instead
-                    </button>
-                  </div>
-                }
-              />
+              results.length > 0 ? (
+                <EmptyState
+                  title={`“${q}” has ${plural(results.length, 'match')}, but the filters removed them all`}
+                  body="Filters are combined, so a narrow type plus one area can legitimately empty the page. Take a filter off, or start from the whole result set again."
+                  action={
+                    <div className="flex flex-wrap items-center justify-center gap-2">
+                      {type !== 'all' && (
+                        <button className="chip chip-solid" onClick={() => setType('all')}>
+                          {TYPE_LABEL[type]} <X className="h-3.5 w-3.5" />
+                        </button>
+                      )}
+                      {categoryId !== 'all' && (
+                        <button className="chip chip-solid" onClick={() => setCategoryId('all')}>
+                          {categories.find((c) => c.id === categoryId)?.name ?? categoryId} <X className="h-3.5 w-3.5" />
+                        </button>
+                      )}
+                      {areaId !== 'all' && (
+                        <button className="chip chip-solid" onClick={() => setAreaId('all')}>
+                          {areas.find((a) => a.id === areaId)?.name ?? areaId} <X className="h-3.5 w-3.5" />
+                        </button>
+                      )}
+                      <button className="btn-primary btn-sm" onClick={() => { setType('all'); setCategoryId('all'); setAreaId('all'); }}>
+                        Show all {plural(results.length, 'match')}
+                      </button>
+                    </div>
+                  }
+                />
+              ) : (
+                <EmptyState
+                  title={`Nothing matched “${q}”`}
+                  body="Karachify only knows what is in the dataset. Shorter words match better, and the spelling used in the record matters — try the category pages if you cannot find it."
+                  action={
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <Link to="/explore" className="btn-primary">
+                        Browse categories
+                      </Link>
+                      <button className="btn-outline" onClick={() => navigate('/map')}>
+                        Open the map instead
+                      </button>
+                    </div>
+                  }
+                />
+              )
             ) : (
               <div className="space-y-10">
                 {grouped.map((g) => (
@@ -182,7 +211,14 @@ export default function SearchResults() {
                           return (
                             <Link key={`${d.type}-${d.slug}`} to={d.path} className="card card-hover flex items-center gap-4 overflow-hidden p-0">
                               <span className="block h-24 w-32 shrink-0 overflow-hidden bg-navy-50">
-                                <img src={media.thumb} alt="" aria-hidden className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = media.fallback)} />
+                                <img
+                                  src={media.thumb}
+                                  alt=""
+                                  aria-hidden
+                                  title={media.entry?.kind === 'related' ? `Illustrative photo — shows ${pictureSubject(media.entry)}` : undefined}
+                                  className="h-full w-full object-cover"
+                                  onError={(e) => (e.currentTarget.src = media.fallback)}
+                                />
                               </span>
                               <span className="min-w-0 py-3 pr-4">
                                 <span className="block truncate font-display font-bold text-navy-800">{d.title}</span>

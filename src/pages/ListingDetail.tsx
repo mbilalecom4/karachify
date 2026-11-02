@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 import type { DetailLayout, Listing } from '../types';
 import { actions, prefsFor, reviewsFor, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
-import { imageFor, placeholderImage } from '../lib/media';
+import { imageFor, pictureSubject, placeholderImage } from '../lib/media';
 import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
@@ -37,6 +37,7 @@ import {
   Breadcrumbs,
   EmptyState,
   Field,
+  IllustrativeStamp,
   Modal,
   SectionHeading,
   Select,
@@ -127,7 +128,7 @@ function buildGallery(listing: Listing): GalleryFrame[] {
   const media = imageFor(listing.slug, listing.name);
   const frames: GalleryFrame[] = [];
   if (media.entry) {
-    const who = media.entry.kind === 'related' ? `${media.entry.subject} (illustrative)` : listing.name;
+    const who = media.entry.kind === 'related' ? `${pictureSubject(media.entry)} (illustrative)` : listing.name;
     frames.push({ src: media.wide, caption: who, real: true });
     if (media.thumb !== media.wide) frames.push({ src: media.thumb, caption: `${who} — card crop`, real: true });
   }
@@ -214,11 +215,15 @@ export default function ListingDetail() {
       {/* ------------------------------- header ------------------------------- */}
       <section className="relative isolate overflow-hidden bg-navy-900">
         <div className="absolute inset-0 -z-10">
-          <img src={media.wide} alt={listing.name} className="h-full w-full object-cover opacity-70" onError={(e) => (e.currentTarget.src = media.fallback)} />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-navy-950/40" />
+          <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : listing.name} className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = media.fallback)} />
+          <div className="media-scrim-flat absolute inset-0" />
         </div>
+        <span className="absolute right-4 top-20 z-10">
+          <IllustrativeStamp entry={media.entry} />
+        </span>
         <div className="shell pb-8 pt-8">
-          <div className="[&_a]:text-teal-200 [&_span]:text-navy-200">
+          <div className="max-w-4xl rounded-[28px] bg-navy-900 p-6 shadow-lift sm:p-7">
+          <div className="[&_a]:text-teal-200 [&_a:hover]:text-white [&_span]:text-navy-100">
             <Breadcrumbs
               trail={[
                 { label: 'Home', to: '/' },
@@ -228,25 +233,25 @@ export default function ListingDetail() {
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="badge bg-teal-500 text-white">{category?.name ?? 'Listing'}</span>
-            <StatusBadge status={listing.status} />
+            <span className="badge bg-teal-700 text-white">{category?.name ?? 'Listing'}</span>
+            <StatusBadge status={listing.status} coordsVerified={listing.coordsVerified} className="bg-white text-navy-800 ring-1 ring-inset ring-navy-200" />
             {listing.promoted && <span className="badge-promo">Promoted · demo placement</span>}
             {listing.featured && !listing.promoted && <FeaturedBadge />}
           </div>
-          <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold leading-tight text-white sm:text-[40px]">{listing.name}</h1>
-          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-navy-100">{listing.tagline}</p>
-          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-100">
+          <h1 className="on-media mt-3 max-w-3xl font-display text-[clamp(1.8rem,4.4vw,2.6rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white sm:text-[40px]">{listing.name}</h1>
+          <p className="on-media mt-2 max-w-2xl text-[16px] leading-relaxed text-white">{listing.tagline}</p>
+          <div className="on-media mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white">
             {listing.rating != null ? (
               <span className="inline-flex items-center gap-1.5">
                 <Stars value={listing.rating} />
-                <span className="text-navy-200">({plural(listing.reviewCount ?? 0, 'verified review', 'verified reviews')})</span>
+                <span>({plural(listing.reviewCount ?? 0, 'verified review', 'verified reviews')})</span>
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[13px] text-navy-200">
+              <span className="chip-solid">
                 <Star className="h-3.5 w-3.5" /> No verified rating for this place
               </span>
             )}
-            <Link to={`/area/${area?.slug ?? 'areas'}`} className="inline-flex items-center gap-1.5 hover:text-teal-200">
+            <Link to={`/area/${area?.slug ?? 'areas'}`} className="inline-flex items-center gap-1.5 font-medium hover:underline">
               <MapPin className="h-4 w-4 text-teal-300" />
               {area?.name ?? 'Karachi'}, Karachi
             </Link>
@@ -258,7 +263,7 @@ export default function ListingDetail() {
           </div>
           <div className="mt-6 flex flex-wrap gap-2.5">
             <button
-              className={`btn btn-sm ${isFavourite ? 'bg-rose-500 text-white' : 'border border-white/40 bg-white/10 text-white hover:bg-white/20'}`}
+              className={`btn btn-sm ${isFavourite ? 'bg-rose-600 text-white' : 'bg-white text-navy-900 hover:bg-navy-50'}`}
               onClick={() => {
                 const next = actions.toggleFavourite(listing.id);
                 toast.push(next ? `Saved ${listing.name} to favourites` : `Removed ${listing.name} from favourites`, next ? 'success' : 'info');
@@ -268,7 +273,7 @@ export default function ListingDetail() {
               {isFavourite ? 'Saved' : 'Save to favourites'}
             </button>
             <button
-              className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20"
+              className="btn btn-sm btn-on-media"
               onClick={async () => {
                 const url = `${window.location.origin}${window.location.pathname}#/place/${listing.slug}`;
                 if (navigator.share) {
@@ -289,15 +294,16 @@ export default function ListingDetail() {
             >
               <Share2 className="h-4 w-4" /> Share
             </button>
-            <a className="btn btn-sm bg-teal-500 text-white hover:bg-teal-600" href={directionsUrl(listing.lat, listing.lng, listing.name)} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-sm bg-teal-700 text-white hover:bg-teal-800" href={directionsUrl(listing.lat, listing.lng, listing.name)} target="_blank" rel="noopener noreferrer">
               <Navigation className="h-4 w-4" /> Get directions
             </a>
-            <button className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20" onClick={() => setEnquiryOpen(true)}>
+            <button className="btn btn-sm btn-on-media" onClick={() => setEnquiryOpen(true)}>
               <Phone className="h-4 w-4" /> {layout === 'hotel' ? 'Booking enquiry' : 'Enquire'}
             </button>
-            <button className="btn btn-sm border border-white/40 bg-white/10 text-white hover:bg-white/20" onClick={() => setClaimOpen(true)}>
+            <button className="btn btn-sm btn-on-media" onClick={() => setClaimOpen(true)}>
               <Handshake className="h-4 w-4" /> Claim this business
             </button>
+          </div>
           </div>
         </div>
       </section>
@@ -318,9 +324,9 @@ export default function ListingDetail() {
               <span className={`block ${i === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
                 <img src={f.src} alt={f.caption} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               </span>
-              <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-gradient-to-t from-navy-950/90 to-transparent px-3 py-2">
+              <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-navy-950/85 px-3 py-2">
                 <span className="text-[12px] font-semibold text-white">{f.caption}</span>
-                <span className={`badge ${f.real ? 'bg-teal-500/85 text-white' : 'bg-amber-400/90 text-navy-900'}`}>{f.real ? 'Photo' : 'Placeholder'}</span>
+                <span className={`badge ${f.real ? 'bg-teal-700 text-white' : 'bg-amber-400/90 text-navy-900'}`}>{f.real ? 'Photo' : 'Placeholder'}</span>
               </span>
             </button>
           ))}
@@ -329,8 +335,8 @@ export default function ListingDetail() {
           {media.entry ? (
             media.entry.kind === 'related' ? (
               <>
-                Illustrative photograph — the image shows <em>{media.entry.subject}</em>, a Karachi scene of the same kind, not{' '}
-                {listing.name}. {media.entry.artist ? `By ${media.entry.artist}` : 'Wikimedia Commons'}
+                Illustrative photograph — the image shows <em>{pictureSubject(media.entry)}</em>, a like-for-like Karachi picture, not{' '}
+                {listing.name} itself. {media.entry.artist ? `By ${media.entry.artist}` : 'Wikimedia Commons'}
                 {media.entry.license ? ` · ${media.entry.license}` : ''} ·{' '}
                 <a href={media.entry.filePage} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">
                   File page <ExternalLink className="h-3 w-3" />
@@ -546,7 +552,7 @@ export default function ListingDetail() {
             <div className="card p-5">
               <h2 className="font-display text-[17px] font-bold text-navy-800">Verification & source</h2>
               <div className="mt-2 flex flex-wrap items-center gap-2">
-                <StatusBadge status={listing.status} />
+                <StatusBadge status={listing.status} coordsVerified={listing.coordsVerified} />
                 <span className="badge bg-navy-50 text-navy-600">{meta.kicker}</span>
               </div>
               <p className="mt-3 text-[13px] leading-relaxed text-navy-500">{verificationLine(listing)}</p>
@@ -678,7 +684,7 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
         path: `/place/${listing.slug}`,
         lat: listing.lat,
         lng: listing.lng,
-        color: '#13A89E',
+        color: '#0A6A63',
       },
     ],
     [listing, area]

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight } from 'lucide-react';
+import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight, ShieldCheck, Image } from 'lucide-react';
 import type { Area, Category, CityEvent, Guide, Listing } from '../types';
-import { areaImageKey, imageFor } from '../lib/media';
+import { areaImageKey, imageFor, pictureSubject, type MediaEntry } from '../lib/media';
 import { actions, prefsFor, useDB } from '../lib/store';
-import { useToast } from './ui';
+import { IllustrativeStamp, useToast } from './ui';
 import { CategoryIcon } from '../lib/icons';
 import { admissionLabel, dateRange, plural, priceLabel, timeRange } from '../lib/format';
 import { areaById, categoryById } from '../data/taxonomy';
@@ -49,6 +49,25 @@ export function FavouriteButton({
 
 /* ------------------------------ listing ------------------------------- */
 
+/** Small opaque stamp on the photo itself: what a reader of a travel card reads first. */
+function MediaStamp({ listing }: { listing: Listing }) {
+  if (listing.status === 'verified')
+    return (
+      <span className="chip-solid">
+        <ShieldCheck className="h-3.5 w-3.5 text-teal-300" />
+        Source-verified
+      </span>
+    );
+  if (listing.coordsVerified)
+    return (
+      <span className="chip-light">
+        <MapPin className="h-3.5 w-3.5 text-teal-600" />
+        Mapped pin · details unchecked
+      </span>
+    );
+  return <span className="chip-light">Not verified yet</span>;
+}
+
 export function ListingCard({
   listing,
   view = 'grid',
@@ -65,7 +84,7 @@ export function ListingCard({
   const meta = (
     <>
       <span className="inline-flex items-center gap-1 truncate">
-        <MapPin className="h-3.5 w-3.5 shrink-0 text-teal-500" />
+        <MapPin className="h-3.5 w-3.5 shrink-0 text-teal-600" />
         {showArea ? area?.name ?? 'Karachi' : 'Karachi'}
       </span>
       {listing.rating != null ? (
@@ -89,23 +108,23 @@ export function ListingCard({
   if (view === 'list') {
     return (
       <article className="card card-hover relative flex flex-col gap-4 overflow-hidden p-0 sm:flex-row">
-        <Link to={`/place/${listing.slug}`} className="block shrink-0 sm:w-56" aria-label={`View ${listing.name}`}>
+        <Link to={`/place/${listing.slug}`} className="block shrink-0 sm:w-64" aria-label={`View ${listing.name}`}>
           <ImageBlock media={media} alt={listing.name} className="h-44 w-full sm:h-full" />
         </Link>
-        <div className="flex min-w-0 flex-1 flex-col gap-2 p-4">
+        <div className="flex min-w-0 flex-1 flex-col gap-2 p-5">
           <div className="flex flex-wrap items-center gap-2">
             <CategoryPill category={category} />
             {listing.promoted && <span className="badge-promo">Promoted · demo</span>}
             {listing.featured && !listing.promoted && <FeaturedBadge />}
-            <StatusInline status={listing.status} />
           </div>
-          <h3 className="text-lg font-bold leading-snug">
+          <h3 className="text-[19px] font-bold leading-snug tracking-[-0.01em]">
             <Link to={`/place/${listing.slug}`} className="hover:text-teal-700">
               {listing.name}
             </Link>
           </h3>
-          <p className="line-clamp-2 text-sm leading-relaxed text-navy-500">{listing.description}</p>
-          <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-navy-500">{meta}</div>
+          <p className="line-clamp-2 text-[14px] leading-relaxed text-navy-500">{listing.description}</p>
+          <IllustrativeCaption entry={media.entry} name={listing.name} />
+          <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 text-[13px] text-navy-500">{meta}</div>
         </div>
         <FavouriteButton listingId={listing.id} name={listing.name} />
       </article>
@@ -114,22 +133,25 @@ export function ListingCard({
 
   return (
     <article className="card card-hover relative flex flex-col overflow-hidden">
-      <Link to={`/place/${listing.slug}`} className="group block" aria-label={`View ${listing.name}`}>
-        <ImageBlock media={media} alt={listing.name} className="aspect-[4/3] w-full" />
+      <Link to={`/place/${listing.slug}`} className="group relative block" aria-label={`View ${listing.name}`}>
+        <ImageBlock media={media} alt={listing.name} className="aspect-[3/2] w-full" />
+        <span className="absolute inset-x-3 bottom-3">
+          <MediaStamp listing={listing} />
+        </span>
       </Link>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex flex-wrap items-center gap-2">
           <CategoryPill category={category} />
           {listing.promoted && <span className="badge-promo">Promoted · demo</span>}
           {listing.featured && !listing.promoted && <FeaturedBadge />}
-          <StatusInline status={listing.status} />
         </div>
-        <h3 className="text-[17px] font-bold leading-snug">
+        <h3 className="text-[17px] font-bold leading-snug tracking-[-0.01em]">
           <Link to={`/place/${listing.slug}`} className="hover:text-teal-700">
             {listing.name}
           </Link>
         </h3>
-        <p className="line-clamp-2 text-sm leading-relaxed text-navy-500">{listing.tagline || listing.description}</p>
+        <p className="line-clamp-2 text-[14px] leading-relaxed text-navy-500">{listing.tagline || listing.description}</p>
+        <IllustrativeCaption entry={media.entry} name={listing.name} />
         <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 text-[13px] text-navy-500">{meta}</div>
       </div>
       <FavouriteButton listingId={listing.id} name={listing.name} />
@@ -154,20 +176,25 @@ function ImageBlock({ media, alt, className }: { media: ReturnType<typeof imageF
   );
 }
 
-function CategoryPill({ category }: { category?: Category }) {
-  if (!category) return null;
+/** A 'related' picture depicts a different Karachi scene, so the card says
+ *  which one rather than letting the photo imply it shows this place. */
+function IllustrativeCaption({ entry, name }: { entry?: MediaEntry; name: string }) {
+  if (entry?.kind !== 'related') return null;
+  return (
+    <p className="flex items-start gap-1.5 text-[11px] font-medium leading-snug text-navy-500">
+      <Image className="mt-0.5 h-3 w-3 shrink-0" aria-hidden />
+      <span>Photo shows {pictureSubject(entry)} — a like-for-like Karachi picture, not {name} itself.</span>
+    </p>
+  );
+}
+
+function CategoryPill({ category }: { category?: Category }) {  if (!category) return null;
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full bg-navy-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-navy-600">
       <CategoryIcon name={category.icon} className="h-3.5 w-3.5 text-teal-600" />
       {category.name}
     </span>
   );
-}
-
-function StatusInline({ status }: { status: Listing['status'] }) {
-  if (status === 'verified') return <span className="badge-verified">Verified source</span>;
-  if (status === 'demo') return <span className="badge-demo">Sample record</span>;
-  return <span className="badge-demo">Not verified yet</span>;
 }
 
 /* -------------------------------- event -------------------------------- */
@@ -203,7 +230,7 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
       </Link>
       <span className={`absolute left-3 top-3 z-10 flex flex-col items-center justify-center rounded-xl bg-white/95 px-3 py-2 text-center shadow-card`}>
         <span className="text-[17px] font-extrabold leading-none text-navy-800">{day}</span>
-        <span className="text-[11px] font-bold uppercase tracking-wide text-teal-600">{month}</span>
+        <span className="text-[11px] font-bold uppercase tracking-wide text-teal-700">{month}</span>
       </span>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex flex-wrap items-center gap-2">
@@ -220,16 +247,16 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
         <p className="line-clamp-2 text-sm leading-relaxed text-navy-500">{event.description}</p>
         <ul className="mt-auto space-y-1 pt-1 text-[13px] text-navy-500">
           <li className="flex items-center gap-1.5">
-            <Clock3 className="h-3.5 w-3.5 text-teal-500" />
+            <Clock3 className="h-3.5 w-3.5 text-teal-600" />
             {dateRange(event.date, event.endDate)} · {timeRange(event.startTime, event.endTime)}
           </li>
           <li className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-teal-500" />
+            <MapPin className="h-3.5 w-3.5 text-teal-600" />
             {event.venue}
             {area ? `, ${area.name}` : ''}
           </li>
           <li className="flex items-center gap-1.5">
-            <Ticket className="h-3.5 w-3.5 text-teal-500" />
+            <Ticket className="h-3.5 w-3.5 text-teal-600" />
             {event.ticketPrice}
           </li>
         </ul>
@@ -247,7 +274,7 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
 export function AreaCard({ area, count }: { area: Area; count: number }) {
   const media = imageFor(areaImageKey(area.id), area.name);
   return (
-    <Link to={`/area/${area.slug}`} className="card card-hover group relative flex h-44 items-end overflow-hidden">
+    <Link to={`/area/${area.slug}`} className="card card-hover group relative flex h-48 items-end overflow-hidden">
       <span className="absolute inset-0">
         <img
           src={media.thumb}
@@ -258,13 +285,16 @@ export function AreaCard({ area, count }: { area: Area; count: number }) {
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
       </span>
-      <span className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/45 to-transparent" />
+      <span className="media-scrim absolute inset-0" />
+      <span className="absolute right-3 top-3 z-10">
+        <IllustrativeStamp entry={media.entry} />
+      </span>
       <span className="relative z-10 flex w-full items-end justify-between gap-3 p-4">
         <span>
-          <span className="block font-display text-lg font-bold text-white">{area.name}</span>
-          <span className="block text-[13px] text-teal-100">{area.zone} zone · {plural(count, 'listing')}</span>
+          <span className="on-media block font-display text-lg font-bold text-white">{area.name}</span>
+          <span className="on-media mt-0.5 block text-[13px] font-medium text-white">{area.zone} zone · {plural(count, 'listing')}</span>
         </span>
-        <ArrowRight className="h-5 w-5 shrink-0 text-white/80 transition-transform group-hover:translate-x-1" />
+        <ArrowRight className="h-5 w-5 shrink-0 text-white transition-transform group-hover:translate-x-1" />
       </span>
     </Link>
   );
@@ -290,7 +320,7 @@ export function CategoryCard({
 }) {
   const media = imageFor(`banner-${category.id}`, category.name);
   return (
-    <Link to={`/category/${category.slug}`} className="card card-hover group relative flex h-40 flex-col justify-end overflow-hidden p-4">
+    <Link to={`/category/${category.slug}`} className="card card-hover group relative flex h-44 flex-col justify-end overflow-hidden p-4">
       <span className="absolute inset-0">
         <img
           src={media.thumb}
@@ -298,17 +328,20 @@ export function CategoryCard({
           aria-hidden
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
       </span>
-      <span className="absolute inset-0 bg-gradient-to-t from-navy-950/92 via-navy-900/55 to-navy-900/20" />
+      <span className="media-scrim absolute inset-0" />
+      <span className="absolute right-3 top-3 z-10">
+        <IllustrativeStamp entry={media.entry} />
+      </span>
       <span className="relative z-10">
-        <span className="mb-1 flex h-9 w-9 items-center justify-center rounded-lg bg-teal-500/90 text-white">
+        <span className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-teal-700">
           <CategoryIcon name={category.icon} className="h-5 w-5" />
         </span>
-        <span className="block font-display text-[15px] font-bold leading-snug text-white">{category.name}</span>
-        <span className="block text-[12px] text-teal-100">{plural(count, unit[0], unit[1])}</span>
+        <span className="on-media block font-display text-[16px] font-bold leading-snug text-white">{category.name}</span>
+        <span className="on-media mt-0.5 block text-[12px] font-semibold text-white">{plural(count, unit[0], unit[1])}</span>
       </span>
     </Link>
   );
@@ -320,7 +353,7 @@ export function GuideCard({ guide }: { guide: Guide }) {
   const media = imageFor(`guide-${guide.slug}`, guide.title);
   return (
     <Link to={`/guides/${guide.slug}`} className="card card-hover group flex flex-col overflow-hidden">
-      <span className="block aspect-[16/9] overflow-hidden bg-navy-50">
+      <span className="relative block aspect-[16/9] overflow-hidden bg-navy-50">
         <img
           src={media.thumb}
           alt={guide.title}
@@ -329,9 +362,12 @@ export function GuideCard({ guide }: { guide: Guide }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
+        <span className="absolute bottom-2.5 right-2.5">
+          <IllustrativeStamp entry={media.entry} />
+        </span>
       </span>
       <span className="flex flex-1 flex-col gap-2 p-4">
-        <span className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-teal-600">
+        <span className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-teal-700">
           {guide.tag} · {guide.readMinutes} min read
         </span>
         <span className="font-display text-[17px] font-bold leading-snug text-navy-800 group-hover:text-teal-700">{guide.title}</span>

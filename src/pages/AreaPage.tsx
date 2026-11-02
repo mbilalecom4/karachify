@@ -34,7 +34,7 @@ export default function AreaPage() {
         path: `/place/${l.slug}`,
         lat: l.lat,
         lng: l.lng,
-        color: '#102A43',
+        color: '#0A6A63',
       })),
     [items, categories]
   );
@@ -78,13 +78,11 @@ export default function AreaPage() {
         trail={[{ label: 'Home', to: '/' }, { label: 'Areas', to: '/areas' }, { label: area.name }]}
       >
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="badge bg-white/15 text-white ring-1 ring-inset ring-white/25">{plural(items.length, 'listing')}</span>
-          <span className="badge bg-white/15 text-white ring-1 ring-inset ring-white/25">{plural(countsByCategory.length, 'category', 'categories')}</span>
-          <span className="badge bg-white/15 text-white ring-1 ring-inset ring-white/25">
-            Approx. {coordText(area.lat, area.lng)}
-          </span>
+          <span className="chip-light">{plural(items.length, 'listing')}</span>
+          <span className="chip-light">{plural(countsByCategory.length, 'category', 'categories')}</span>
+          <span className="chip-light">Approx. {coordText(area.lat, area.lng)}</span>
           <a
-            className="badge bg-teal-500 text-white"
+            className="badge bg-teal-700 text-white"
             href={`https://www.google.com/maps/dir/?api=1&destination=${area.lat},${area.lng}&travelmode=driving`}
             target="_blank"
             rel="noopener noreferrer"

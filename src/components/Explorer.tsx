@@ -160,8 +160,29 @@ export function ListingExplorer({
         </div>
       </div>
 
-      <p className="mb-4 text-sm text-navy-500" aria-live="polite">
-        {loading ? 'Loading listings…' : `${sorted.length} listing${sorted.length === 1 ? '' : 's'}${dirty ? ' matching your filters' : ''}`}
+      <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-navy-500" aria-live="polite">
+        {loading ? (
+          'Loading listings…'
+        ) : (
+          <>
+            <span className="font-semibold text-navy-800">
+              {sorted.length} listing{sorted.length === 1 ? '' : 's'}
+            </span>
+            {dirty && <span>matching your filters</span>}
+            {areaId !== 'all' && (
+              <button onClick={() => setAreaId('all')} className="chip chip-active">
+                {areaOptions.find((a) => a.id === areaId)?.name ?? 'Area'}
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
+            {query.trim() && (
+              <button onClick={() => setQuery('')} className="chip chip-active">
+                “{query.trim()}”
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
+          </>
+        )}
       </p>
 
       {loading ? (

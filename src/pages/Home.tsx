@@ -16,11 +16,11 @@ import {
 import { guides } from '../data/guides';
 import type { Listing } from '../types';
 import { coverage, selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
-import { imageFor } from '../lib/media';
+import { imageFor, pictureSubject } from '../lib/media';
 import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
 import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, categoryTileCounts } from '../components/cards';
-import { KarachifyMap } from '../components/KarachifyMap';
+import { LazyMap } from '../components/LazyMap';
 import { EmptyState, Reveal, SectionHeading } from '../components/ui';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
@@ -40,6 +40,18 @@ const POPULAR_PLACE_SLUGS = [
 ];
 
 const QUICK_SEARCHES = ['Clifton Beach', 'Biryani', 'Nihari', 'Museums', 'DHA', 'Shopping malls', 'Hospitals'];
+
+/**
+ * What a hero photograph shows and who took it, read from the registry rather
+ * than typed into the markup — a hard-coded credit silently starts lying the
+ * moment the image behind it is swapped.
+ */
+function photoCredit(img: ReturnType<typeof imageFor>, fallbackLabel: string) {
+  const entry = img.entry;
+  if (!entry) return `${fallbackLabel} — no licensed photograph sourced yet`;
+  const by = [entry.artist, entry.license].filter(Boolean).join(', ');
+  return by ? `${pictureSubject(entry)} — photo: ${by}` : `${pictureSubject(entry)} — credit not stated at source`;
+}
 
 export default function Home() {
   useDocumentTitle('');
@@ -91,73 +103,96 @@ export default function Home() {
         path: `/place/${l.slug}`,
         lat: l.lat,
         lng: l.lng,
-        color: '#13A89E',
+        color: '#0A6A63',
       })),
     [popularPlaces, categories]
   );
 
   return (
     <div>
-      {/* ------------------------------ A. hero ------------------------------ */}
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img src={hero.wide} alt="Karachi coastline" className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = hero.fallback)} />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/60 to-navy-950/85" />
-        </div>
-        <div className="shell flex flex-col items-center py-20 text-center sm:py-28">
-          <span className="badge bg-teal-500/20 text-teal-100 ring-1 ring-inset ring-teal-300/40">
-            <Sparkles className="h-3 w-3" /> Independent Karachi directory
-          </span>
-          <h1 className="mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[1.08] text-white sm:text-6xl">
-            Discover Everything Karachi.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-navy-100 sm:text-lg">
-            One place for the city&apos;s attractions, food streets, events, hotels, malls, hospitals, universities and
-            services — organised by neighbourhood so you can plan a day, a move or a meeting without opening eleven
-            different tabs.
-          </p>
-          <div className="mt-8 w-full max-w-3xl">
-            <SearchBox variant="hero" />
-          </div>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            <span className="text-[13px] font-semibold text-navy-200">Popular:</span>
-            {QUICK_SEARCHES.map((term) => (
+      {/* ------------------------------ A. hero ------------------------------
+          The headline sits on the page, never on a photograph: white type over
+          a bright sky or a marble facade is the one combination that reliably
+          fails contrast, and this layout has no blur or translucency in it. */}
+      <section className="relative overflow-hidden bg-white">
+        <div className="shell grid items-center gap-10 py-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14 lg:py-16">
+          <div>
+            <span className="badge bg-teal-50 text-teal-800 ring-1 ring-inset ring-teal-200">
+              <Sparkles className="h-3 w-3" /> Independent Karachi directory
+            </span>
+            <h1 className="mt-5 max-w-[15ch] font-display text-[clamp(2.4rem,6.2vw,4.1rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-navy-900">
+              Discover Everything Karachi.
+            </h1>
+            <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-navy-600">
+              One place for the city&apos;s attractions, food streets, events, hotels, malls, hospitals, universities and
+              services — organised by neighbourhood so you can plan a day, a move or a meeting without opening eleven
+              different tabs.
+            </p>
+
+            <div className="mt-7 max-w-2xl">
+              <SearchBox variant="hero" />
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="text-[13px] font-semibold text-navy-500">Popular:</span>
+              {QUICK_SEARCHES.map((term) => (
+                <button
+                  key={term}
+                  onClick={() => navigate(`/search?q=${encodeURIComponent(term)}`)}
+                  className="rounded-full border border-navy-200 bg-white px-3 py-1.5 text-[13px] font-medium text-navy-700 transition-colors hover:border-teal-400 hover:text-teal-700"
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link to="/explore" className="btn-accent btn-lg">
+                <Compass className="h-4 w-4" />
+                Explore Karachi
+              </Link>
               <button
-                key={term}
-                onClick={() => navigate(`/search?q=${encodeURIComponent(term)}`)}
-                className="rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[13px] font-medium text-white backdrop-blur transition-colors hover:bg-white/20"
+                type="button"
+                className="btn btn-lg border border-navy-200 bg-white text-navy-800 hover:border-teal-400 hover:text-teal-700"
+                onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
               >
-                {term}
+                <Layers className="h-4 w-4" />
+                Browse categories
               </button>
-            ))}
+            </div>
+
+            <dl className="mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {[
+                { k: `${listings.length}`, v: 'Directory records' },
+                { k: `${areas.length}`, v: 'Areas covered' },
+                { k: `${verifiedCount}`, v: 'Fully source-checked' },
+                { k: `${sourcedCount}`, v: 'Sourced map pins' },
+              ].map((s) => (
+                <div key={s.v} className="rounded-2xl border border-navy-100 bg-mist px-4 py-4">
+                  <dt className="font-display text-[28px] font-extrabold leading-none tracking-tight text-navy-900">{s.k}</dt>
+                  <dd className="mt-2 text-[12px] font-semibold uppercase tracking-wide text-navy-500">{s.v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link to="/explore" className="btn-primary btn-lg">
-              <Compass className="h-4 w-4" />
-              Explore Karachi
-            </Link>
-            <button
-              type="button"
-              className="btn btn-lg border border-white/40 bg-white/10 text-white backdrop-blur hover:bg-white/20"
-              onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              <Layers className="h-4 w-4" />
-              Browse categories
-            </button>
+
+          <div className="relative isolate min-h-[300px] overflow-hidden rounded-[28px] border border-navy-100 shadow-lift sm:min-h-[420px] lg:min-h-[520px]">
+            <img
+              src={hero.wide}
+              alt={hero.entry ? pictureSubject(hero.entry) : 'Karachi'}
+              className="absolute inset-0 -z-10 h-full w-full object-cover"
+              onError={(e) => (e.currentTarget.src = hero.fallback)}
+            />
+            <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center gap-2">
+              <span className="chip-light">
+                <MapIcon className="h-3.5 w-3.5 text-teal-600" />
+                {photoCredit(hero, 'Karachi coastline')}
+              </span>
+              <Link to="/plan" className="chip-solid">
+                Plan a day <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
-          <dl className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { k: `${listings.length}`, v: 'Directory records' },
-              { k: `${areas.length}`, v: 'Areas covered' },
-              { k: `${verifiedCount}`, v: 'Fully source-checked' },
-              { k: `${sourcedCount}`, v: 'Sourced map pins' },
-            ].map((s) => (
-              <div key={s.v} className="rounded-xl border border-white/15 bg-white/10 px-3 py-4 backdrop-blur">
-                <dt className="font-display text-2xl font-extrabold text-white">{s.k}</dt>
-                <dd className="text-[13px] font-medium uppercase tracking-wide text-navy-100">{s.v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
@@ -260,22 +295,22 @@ export default function Home() {
       </section>
 
       {/* ---------------------------- E. areas ----------------------------- */}
-      <section className="bg-navy-800 py-12 sm:py-16">
+      <section className="bg-mist py-14 sm:py-20">
         <div className="shell">
-          <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow mb-1.5 text-teal-300">By neighbourhood</p>
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Discover Karachi by area</h2>
-              <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-navy-200">
+              <p className="eyebrow mb-2">By neighbourhood</p>
+              <h2 className="section-title">Discover Karachi by area</h2>
+              <p className="section-sub">
                 Karachi behaves like several cities joined by a few roads. Pick a locality to see what is genuinely
                 within reach of it.
               </p>
             </div>
-            <Link to="/areas" className="btn btn-sm border border-white/30 text-white hover:bg-white/10">
+            <Link to="/areas" className="btn-outline btn-sm">
               All {areas.length} areas <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {areas.slice(0, 12).map((a) => (
               <AreaCard key={a.id} area={a} count={listings.filter((l) => l.areaId === a.id).length} />
             ))}
@@ -337,7 +372,7 @@ export default function Home() {
           <div>
             <SectionHeading eyebrow="Interactive" title="Karachi map preview" sub="Pins marked as an OpenStreetMap position are that place's own mapped feature; the rest sit near the middle of their locality. Open the full map to filter by category and area." />
             <div className="card overflow-hidden p-2">
-              <KarachifyMap points={mapPoints} compact className="h-[340px] w-full" />
+              <LazyMap points={mapPoints} compact className="h-[340px] w-full" />
             </div>
             <Link to="/map" className="btn-dark mt-4">
               <MapIcon className="h-4 w-4" /> Open the full map
@@ -430,39 +465,48 @@ function SourcingBand() {
   const band = imageFor('hero-karachi-night', 'Karachi at night');
 
   return (
-    <section className="relative isolate overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <img src={band.wide} alt="" aria-hidden className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = band.fallback)} />
-        <div className="absolute inset-0 bg-navy-950/85" />
-      </div>
-      <div className="shell grid gap-8 py-14 lg:grid-cols-2 lg:items-center">
-        <div>
-          <p className="eyebrow mb-2 text-teal-300">Sources</p>
-          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Every detail has a paper trail</h2>
-          <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-navy-100">
+    <section className="shell section">
+      <div className="grid overflow-hidden rounded-[28px] border border-navy-100 bg-white shadow-card lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="p-7 sm:p-9 lg:p-11">
+          <p className="eyebrow mb-3">Sources</p>
+          <h2 className="font-display text-[26px] font-extrabold leading-tight tracking-[-0.02em] text-navy-900 sm:text-[32px]">
+            Every detail has a paper trail
+          </h2>
+          <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-navy-600">
             Opening hours, admission, addresses and coordinates are read from the operator’s own page, a published tariff
             or OpenStreetMap, written up as a research file, and merged into the app by a script. Nothing is typed into
             the interface by hand — and nothing is guessed when a source did not publish it.
           </p>
-        </div>
-        <div className="card p-5">
-          <p className="font-display text-[17px] font-bold text-navy-800">Seen something wrong?</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-navy-500">
-            Send the listing, the field and a link to the correct source. A change is applied only against that source,
-            and the page then carries the new date it was checked.
-          </p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            <Link to="/contact" className="btn-primary btn-sm">
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <Link to="/contact" className="btn-primary">
               Report a correction
             </Link>
-            <Link to="/help" className="btn-outline btn-sm">
+            <Link to="/help" className="btn-outline">
               How verification works
             </Link>
           </div>
-          <p className="mt-3 text-[12px] leading-relaxed text-navy-400">
-            There is no newsletter to join: this build runs without a server, so it asks for no email address and sends
-            nothing anywhere.
-          </p>
+
+          <div className="mt-6 rounded-2xl border border-navy-100 bg-mist p-4 text-[13px] leading-relaxed text-navy-600">
+            <strong className="font-bold text-navy-800">No newsletter to join.</strong> This build runs without a server,
+            so it asks for no email address and sends nothing anywhere.
+          </div>
+        </div>
+
+        <div className="relative isolate min-h-[240px] lg:min-h-full">
+          <img
+            src={band.wide}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 -z-10 h-full w-full object-cover"
+            onError={(e) => (e.currentTarget.src = band.fallback)}
+          />
+          <div className="absolute inset-x-5 bottom-5">
+            <span className="chip-light">
+              <ShieldCheck className="h-3.5 w-3.5 text-teal-600" />
+              {photoCredit(band, 'Karachi at night')}
+            </span>
+          </div>
         </div>
       </div>
     </section>
