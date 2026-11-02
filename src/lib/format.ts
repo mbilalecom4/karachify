@@ -67,7 +67,11 @@ export function admissionLabel(fees?: { label: string; amount: number; basis: st
   return `From PKR ${Math.min(...paid).toLocaleString('en-PK')}${press}`;
 }
 
-export function plural(count: number, one: string, many = `${one}s`) {
+/** "21 categorys" is the kind of thing a directory site is remembered for. */
+const manyOf = (one: string) =>
+  /[^aeiou]y$/i.test(one) ? `${one.slice(0, -1)}ies` : /(s|x|z|ch|sh)$/i.test(one) ? `${one}es` : `${one}s`;
+
+export function plural(count: number, one: string, many = manyOf(one)) {
   return `${count.toLocaleString('en-PK')} ${count === 1 ? one : many}`;
 }
 

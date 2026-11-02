@@ -7,7 +7,8 @@
     "docs/verification/batch-f-practical.json",
     "docs/verification/batch-g-institutions.json",
     "docs/verification/batch-h-emergency.json",
-    "docs/verification/batch-i-around-the-clock.json"
+    "docs/verification/batch-i-around-the-clock.json",
+    "docs/verification/batch-j-osm-locations.json"
   ],
   "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
   "records": {
@@ -612,7 +613,7 @@
         }
       ]
     },
-    "hawksbay-beach": {
+    "hawkes-bay-beach": {
       "researchName": "Hawksbay Beach",
       "status": "needs-review",
       "lastVerified": "2026-10-30",
@@ -2755,6 +2756,330 @@
           "batch": "batch-i-around-the-clock"
         }
       ]
+    },
+    "quaid-e-azam-house": {
+      "researchName": "Quaid-e-Azam House Museum",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/way/535257326",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "st-patricks-cathedral": {
+      "researchName": "St. Patrick's Cathedral",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/way/681523986",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "boat-basin": {
+      "researchName": "Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/way/712243900",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "burger-lab-korangi": {
+      "researchName": "Burger Lab",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/node/4774671170",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "movenpick-karachi": {
+      "researchName": "Mövenpick Hotel Karachi",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/node/5135305798",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "hill-park-karachi": {
+      "researchName": "Hill Park",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/way/26633897",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "iba-karachi": {
+      "researchName": "Institute of Business Administration",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/node/5137605636",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "dow-university-health-sciences": {
+      "researchName": "Dow University of Health Sciences",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/way/681548017",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
+    },
+    "st-anthonys-high-school": {
+      "researchName": "St. Anthony's High School",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-j-osm-locations"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/node/4801407816",
+          "supports": [
+            "coordinates",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-j-osm-locations"
+        }
+      ],
+      "notFound": [],
+      "notes": [
+        {
+          "kind": "evidence",
+          "text": "Located by an exact-name OpenStreetMap search within 8 km of the pin already shown; practical fields were not checked.",
+          "batch": "batch-j-osm-locations"
+        }
+      ]
     }
   },
   "exclusions": [
@@ -2794,7 +3119,7 @@
       "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
     },
     {
-      "slug": "hawksbay-beach",
+      "slug": "hawkes-bay-beach",
       "field": "entryConditions",
       "reason": "The only published rule was the Commissioner Karachi swimming-ban notification, which covers 01.07–23.08.2026 — a window that has closed. Presenting it as a current condition would mislead, so it is not shown."
     }

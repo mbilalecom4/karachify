@@ -7,7 +7,8 @@
     "docs/verification/batch-f-practical.json",
     "docs/verification/batch-g-institutions.json",
     "docs/verification/batch-h-emergency.json",
-    "docs/verification/batch-i-around-the-clock.json"
+    "docs/verification/batch-i-around-the-clock.json",
+    "docs/verification/batch-j-osm-locations.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -136,8 +137,8 @@
       "lastVerified": "2026-10-30",
       "osmId": "N5041193103"
     },
-    "hawksbay-beach": {
-      "isNew": true,
+    "hawkes-bay-beach": {
+      "isNew": false,
       "categoryId": "beaches",
       "areaId": "kemari",
       "name": "Hawke's Bay Beach",
@@ -922,6 +923,114 @@
       "sourceUrl": "https://www.openstreetmap.org/relation/17336275",
       "lastVerified": "2026-10-31",
       "osmId": "relation/17336275"
+    },
+    "quaid-e-azam-house": {
+      "isNew": false,
+      "lat": 24.851168,
+      "lng": 67.0328327,
+      "coordsVerified": true,
+      "address": "Quaid-e-Azam House, Shahrah-e-Faisal (Scandal Point Road), Civil Lines, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/535257326",
+      "lastVerified": "2026-11-02",
+      "osmId": "535257326"
+    },
+    "st-patricks-cathedral": {
+      "isNew": false,
+      "lat": 24.8618723,
+      "lng": 67.0350115,
+      "coordsVerified": true,
+      "address": "St. Patrick's Cathedral, Mubarak Shaheed Road, Saddar Bazaar, Fowler Lines, Saddar Town, Karachi District, Karachi Division, Sindh, 77440, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/681523986",
+      "lastVerified": "2026-11-02",
+      "osmId": "681523986"
+    },
+    "boat-basin": {
+      "isNew": false,
+      "lat": 24.821449,
+      "lng": 67.0183042,
+      "coordsVerified": true,
+      "address": "Boat Basin, Saddar Town, Karachi District, Karachi Division, Sindh, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/712243900",
+      "lastVerified": "2026-11-02",
+      "osmId": "712243900"
+    },
+    "burger-lab-korangi": {
+      "isNew": false,
+      "lat": 24.8778968,
+      "lng": 67.0671041,
+      "coordsVerified": true,
+      "address": "Burger Lab, Shaheed e Millat, Jinnah Cooperative Housing Society, Memon Society, Jamshed Town, Gulshan District, Karachi Division, Sindh, 75100, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/4774671170",
+      "lastVerified": "2026-11-02",
+      "osmId": "4774671170"
+    },
+    "movenpick-karachi": {
+      "isNew": false,
+      "lat": 24.8470559,
+      "lng": 67.0262002,
+      "coordsVerified": true,
+      "address": "Mövenpick Hotel Karachi, Club Road, Civil Lines, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/5135305798",
+      "lastVerified": "2026-11-02",
+      "osmId": "5135305798"
+    },
+    "hill-park-karachi": {
+      "isNew": false,
+      "lat": 24.870432,
+      "lng": 67.0713521,
+      "coordsVerified": true,
+      "address": "Hill Park, Jamshed Town, Gulshan District, Karachi Division, Sindh, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/26633897",
+      "lastVerified": "2026-11-02",
+      "osmId": "26633897"
+    },
+    "iba-karachi": {
+      "isNew": false,
+      "lat": 24.8670471,
+      "lng": 67.0256597,
+      "coordsVerified": true,
+      "address": "Institute of Business Administration, City Campus, Dr. Daud Pota Road (Frere Street), Saddar Bazaar, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/5137605636",
+      "lastVerified": "2026-11-02",
+      "osmId": "5137605636"
+    },
+    "dow-university-health-sciences": {
+      "isNew": false,
+      "lat": 24.8578376,
+      "lng": 67.0109424,
+      "coordsVerified": true,
+      "address": "Dow University of Health Sciences, Punjrapur Street, Aram Bagh Furniture Market, Saddar Town, Karachi District, Karachi Division, Sindh, 75660, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/way/681548017",
+      "lastVerified": "2026-11-02",
+      "osmId": "681548017"
+    },
+    "st-anthonys-high-school": {
+      "isNew": false,
+      "lat": 24.8405868,
+      "lng": 67.0359872,
+      "coordsVerified": true,
+      "address": "St. Anthony's High School, میک نیل روڈ, Saddar Town, Karachi District, Karachi Division, Sindh, 74400, Pakistan",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://www.openstreetmap.org/node/4801407816",
+      "lastVerified": "2026-11-02",
+      "osmId": "4801407816"
     }
   }
 }
