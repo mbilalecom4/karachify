@@ -37,8 +37,8 @@ const SERVICES = [
     icon: Ticket,
     title: 'Book tickets & tables',
     body: 'Karachify does not sell tickets or hold tables, and it never invents a booking link. Event records point at the organiser’s own page; a restaurant booking goes to the venue’s published number. Ask below and the request is recorded for follow-up.',
-    to: '/events',
-    cta: 'See what is listed',
+    to: '/contact',
+    cta: 'Ask us to find it',
   },
   {
     icon: Store,

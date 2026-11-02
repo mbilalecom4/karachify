@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Compass, Map as MapIcon, Sparkles } from 'lucide-react';
+import { ArrowRight, Compass, Map as MapIcon } from 'lucide-react';
 import { guides } from '../data/guides';
 import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
-import { CategoryCard, AreaCard, GuideCard, EventCard, categoryTileCounts } from '../components/cards';
+import { CategoryCard, AreaCard, GuideCard, EventCard, populatedCategoryTiles } from '../components/cards';
 import { SearchBox } from '../components/SearchBox';
 import { PageHero } from '../components/Page';
 import { SectionHeading, Tabs } from '../components/ui';
@@ -22,6 +22,8 @@ export default function Explore() {
     () => (group === 'All' ? categories : categories.filter((c) => c.group === group)),
     [categories, group]
   );
+  const tiles = useMemo(() => populatedCategoryTiles(visibleCategories, listings, events), [visibleCategories, listings, events]);
+  const openableCount = useMemo(() => populatedCategoryTiles(categories, listings, events).length, [categories, listings, events]);
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
   const featuredFirst = useMemo(
@@ -39,7 +41,7 @@ export default function Explore() {
         label="Karachi"
         eyebrow="Explore"
         title="Everything Karachify covers, in one place"
-        sub={`${categories.length} categories, ${areas.length} localities, events, guides and a searchable map. Start with a category, an area, or just type what you are looking for.`}
+        sub={`${categories.length} categories, ${openableCount} of them with places you can open today, ${areas.length} localities, city guides and a searchable map. Start with a category, an area, or just type what you are looking for.`}
         trail={[{ label: 'Home', to: '/' }, { label: 'Explore' }]}
       >
         <div className="max-w-2xl">
@@ -59,16 +61,13 @@ export default function Explore() {
           }
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {visibleCategories.map((c) => (
-            <CategoryCard key={c.id} category={c} {...categoryTileCounts(c, listings, events)} />
+          {tiles.map((t) => (
+            <CategoryCard key={t.category.id} category={t.category} count={t.count} unit={t.unit} />
           ))}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link to="/map" className="btn-outline btn-sm">
             <MapIcon className="h-3.5 w-3.5" /> Explore map
-          </Link>
-          <Link to="/events" className="btn-outline btn-sm">
-            <Sparkles className="h-3.5 w-3.5" /> What is on
           </Link>
           <Link to="/guides" className="btn-outline btn-sm">
             <Compass className="h-3.5 w-3.5" /> City guides

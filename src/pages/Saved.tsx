@@ -78,8 +78,8 @@ export default function Saved() {
             title="No saved events yet"
             body="Open an event and use “Save event” to keep it here. The board is empty until Karachify can date-source an event, so there may be nothing to save yet."
             action={
-              <Link to="/events" className="btn-primary mt-1">
-                Browse the event board
+              <Link to="/explore" className="btn-primary mt-1">
+                Browse places instead
               </Link>
             }
           />

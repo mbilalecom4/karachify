@@ -102,9 +102,6 @@ export function Footer() {
             <Link to="/help" className="hover:text-lime-300">
               Help
             </Link>
-            <Link to="/admin" className="hover:text-lime-300">
-              Admin
-            </Link>
           </p>
         </div>
       </div>

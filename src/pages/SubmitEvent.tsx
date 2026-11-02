@@ -62,10 +62,7 @@ export default function SubmitEvent() {
             than no event at all.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link to="/events" className="btn-primary">
-              Browse the sample calendar
-            </Link>
-            <Link to="/profile" className="btn-outline">
+            <Link to="/profile" className="btn-primary">
               My submissions
             </Link>
             <button className="btn-ghost" onClick={() => setDone(null)}>

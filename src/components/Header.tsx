@@ -41,7 +41,7 @@ export function Header() {
   const cat = (slug: string) => `/category/${slug}`;
   const byId = (id: string) => categories.find((c) => c.id === id);
 
-  const nav: NavItem[] = [
+  const navGroups: NavItem[] = [
     {
       label: 'Explore',
       to: '/explore',
@@ -99,7 +99,6 @@ export function Header() {
         { label: 'City guides', to: '/guides', note: 'How to spend a day here' },
       ],
     },
-    { label: 'Events', to: '/events' },
     { label: 'Map', to: '/map' },
     {
       label: 'About',
@@ -119,6 +118,18 @@ export function Header() {
       ],
     },
   ];
+
+  /* A menu entry that opens an empty shelf reads as a broken site, so category
+     links stay only while at least one place is actually behind them. */
+  const stocked = new Set(listings.map((l) => l.categoryId));
+  const hasShelf = (to: string) => {
+    if (!to.startsWith('/category/')) return true;
+    const found = categories.find((c) => c.slug === to.slice('/category/'.length));
+    return found ? stocked.has(found.id) : false;
+  };
+  const nav: NavItem[] = navGroups
+    .map((item) => ({ ...item, children: item.children?.filter((ch) => hasShelf(ch.to)) }))
+    .filter((item) => hasShelf(item.to) && (!item.children || item.children.length > 0));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -175,10 +186,6 @@ export function Header() {
             <span className="h-3 w-px bg-navy-600" />
             <Link to="/advertise" className="text-navy-100 hover:text-teal-200">
               Advertise
-            </Link>
-            <span className="h-3 w-px bg-navy-600" />
-            <Link to="/admin" className="rounded-full border border-navy-500 bg-navy-700 px-2.5 py-1 font-semibold text-teal-200 hover:border-teal-400 hover:bg-navy-600 hover:text-white">
-              Admin
             </Link>
           </div>
         </div>

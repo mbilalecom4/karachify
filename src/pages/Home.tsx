@@ -19,7 +19,7 @@ import { coverage, selectAreas, selectCategories, selectEvents, selectListings, 
 import { imageFor, pictureSubject } from '../lib/media';
 import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
-import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, categoryTileCounts } from '../components/cards';
+import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, populatedCategoryTiles } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { EmptyState, Reveal, SectionHeading } from '../components/ui';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
@@ -64,6 +64,7 @@ export default function Home() {
 
   const hero = imageFor('hero-karachi', 'Karachi coastline');
   const today = new Date().toISOString().slice(0, 10);
+  const categoryTiles = useMemo(() => populatedCategoryTiles(categories, listings, events), [categories, listings, events]);
 
   const popularPlaces = useMemo(() => {
     const found = POPULAR_PLACE_SLUGS.map((s) => listings.find((l) => l.slug === s)).filter(
@@ -225,7 +226,7 @@ export default function Home() {
         <SectionHeading
           eyebrow="Start here"
           title="Explore categories"
-          sub={`${categories.length} sections covering the things a resident, a newcomer or a visitor actually searches for.`}
+          sub={`${categoryTiles.length} sections with places you can open today, covering what a resident, a newcomer or a visitor actually searches for.`}
           action={
             <Link to="/explore" className="btn-outline btn-sm">
               All categories <ArrowRight className="h-3.5 w-3.5" />
@@ -233,9 +234,9 @@ export default function Home() {
           }
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {categories.map((c, i) => (
-            <Reveal key={c.id} delay={Math.min(i * 25, 200)}>
-              <CategoryCard category={c} {...categoryTileCounts(c, listings, events)} />
+          {categoryTiles.map((t, i) => (
+            <Reveal key={t.category.id} delay={Math.min(i * 25, 200)}>
+              <CategoryCard category={t.category} count={t.count} unit={t.unit} />
             </Reveal>
           ))}
         </div>
@@ -269,9 +270,11 @@ export default function Home() {
           title="Upcoming events"
           sub="An event appears here only when a dated source names it — organiser, venue programme or news coverage. Nothing here is invented programming."
           action={
-            <Link to="/events" className="btn-outline btn-sm">
-              All events <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            upcoming.length === 0 ? undefined : (
+              <Link to="/events" className="btn-outline btn-sm">
+                All events <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            )
           }
         />
         {upcoming.length === 0 ? (

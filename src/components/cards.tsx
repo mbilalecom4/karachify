@@ -308,6 +308,17 @@ export function categoryTileCounts(c: Category, listings: Listing[], events: Cit
     : { count: listings.filter((l) => l.categoryId === c.id).length };
 }
 
+/**
+ * A tile that reads "0 places" advertises an empty shelf, so grids drop it. The
+ * route still resolves — this only stops us pointing at sections with nothing
+ * behind them yet.
+ */
+export function populatedCategoryTiles(categories: Category[], listings: Listing[], events: CityEvent[]) {
+  return categories
+    .map((c) => ({ category: c, ...categoryTileCounts(c, listings, events) }))
+    .filter((t) => t.count > 0);
+}
+
 export function CategoryCard({
   category,
   count,
