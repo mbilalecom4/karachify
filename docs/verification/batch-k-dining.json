@@ -1,0 +1,526 @@
+[
+  {
+    "slug": "tandoori-hut-restaurant-boat-basin",
+    "name": "Tandoori Hut Restaurant, Boat Basin",
+    "osmId": "node/4759795926",
+    "lat": 24.8260581,
+    "lng": 67.0255502,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "dera-resturant-boat-basin",
+    "name": "Dera Resturant, Boat Basin",
+    "osmId": "node/4759795935",
+    "lat": 24.8266288,
+    "lng": 67.026,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "baithak-boat-basin",
+    "name": "Baithak, Boat Basin",
+    "osmId": "node/4759795925",
+    "lat": 24.8265421,
+    "lng": 67.0259083,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "baloch-ice-cream-boat-basin",
+    "name": "Baloch Ice Cream, Boat Basin",
+    "osmId": "node/4759795931",
+    "lat": 24.8256004,
+    "lng": 67.0253634,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "chick-n-chips-boat-basin",
+    "name": "Chick N Chips, Boat Basin",
+    "osmId": "node/4759795940",
+    "lat": 24.8268283,
+    "lng": 67.0265049,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "nihari-inn-boat-basin",
+    "name": "Nihari Inn, Boat Basin",
+    "osmId": "node/4759795938",
+    "lat": 24.8267481,
+    "lng": 67.0262213,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "qasr-ul-nakheel-boat-basin",
+    "name": "Qasr-ul-Nakheel, Boat Basin",
+    "osmId": "node/4759795932",
+    "lat": 24.8255183,
+    "lng": 67.0253229,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "fams-patisserie-boat-basin",
+    "name": "Fam's Patisserie, Boat Basin",
+    "osmId": "node/4759795942",
+    "lat": 24.8269051,
+    "lng": 67.0270534,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "karachi-broast-boat-basin",
+    "name": "Karachi Broast, Boat Basin",
+    "osmId": "node/4759795937",
+    "lat": 24.8268001,
+    "lng": 67.0263713,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "7-star-boat-basin",
+    "name": "7 Star, Boat Basin",
+    "osmId": "node/4759795944",
+    "lat": 24.8269106,
+    "lng": 67.0271453,
+    "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+    "website": null,
+    "contact": {},
+    "hours": null,
+    "confidence": "partially-verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "phone",
+      "website",
+      "hours",
+      "facilities",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+        "supports": [
+          "name",
+          "lat",
+          "lng",
+          "address"
+        ],
+        "note": "OpenStreetMap element returned by the Boat Basin restaurant search: name, node id, coordinates, amenity type and displayed address."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "partially-verified",
+        "method": "openstreetmap",
+        "notes": "Identity and mapped position confirmed against the OpenStreetMap element. Nothing about trading details was checked: no operator page was read for this record."
+      }
+    }
+  },
+  {
+    "slug": "ginsoy-dha",
+    "name": "Ginsoy",
+    "osmId": null,
+    "contactOnly": true,
+    "address": "40-C, 3rd Floor, Shahbaz Commercial Area, Phase 6, DHA, Karachi 75500",
+    "website": "https://ginsoy.com/",
+    "contact": {
+      "phone": "+9221111446769",
+      "email": "info@ginsoy.com"
+    },
+    "hours": null,
+    "confidence": "verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "hours",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://ginsoy.com/contact/",
+        "supports": [
+          "name",
+          "address",
+          "phone",
+          "website"
+        ],
+        "note": "Address, phone and email match the official contact page."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "verified",
+        "confidence": "high",
+        "method": "official-website",
+        "notes": "Address, phone and email match the official contact page."
+      }
+    }
+  },
+  {
+    "slug": "kababjees-shaheed-e-millat",
+    "name": "Kababjees",
+    "osmId": null,
+    "contactOnly": true,
+    "address": "Shaheed-e-Millat Road, Bahadurabad, Karachi",
+    "website": "https://kababjees.com/",
+    "contact": {
+      "phone": "+9221111666111",
+      "email": null
+    },
+    "hours": [
+      {
+        "day": "Monday – Sunday",
+        "open": "17:00 – 01:00"
+      }
+    ],
+    "confidence": "verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://kababjees.com/",
+        "supports": [
+          "name",
+          "address",
+          "phone",
+          "website"
+        ],
+        "note": "Branch identified as Shaheed-e-Millat on the official site; timings and central number taken from kababjees.com."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "verified",
+        "confidence": "high",
+        "method": "official-website",
+        "notes": "Branch identified as Shaheed-e-Millat on the official site; timings and central number taken from kababjees.com."
+      }
+    }
+  },
+  {
+    "slug": "broadway-pizza-gulshan",
+    "name": "Broadway Pizza",
+    "osmId": null,
+    "contactOnly": true,
+    "address": "Gulshan-e-Iqbal, Karachi",
+    "website": "https://www.broadwaypizza.com.pk/",
+    "contact": {
+      "phone": "+9221111339339",
+      "email": null
+    },
+    "hours": null,
+    "confidence": "verified",
+    "lastVerified": "2026-11-02",
+    "missingFields": [
+      "hours",
+      "photo"
+    ],
+    "sources": [
+      {
+        "url": "https://www.broadwaypizza.com.pk/",
+        "supports": [
+          "name",
+          "address",
+          "phone",
+          "website"
+        ],
+        "note": "Central order number and WhatsApp match the official site footer; branch-specific timings are not published, so hours remain unknown."
+      }
+    ],
+    "research": {
+      "verification": {
+        "date": "2026-11-02",
+        "status": "verified",
+        "confidence": "high",
+        "method": "official-website",
+        "notes": "Central order number and WhatsApp match the official site footer; branch-specific timings are not published, so hours remain unknown."
+      }
+    }
+  }
+]

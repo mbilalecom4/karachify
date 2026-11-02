@@ -318,4 +318,146 @@ export const dining = [
     facilities: ['Pre-order', 'Family hall', 'Private room'],
     tags: ['Shinzozi', 'Special occasion', 'Pre-order'],
   }),
+  makeListing({
+    slug: 'tandoori-hut-restaurant-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Tandoori Hut Restaurant, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795926). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'dera-resturant-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Dera Resturant, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795935). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'baithak-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Baithak, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795925). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'baloch-ice-cream-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Baloch Ice Cream, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795931). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'chick-n-chips-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Chick N Chips, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795940). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'nihari-inn-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Nihari Inn, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795938). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'qasr-ul-nakheel-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Qasr-ul-Nakheel, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795932). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'fams-patisserie-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Fam\'s Patisserie, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795942). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: 'karachi-broast-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: 'Karachi Broast, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795937). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  makeListing({
+    slug: '7-star-boat-basin',
+    categoryId: R,
+    areaId: 'clifton',
+    name: '7 Star, Boat Basin',
+    description:
+      'OpenStreetMap maps this premises as a restaurant on the Boat Basin strip (OSM node 4759795944). Karachify has confirmed the name, the pin and the mapped address only — no phone number, opening hours, menu or price has been checked against the operator, so none are shown.',
+    address: 'Block 5, Clifton Block 5, Clifton',
+    tags: ['Boat Basin', 'Sea View'],
+  }),
+  /* Three branches whose own websites were read on 2026-11-02. Only the fields
+     printed on the operator's page are carried; Ginsoy publishes no public
+     timetable and Broadway's timings are branch-specific and unstated, so both
+     leave hours empty rather than inheriting a guess. */
+  makeListing({
+    slug: 'ginsoy-dha',
+    categoryId: R,
+    areaId: 'dha',
+    name: 'Ginsoy',
+    description:
+      'Restaurant in DHA Phase 6. Karachify read this address, the central order number and the reservations email from the contact page on ginsoy.com; that page publishes no opening-hours timetable, so none is shown here.',
+    address: '40-C, 3rd Floor, Shahbaz Commercial Area, Phase 6, DHA, Karachi 75500',
+    phone: '+9221111446769',
+    email: 'info@ginsoy.com',
+    website: 'https://ginsoy.com/',
+    tags: ['DHA Phase 6'],
+  }),
+  makeListing({
+    slug: 'kababjees-shaheed-e-millat',
+    categoryId: R,
+    areaId: 'bahadurabad',
+    name: 'Kababjees',
+    description:
+      'Kabab house listed by its own website under the Shaheed-e-Millat branch. The central order line and the 5pm-to-1am service window are taken from kababjees.com; the menu and prices on that site are not reproduced here.',
+    address: 'Shaheed-e-Millat Road, Bahadurabad',
+    phone: '+9221111666111',
+    website: 'https://kababjees.com/',
+    hours: [{ day: 'Monday – Sunday', open: '17:00 – 01:00' }],
+    tags: ['Shaheed-e-Millat', 'Bahadurabad'],
+  }),
+  makeListing({
+    slug: 'broadway-pizza-gulshan',
+    categoryId: R,
+    areaId: 'gulshan-e-iqbal',
+    name: 'Broadway Pizza',
+    description:
+      'Gulshan branch of the Broadway Pizza chain. Karachify read the order and WhatsApp number from the footer of broadwaypizza.com.pk; that page does not publish this branch opening hours, so none are shown.',
+    address: 'Gulshan-e-Iqbal, Karachi',
+    phone: '+9221111339339',
+    website: 'https://www.broadwaypizza.com.pk/',
+    tags: ['Pizza', 'Gulshan-e-Iqbal'],
+  }),
 ];

@@ -8,7 +8,8 @@
     "docs/verification/batch-g-institutions.json",
     "docs/verification/batch-h-emergency.json",
     "docs/verification/batch-i-around-the-clock.json",
-    "docs/verification/batch-j-osm-locations.json"
+    "docs/verification/batch-j-osm-locations.json",
+    "docs/verification/batch-k-dining.json"
   ],
   "note": "Values copied from docs/verification/; absent means no source was found.",
   "overrides": {
@@ -1031,6 +1032,162 @@
       "sourceUrl": "https://www.openstreetmap.org/node/4801407816",
       "lastVerified": "2026-11-02",
       "osmId": "4801407816"
+    },
+    "tandoori-hut-restaurant-boat-basin": {
+      "isNew": false,
+      "lat": 24.8260581,
+      "lng": 67.0255502,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795926"
+    },
+    "dera-resturant-boat-basin": {
+      "isNew": false,
+      "lat": 24.8266288,
+      "lng": 67.026,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795935"
+    },
+    "baithak-boat-basin": {
+      "isNew": false,
+      "lat": 24.8265421,
+      "lng": 67.0259083,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795925"
+    },
+    "baloch-ice-cream-boat-basin": {
+      "isNew": false,
+      "lat": 24.8256004,
+      "lng": 67.0253634,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795931"
+    },
+    "chick-n-chips-boat-basin": {
+      "isNew": false,
+      "lat": 24.8268283,
+      "lng": 67.0265049,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795940"
+    },
+    "nihari-inn-boat-basin": {
+      "isNew": false,
+      "lat": 24.8267481,
+      "lng": 67.0262213,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795938"
+    },
+    "qasr-ul-nakheel-boat-basin": {
+      "isNew": false,
+      "lat": 24.8255183,
+      "lng": 67.0253229,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795932"
+    },
+    "fams-patisserie-boat-basin": {
+      "isNew": false,
+      "lat": 24.8269051,
+      "lng": 67.0270534,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795942"
+    },
+    "karachi-broast-boat-basin": {
+      "isNew": false,
+      "lat": 24.8268001,
+      "lng": 67.0263713,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795937"
+    },
+    "7-star-boat-basin": {
+      "isNew": false,
+      "lat": 24.8269106,
+      "lng": 67.0271453,
+      "coordsVerified": true,
+      "address": "Block 5, Clifton Block 5, Clifton, Karachi",
+      "hours": null,
+      "status": "needs-review",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+      "lastVerified": "2026-11-02",
+      "osmId": "node/4759795944"
+    },
+    "ginsoy-dha": {
+      "isNew": false,
+      "address": "40-C, 3rd Floor, Shahbaz Commercial Area, Phase 6, DHA, Karachi 75500",
+      "hours": null,
+      "website": "https://ginsoy.com/",
+      "phone": "+9221111446769",
+      "email": "info@ginsoy.com",
+      "status": "verified",
+      "sourceUrl": "https://ginsoy.com/contact/",
+      "lastVerified": "2026-11-02"
+    },
+    "kababjees-shaheed-e-millat": {
+      "isNew": false,
+      "address": "Shaheed-e-Millat Road, Bahadurabad, Karachi",
+      "hours": [
+        {
+          "day": "Monday – Sunday",
+          "open": "17:00 – 01:00"
+        }
+      ],
+      "website": "https://kababjees.com/",
+      "phone": "+9221111666111",
+      "status": "verified",
+      "sourceUrl": "https://kababjees.com/",
+      "lastVerified": "2026-11-02"
+    },
+    "broadway-pizza-gulshan": {
+      "isNew": false,
+      "address": "Gulshan-e-Iqbal, Karachi",
+      "hours": null,
+      "website": "https://www.broadwaypizza.com.pk/",
+      "phone": "+9221111339339",
+      "status": "verified",
+      "sourceUrl": "https://www.broadwaypizza.com.pk/",
+      "lastVerified": "2026-11-02"
     }
   }
 }

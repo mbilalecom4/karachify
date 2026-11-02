@@ -20,6 +20,7 @@ const BATCHES = [
   'batch-h-emergency',
   'batch-i-around-the-clock',
   'batch-j-osm-locations',
+  'batch-k-dining',
 ];
 
 /** Verified name in the research file -> slug used by the catalogue. */

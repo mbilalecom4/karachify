@@ -274,8 +274,10 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
 export function AreaCard({ area, count }: { area: Area; count: number }) {
   const media = imageFor(areaImageKey(area.id), area.name);
   return (
-    <Link to={`/area/${area.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0 sm:h-48">
-      <span className="relative block h-[118px] shrink-0 overflow-hidden bg-navy-50">
+    <Link to={`/area/${area.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0">
+      {/* An aspect box instead of a fixed pixel height: a fixed height plus
+          object-cover is what sliced the roofline off these photos. */}
+      <span className="relative block aspect-[4/3] overflow-hidden bg-navy-50 sm:aspect-[16/10]">
         <img
           src={media.thumb}
           alt={`${area.name}, Karachi`}
@@ -284,9 +286,6 @@ export function AreaCard({ area, count }: { area: Area; count: number }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
-        <span className="absolute inset-x-2 top-2 flex justify-end">
-          <IllustrativeStamp entry={media.entry} />
-        </span>
       </span>
       <span className="flex flex-1 items-center justify-between gap-3 bg-navy-800 px-4 py-3">
         <span className="min-w-0">
@@ -330,8 +329,8 @@ export function CategoryCard({
 }) {
   const media = imageFor(`banner-${category.id}`, category.name);
   return (
-    <Link to={`/category/${category.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0 sm:h-44">
-      <span className="relative block h-[110px] shrink-0 overflow-hidden bg-navy-50">
+    <Link to={`/category/${category.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0">
+      <span className="relative block aspect-[4/3] overflow-hidden bg-navy-50 sm:aspect-[16/10]">
         <img
           src={media.thumb}
           alt=""
@@ -341,9 +340,6 @@ export function CategoryCard({
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
-        <span className="absolute inset-x-2 top-2 flex justify-end">
-          <IllustrativeStamp entry={media.entry} />
-        </span>
       </span>
       <span className="flex flex-1 items-center gap-3 bg-navy-800 px-4 py-3">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-teal-700">

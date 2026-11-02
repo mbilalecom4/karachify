@@ -8,7 +8,8 @@
     "docs/verification/batch-g-institutions.json",
     "docs/verification/batch-h-emergency.json",
     "docs/verification/batch-i-around-the-clock.json",
-    "docs/verification/batch-j-osm-locations.json"
+    "docs/verification/batch-j-osm-locations.json",
+    "docs/verification/batch-k-dining.json"
   ],
   "note": "Per-record citations written by .tools/apply-verification.mjs from docs/verification/. Nothing here is hand-transcribed.",
   "records": {
@@ -3080,6 +3081,489 @@
           "batch": "batch-j-osm-locations"
         }
       ]
+    },
+    "tandoori-hut-restaurant-boat-basin": {
+      "researchName": "Tandoori Hut Restaurant, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "dera-resturant-boat-basin": {
+      "researchName": "Dera Resturant, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "baithak-boat-basin": {
+      "researchName": "Baithak, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "baloch-ice-cream-boat-basin": {
+      "researchName": "Baloch Ice Cream, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "chick-n-chips-boat-basin": {
+      "researchName": "Chick N Chips, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "nihari-inn-boat-basin": {
+      "researchName": "Nihari Inn, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "qasr-ul-nakheel-boat-basin": {
+      "researchName": "Qasr-ul-Nakheel, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "fams-patisserie-boat-basin": {
+      "researchName": "Fam's Patisserie, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "karachi-broast-boat-basin": {
+      "researchName": "Karachi Broast, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "7-star-boat-basin": {
+      "researchName": "7 Star, Boat Basin",
+      "status": "needs-review",
+      "lastVerified": "2026-11-02",
+      "confidence": "partially-verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "lat",
+        "lng",
+        "address",
+        "sourceUrl",
+        "osmId",
+        "lastVerified"
+      ],
+      "sources": [
+        {
+          "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Boat%20Basin%20restaurant%20Karachi%20Pakistan",
+          "supports": [
+            "name",
+            "lat",
+            "lng",
+            "address"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "phone",
+        "website",
+        "hours",
+        "facilities",
+        "photo"
+      ],
+      "notes": []
+    },
+    "ginsoy-dha": {
+      "researchName": "Ginsoy",
+      "status": "verified",
+      "lastVerified": "2026-11-02",
+      "confidence": "verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "address",
+        "sourceUrl",
+        "lastVerified",
+        "website",
+        "phone",
+        "email"
+      ],
+      "sources": [
+        {
+          "url": "https://ginsoy.com/contact/",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "photo"
+      ],
+      "notes": []
+    },
+    "kababjees-shaheed-e-millat": {
+      "researchName": "Kababjees",
+      "status": "verified",
+      "lastVerified": "2026-11-02",
+      "confidence": "verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "address",
+        "sourceUrl",
+        "lastVerified",
+        "hours",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://kababjees.com/",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "photo"
+      ],
+      "notes": []
+    },
+    "broadway-pizza-gulshan": {
+      "researchName": "Broadway Pizza",
+      "status": "verified",
+      "lastVerified": "2026-11-02",
+      "confidence": "verified",
+      "batches": [
+        "batch-k-dining"
+      ],
+      "published": [
+        "address",
+        "sourceUrl",
+        "lastVerified",
+        "website",
+        "phone"
+      ],
+      "sources": [
+        {
+          "url": "https://www.broadwaypizza.com.pk/",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website"
+          ],
+          "note": "",
+          "batch": "batch-k-dining"
+        }
+      ],
+      "notFound": [
+        "hours",
+        "photo"
+      ],
+      "notes": []
     }
   },
   "exclusions": [

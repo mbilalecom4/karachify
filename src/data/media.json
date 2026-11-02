@@ -1531,5 +1531,44 @@
     "license": "FAL",
     "verified": true,
     "kind": "subject"
+  },
+  "banner-universities": {
+    "key": "banner-universities",
+    "subject": "Universities & Colleges",
+    "via": "Iqra University Karachi",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Iqra_university_main_campus.jpg/500px-Iqra_university_main_campus.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Iqra_university_main_campus.jpg/1280px-Iqra_university_main_campus.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Iqra_university_main_campus.jpg",
+    "artist": "Nomaziz",
+    "license": "CC BY 3.0",
+    "verified": true,
+    "kind": "related",
+    "illustrativeReason": "one example of the category, used as the category header"
+  },
+  "banner-schools": {
+    "key": "banner-schools",
+    "subject": "Schools & Institutes",
+    "via": "Aisha Bawany School, Karachi",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aisha_Bawany_School,_Karachi.jpg/500px-Aisha_Bawany_School,_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aisha_Bawany_School,_Karachi.jpg/1280px-Aisha_Bawany_School,_Karachi.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Aisha_Bawany_School,_Karachi.jpg",
+    "artist": "Khigrapher",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "related",
+    "illustrativeReason": "one example of the category, used as the category header"
+  },
+  "banner-emergency": {
+    "key": "banner-emergency",
+    "subject": "Emergency Services",
+    "via": "Jinnah Postgraduate Medical Centre",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg/500px-Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg/1280px-Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Jinnah_Post_Graduate_Medical_Center_Karachi_(6004825764).jpg",
+    "artist": "USAID Pakistan",
+    "license": "Public domain",
+    "verified": true,
+    "kind": "related",
+    "illustrativeReason": "one example of the category, used as the category header"
   }
 }
