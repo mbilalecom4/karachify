@@ -1,0 +1,120 @@
+{
+ "generatedAt": "2026-11-02T15:40:26.047Z",
+ "source": "Wikimedia Commons via English Wikipedia API",
+ "images": [
+  {
+   "slug": "mazar-e-quaid",
+   "wikiTitle": "Mazar-e-Quaid",
+   "file": "mazar-e-quaid.jpg",
+   "commonsTitle": "File:Aerial view of Quid e Azam's tomb in Karachi.JPG",
+   "filePage": "https://commons.wikimedia.org/wiki/File%3AAerial_view_of_Quid_e_Azam's_tomb_in_Karachi.JPG",
+   "licence": "CC BY-SA 3.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "artist": "Akhtargorshani",
+   "credit": "Own work",
+   "retrievedAt": "2026-11-02",
+   "kind": "subject"
+  },
+  {
+   "slug": "frere-hall",
+   "wikiTitle": "Frere Hall",
+   "file": "frere-hall.jpg",
+   "commonsTitle": "File:Balcony Art - Frere Hall.jpg",
+   "filePage": "https://commons.wikimedia.org/wiki/File%3ABalcony_Art_-_Frere_Hall.jpg",
+   "licence": "CC BY-SA 4.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "artist": "Libras008",
+   "credit": "Own work",
+   "retrievedAt": "2026-11-02",
+   "kind": "subject"
+  },
+  {
+   "slug": "empress-market",
+   "wikiTitle": "Empress Market",
+   "file": "empress-market.jpg",
+   "commonsTitle": "File:Empress Market Saddar - panoramio.jpg",
+   "filePage": "https://commons.wikimedia.org/wiki/File%3AEmpress_Market_Saddar_-_panoramio.jpg",
+   "licence": "CC BY-SA 3.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "artist": "khadim-un-nabi Rao",
+   "credit": "https://web.archive.org/web/20161103054323/http://www.panoramio.com/photo/132463028",
+   "retrievedAt": "2026-11-02",
+   "kind": "subject"
+  },
+  {
+   "slug": "clifton-beach",
+   "wikiTitle": "Clifton Beach, Karachi",
+   "file": "clifton-beach.jpg",
+   "commonsTitle": "File:Arabian Sea in Karachi.jpg",
+   "filePage": "https://commons.wikimedia.org/wiki/File%3AArabian_Sea_in_Karachi.jpg",
+   "licence": "CC BY-SA 4.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "artist": "King Eliot",
+   "credit": "Own work",
+   "retrievedAt": "2026-11-02",
+   "kind": "subject"
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "mohatta-palace",
+   "title": "Mohatta Palace",
+   "reason": "no freely licensed image found"
+  },
+  {
+   "slug": "hawkes-bay",
+   "title": "Hawke's Bay, Karachi",
+   "reason": "no freely licensed image found"
+  },
+  {
+   "slug": "manora",
+   "title": "Manora, Karachi",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "port-grand",
+   "title": "Port Grand",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "paf-museum",
+   "title": "Pakistan Air Force Museum",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "national-museum",
+   "title": "National Museum of Pakistan",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "masjid-e-tooba",
+   "title": "Masjid-e-Tooba",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "st-patricks-cathedral",
+   "title": "St Patrick's Cathedral, Karachi",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "teen-talwar",
+   "title": "Teen Talwar",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "chinna-creek",
+   "title": "Chinna Creek",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "habib-bank-plaza",
+   "title": "Habib Bank Plaza",
+   "reason": "wikipedia 429"
+  },
+  {
+   "slug": "karachi-port",
+   "title": "Karachi Port",
+   "reason": "wikipedia 429"
+  }
+ ]
+}

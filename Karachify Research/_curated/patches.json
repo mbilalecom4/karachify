@@ -1,0 +1,253 @@
+[
+  {
+    "id": "ginsoy-dha",
+    "match": { "name": "Ginsoy", "areaId": "dha" },
+    "patch": {
+      "address": "40-C, 3rd Floor, Shahbaz Commercial Area, Phase 6, DHA, Karachi 75500",
+      "phone": "+9221111446769",
+      "email": "info@ginsoy.com",
+      "website": "https://ginsoy.com/",
+      "tags": ["restaurant", "chinese", "dha"],
+      "status": "verified",
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "high",
+          "method": "official-website",
+          "notes": "Address, phone and email match the official contact page; OSM record places the venue in Phase 6, Khayaban-e-Shahbaz."
+        },
+        "socials": { "facebook": "https://www.facebook.com/Ginsoy/", "instagram": "https://www.instagram.com/ginsoyextreme", "twitter": null },
+        "sources": [
+          { "url": "https://ginsoy.com/contact/", "type": "official-website", "retrievedAt": "2026-11-02", "license": "reference-only" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "kababjees-bahadurabad",
+    "match": { "name": "Kababjees", "areaId": "bahadurabad" },
+    "patch": {
+      "phone": "+9221111666111",
+      "website": "https://kababjees.com/",
+      "hours": [{ "day": "Monday – Sunday", "open": "17:00 – 01:00" }],
+      "status": "verified",
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "high",
+          "method": "official-website",
+          "notes": "Branch identified as Shaheed-e-Millat on the official site; timings and central number taken from kababjees.com. OSM street matches Shaheed-e-Millat Road."
+        },
+        "socials": { "facebook": "https://www.facebook.com/kababjees", "instagram": "https://www.instagram.com/kababjees.official/", "twitter": null },
+        "sources": [
+          { "url": "https://kababjees.com/", "type": "official-website", "retrievedAt": "2026-11-02", "license": "reference-only" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "broadway-pizza-gulshan-iqbal-gulshan-e-iqbal",
+    "match": { "name": "Broadway Pizza - Gulshan", "areaId": "gulshan-e-iqbal" },
+    "patch": {
+      "phone": "+9221111339339",
+      "website": "https://www.broadwaypizza.com.pk/",
+      "status": "verified",
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "medium",
+          "method": "official-website",
+          "notes": "Central order number and WhatsApp match the official site footer; branch-specific timings are not published, so hours remain unknown."
+        },
+        "whatsapp": "+9221111339339",
+        "socials": { "facebook": "https://www.facebook.com/Broadwaypizzaa", "instagram": "https://www.instagram.com/broadwaypizzaa/", "twitter": null },
+        "sources": [
+          { "url": "https://www.broadwaypizza.com.pk/", "type": "official-website", "retrievedAt": "2026-11-02", "license": "reference-only" }
+        ]
+      }
+    }
+  },
+  {
+    "match": { "name": "Mausoleum of Quaid-e-Azam" },
+    "patch": {
+      "name": "Mazar-e-Quaid (Jinnah Mausoleum)",
+      "categoryId": "tourist-places",
+      "description": "Mazar-e-Quaid is the mausoleum of Muhammad Ali Jinnah, completed in 1971 and one of Karachi's defining landmarks. The complex also contains the graves of Fatima Jinnah, Liaquat Ali Khan and Nurul Amin. Facts cross-checked against the Wikipedia article on 2026-11-02.",
+      "status": "verified",
+      "tags": ["attraction", "heritage", "mausoleum"],
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "medium",
+          "method": "encyclopedia",
+          "notes": "Identity and history cross-checked against Wikipedia; visiting hours and ticket price are not published there, so they remain blank."
+        },
+        "wikidata": "Q1570605",
+        "wikipedia": "https://en.wikipedia.org/wiki/Mazar-e-Quaid",
+        "sources": [
+          { "url": "https://en.wikipedia.org/wiki/Mazar-e-Quaid", "type": "encyclopedia", "retrievedAt": "2026-11-02", "license": "CC-BY-SA-4.0" }
+        ],
+        "images": [
+          {
+            "file": "data/images/mazar-e-quaid.jpg",
+            "licence": "CC BY-SA 3.0",
+            "artist": "Akhtargorshani",
+            "filePage": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Quid_e_Azam's_tomb_in_Karachi.JPG",
+            "kind": "subject"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "match": { "name": "Frere Hall" },
+    "patch": {
+      "categoryId": "tourist-places",
+      "description": "Frere Hall is a colonial-era building completed in 1865. It was originally intended as Karachi's town hall and now serves as an exhibition space and library. Facts cross-checked against the Wikipedia article on 2026-11-02.",
+      "status": "verified",
+      "tags": ["attraction", "heritage", "library"],
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "medium",
+          "method": "encyclopedia",
+          "notes": "Building history and current use cross-checked; opening hours not sourced."
+        },
+        "wikipedia": "https://en.wikipedia.org/wiki/Frere_Hall",
+        "sources": [
+          { "url": "https://en.wikipedia.org/wiki/Frere_Hall", "type": "encyclopedia", "retrievedAt": "2026-11-02", "license": "CC-BY-SA-4.0" }
+        ],
+        "images": [
+          {
+            "file": "data/images/frere-hall.jpg",
+            "licence": "CC BY-SA 4.0",
+            "artist": "Libras008",
+            "filePage": "https://commons.wikimedia.org/wiki/File:Balcony_Art_-_Frere_Hall.jpg",
+            "kind": "subject"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "match": { "name": "Mohatta Palace" },
+    "patch": {
+      "description": "Mohatta Palace (Qasr-e-Fatima) is a museum housed in a 1927 palace in Clifton, built with pink Jodhpur stone and local yellow stone. Facts cross-checked against the Wikipedia article on 2026-11-02.",
+      "status": "verified",
+      "tags": ["museum", "heritage", "clifton"],
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "medium",
+          "method": "encyclopedia",
+          "notes": "History and current use cross-checked; museum timings and ticket prices not sourced."
+        },
+        "wikidata": "Q6895561",
+        "wikipedia": "https://en.wikipedia.org/wiki/Mohatta_Palace",
+        "sources": [
+          { "url": "https://en.wikipedia.org/wiki/Mohatta_Palace", "type": "encyclopedia", "retrievedAt": "2026-11-02", "license": "CC-BY-SA-4.0" }
+        ]
+      }
+    }
+  },
+  {
+    "match": { "name": "Clifton Beach, Karachi" },
+    "patch": {
+      "description": "Clifton Beach, also called Sea View, is Karachi's main public beach on the Arabian Sea. It is open to the public around the clock. Facts cross-checked against the Wikipedia article on 2026-11-02.",
+      "hours": [{ "day": "Every day", "open": "24 hours" }],
+      "status": "verified",
+      "tags": ["beach", "seaview", "family"],
+      "research": {
+        "verification": {
+          "date": "2026-11-02",
+          "status": "verified",
+          "confidence": "medium",
+          "method": "encyclopedia",
+          "notes": "Public access confirmed; safety notices and facilities are not documented here."
+        },
+        "wikipedia": "https://en.wikipedia.org/wiki/Clifton_Beach,_Karachi",
+        "sources": [
+          { "url": "https://en.wikipedia.org/wiki/Clifton_Beach,_Karachi", "type": "encyclopedia", "retrievedAt": "2026-11-02", "license": "CC-BY-SA-4.0" }
+        ],
+        "images": [
+          {
+            "file": "data/images/clifton-beach.jpg",
+            "licence": "CC BY-SA 4.0",
+            "artist": "King Eliot",
+            "filePage": "https://commons.wikimedia.org/wiki/File:Arabian_Sea_in_Karachi.jpg",
+            "kind": "subject"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "empress-market-saddar",
+    "slug": "empress-market-saddar",
+    "cityId": "karachi",
+    "categoryId": "shopping",
+    "areaId": "saddar",
+    "name": "Empress Market",
+    "tagline": "Market in Saddar, Karachi",
+    "description": "Empress Market is a Victorian-era marketplace in Saddar, built during the British Raj and still one of Karachi's busiest places for produce, meat, textiles and pets. Facts cross-checked against the Wikipedia article on 2026-11-02.",
+    "address": "Preedy Street, Saddar, Karachi",
+    "lat": 24.8625,
+    "lng": 67.0294,
+    "facilities": [],
+    "rating": 0,
+    "reviewCount": 0,
+    "tags": ["market", "heritage", "saddar"],
+    "featured": false,
+    "promoted": false,
+    "status": "verified",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Empress_Market",
+    "createdAt": "2026-11-02",
+    "research": {
+      "subcategory": "market",
+      "areaRaw": "Saddar Town",
+      "closed": false,
+      "prominenceScore": 12,
+      "phoneRaw": null,
+      "whatsapp": null,
+      "socials": { "facebook": null, "instagram": null, "twitter": null },
+      "openingHoursRaw": null,
+      "brand": null,
+      "wikidata": "Q5374268",
+      "wikipedia": "https://en.wikipedia.org/wiki/Empress_Market",
+      "mapLinks": {
+        "osm": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=24.8625,67.0294",
+        "bingMaps": "https://www.bing.com/maps?cp=24.8625~67.0294&lvl=17"
+      },
+      "sources": [
+        { "url": "https://en.wikipedia.org/wiki/Empress_Market", "type": "encyclopedia", "retrievedAt": "2026-11-02", "license": "CC-BY-SA-4.0" }
+      ],
+      "verification": {
+        "date": "2026-11-02",
+        "status": "verified",
+        "confidence": "medium",
+        "method": "encyclopedia",
+        "notes": "Coordinates taken from the Wikipedia/Wikidata record; vendor list and timings not documented."
+      },
+      "ratingData": { "value": null, "count": null, "source": null, "date": null },
+      "services": [],
+      "prices": [],
+      "images": [
+        {
+          "file": "data/images/empress-market.jpg",
+          "licence": "CC BY-SA 3.0",
+          "artist": "khadim-un-nabi Rao",
+          "filePage": "https://commons.wikimedia.org/wiki/File:Empress_Market_Saddar_-_panoramio.jpg",
+          "kind": "subject"
+        }
+      ],
+      "conflicts": []
+    }
+  }
+]

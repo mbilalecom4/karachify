@@ -1,0 +1,212 @@
+{
+ "generatedAt": "2026-11-02T16:53:48.578Z",
+ "city": "karachi",
+ "totals": {
+  "records": 18812,
+  "raw": 19328,
+  "duplicatesRemoved": 517,
+  "closed": 0,
+  "verified": 8,
+  "unverified": 18804,
+  "categories": 20
+ },
+ "categories": {
+  "art-culture": {
+   "total": 55,
+   "withPhone": 3,
+   "withWebsite": 2,
+   "withHours": 1,
+   "withAddress": 21,
+   "closed": 0,
+   "verified": 0
+  },
+  "beaches": {
+   "total": 9,
+   "withPhone": 0,
+   "withWebsite": 0,
+   "withHours": 1,
+   "withAddress": 1,
+   "closed": 0,
+   "verified": 1
+  },
+  "doctors-clinics": {
+   "total": 517,
+   "withPhone": 20,
+   "withWebsite": 4,
+   "withHours": 6,
+   "withAddress": 307,
+   "closed": 0,
+   "verified": 0
+  },
+  "emergency": {
+   "total": 144,
+   "withPhone": 5,
+   "withWebsite": 2,
+   "withHours": 0,
+   "withAddress": 46,
+   "closed": 0,
+   "verified": 0
+  },
+  "government": {
+   "total": 345,
+   "withPhone": 51,
+   "withWebsite": 19,
+   "withHours": 11,
+   "withAddress": 170,
+   "closed": 0,
+   "verified": 0
+  },
+  "hospitals": {
+   "total": 836,
+   "withPhone": 49,
+   "withWebsite": 14,
+   "withHours": 4,
+   "withAddress": 477,
+   "closed": 0,
+   "verified": 0
+  },
+  "hotels": {
+   "total": 612,
+   "withPhone": 68,
+   "withWebsite": 14,
+   "withHours": 6,
+   "withAddress": 293,
+   "closed": 0,
+   "verified": 0
+  },
+  "museums-galleries": {
+   "total": 36,
+   "withPhone": 3,
+   "withWebsite": 2,
+   "withHours": 3,
+   "withAddress": 19,
+   "closed": 0,
+   "verified": 1
+  },
+  "parks-recreation": {
+   "total": 831,
+   "withPhone": 6,
+   "withWebsite": 3,
+   "withHours": 9,
+   "withAddress": 270,
+   "closed": 0,
+   "verified": 0
+  },
+  "pharmacies-labs": {
+   "total": 473,
+   "withPhone": 41,
+   "withWebsite": 7,
+   "withHours": 0,
+   "withAddress": 298,
+   "closed": 0,
+   "verified": 0
+  },
+  "professional-services": {
+   "total": 1592,
+   "withPhone": 300,
+   "withWebsite": 93,
+   "withHours": 327,
+   "withAddress": 671,
+   "closed": 0,
+   "verified": 0
+  },
+  "religious-places": {
+   "total": 2991,
+   "withPhone": 45,
+   "withWebsite": 6,
+   "withHours": 2,
+   "withAddress": 1150,
+   "closed": 0,
+   "verified": 0
+  },
+  "restaurants-cafes": {
+   "total": 4602,
+   "withPhone": 789,
+   "withWebsite": 95,
+   "withHours": 86,
+   "withAddress": 3178,
+   "closed": 0,
+   "verified": 3
+  },
+  "schools": {
+   "total": 1189,
+   "withPhone": 53,
+   "withWebsite": 20,
+   "withHours": 11,
+   "withAddress": 570,
+   "closed": 0,
+   "verified": 0
+  },
+  "shopping": {
+   "total": 3009,
+   "withPhone": 553,
+   "withWebsite": 61,
+   "withHours": 45,
+   "withAddress": 2106,
+   "closed": 0,
+   "verified": 1
+  },
+  "sports-fitness": {
+   "total": 347,
+   "withPhone": 59,
+   "withWebsite": 10,
+   "withHours": 4,
+   "withAddress": 187,
+   "closed": 0,
+   "verified": 0
+  },
+  "tourist-places": {
+   "total": 58,
+   "withPhone": 3,
+   "withWebsite": 2,
+   "withHours": 2,
+   "withAddress": 30,
+   "closed": 0,
+   "verified": 2
+  },
+  "transport": {
+   "total": 135,
+   "withPhone": 4,
+   "withWebsite": 2,
+   "withHours": 0,
+   "withAddress": 55,
+   "closed": 0,
+   "verified": 0
+  },
+  "universities": {
+   "total": 349,
+   "withPhone": 10,
+   "withWebsite": 14,
+   "withHours": 6,
+   "withAddress": 153,
+   "closed": 0,
+   "verified": 0
+  },
+  "wedding-venues": {
+   "total": 682,
+   "withPhone": 40,
+   "withWebsite": 15,
+   "withHours": 5,
+   "withAddress": 322,
+   "closed": 0,
+   "verified": 0
+  }
+ },
+ "pendingVerification": [
+  "art-culture",
+  "doctors-clinics",
+  "emergency",
+  "government",
+  "hospitals",
+  "hotels",
+  "parks-recreation",
+  "pharmacies-labs",
+  "professional-services",
+  "religious-places",
+  "schools",
+  "sports-fitness",
+  "transport",
+  "universities",
+  "wedding-venues"
+ ]
+}

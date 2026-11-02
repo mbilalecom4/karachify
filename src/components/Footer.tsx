@@ -56,6 +56,7 @@ export function Footer() {
                 </FooterLink>
               ))}
               <FooterLink to="/areas">All {areas.length} areas</FooterLink>
+              <FooterLink to="/directory">Wider directory</FooterLink>
             </FooterCol>
             <FooterCol title="Karachify">
               <FooterLink to="/about">About us</FooterLink>

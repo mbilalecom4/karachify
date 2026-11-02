@@ -11,6 +11,7 @@ const PlanDay = lazy(() => import('./pages/PlanDay'));
 const OurServices = lazy(() => import('./pages/OurServices'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const AreasIndex = lazy(() => import('./pages/AreasIndex'));
+const Directory = lazy(() => import('./pages/Directory'));
 const AreaPage = lazy(() => import('./pages/AreaPage'));
 const ListingDetail = lazy(() => import('./pages/ListingDetail'));
 const Events = lazy(() => import('./pages/Events'));
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="our-services" element={<OurServices />} />
           <Route path="category/:slug" element={<CategoryPage />} />
           <Route path="areas" element={<AreasIndex />} />
+          <Route path="directory" element={<Directory />} />
           <Route path="area/:slug" element={<AreaPage />} />
           <Route path="place/:slug" element={<ListingDetail />} />
           <Route path="events" element={<Events />} />

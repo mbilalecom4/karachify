@@ -18,3 +18,20 @@ dist
 # the batch-*.json files (with their source URLs) are what we commit
 /docs/verification/raw/
 /.tmp/
+
+# Research handoff: 128 MB of raw OpenStreetMap extracts. The scripts, notices
+# and logs are provenance and get committed; the bulk dumps do not. What the
+# site actually serves is the compact index built from them, which lives in
+# public/data/ and is small enough to version.
+/Karachify Research/_raw/
+/Karachify Research/_repo/
+/Karachify Research/scripts/_*
+/Karachify Research/data/by-category/
+/Karachify Research/data/top/
+/Karachify Research/data/karachify-dataset.json
+/Karachify Research/data/karachify-dataset.min.json
+/Karachify Research/data/karachify-listings.csv
+/Karachify Research/data/unverified.json
+/Karachify Research/data/duplicates.json
+/Karachify Research/data/images/*
+!/Karachify Research/data/images/manifest.json

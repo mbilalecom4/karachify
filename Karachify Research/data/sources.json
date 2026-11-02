@@ -1,0 +1,76 @@
+{
+ "generatedAt": "2026-11-02T16:53:48.879Z",
+ "primary": {
+  "name": "OpenStreetMap",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "© OpenStreetMap contributors",
+  "extraction": {
+   "api": "Overpass",
+   "bbox": "24.75,66.85,25.05,67.35",
+   "date": "2026-11-02"
+  }
+ },
+ "verifiedSources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Clifton_Beach,_Karachi",
+   "type": "encyclopedia",
+   "license": "CC-BY-SA-4.0",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Mohatta_Palace",
+   "type": "encyclopedia",
+   "license": "CC-BY-SA-4.0",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://www.broadwaypizza.com.pk/",
+   "type": "official-website",
+   "license": "reference-only",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://kababjees.com/",
+   "type": "official-website",
+   "license": "reference-only",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://ginsoy.com/contact/",
+   "type": "official-website",
+   "license": "reference-only",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Empress_Market",
+   "type": "encyclopedia",
+   "license": "CC-BY-SA-4.0",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Frere_Hall",
+   "type": "encyclopedia",
+   "license": "CC-BY-SA-4.0",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Mazar-e-Quaid",
+   "type": "encyclopedia",
+   "license": "CC-BY-SA-4.0",
+   "retrievedAt": "2026-11-02",
+   "usedBy": 1
+  }
+ ],
+ "counts": {
+  "osmElements": 18811,
+  "external": 8
+ }
+}

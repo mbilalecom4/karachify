@@ -48,6 +48,7 @@ export function Header() {
       children: [
         { label: 'Home', to: '/', note: 'Discover Everything Karachi' },
         { label: 'All categories', to: '/explore', note: 'Every section in one place' },
+        { label: 'Wider directory', to: '/directory', note: 'Everything mapped on OpenStreetMap' },
         ...categories.filter((c) => c.group === 'Discover').map((c) => ({ label: c.name, to: cat(c.slug) })),
       ],
     },
