@@ -960,6 +960,12 @@ function Submissions() {
                     <button className="btn-primary btn-sm" onClick={() => markRead(s.id)}>
                       <Check className="h-3.5 w-3.5" /> Mark as read
                     </button>
+                  ) : s.kind === 'report' ? (
+                    /* A report describes an existing record — publishing it would
+                       invent a second listing for the same place. */
+                    <button className="btn-primary btn-sm" onClick={() => markRead(s.id)}>
+                      <Check className="h-3.5 w-3.5" /> Mark as handled
+                    </button>
                   ) : (
                     <button className="btn-primary btn-sm" onClick={() => approveListing(s.id)}>
                       <Check className="h-3.5 w-3.5" /> Approve and publish
@@ -972,7 +978,7 @@ function Submissions() {
               )}
               {s.listingId && (
                 <p className="mt-3 text-[13px] text-navy-500">
-                  {s.kind === 'claim' ? 'Claimed record' : 'Published record'}:{' '}
+                  {s.kind === 'claim' ? 'Claimed record' : s.kind === 'report' ? 'Reported record' : 'Published record'}:{' '}
                   <span className="font-mono text-[12px]">{s.listingId}</span>
                 </p>
               )}

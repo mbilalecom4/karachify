@@ -104,7 +104,7 @@ const FAQS: Faq[] = [
   {
     group: 'Data & accuracy',
     q: 'I found an error. What now?',
-    a: 'Send the listing, the field and a source through the contact form. Corrections to phone numbers, hours and prices are applied only against a citable source.',
+    a: 'Every listing page has a "Report a problem with this record" button under Verification & source. It files the report in this browser and, more usefully, can open a prefilled issue on the public repository so it reaches whoever edits the data. Corrections to phone numbers, hours and prices are applied only against a citable source.',
   },
   {
     group: 'Data & accuracy',

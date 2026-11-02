@@ -191,7 +191,7 @@ export interface Guide {
 
 export interface Submission {
   id: string;
-  kind: 'listing' | 'business' | 'event' | 'claim' | 'contact' | 'newsletter';
+  kind: 'listing' | 'business' | 'event' | 'claim' | 'contact' | 'newsletter' | 'report';
   name: string;
   categoryId?: string;
   areaId?: string;
