@@ -48,18 +48,11 @@
 
   /* ---------------------------- text over photos ----------------------------
      White type on a photograph fails contrast as soon as the sky or a marble
-     facade sits behind it, so every overlay uses the same opaque scrim and the
-     same shadow, and small labels use solid chips instead of translucent ones.
-     The bottom stop keeps 4.5:1 against a near-white image (WCAG 1.4.3). */
-  .media-scrim {
-    background-image: linear-gradient(
-      to top,
-      rgba(2, 26, 24, 0.96) 0%,
-      rgba(2, 26, 24, 0.93) 38%,
-      rgba(2, 26, 24, 0.88) 70%,
-      rgba(2, 26, 24, 0.5) 100%
-    );
-  }
+     facade sits behind it. Page headers solve it with a gradient scrim whose
+     bottom stop keeps 4.5:1 against a near-white image (WCAG 1.4.3); cards
+     solve it by putting their label on a solid band instead, because a scrim
+     heavy enough to guarantee contrast is also heavy enough to flatten the
+     photograph into a dark rectangle. Small labels use solid chips. */
   .media-scrim-flat {
     background-image: linear-gradient(
       to top,

@@ -134,8 +134,9 @@ export function IllustrativeStamp({ entry, className = '' }: { entry?: MediaEntr
   if (entry?.kind !== 'related') return null;
   const shows = pictureSubject(entry);
   return (
-    <span className={`chip-solid ${className}`} title={`The picture shows ${shows}, not the subject of this card`}>
-      Illustrative · {shows}
+    <span className={`chip-solid max-w-full ${className}`} title={`The picture shows ${shows}, not the subject of this card`}>
+      <span className="shrink-0">Illustrative ·</span>
+      <span className="min-w-0 truncate">{shows}</span>
     </span>
   );
 }

@@ -274,8 +274,8 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
 export function AreaCard({ area, count }: { area: Area; count: number }) {
   const media = imageFor(areaImageKey(area.id), area.name);
   return (
-    <Link to={`/area/${area.slug}`} className="card card-hover group relative flex h-48 items-end overflow-hidden">
-      <span className="absolute inset-0">
+    <Link to={`/area/${area.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0 sm:h-48">
+      <span className="relative block h-[118px] shrink-0 overflow-hidden bg-navy-50">
         <img
           src={media.thumb}
           alt={`${area.name}, Karachi`}
@@ -284,15 +284,14 @@ export function AreaCard({ area, count }: { area: Area; count: number }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
+        <span className="absolute inset-x-2 top-2 flex justify-end">
+          <IllustrativeStamp entry={media.entry} />
+        </span>
       </span>
-      <span className="media-scrim absolute inset-0" />
-      <span className="absolute right-3 top-3 z-10">
-        <IllustrativeStamp entry={media.entry} />
-      </span>
-      <span className="relative z-10 flex w-full items-end justify-between gap-3 p-4">
-        <span>
-          <span className="on-media block font-display text-lg font-bold text-white">{area.name}</span>
-          <span className="on-media mt-0.5 block text-[13px] font-medium text-white">{area.zone} zone · {plural(count, 'listing')}</span>
+      <span className="flex flex-1 items-center justify-between gap-3 bg-navy-800 px-4 py-3">
+        <span className="min-w-0">
+          <span className="block font-display text-lg font-bold text-white">{area.name}</span>
+          <span className="mt-0.5 block text-[13px] font-medium text-navy-100">{area.zone} zone · {plural(count, 'listing')}</span>
         </span>
         <ArrowRight className="h-5 w-5 shrink-0 text-white transition-transform group-hover:translate-x-1" />
       </span>
@@ -320,8 +319,8 @@ export function CategoryCard({
 }) {
   const media = imageFor(`banner-${category.id}`, category.name);
   return (
-    <Link to={`/category/${category.slug}`} className="card card-hover group relative flex h-44 flex-col justify-end overflow-hidden p-4">
-      <span className="absolute inset-0">
+    <Link to={`/category/${category.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0 sm:h-44">
+      <span className="relative block h-[110px] shrink-0 overflow-hidden bg-navy-50">
         <img
           src={media.thumb}
           alt=""
@@ -331,17 +330,18 @@ export function CategoryCard({
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
         />
+        <span className="absolute inset-x-2 top-2 flex justify-end">
+          <IllustrativeStamp entry={media.entry} />
+        </span>
       </span>
-      <span className="media-scrim absolute inset-0" />
-      <span className="absolute right-3 top-3 z-10">
-        <IllustrativeStamp entry={media.entry} />
-      </span>
-      <span className="relative z-10">
-        <span className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-teal-700">
+      <span className="flex flex-1 items-center gap-3 bg-navy-800 px-4 py-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-teal-700">
           <CategoryIcon name={category.icon} className="h-5 w-5" />
         </span>
-        <span className="on-media block font-display text-[16px] font-bold leading-snug text-white">{category.name}</span>
-        <span className="on-media mt-0.5 block text-[12px] font-semibold text-white">{plural(count, unit[0], unit[1])}</span>
+        <span className="min-w-0">
+          <span className="font-display text-[15px] font-bold leading-snug text-white">{category.name}</span>
+          <span className="mt-0.5 block text-[12px] font-semibold text-navy-100">{plural(count, unit[0], unit[1])}</span>
+        </span>
       </span>
     </Link>
   );
