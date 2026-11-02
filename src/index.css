@@ -264,3 +264,51 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ------------------------------- printing -------------------------------
+   The day plan is the one page people take with them, so it has to survive
+   paper. The map is a WebGL canvas: it prints as a blank rectangle on enough
+   drivers that the itinerary is better off without it, and every stop already
+   carries its own area and distance line in the list. */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block;
+  }
+  .plan-page > *:not(.plan-result) {
+    display: none !important;
+  }
+  .no-print,
+  .plan-result figure {
+    display: none !important;
+  }
+  header,
+  footer {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  .shell {
+    max-width: none;
+    padding: 0;
+  }
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #cfe9e6 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .plan-result {
+    display: block !important;
+  }
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 10px;
+    color: #4a6b69;
+    word-break: break-all;
+  }
+}

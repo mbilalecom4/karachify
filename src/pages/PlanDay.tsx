@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarRange, Check, Copy, MapPin, Route, RotateCcw, Users } from 'lucide-react';
+import { ArrowRight, CalendarRange, Check, Copy, MapPin, Printer, Route, RotateCcw, Users } from 'lucide-react';
 import type { Listing } from '../types';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { aroundTheClock, copyText, distanceKm, plural } from '../lib/format';
@@ -194,7 +194,7 @@ export default function PlanDay() {
         trail={[{ label: 'Home', to: '/' }, { label: 'Plan Your Day' }]}
       />
 
-      <section className="shell section space-y-8">
+      <section className="plan-page shell section space-y-8">
         {/* 1 — who */}
         <div className="card p-5">
           <SectionHeading eyebrow="Step 1" title="Who is going, and for how long?" />
@@ -327,13 +327,17 @@ export default function PlanDay() {
 
         {/* result */}
         {plan && (
-          <div className="space-y-4">
+          <div className="plan-result space-y-4">
+            {/* Only the paper sees this: on screen the hero already says who we are. */}
+            <p className="print-only text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-600">
+              Karachify · Karachi day plan · printed {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
             <SectionHeading
               eyebrow="Your plan"
               title={`${days} ${days === 1 ? 'day' : 'days'} · ${pickedListings.length} stops`}
               sub="Each day is a run of stops ordered by map distance. The distance printed between stops is straight-line, not a driving route."
               action={
-                <div className="flex gap-2">
+                <div className="no-print flex gap-2">
                   <button
                     type="button"
                     className="btn-outline btn-sm"
@@ -345,6 +349,9 @@ export default function PlanDay() {
                     }
                   >
                     <Copy className="h-3.5 w-3.5" /> Copy plan
+                  </button>
+                  <button type="button" className="btn-outline btn-sm" onClick={() => window.print()}>
+                    <Printer className="h-3.5 w-3.5" /> Print / PDF
                   </button>
                   <Link to={plan[0]?.[0] ? `/map?focus=${plan[0][0].slug}` : '/map'} className="btn-outline btn-sm">
                     <MapPin className="h-3.5 w-3.5" /> Open the map
