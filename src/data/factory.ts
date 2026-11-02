@@ -12,6 +12,15 @@ function offset(slug: string, spread: number) {
   return [a, b] as const;
 }
 
+/**
+ * The one-line summary cards show. Derived, never typed: a separately written
+ * tagline is a second claim to source, and it silently keeps asserting the seed
+ * sentence after research has replaced the paragraph underneath it.
+ */
+export function taglineFor(description: string) {
+  return description.split('.')[0].slice(0, 110);
+}
+
 export function makeListing(seed: Seed): Listing {
   const area = areaById.get(seed.areaId);
   const [dLat, dLng] = offset(seed.slug, 0.016);
@@ -28,7 +37,7 @@ export function makeListing(seed: Seed): Listing {
     promoted: false,
     status: 'needs-review',
     createdAt: '2026-01-12',
-    tagline: seed.description.split('.')[0].slice(0, 110),
+    tagline: taglineFor(seed.description),
     ...seed,
   } as Listing;
 

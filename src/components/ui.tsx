@@ -14,7 +14,7 @@ import {
 } from 'react';
 import { AlertTriangle, Check, ChevronRight, Info, Star, X, XCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { placeholderImage } from '../lib/media';
+import { pictureSubject, placeholderImage, type MediaEntry } from '../lib/media';
 
 /* ------------------------------- toasts ------------------------------- */
 
@@ -91,6 +91,7 @@ export function ImageWithFallback({
   src,
   alt,
   label,
+  title,
   className = '',
   wrapperClass = '',
   eager = false,
@@ -98,6 +99,7 @@ export function ImageWithFallback({
   src?: string;
   alt: string;
   label?: string;
+  title?: string;
   className?: string;
   wrapperClass?: string;
   eager?: boolean;
@@ -111,6 +113,7 @@ export function ImageWithFallback({
       <img
         src={resolved}
         alt={alt}
+        title={title}
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         onError={() => setFailed(true)}
@@ -122,11 +125,41 @@ export function ImageWithFallback({
 
 /* ------------------------------- badges ------------------------------- */
 
-export function StatusBadge({ status, className = '' }: { status: 'demo' | 'verified' | 'needs-review'; className?: string }) {
+/**
+ * Registry entries with kind 'related' show a Karachi scene of the same type
+ * rather than the thing the card is about, so any frame using one has to name
+ * what the picture really shows.
+ */
+export function IllustrativeStamp({ entry, className = '' }: { entry?: MediaEntry; className?: string }) {
+  if (entry?.kind !== 'related') return null;
+  const shows = pictureSubject(entry);
+  return (
+    <span className={`chip-solid ${className}`} title={`The picture shows ${shows}, not the subject of this card`}>
+      Illustrative · {shows}
+    </span>
+  );
+}
+
+export function StatusBadge({
+  status,
+  coordsVerified = false,
+  className = '',
+}: {
+  status: 'demo' | 'verified' | 'needs-review';
+  /**
+   * A pin and postal line that came from a named source are verification too.
+   * Calling that "not verified yet" contradicts the "checked on <date>" line a
+   * few rows below it, and it hides work the sources page exists to show off.
+   */
+  coordsVerified?: boolean;
+  className?: string;
+}) {
   const map = {
     demo: { label: 'Sample record', cls: 'badge-demo' },
     verified: { label: 'Verified', cls: 'badge-verified' },
-    'needs-review': { label: 'Not verified yet', cls: 'badge-demo' },
+    'needs-review': coordsVerified
+      ? { label: 'Mapped pin · details unchecked', cls: 'badge-demo' }
+      : { label: 'Not verified yet', cls: 'badge-demo' },
   } as const;
   const m = map[status];
   return <span className={`${m.cls} ${className}`}>{m.label}</span>;
@@ -183,7 +216,7 @@ export function Breadcrumbs({ trail }: { trail: { label: string; to?: string }[]
     <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-[13px] text-navy-500">
       {trail.map((t, i) => (
         <span key={`${t.label}-${i}`} className="inline-flex items-center gap-1.5">
-          {i > 0 && <ChevronRight className="h-3.5 w-3.5 text-navy-300" />}
+          {i > 0 && <ChevronRight className="h-3.5 w-3.5 text-navy-400" />}
           {t.to && i < trail.length - 1 ? (
             <Link to={t.to} className="hover:text-teal-700">
               {t.label}
@@ -307,7 +340,7 @@ export function Modal({
   const width = size === 'sm' ? 'max-w-md' : size === 'lg' ? 'max-w-3xl' : 'max-w-xl';
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-navy-950/60 px-4 py-8 backdrop-blur-sm animate-fade-in" onMouseDown={onClose}>
+    <div className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-navy-950/70 px-4 py-8 animate-fade-in" onMouseDown={onClose}>
       <div
         role="dialog"
         aria-modal="true"
@@ -351,7 +384,7 @@ export function Field({
     <label className={`block ${className}`}>
       <span className="field-label">
         {label}
-        {required && <span className="ml-1 text-rose-500">*</span>}
+        {required && <span className="ml-1 text-rose-600">*</span>}
       </span>
       {children}
       {hint && !error && <span className="mt-1.5 block text-[13px] text-navy-400">{hint}</span>}

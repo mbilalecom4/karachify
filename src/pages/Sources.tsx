@@ -254,7 +254,7 @@ export default function Sources() {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <StatusBadge status={listing.status} />
+                    <StatusBadge status={listing.status} coordsVerified={listing.coordsVerified} />
                     {listing.lastVerified && (
                       <span className="text-[12px] font-semibold text-navy-500">checked {listing.lastVerified}</span>
                     )}

@@ -1,5 +1,5 @@
 import type { Listing } from '../types';
-import { makeListing } from './factory';
+import { makeListing, taglineFor } from './factory';
 import overridesJson from './verified-overrides.json';
 
 /**
@@ -30,6 +30,9 @@ export function applyVerified(listing: Listing): Listing {
   for (const [key, value] of Object.entries(rest)) {
     if (value === null) delete (next as unknown as Record<string, unknown>)[key];
   }
+  // Research that rewrites the paragraph rewrites its one-line summary too,
+  // otherwise the card still quotes the sentence that was never sourced.
+  if (typeof rest.description === 'string') next.tagline = taglineFor(rest.description);
   return next;
 }
 

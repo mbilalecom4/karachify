@@ -4,7 +4,11 @@
 // record, and each batch record names the URL it was read from.
 //
 // Deliberate exclusions live in DROP_* below so the reasons stay in the repo.
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { build } from 'esbuild';
+import { readFileSync, writeFileSync, existsSync, mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const BATCHES = [
   'batch-a-heritage',
@@ -15,6 +19,7 @@ const BATCHES = [
   'batch-g-institutions',
   'batch-h-emergency',
   'batch-i-around-the-clock',
+  'batch-j-osm-locations',
 ];
 
 /** Verified name in the research file -> slug used by the catalogue. */
@@ -68,7 +73,11 @@ const SLUG_MAP = {
  */
 const NEW_RECORDS = {
   'Hawksbay Beach': {
-    slug: 'hawksbay-beach',
+    // The seed file already carries this beach, as `hawkes-bay-beach`. The
+    // coastline research found the same OSM way (516419993) under a different
+    // spelling — two catalogue entries for one shoreline is a data bug, so the
+    // sourced record now lands on the seeded slug instead of creating a twin.
+    slug: 'hawkes-bay-beach',
     categoryId: 'beaches',
     areaId: 'kemari',
     description:
@@ -93,7 +102,7 @@ const NEW_RECORDS = {
 };
 
 /** OSM's own spelling, preferred over the shorthand used in the research file. */
-const NAME_FROM_OSM = { 'hawksbay-beach': "Hawke's Bay Beach" };
+const NAME_FROM_OSM = { 'hawkes-bay-beach': "Hawke's Bay Beach" };
 
 /** The Latin-script address re-read from Nominatim with accept-language=en. */
 const OSM_ADDRESSES = JSON.parse(readFileSync('docs/verification/osm-addresses.json', 'utf8'));
@@ -125,7 +134,7 @@ function cleanAddress(s) {
 const DROP_FEES = new Set(['port-grand']);
 // The Commissioner Karachi swimming-ban notification covers 01.07-23.08.2026, a
 // window that has closed. Showing it as a live entry condition would mislead.
-const DROP_ENTRY_CONDITIONS = new Set(['clifton-beach', 'seaview-point', 'sandspit-beach', 'manora-island', 'hawksbay-beach']);
+const DROP_ENTRY_CONDITIONS = new Set(['clifton-beach', 'seaview-point', 'sandspit-beach', 'manora-island', 'hawkes-bay-beach']);
 
 /**
  * Evidence about one element is not evidence about the record the reader is
@@ -481,15 +490,64 @@ for (const batch of BATCHES) {
   }
 }
 
+/**
+ * The seed files read without the verified overlay. `isNew` can only mean "the
+ * catalogue did not already carry this place", but the composed listings module
+ * folds the previous run's new records into its export — so a slug merged twice
+ * would look seeded the second time and quietly lose its copy. These nine
+ * modules are the actual seed, and none of them import the overrides.
+ */
+async function seededSlugs() {
+  const bundle = await build({
+    stdin: {
+      contents: `
+        export { attractions } from './listings/attractions';
+        export { culture } from './listings/culture';
+        export { civic } from './listings/civic';
+        export { dining } from './listings/dining';
+        export { education } from './listings/education';
+        export { health } from './listings/health';
+        export { parksAndBeaches } from './listings/parks';
+        export { shopping } from './listings/shopping';
+        export { stays } from './listings/stays';
+      `,
+      resolveDir: join(resolve('.'), 'src/data'),
+      loader: 'ts',
+    },
+    bundle: true, format: 'esm', platform: 'neutral', write: false, logLevel: 'silent',
+  });
+  const file = join(mkdtempSync(join(tmpdir(), 'karachify-seed-')), 'seed.mjs');
+  writeFileSync(file, bundle.outputFiles[0].text);
+  const mod = await import(pathToFileURL(file).href);
+  return new Set(Object.values(mod).flat().map((l) => l.slug));
+}
+
+const seeded = await seededSlugs();
+const claimedBySlug = new Map();
+
 for (const entry of entries.values()) {
   const r = entry.record;
   const known = SLUG_MAP[r.name];
   const fresh = NEW_RECORDS[r.name];
-  const slug = known ?? fresh?.slug;
+  // A batch record that names its own catalogue entry wins over the name maps:
+  // the maps were written for the research files that spell places differently
+  // from the site, and matching by spelling is how one record overwrote another.
+  const slug = r.slug ?? known ?? fresh?.slug;
   if (!slug) {
     console.log(`UNMAPPED: ${r.name} — add it to SLUG_MAP or NEW_RECORDS`);
     continue;
   }
+  const isSeeded = seeded.has(slug);
+  if (!isSeeded && !fresh) {
+    console.log(`NEW WITHOUT COPY: ${slug} ("${r.name}") — the catalogue has no such entry and NEW_RECORDS has no copy for it`);
+    continue;
+  }
+  if (claimedBySlug.has(slug)) {
+    console.log(`SLUG CONFLICT: "${r.name}" and "${claimedBySlug.get(slug)}" both resolve to ${slug} — kept the first`);
+    continue;
+  }
+  claimedBySlug.set(slug, r.name);
+  if (!known && !r.slug) console.log(`note: ${slug} matched only by research spelling, not by an explicit slug`);
   const contactOnly = r.contactOnly === true;
   if (!contactOnly && (!r.lat || !r.lng)) {
     console.log(`NO COORDS: ${r.name} — not merged`);
@@ -519,7 +577,9 @@ for (const entry of entries.values()) {
   // the page, so it can only claim the least recently checked one.
   const lastVerified = [...entry.dates].sort()[0] ?? null;
   const o = {
-    isNew: !known,
+    // Derived from the seed files, not from which map the name happened to be
+    // in: an existing listing that research located is not a new record.
+    isNew: !isSeeded,
     ...(fresh
       ? {
           categoryId: fresh.categoryId,

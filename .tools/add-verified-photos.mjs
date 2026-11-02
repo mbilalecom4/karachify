@@ -12,7 +12,7 @@ const UA = 'Karachify/0.1 (city discovery demo; sourcing licensed Commons imager
 
 /** slug -> Commons file title, taken from docs/verification/batch-*.json. */
 const WANT = {
-  'hawksbay-beach': 'HawksBay_Beach.jpg',
+  'hawkes-bay-beach': 'HawksBay_Beach.jpg',
   'state-bank-of-pakistan-museum':
     'Old building of State Bank of Pakistan, Now its known as State Bank Museum.jpg',
   'tdf-magnifiscience-centre': 'MSC building night.jpg',
@@ -21,7 +21,7 @@ const WANT = {
 };
 
 const SUBJECT = {
-  'hawksbay-beach': "Hawke's Bay Beach",
+  'hawkes-bay-beach': "Hawke's Bay Beach",
   'state-bank-of-pakistan-museum': 'State Bank of Pakistan Museum',
   'tdf-magnifiscience-centre': 'TDF MagnifiScience Centre',
   'karachi-zoo': 'Karachi Zoo',
