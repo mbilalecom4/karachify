@@ -928,6 +928,10 @@ function Submissions() {
                   <dt className="text-navy-400">Address</dt>
                   <dd className="text-navy-700">{s.address ?? '—'}</dd>
                 </div>
+                <div>
+                  <dt className="text-navy-400">Website</dt>
+                  <dd className="truncate text-navy-700">{s.website ?? '—'}</dd>
+                </div>
               </dl>
 
               {s.status === 'pending' && (

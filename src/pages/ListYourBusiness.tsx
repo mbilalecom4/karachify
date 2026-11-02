@@ -104,6 +104,7 @@ export default function ListYourBusiness() {
               if (form.description.trim().length < 30) next.description = 'Write at least a sentence or two (30+ characters)';
               if (!isValidEmail(form.email)) next.email = 'We need a working email to send the decision to';
               if (form.phone.trim() && form.phone.replace(/\D/g, '').length < 7) next.phone = 'That phone number looks too short';
+              if (form.website.trim() && !/^https?:\/\/\S+\.\S+/i.test(form.website.trim())) next.website = 'Use the full link, starting with https://';
               setErrors(next);
               if (Object.keys(next).length) {
                 toast.push('Please fix the highlighted fields', 'error');
@@ -118,6 +119,7 @@ export default function ListYourBusiness() {
                 email: form.email.trim().toLowerCase(),
                 phone: form.phone.trim() || undefined,
                 address: form.address.trim(),
+                website: form.website.trim() || undefined,
                 images: shots.filter((s) => s.stored).map((s) => s.url),
               });
               toast.push('Submitted for review — this demo does not email anyone');
@@ -169,8 +171,8 @@ export default function ListYourBusiness() {
               <Field label="Phone" error={errors.phone} hint="Optional — published exactly as you type it, and badged as owner-stated until a source confirms it.">
                 <TextInput value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+92 21 xxxx xxxx" error={Boolean(errors.phone)} />
               </Field>
-              <Field label="Website or Instagram" className="sm:col-span-2" hint="Optional.">
-                <TextInput value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="https://…" />
+              <Field label="Website or Instagram" className="sm:col-span-2" error={errors.website} hint="Optional. A full link, so the button on your page goes somewhere real.">
+                <TextInput value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="https://…" error={Boolean(errors.website)} />
               </Field>
             </div>
 

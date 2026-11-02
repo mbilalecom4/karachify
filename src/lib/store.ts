@@ -322,6 +322,7 @@ export const actions = {
       lat: coords.lat,
       lng: coords.lng,
       phone: sub.phone,
+      website: sub.website,
       email: sub.email,
       facilities: [],
       tags: ['Community submitted'],

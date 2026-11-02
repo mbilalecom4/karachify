@@ -199,6 +199,7 @@ export interface Submission {
   email?: string;
   phone?: string;
   address?: string;
+  website?: string;
   images?: string[];
   listingId?: string;
   status: 'pending' | 'approved' | 'rejected';
