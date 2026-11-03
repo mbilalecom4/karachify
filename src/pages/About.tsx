@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Camera, Database, Eye, Heart, Layers, MapPin, Search, ShieldCheck } from 'lucide-react';
 import { coverage, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { useTierSummary } from '../lib/openRecords';
-import { resolvedMediaCount } from '../lib/media';
+import { illustrativeMediaCount, subjectMediaCount } from '../lib/media';
 import { plural } from '../lib/format';
 import { Note, PageHero, Prose } from '../components/Page';
 import { SectionHeading } from '../components/ui';
@@ -103,8 +103,10 @@ export default function About() {
             <p>
               Images are hotlinked from Wikimedia projects, and each candidate is checked for two things before it is used:
               the article must actually be about the subject, and it must be about Karachi, Sindh or Pakistan. War, disaster
-              and incident pages are rejected outright even when they mention a neighbourhood. {resolvedMediaCount}
-              photographs currently pass those gates and carry a credit link, an artist and a licence.
+              and incident pages are rejected outright even when they mention a neighbourhood. {subjectMediaCount}{' '}
+              photographs currently pass those gates as pictures of their exact subject, each with a link to its file
+              page and a stated licence; {illustrativeMediaCount} more show a comparable Karachi scene and are labelled
+              “Illustrative” wherever they appear.
             </p>
             <p>
               For the rest, Karachify renders a designed placeholder naming the real subject. A labelled placeholder is

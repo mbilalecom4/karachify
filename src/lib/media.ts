@@ -160,3 +160,11 @@ export function areaImageKey(areaId: string) {
 }
 
 export const resolvedMediaCount = Object.keys(registry).length;
+
+/** Registry keys whose picture really depicts the record it is attached to, as
+ *  opposed to the `related` stand-ins that only show a comparable Karachi scene. */
+export const subjectMediaCount = Object.values(registry).filter((m) => m.kind !== 'related').length;
+export const illustrativeMediaCount = resolvedMediaCount - subjectMediaCount;
+/** Photographs attached to a record from the OpenStreetMap tier, whose key is
+ *  `open:<category>:<slug>` rather than a curated slug. */
+export const openRecordMediaCount = Object.keys(registry).filter((k) => k.startsWith('open:')).length;

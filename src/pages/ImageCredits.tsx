@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, ExternalLink } from 'lucide-react';
-import { attributionRows, pictureSubject, placeholderImage, resolvedMediaCount } from '../lib/media';
+import { attributionRows, openRecordMediaCount, pictureSubject, placeholderImage, resolvedMediaCount } from '../lib/media';
 import { selectListings, useDB } from '../lib/store';
 import { Field, TextInput } from '../components/ui';
 import { Note, PageHero } from '../components/Page';
@@ -18,7 +18,7 @@ export default function ImageCredits() {
   );
 
   const illustrative = rows.filter((m) => m.kind === 'related').length;
-  const withPhoto = listings.filter((l) => rows.some((r) => r.key === l.slug)).length;
+  const withPhoto = listings.filter((l) => rows.some((r) => r.key === l.slug && r.kind !== 'related')).length;
 
   return (
     <>
@@ -47,8 +47,10 @@ export default function ImageCredits() {
         </div>
 
         <Note className="mt-6">
-          {resolvedMediaCount} registry keys are filled and {withPhoto} of {listings.length} directory records carry a
-          real photograph. Images are hotlinked from Wikimedia projects under their respective licences and are validated
+          {resolvedMediaCount} registry keys are filled: {withPhoto} of {listings.length} curated records carry a
+          photograph of themselves, and {openRecordMediaCount} of the wider OpenStreetMap tier do the same — a record from
+          that tier is credited only when its own map entry links to the article the file was found in. Images are
+          hotlinked from Wikimedia projects under their respective licences and are validated
           for both subject and locality before use — an article about a bombing, a battle or another city is rejected even
           if it mentions a Karachi neighbourhood. {illustrative} images depict a Karachi scene of the same kind rather
           than the exact subject and are labelled “Illustrative” wherever they appear. Where nothing suitable can be

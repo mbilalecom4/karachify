@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Clock, ExternalLink, Flag, Mail, MapPin, Phone, ShieldAlert, Globe } from 'lucide-react';
 import { areaById, categoryById } from '../data/taxonomy';
 import { humanTag, openToListing, osmIdOf, useOpenRecord } from '../lib/openRecords';
+import { mediaFor } from '../lib/media';
 import { coordText } from '../lib/format';
 import { Breadcrumbs, EmptyState, StatusBadge } from '../components/ui';
 import { ReportModal } from '../components/ReportModal';
@@ -11,10 +12,12 @@ import { useDocumentTitle } from '../lib/useDocumentTitle';
 /**
  * One record from the OpenStreetMap dump.
  *
- * This page is deliberately plainer than a curated listing page: there is no
- * photograph to show, no checked opening hours to table and nothing to rate.
- * What it does have is the map record itself and a running account of which of
- * its fields came from where.
+ * This page is deliberately plainer than a curated listing page: there are no
+ * checked opening hours to table and nothing to rate. What it does have is the
+ * map record itself and a running account of which of its fields came from
+ * where. A photograph appears only for the handful of records whose own map
+ * entry links to an article, and whose Commons file is named for the place —
+ * everything else keeps the gap visibly empty.
  */
 export default function OpenRecord() {
   const { categoryId = '', slug = '' } = useParams();
@@ -62,6 +65,7 @@ export default function OpenRecord() {
 
   const area = areaById.get(record.areaId);
   const listing = openToListing(record);
+  const photo = mediaFor(`open:${categoryId}:${slug}`);
   const osm = osmIdOf(record.sourceUrl);
   const facts: { label: string; value: string; href?: string; icon: typeof MapPin }[] = [];
   if (record.phone) facts.push({ label: 'Phone', value: record.phone, href: `tel:${record.phone.replace(/[^\d+]/g, '')}`, icon: Phone });
@@ -98,6 +102,28 @@ export default function OpenRecord() {
             </span>
           </p>
         </div>
+
+        {photo && (
+          <figure className="card mt-6 overflow-hidden p-0">
+            <img
+              src={photo.wide ?? photo.thumb}
+              alt={`${record.name}, photographed for Wikimedia Commons`}
+              loading="lazy"
+              className="h-[clamp(190px,30vw,320px)] w-full object-cover"
+            />
+            <figcaption className="px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">
+              Photograph from Wikimedia Commons
+              {photo.artist ? ` by ${photo.artist}` : ''}
+              {photo.license ? ` · ${photo.license}` : ''}
+              {photo.via ? ` · found in the article “${photo.via}”, which the map record links to` : ''} ·{' '}
+              <a href={photo.filePage} target="_blank" rel="noopener noreferrer" className="text-teal-700 hover:underline">
+                file page
+              </a>
+              . Karachify did not take this picture and has not stood at this address; the photograph is shown because the file is named
+              for this place, not because the place was checked.
+            </figcaption>
+          </figure>
+        )}
 
         <section className="card mt-6 p-5 sm:p-6">
           <h2 className="font-display text-[19px] font-bold text-navy-800">Where it is</h2>

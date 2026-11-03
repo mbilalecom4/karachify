@@ -13,6 +13,9 @@ dist
 .tools/media.backup.json
 .tools/*.log
 .tools/_*
+# the photo resolver's copy of what the Wikimedia APIs answered — a resume
+# point for a rate-limited run, regenerable, and far too big to version
+.tools/photos-cache.json
 
 # verification scratch: fetched HTML snapshots and source images stay local,
 # the batch-*.json files (with their source URLs) are what we commit

@@ -87,7 +87,9 @@ export function ListingCard({
   view?: 'grid' | 'list';
   showArea?: boolean;
 }) {
-  const media = imageFor(listing.slug, listing.name);
+  /* An open record's photograph is filed under its id (`open:<category>:<slug>`),
+     not under the bare slug it shares with nothing else in the dump. */
+  const media = imageFor(listing.id.startsWith('open:') ? listing.id : listing.slug, listing.name);
   const category = categoryById.get(listing.categoryId);
   const area = areaById.get(listing.areaId);
   const href = listingHref(listing);
