@@ -115,7 +115,11 @@ export default function OpenRecord() {
               Photograph from Wikimedia Commons
               {photo.artist ? ` by ${photo.artist}` : ''}
               {photo.license ? ` · ${photo.license}` : ''}
-              {photo.via ? ` · found in the article “${photo.via}”, which the map record links to` : ''} ·{' '}
+              {photo.via === 'Wikimedia Commons'
+                ? ' · found by searching Commons for this name'
+                : photo.via
+                  ? ` · found in the article “${photo.via}”, which the map record links to`
+                  : ''} ·{' '}
               <a href={photo.filePage} target="_blank" rel="noopener noreferrer" className="text-teal-700 hover:underline">
                 file page
               </a>

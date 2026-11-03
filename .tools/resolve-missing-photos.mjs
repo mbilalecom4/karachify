@@ -31,6 +31,7 @@
 //   node .tools/resolve-missing-photos.mjs --write    merge into src/data/media.json
 //   node .tools/resolve-missing-photos.mjs --only=a,b re-run a shortlist
 //   node .tools/resolve-missing-photos.mjs --pace=8000  wait longer between calls
+//   node .tools/resolve-missing-photos.mjs --explain  say WHY each empty record came up empty
 import { build } from 'esbuild';
 import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -38,6 +39,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const WRITE = process.argv.includes('--write');
+const EXPLAIN = process.argv.includes('--explain');
 const ONLY = (process.argv.find((a) => a.startsWith('--only=')) ?? '').slice(7).split(',').filter(Boolean);
 const MANUAL = process.argv.find((a) => a.startsWith('--manual='))?.slice(9) ?? null;
 const PACE = Number(process.argv.find((a) => a.startsWith('--pace='))?.slice(7)) || 5000;
@@ -124,6 +126,19 @@ async function commonsFiles(phrase) {
     .filter((p) => p.file && !IGNORED_FILE.test(p.file));
 }
 
+/* Every one of these markers was seen in this repository's own rejects: a cast
+   photo standing in for the Arts Council, a student speaking at a university,
+   and U.S. Navy sports-trophy pictures standing in for the Pakistan Naval
+   Academy. A marker that is part of the record's own name does not count — a
+   record about a football stadium is not disqualified from its own photographs
+   because the word "football" is what the place is called. */
+const NOT_THE_SUBJECT = /\b(pictured|portrait|meets?|meeting|inaugurat\w*|visits?|awarded?|ceremony|graduating|convocation|class of|with the|speaking|cast crew|performers?|trophy|cricket|volleyball|basketball|handball|hockey|rugby|match|tournament|concert|musical|festival|protest)\b/i;
+const OTHER_CITY = /\b(lahore|islamabad|rawalpindi|multan|peshawar|quetta|sialkot|faisalabad|hyderabad|gujranwala|indore|delhi|mumbai|london|dubai|new york)\b/i;
+
+/* Filled once the record names are read, just below: the words that carry no
+   identification because our own records use them over and over. */
+let GENERIC = new Set();
+
 /**
  * Every distinctive word of the record name must be evidenced, and the photo
  * itself must carry most of that evidence:
@@ -133,19 +148,40 @@ async function commonsFiles(phrase) {
  * The second condition is what keeps a portrait of a founder out of a record
  * about the institution: being embedded in the right article is not enough,
  * the file has to be named for the thing too.
+ *
+ * Three shapes of near-miss the token test cannot see, all of them observed
+ * here: a file named for a *person* at the building, a file of the same
+ * institution's branch in another city, and a file whose name belongs to a
+ * different Karachi place that happens to share a word with this record.
+ *
+ * Returns null when the file passes every test, otherwise the one line that
+ * explains the rejection. `--explain` prints those, because "Commons has no
+ * photograph of this" and "our gate refused it" look identical from outside
+ * and need opposite fixes.
  */
-/**
- * Two shapes of near-miss the token test cannot see, both of them observed:
- * a file named for a *person* standing in front of the building, and a file of
- * the same institution's branch in another city.
- */
-const NOT_THE_SUBJECT = /\b(pictured|portrait|meets|meeting|inaugurat\w*|visits?|awarded?|ceremony|graduating|convocation|class of|with the)\b/i;
-const OTHER_CITY = /\b(lahore|islamabad|rawalpindi|multan|peshawar|quetta|sialkot|faisalabad|hyderabad|gujranwala|indore|delhi|mumbai|london|dubai|new york)\b/i;
-
-function fileNamesRecord(name, fileTitle, articleTitle = '', place = ['karachi'], localityEvidenced = false) {
+function gateVerdict(name, fileTitle, articleTitle = '', place = ['karachi'], localityEvidenced = false, others = [], otherAreas = []) {
   const f = norm(fileTitle.replace(/\.(jpe?g|png|webp|tiff)$/i, ''));
   const a = norm(articleTitle);
-  if (NOT_THE_SUBJECT.test(fileTitle) || OTHER_CITY.test(fileTitle)) return false;
+  /* "Campus" and "Branch" are words we added to tell two records apart, not part
+     of what the building is called, so a file named for the institution itself is
+     still evidence about this subject. Area words stay required: a photo of the
+     wrong City School campus would be exactly the mistake this gate exists for. */
+  const need = tokens(name).filter((w) => w !== 'campus' && w !== 'branch');
+  const event = NOT_THE_SUBJECT.exec(`${fileTitle} ${articleTitle}`);
+  if (event && !need.includes(norm(event[1]))) return 'a person or event at the building, not the building';
+  if (OTHER_CITY.test(fileTitle)) return 'names a different city';
+  /* A photograph whose own name belongs to a different Karachi place is evidence
+     about that place. "PK Karachi … Bagh Ibne Qasim.jpg" landing on the Malir
+     record called "Bagh e Karachi" is exactly the swap this whole gate exists to
+     stop, and the words in the file name say so plainly. */
+  const hijack = others.find((o) => o.words.every((w) => f.includes(w)));
+  if (hijack) return `named for ${hijack.label}, which is a different place`;
+  /* "Bahadurabad Area Karachi City.jpg" is a picture of Bahadurabad, whatever
+     the word "City" is doing at the end of its name. A file that names one of
+     the city's other localities — and the record is not in that locality — is
+     about the locality, not about this record. */
+  const wrongArea = otherAreas.find((o) => o.words.every((w) => f.includes(w)));
+  if (wrongArea) return `names ${wrongArea.label}, a different part of Karachi`;
   /* Something has to put the picture in this city. Without it, a photograph of
      St Anthony's High School in Goa or Lahore reads as a perfectly good match
      for the Karachi record of the same name. Either the words say so, or the
@@ -153,15 +189,24 @@ function fileNamesRecord(name, fileTitle, articleTitle = '', place = ['karachi']
      `localityEvidenced`, which is how an article titled "NED University of
      Engineering & Technology", with no city in its name, still places its
      photographs here. */
-  if (!localityEvidenced && !place.some((w) => f.includes(w) || a.includes(w))) return false;
-  /* "Campus" and "Branch" are words we added to tell two records apart, not part
-     of what the building is called, so a file named for the institution itself is
-     still evidence about this subject. Area words stay required: a photo of the
-     wrong City School campus would be exactly the mistake this gate exists for. */
-  const need = tokens(name).filter((w) => w !== 'campus' && w !== 'branch');
-  if (need.length < 2) return false;
+  if (!localityEvidenced && !place.some((w) => f.includes(w) || a.includes(w))) return 'nothing places it in Karachi';
+  if (need.length < 2) return 'the record name is too generic to identify one photograph';
   const inFile = need.filter((w) => f.includes(w));
-  return inFile.length >= Math.ceil(need.length / 2) && need.every((w) => f.includes(w) || a.includes(w));
+  if (inFile.length < Math.ceil(need.length / 2)) return `file name carries ${inFile.length} of the ${need.length} words that identify it`;
+  /* Sharing only words that thousands of Karachi records also use proves
+     nothing: "Karachi City" is answered by "Techno City in Karachi", "Bagh e
+     Karachi" by any garden in the city. So the file has to carry a word that
+     makes *this* record specific — and when the record's own name contains no
+     such word at all, the only honest proof left is the whole name, in order. */
+  const distinctive = need.filter((w) => !GENERIC.has(w));
+  if (distinctive.length) {
+    if (!inFile.some((w) => distinctive.includes(w))) return `carries only shared words, none of ${distinctive.join(', ')}`;
+  } else if (!f.includes(norm(name).replace(/\s+/g, ' '))) {
+    return `"${name}" is made only of words shared by many Karachi places, and the file is not named that phrase`;
+  }
+  const missing = need.filter((w) => !f.includes(w) && !a.includes(w));
+  if (missing.length) return `not evidenced anywhere: ${missing.join(', ')}`;
+  return null;
 }
 
 function thumbAt(url, width) {
@@ -269,16 +314,27 @@ const areaNameById = new Map(areas.map((a) => [a.id, a.name]));
 const placeWords = (l) => [...new Set(['karachi', ...(l?.areaId ? tokens(areaNameById.get(l.areaId) ?? '') : [])])];
 
 const targets = [];
-for (const l of listings) if (!media[l.slug]) targets.push({ key: l.slug, name: l.name, kind: 'listing', place: placeWords(l) });
+for (const l of listings) {
+  if (media[l.slug]) continue;
+  /* A curated record's `wiki` names are written by whoever compiled the listing
+     and are read as the article the photographs should come from — the same kind
+     of pre-named evidence a map record's article link is for the open tier. */
+  const named = (l.wiki ?? []).filter((t) => typeof t === 'string' && t.trim());
+  targets.push({ key: l.slug, name: l.name, kind: 'listing', areaId: l.areaId, place: placeWords(l), articles: named.length ? named : undefined });
+}
 for (const c of categories) {
   const key = `banner-${c.id}`;
   if (!media[key]) targets.push({ key, name: c.name, kind: 'category', place: ['karachi'] });
 }
 const TIER_DIR = join(ROOT, 'public/data/tier');
+/** Every name in the open tier, whether or not it is a target this run: the
+ *  pool the "does this word identify anything?" count is taken from. */
+const tierNames = [];
 if (existsSync(TIER_DIR)) {
   for (const file of readdirSync(TIER_DIR).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
     const chunked = JSON.parse(readFileSync(join(TIER_DIR, file), 'utf8'));
     for (const r of chunked.records) {
+      tierNames.push(r.name);
       const title = enArticle(r.wikipedia);
       if (!title) continue;
       const key = `open:${chunked.id}:${r.slug}`;
@@ -287,6 +343,7 @@ if (existsSync(TIER_DIR)) {
         key,
         name: r.name,
         kind: 'open',
+        areaId: r.areaId,
         articles: [title],
         place: [...new Set(['karachi', ...(r.areaId ? tokens(areaNameById.get(r.areaId) ?? '') : [])])],
       });
@@ -305,18 +362,19 @@ if (MANUAL) {
 /* ── pass 1: which article or Commons file most likely holds the photo ───── */
 let step = 0;
 for (const target of targets) {
-  /* An open record arrived with its article already named by the map, so pass 1
-     has nothing to look up; a hand-picked shortlist (`--manual=`) likewise. */
-  if (target.picked || target.articles) continue;
+  /* A hand-picked shortlist (`--manual=`) needs no looking up at all. */
+  if (target.picked) continue;
   process.stderr.write(`  looking up ${++step}/${targets.length} ${target.name}\n`);
   const clean = target.name.replace(/\(.*?\)/g, ' ').replace(/&.*$/, ' ').replace(/,.*/, ' ').trim();
-  const search = await api({ action: 'query', list: 'search', srsearch: `"${target.name}" Karachi`, srlimit: 4 });
-  let hits = (search?.query?.search ?? []).map((s) => s.title);
-  if (!hits.length) {
-    const loose = await api({ action: 'query', list: 'search', srsearch: `${clean} Karachi`, srlimit: 4 });
-    hits = (loose?.query?.search ?? []).map((s) => s.title);
+  if (!target.articles) {
+    const search = await api({ action: 'query', list: 'search', srsearch: `"${target.name}" Karachi`, srlimit: 4 });
+    let hits = (search?.query?.search ?? []).map((s) => s.title);
+    if (!hits.length) {
+      const loose = await api({ action: 'query', list: 'search', srsearch: `${clean} Karachi`, srlimit: 4 });
+      hits = (loose?.query?.search ?? []).map((s) => s.title);
+    }
+    target.articles = hits.slice(0, 3);
   }
-  target.articles = hits.slice(0, 3);
   const core = clean.replace(/\b(campus|branch)\b/i, ' ').replace(/\s+/g, ' ').trim();
   target.commons = await commonsFiles(`"${target.name}"`);
   if (target.commons.length < 3) target.commons.push(...(await commonsFiles(`${core} Karachi`)));
@@ -357,17 +415,97 @@ for (const group of chunk([...new Set(targets.flatMap((t) => t.articles ?? []))]
   }
 }
 
+/* ── pass 2c: the picture Wikipedia leads the article with ───────────────── */
+/* When an article's own title IS the record, its lead image is that article's
+   claim about its subject — better evidence than any file name, because a
+   school's photograph is often captioned nothing more than "KGS campus.jpg".
+   Only the lead image is trusted this way; the rest of the gallery is portraits
+   of founders and alumni, and those still have to name themselves.
+   `nameMatch` is deliberately two-sided: every word of the article title must
+   be in the record name (so "List of schools in Karachi" can never match) and
+   most of the record's words must be in the title (so the record's own extra
+   qualifiers — a "TDF" prefix, a parenthesised acronym — do not block it). */
+const coreWords = (s) => tokens(String(s ?? '').replace(/\(.*?\)/g, ' ')).filter((w) => w !== 'campus' && w !== 'branch');
+function nameMatch(recordName, articleTitle) {
+  const x = coreWords(recordName);
+  const y = coreWords(articleTitle);
+  if (y.length < 2 || x.length < 2) return false;
+  return y.every((w) => x.includes(w)) && x.filter((w) => y.includes(w)).length >= Math.ceil(x.length / 2);
+}
+const leadGate = (file, article = '') =>
+  NOT_THE_SUBJECT.test(`${file} ${article}`) ? 'a person or event at the building, not the building'
+    : OTHER_CITY.test(file) ? 'names a different city'
+      : null;
+
+const leadPairs = [];
 for (const target of targets) {
+  const place = target.place ?? ['karachi'];
+  for (const a of target.articles ?? []) {
+    if (!nameMatch(target.name, a)) continue;
+    if (!localArticles.has(a) && !place.some((w) => norm(a).includes(w))) continue;
+    leadPairs.push({ key: target.key, article: a });
+  }
+}
+const leadImage = new Map();
+for (const group of chunk([...new Set(leadPairs.map((p) => p.article))], 20)) {
+  const data = await api({ action: 'query', titles: group.join('|'), prop: 'pageimages', piprop: 'name', redirects: 1 });
+  for (const page of Object.values(data?.query?.pages ?? {})) {
+    const file = (page.pageimage ?? '').replace(/^File:/, '');
+    if (file && !IGNORED_FILE.test(file)) leadImage.set(page.title, file);
+  }
+}
+const leadByTarget = new Map();
+for (const p of leadPairs) {
+  const file = leadImage.get(p.article);
+  if (!file) continue;
+  const list = leadByTarget.get(p.key) ?? [];
+  list.push({ article: p.article, file, source: p.article, lane: 'lead' });
+  leadByTarget.set(p.key, list);
+}
+
+/* Every Karachi subject this build knows about, by name — the 156 curated
+   records, everything already credited, and all 18,812 map records, whether or
+   not they are being searched this run. A candidate file that names one of them
+   — and is at least as specific as the record it is being offered to — is
+   talking about that other place. */
+const knownLabels = [
+  ...new Set([...listings.map((l) => l.name), ...Object.values(media).map((m) => m.subject), ...tierNames]),
+].filter((n) => typeof n === 'string' && n.trim());
+
+/* Counted from those names, not hand-written: a word carried by twenty of them
+   cannot single any one out. "Karachi", "market", "city" and "park" are what
+   this finds, and it is why a file named "Techno City in Karachi" proves
+   nothing about the record called "Karachi City". */
+const labelWords = new Map();
+for (const n of knownLabels) for (const w of new Set(tokens(n))) labelWords.set(w, (labelWords.get(w) ?? 0) + 1);
+GENERIC = new Set([...labelWords].filter(([, c]) => c >= 20).map(([w]) => w));
+if (EXPLAIN) console.error(`words shared by 20+ record names: ${[...GENERIC].sort().join(', ')}`);
+
+for (const target of targets) {
+  const need = tokens(target.name).filter((w) => w !== 'campus' && w !== 'branch');
+  const others = knownLabels
+    .filter((n) => norm(n) !== norm(target.name) && !nameMatch(target.name, n))
+    .map((n) => ({ label: n, words: tokens(n).filter((w) => w !== 'campus' && w !== 'branch') }))
+    .filter((o) => o.words.length >= 2 && o.words.length >= need.length && !o.words.every((w) => need.includes(w)));
+  target.others = others;
+  const otherAreas = areas
+    .filter((a) => a.id !== target.areaId)
+    .map((a) => ({ label: a.name, words: tokens(a.name).filter((w) => !GENERIC.has(w)) }))
+    .filter((o) => o.words.length >= 1);
   /* `source` is what the registry credits: an article title, or the plain
      "Wikimedia Commons" when the file was found by name there. The Commons
      description travels as `article` because that is the text the name gate
      reads, but it is prose, not something to print in a photo credit. */
   const fromArticles = (target.articles ?? []).flatMap((a) => (imagesByArticle.get(a) ?? []).map((file) => ({ article: a, file, source: a })));
   const fromCommons = (target.commons ?? []).map((c) => ({ article: c.desc, file: c.file, source: 'Wikimedia Commons' }));
-  const candidates = target.picked?.map((p) => ({ ...p, source: p.article })) ?? [...fromCommons, ...fromArticles];
-  target.candidates = candidates.filter((c) =>
-    fileNamesRecord(target.name, c.file, c.article, target.place ?? ['karachi'], localArticles.has(c.article))
-  );
+  const candidates = target.picked?.map((p) => ({ ...p, source: p.article })) ?? [...(leadByTarget.get(target.key) ?? []), ...fromCommons, ...fromArticles];
+  target.candidates = [];
+  target.rejected = [];
+  for (const c of candidates) {
+    const verdict = c.lane === 'lead' ? leadGate(c.file, c.article) : gateVerdict(target.name, c.file, c.article, target.place ?? ['karachi'], localArticles.has(c.article), others, otherAreas);
+    if (verdict) target.rejected.push({ ...c, why: verdict });
+    else target.candidates.push(c);
+  }
 }
 
 /* ── pass 3: licence + size + URLs for the survivors only ────────────────── */
@@ -377,7 +515,7 @@ const fileResolved = new Map();
 for (const group of chunk(allFiles, 25)) {
   const data = await api({
     action: 'query', titles: group.map((f) => `File:${f}`).join('|'), prop: 'imageinfo',
-    iiprop: 'url|size|extmetadata', iiextmetadatafilter: 'LicenseShortName|Artist|UsageTerms', redirects: 1,
+    iiprop: 'url|size|extmetadata', iiextmetadatafilter: 'LicenseShortName|Artist|ImageDescription|UsageTerms', redirects: 1,
   });
   for (const r of data?.query?.redirects ?? []) fileResolved.set(r.index ?? r.from, r.to);
   for (const page of Object.values(data?.query?.pages ?? {})) {
@@ -401,6 +539,21 @@ for (const target of targets) {
       why.push(`${file}: ${info.width}px wide, too small to print at banner size`);
       continue;
     }
+    /* The line written under the file is the loudest statement of what it shows.
+       "Dolmen City Karachi.jpg" captioned "Clifton Beach in Karachi" is about one
+       of those two places, and this record is neither — so a caption naming any
+       other Karachi subject, or naming an event rather than a building, ends it. */
+    const caption = strip(info.extmetadata?.ImageDescription?.value) ?? '';
+    const contradicted = (target.others ?? []).find((o) => o.words.every((w) => norm(caption).includes(w)));
+    if (contradicted) {
+      why.push(`${file}: its own caption names ${contradicted.label}`);
+      continue;
+    }
+    const captionEvent = NOT_THE_SUBJECT.exec(`${file} ${article} ${caption}`);
+    if (captionEvent && !tokens(target.name).includes(norm(captionEvent[1]))) {
+      why.push(`${file}: caption is about "${captionEvent[1]}", not the place`);
+      continue;
+    }
     const wide = thumbAt(info.url, 1280);
     /* One probe per candidate, not two: the 1280px and the 500px address are
        the same file rendered by the same backend, so the large one answering
@@ -416,6 +569,11 @@ for (const target of targets) {
   }
   if (!won) {
     console.log(`none      ${target.kind.padEnd(8)} ${target.name}${target.candidates.length ? ` — ${why.slice(0, 2).join('; ')}` : ''}`);
+    if (EXPLAIN) {
+      console.log(`            searched articles: ${target.articles?.length ? target.articles.join(' | ') : '(none found)'}`);
+      console.log(`            commons name hits: ${target.commons?.length ?? 0} · lead image: ${(leadByTarget.get(target.key) ?? []).map((c) => c.file).join(', ') || '(none)'} · files examined: ${target.candidates.length + target.rejected.length} · refused by the gate: ${target.rejected.length}`);
+      for (const r of target.rejected.slice(0, 4)) console.log(`              ✗ ${r.file} — ${r.why}`);
+    }
     continue;
   }
   const license = strip(won.info.extmetadata?.LicenseShortName?.value) ?? 'licence not stated';

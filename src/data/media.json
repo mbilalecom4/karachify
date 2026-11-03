@@ -1719,5 +1719,53 @@
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "subject"
+  },
+  "ned-university": {
+    "key": "ned-university",
+    "subject": "NED University of Engineering & Technology",
+    "via": "NED University of Engineering and Technology",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NED_University_Karachi.jpg/500px-NED_University_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NED_University_Karachi.jpg/1280px-NED_University_Karachi.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:NED_University_Karachi.jpg",
+    "artist": "King Eliot",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
+  },
+  "open:government:karachi-port-trust-building-saddar": {
+    "key": "open:government:karachi-port-trust-building-saddar",
+    "subject": "Karachi Port Trust Building",
+    "via": "Karachi Port Trust Building",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KPTKarachi1.jpg/500px-KPTKarachi1.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KPTKarachi1.jpg/1280px-KPTKarachi1.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:KPTKarachi1.jpg",
+    "artist": "Ali Shaikh Abbas",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
+  },
+  "open:shopping:empress-market-saddar": {
+    "key": "open:shopping:empress-market-saddar",
+    "subject": "Empress Market",
+    "via": "Wikimedia Commons",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Empress_Market_Saddar_Karachi_cropped.jpg/500px-Empress_Market_Saddar_Karachi_cropped.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Empress_Market_Saddar_Karachi_cropped.jpg/1280px-Empress_Market_Saddar_Karachi_cropped.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Empress_Market_Saddar_Karachi_cropped.jpg",
+    "artist": "Siddiqi",
+    "license": "CC BY-SA 4.0",
+    "verified": true,
+    "kind": "subject"
+  },
+  "open:tourist-places:mausoleum-of-quaid-e-azam-bahadurabad": {
+    "key": "open:tourist-places:mausoleum-of-quaid-e-azam-bahadurabad",
+    "subject": "Mazar-e-Quaid (Jinnah Mausoleum)",
+    "via": "Wikimedia Commons",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "artist": "A.Savin",
+    "license": "FAL",
+    "verified": true,
+    "kind": "subject"
   }
 }
