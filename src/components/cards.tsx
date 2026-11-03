@@ -3,6 +3,7 @@ import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight, ShieldAlert, ShieldChe
 import type { Area, Category, CityEvent, Guide, Listing } from '../types';
 import { areaImageKey, imageFor, pictureSubject, type MediaEntry } from '../lib/media';
 import { actions, prefsFor, useDB } from '../lib/store';
+import { listingHref } from '../lib/openRecords';
 import { IllustrativeStamp, useToast } from './ui';
 import { CategoryIcon } from '../lib/icons';
 import { admissionLabel, dateRange, plural, priceLabel, timeRange } from '../lib/format';
@@ -89,6 +90,7 @@ export function ListingCard({
   const media = imageFor(listing.slug, listing.name);
   const category = categoryById.get(listing.categoryId);
   const area = areaById.get(listing.areaId);
+  const href = listingHref(listing);
 
   const meta = (
     <>
@@ -117,7 +119,7 @@ export function ListingCard({
   if (view === 'list') {
     return (
       <article className="card card-hover relative flex flex-col gap-4 overflow-hidden p-0 sm:flex-row">
-        <Link to={`/place/${listing.slug}`} className="block shrink-0 sm:w-64" aria-label={`View ${listing.name}`}>
+        <Link to={href} className="block shrink-0 sm:w-64" aria-label={`View ${listing.name}`}>
           <ImageBlock media={media} alt={listing.name} className="h-44 w-full sm:h-full" />
         </Link>
         <div className="flex min-w-0 flex-1 flex-col gap-2 p-5">
@@ -127,7 +129,7 @@ export function ListingCard({
             {listing.featured && !listing.promoted && <FeaturedBadge />}
           </div>
           <h3 className="text-[19px] font-bold leading-snug tracking-[-0.01em]">
-            <Link to={`/place/${listing.slug}`} className="hover:text-teal-700">
+            <Link to={href} className="hover:text-teal-700">
               {listing.name}
             </Link>
           </h3>
@@ -142,7 +144,7 @@ export function ListingCard({
 
   return (
     <article className="card card-hover relative flex flex-col overflow-hidden">
-      <Link to={`/place/${listing.slug}`} className="group relative block" aria-label={`View ${listing.name}`}>
+      <Link to={href} className="group relative block" aria-label={`View ${listing.name}`}>
         <ImageBlock media={media} alt={listing.name} className="aspect-[3/2] w-full" />
         <span className="absolute inset-x-3 bottom-3">
           <MediaStamp listing={listing} />
@@ -155,7 +157,7 @@ export function ListingCard({
           {listing.featured && !listing.promoted && <FeaturedBadge />}
         </div>
         <h3 className="text-[17px] font-bold leading-snug tracking-[-0.01em]">
-          <Link to={`/place/${listing.slug}`} className="hover:text-teal-700">
+          <Link to={href} className="hover:text-teal-700">
             {listing.name}
           </Link>
         </h3>
@@ -331,10 +333,13 @@ export function CategoryCard({
   category,
   count,
   unit = ['place', 'places'],
+  extra,
 }: {
   category: Category;
   count: number;
   unit?: [string, string];
+  /** A second, smaller figure — used for the unchecked map records sitting behind the same category. */
+  extra?: string;
 }) {
   const media = imageFor(`banner-${category.id}`, category.name);
   return (
@@ -356,7 +361,10 @@ export function CategoryCard({
         </span>
         <span className="min-w-0">
           <span className="font-display text-[15px] font-bold leading-snug text-white">{category.name}</span>
-          <span className="mt-0.5 block text-[12px] font-semibold text-navy-100">{plural(count, unit[0], unit[1])}</span>
+          <span className="mt-0.5 block text-[12px] font-semibold text-navy-100">
+            {plural(count, unit[0], unit[1])}
+            {extra && <span className="font-medium text-navy-300"> · {extra}</span>}
+          </span>
         </span>
       </span>
     </Link>

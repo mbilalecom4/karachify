@@ -162,7 +162,7 @@ export default function Advertise() {
             <div className="card p-5">
               <h2 className="font-display text-[17px] font-bold text-navy-800">Where your promotion appears</h2>
               <ul className="mt-3 space-y-2 text-sm text-navy-600">
-                <li>{listings.length} directory records across category and area pages</li>
+                <li>{listings.length} source-checked records across category and area pages</li>
                 <li>Search results page, grouped by type</li>
                 <li>The interactive Karachi map list panel</li>
                 <li>Homepage featured strips for restaurants, hotels and shopping</li>

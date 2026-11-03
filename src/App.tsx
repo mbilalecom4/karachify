@@ -12,6 +12,7 @@ const OurServices = lazy(() => import('./pages/OurServices'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const AreasIndex = lazy(() => import('./pages/AreasIndex'));
 const Directory = lazy(() => import('./pages/Directory'));
+const OpenRecord = lazy(() => import('./pages/OpenRecord'));
 const AreaPage = lazy(() => import('./pages/AreaPage'));
 const ListingDetail = lazy(() => import('./pages/ListingDetail'));
 const Events = lazy(() => import('./pages/Events'));
@@ -61,6 +62,8 @@ export default function App() {
           <Route path="category/:slug" element={<CategoryPage />} />
           <Route path="areas" element={<AreasIndex />} />
           <Route path="directory" element={<Directory />} />
+          <Route path="directory/:categoryId" element={<Directory />} />
+          <Route path="directory/:categoryId/:slug" element={<OpenRecord />} />
           <Route path="area/:slug" element={<AreaPage />} />
           <Route path="place/:slug" element={<ListingDetail />} />
           <Route path="events" element={<Events />} />

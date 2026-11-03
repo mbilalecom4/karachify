@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Camera, Database, Eye, Heart, Layers, Search, ShieldCheck } from 'lucide-react';
+import { Camera, Database, Eye, Heart, Layers, MapPin, Search, ShieldCheck } from 'lucide-react';
 import { coverage, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
+import { useTierSummary } from '../lib/openRecords';
 import { resolvedMediaCount } from '../lib/media';
 import { plural } from '../lib/format';
 import { Note, PageHero, Prose } from '../components/Page';
@@ -12,12 +13,18 @@ export default function About() {
   const areas = selectAreas(db);
   const categories = selectCategories(db);
   const { verified: verifiedCount, pinned: sourcedCount, fieldOnly, unchecked, audited } = coverage(listings);
+  const tier = useTierSummary();
 
   const facts = [
-    { icon: Database, label: 'Directory records', value: String(listings.length) },
+    { icon: Database, label: 'Checked records', value: String(listings.length) },
     { icon: Layers, label: 'Categories', value: String(categories.length) },
     { icon: Eye, label: 'Areas mapped', value: String(areas.length) },
     { icon: Heart, label: 'Records with a source', value: String(audited) },
+    {
+      icon: MapPin,
+      label: 'Open records, unchecked',
+      value: tier.data ? tier.data.total.toLocaleString() : '—',
+    },
   ];
 
   return (
@@ -179,15 +186,21 @@ export default function About() {
           />
           <div className="card divide-y divide-navy-50">
             {categories
-              .map((c) => ({ c, n: listings.filter((l) => l.categoryId === c.id).length }))
-              .sort((a, b) => b.n - a.n)
-              .slice(0, 12)
-              .map(({ c, n }) => (
+              .map((c) => {
+                const n = listings.filter((l) => l.categoryId === c.id).length;
+                const open = tier.data?.categories.find((t) => t.id === c.id)?.unchecked ?? 0;
+                return { c, n, open };
+              })
+              .sort((a, b) => b.open + b.n - (a.open + a.n))
+              .map(({ c, n, open }) => (
                 <div key={c.id} className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5">
                   <Link to={`/category/${c.slug}`} className="font-semibold text-navy-800 hover:text-teal-700">
                     {c.name}
                   </Link>
-                  <span className="text-sm text-navy-500">{plural(n, 'record', 'records')}</span>
+                  <span className="text-sm text-navy-500">
+                    {plural(n, 'checked record', 'checked records')}
+                    {open > 0 && <span className="text-navy-400"> · {open.toLocaleString()} more on the map, unchecked</span>}
+                  </span>
                 </div>
               ))}
           </div>

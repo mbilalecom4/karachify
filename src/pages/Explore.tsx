@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, Map as MapIcon } from 'lucide-react';
 import { guides } from '../data/guides';
 import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
+import { openCountLabel, useTierSummary } from '../lib/openRecords';
 import { CategoryCard, AreaCard, GuideCard, EventCard, populatedCategoryTiles } from '../components/cards';
 import { SearchBox } from '../components/SearchBox';
 import { PageHero } from '../components/Page';
@@ -16,6 +17,7 @@ export default function Explore() {
   const listings = selectListings(db);
   const events = selectEvents(db);
   const [group, setGroup] = useState('All');
+  const tier = useTierSummary();
 
   const groups = ['All', ...Array.from(new Set(categories.map((c) => c.group)))];
   const visibleCategories = useMemo(
@@ -62,7 +64,13 @@ export default function Explore() {
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {tiles.map((t) => (
-            <CategoryCard key={t.category.id} category={t.category} count={t.count} unit={t.unit} />
+            <CategoryCard
+              key={t.category.id}
+              category={t.category}
+              count={t.count}
+              unit={t.unit}
+              extra={openCountLabel(t.category.id, tier.data)}
+            />
           ))}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">

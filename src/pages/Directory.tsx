@@ -1,236 +1,208 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Clock, ExternalLink, MapPin, Phone, Search } from 'lucide-react';
-import { selectAreas, selectCategories, useDB } from '../lib/store';
-import { EmptyState, LoadMore, Select, SkeletonGrid, TextInput } from '../components/ui';
-import { Note, PageHero } from '../components/Page';
+import { Link, useParams } from 'react-router-dom';
+import { ArrowRight, Database, ExternalLink, MapPin, ShieldAlert } from 'lucide-react';
+import { areaById, categories as allCategories } from '../data/taxonomy';
+import { selectListings, useDB } from '../lib/store';
+import { openAsListings, useOpenRecords, useTierSummary, withoutCheckedDuplicates } from '../lib/openRecords';
+import { ListingExplorer } from '../components/Explorer';
+import { PageHero, Note } from '../components/Page';
+import { EmptyState, SectionHeading, SkeletonGrid } from '../components/ui';
 
-interface Place {
-  s: string;
-  n: string;
-  c: string;
-  a: string;
-  la: string;
-  ln: string;
-  ad: string | null;
-  p: string | null;
-  w: string | null;
-  h: string | null;
-  u: string | null;
-}
-
-interface ResearchIndex {
-  generatedAt: string;
-  license: string;
-  licenseKind: string;
-  notice: string;
-  count: number;
-  places: Place[];
-}
-
-const PAGE = 50;
-
+/**
+ * The wider directory: everything the OpenStreetMap dump knows about Karachi,
+ * published as it is. It is one file per category, fetched only when a category
+ * is opened, so the page paints from a 7 KB summary rather than 7 MB of records.
+ */
 export default function Directory() {
+  const { categoryId: chosen = '' } = useParams();
   const db = useDB();
-  const categories = selectCategories(db);
-  const areas = selectAreas(db);
-  const [index, setIndex] = useState<ResearchIndex | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [q, setQ] = useState('');
-  const [cat, setCat] = useState('all');
-  const [area, setArea] = useState('all');
-  const [shown, setShown] = useState(PAGE);
+  const tier = useTierSummary();
+  const open = useOpenRecords(chosen || undefined, Boolean(chosen));
+  const curated = selectListings(db);
 
+  const rows = tier.data?.categories ?? [];
+  const active = rows.find((c) => c.id === chosen) ?? null;
+  const category = allCategories.find((c) => c.id === chosen);
+
+  /* The checked pages own their place; a dump record that duplicates one would
+     otherwise offer a second, worse page for the same beach. */
+  const listings = useMemo(
+    () => (open.data ? withoutCheckedDuplicates(openAsListings(open.data), curated) : []),
+    [open.data, curated]
+  );
+
+  const areas = useMemo(() => {
+    const t = tier.data?.areas ?? [];
+    return t.map((a) => ({ ...a, area: areaById.get(a.id) })).filter((a) => a.area);
+  }, [tier.data]);
+
+  /* An open record's trail links back to its tile as /directory#category-x.
+     HashRouter swallows that second fragment and the tiles only exist once the
+     summary has arrived, so the jump has to be made by hand. */
   useEffect(() => {
-    let live = true;
-    fetch(`${import.meta.env.BASE_URL}data/research-index.json`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((d) => live && setIndex(d))
-      .catch(() => live && setFailed(true));
-    return () => {
-      live = false;
-    };
-  }, []);
-
-  const catName = useMemo(() => new Map(categories.map((c) => [c.id, c.name])), [categories]);
-  const areaName = useMemo(() => new Map(areas.map((a) => [a.id, a.name])), [areas]);
-
-  /* Only offer filters that actually have rows behind them — an empty dropdown
-     option is the same dead shelf we removed from the nav. */
-  const usedCats = useMemo(() => {
-    if (!index) return [];
-    const seen = new Set(index.places.map((p) => p.c));
-    return categories.filter((c) => seen.has(c.id)).map((c) => ({ id: c.id, name: c.name, count: index.places.filter((p) => p.c === c.id).length }));
-  }, [index, categories]);
-  const usedAreas = useMemo(() => {
-    if (!index) return [];
-    const seen = new Set(index.places.map((p) => p.a));
-    return areas
-      .filter((a) => seen.has(a.id))
-      .map((a) => ({ id: a.id, name: a.name, count: index.places.filter((p) => p.a === a.id).length }));
-  }, [index, areas]);
-
-  const filtered = useMemo(() => {
-    if (!index) return [];
-    const term = q.trim().toLowerCase();
-    return index.places.filter(
-      (p) =>
-        (cat === 'all' || p.c === cat) &&
-        (area === 'all' || p.a === area) &&
-        (term ? `${p.n} ${p.ad ?? ''}`.toLowerCase().includes(term) : true)
-    );
-  }, [index, q, cat, area]);
-
-  const visible = filtered.slice(0, shown);
+    if (!tier.data) return;
+    const id = window.location.hash.match(/#(category-[\w-]+)$/)?.[1];
+    if (id) document.getElementById(id)?.scrollIntoView({ block: 'start' });
+  }, [tier.data]);
 
   return (
     <div>
       <PageHero
         mediaKey="hero-karachi"
-        label="Karachi directory"
+        label="Karachi"
         eyebrow="Wider map"
         title="The wider Karachi directory"
-        sub="Every place Karachify has found on OpenStreetMap, including the ones we have not verified yet. This is a discovery list, not a recommendation."
+        sub="Every place OpenStreetMap has mapped in this city, published without a check. This is a discovery list, not a recommendation."
         trail={[{ label: 'Home', to: '/' }, { label: 'Directory' }]}
       />
 
       <section className="shell section">
-        {failed && (
-          <Note tone="warn">
-            The directory file could not be loaded. The curated pages under <Link to="/explore" className="font-semibold underline">Explore</Link> do
-            not need it and still work.
-          </Note>
-        )}
-
-        {!index && !failed && (
-          <div>
-            <p className="mb-4 text-[15px] text-navy-500">Loading the directory — about 0.6 MB, fetched once and cached by your browser.</p>
-            <SkeletonGrid count={8} />
-          </div>
-        )}
-
-        {index && (
+        {tier.failed ? (
+          <EmptyState
+            title="The directory counts could not be loaded"
+            body="They come from a small file served next to the site. The curated pages under Explore do not need it and still work."
+            action={
+              <button className="btn-outline" onClick={tier.retry}>
+                Try again
+              </button>
+            }
+          />
+        ) : !tier.data ? (
+          <SkeletonGrid count={6} />
+        ) : (
           <>
-            <div className="card mb-5 flex flex-col gap-3 p-3 lg:flex-row lg:items-center">
-              <div className="relative min-w-0 flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
-                <TextInput
-                  value={q}
-                  onChange={(e) => {
-                    setQ(e.target.value);
-                    setShown(PAGE);
-                  }}
-                  placeholder="Search a name or street — “biryani”, “Shaheed-e-Millat”…"
-                  aria-label="Search the directory"
-                  className="pl-10"
-                />
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="card p-5">
+                <p className="eyebrow">Records here</p>
+                <p className="mt-1 font-display text-[30px] font-extrabold leading-none text-navy-800">
+                  {tier.data.total.toLocaleString()}
+                </p>
+                <p className="mt-1.5 text-[13.5px] text-navy-500">
+                  across {rows.length} categories of the city
+                  {tier.data.alreadyChecked > 0 &&
+                    ` · ${tier.data.alreadyChecked} of them describe a place that already has a checked page, so the tiles below leave those out`}
+                </p>
               </div>
-              <Select
-                value={cat}
-                onChange={(e) => {
-                  setCat(e.target.value);
-                  setShown(PAGE);
-                }}
-                aria-label="Filter by category"
-                className="lg:w-56"
-              >
-                <option value="all">All categories ({index.count})</option>
-                {usedCats.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name} ({c.count})
-                  </option>
-                ))}
-              </Select>
-              <Select
-                value={area}
-                onChange={(e) => {
-                  setArea(e.target.value);
-                  setShown(PAGE);
-                }}
-                aria-label="Filter by area"
-                className="lg:w-56"
-              >
-                <option value="all">All areas</option>
-                {usedAreas.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.name} ({a.count})
-                  </option>
-                ))}
-              </Select>
+              <div className="card p-5">
+                <p className="eyebrow">Checked by hand</p>
+                <p className="mt-1 font-display text-[30px] font-extrabold leading-none text-navy-800">{curated.length}</p>
+                <p className="mt-1.5 text-[13.5px] text-navy-500">the rest of this page has not been opened by anyone at Karachify</p>
+              </div>
+              <div className="card p-5">
+                <p className="eyebrow">Read from the map on</p>
+                <p className="mt-1 font-display text-[22px] font-extrabold leading-tight text-navy-800">{tier.data.retrievedAt}</p>
+                <p className="mt-1.5 text-[13.5px] text-navy-500">{tier.data.licence}</p>
+              </div>
             </div>
 
-            <Note tone="warn">
-              {index.notice} {index.license}, {index.licenseKind}. Extracted {index.generatedAt}.
+            <Note tone="warn" className="mt-5">
+              <span className="flex items-start gap-2">
+                <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>
+                  A record on this page means a volunteer put a point or a building outline on OpenStreetMap and gave it a name. It does
+                  not mean Karachify has been there, phoned it, or confirmed it still trades. Nothing here carries a star rating, a review
+                  count or a written description, because no source supplied one — a phone number or opening hour appears only when the map
+                  record itself held it, and it is labelled as unconfirmed.
+                </span>
+              </span>
             </Note>
 
-            <p className="mt-5 text-[14px] font-semibold text-navy-600">
-              {filtered.length.toLocaleString()} records match these filters · {visible.length.toLocaleString()} on screen
-            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm inline-flex items-center gap-1.5">
+                OpenStreetMap copyright <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+              <a href="https://opendatacommons.org/licenses/odbl/" target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm inline-flex items-center gap-1.5">
+                ODbL licence <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+              <Link to="/sources" className="btn-ghost btn-sm inline-flex items-center gap-1.5">
+                <Database className="h-3.5 w-3.5" /> How Karachify uses sources
+              </Link>
+            </div>
 
-            {filtered.length === 0 ? (
-              <EmptyState
-                title="Nothing in the directory matches that"
-                body="The wider map only holds what OpenStreetMap has mapped, so a name that is not there may simply be unmarked rather than closed."
-                action={
-                  <button
-                    className="btn-outline"
-                    onClick={() => {
-                      setQ('');
-                      setCat('all');
-                      setArea('all');
-                    }}
-                  >
-                    Clear filters
-                  </button>
-                }
+            <div className="mt-12">
+              <SectionHeading
+                eyebrow="Choose a category"
+                title="What is in the dump"
+                sub="Opening one fetches that category alone — the largest is a few hundred kilobytes compressed, and nothing else is downloaded."
               />
-            ) : (
-              <ul className="mt-4 divide-y divide-navy-100 overflow-hidden rounded-2xl border border-navy-100 bg-white">
-                {visible.map((p) => (
-                  <li key={p.s} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                    <div className="min-w-0">
-                      <p className="font-display text-[16px] font-bold text-navy-800">{p.n}</p>
-                      <p className="mt-0.5 text-[13px] text-navy-500">
-                        {catName.get(p.c) ?? p.c} · {areaName.get(p.a) ?? p.a}
-                      </p>
-                      {p.ad && (
-                        <p className="mt-1.5 flex items-start gap-1.5 text-[13px] text-navy-600">
-                          <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-600" />
-                          <span className="min-w-0">{p.ad}</span>
-                        </p>
-                      )}
-                      {p.h && (
-                        <p className="mt-1 flex items-center gap-1.5 text-[13px] text-navy-600">
-                          <Clock className="h-3.5 w-3.5 shrink-0 text-teal-600" /> {p.h}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end">
-                      {p.p && (
-                        <a href={`tel:${p.p.replace(/[^\d+]/g, '')}`} className="flex items-center gap-1.5 text-[13px] font-semibold text-teal-700 hover:text-teal-800">
-                          <Phone className="h-3.5 w-3.5" /> {p.p}
-                        </a>
-                      )}
-                      {p.w && (
-                        <a href={p.w} target="_blank" rel="noopener noreferrer nofollow" className="flex items-center gap-1.5 text-[13px] font-semibold text-teal-700 hover:text-teal-800">
-                          Website <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      )}
-                      {p.u && (
-                        <a href={p.u} target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-navy-400 hover:text-navy-600">
-                          OpenStreetMap
-                        </a>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {rows.map((c) => {
+                const cat = allCategories.find((x) => x.id === c.id);
+                const on = c.id === chosen;
+                return (
+                  <Link
+                    key={c.id}
+                    to={`/directory/${c.id}`}
+                    id={`category-${c.id}`}
+                    className={`card card-hover flex items-center justify-between gap-3 p-4 ${on ? 'ring-2 ring-teal-600' : ''}`}
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate font-semibold text-navy-800">{cat?.name ?? c.id}</span>
+                      <span className="block text-[13px] text-navy-500">
+                        {c.unchecked.toLocaleString()} place{c.unchecked === 1 ? '' : 's'}
+                        {c.withContact > 0 && ` · ${c.withContact.toLocaleString()} with a phone or website`}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 shrink-0 text-teal-600" />
+                  </Link>
+                );
+              })}
+            </div>
 
-            {filtered.length > shown && <LoadMore shown={visible.length} total={filtered.length} onClick={() => setShown((s) => s + PAGE)} />}
+            <div className="mt-14">
+              <SectionHeading
+                eyebrow="Or start from a neighbourhood"
+                title="Records by area"
+                sub="Pick a category above to browse these by name. The area pages themselves only carry the records Karachify has checked."
+              />
+            </div>
+            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {areas.map((a) => (
+                <li key={a.id} className="card flex items-center justify-between gap-3 px-4 py-3">
+                  <span className="inline-flex min-w-0 items-center gap-2">
+                    <MapPin className="h-4 w-4 shrink-0 text-teal-600" />
+                    <span className="truncate text-[15px] font-semibold text-navy-800">{a.area!.name}</span>
+                  </span>
+                  <span className="flex shrink-0 items-center gap-3">
+                    <span className="text-[13px] text-navy-500">{a.count.toLocaleString()} mapped</span>
+                    <Link to={`/area/${a.area!.slug}`} className="text-[13px] font-semibold text-teal-700 hover:text-teal-800">
+                      checked pages
+                    </Link>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </>
         )}
       </section>
+
+      {chosen && (
+        <section className="bg-white py-12">
+          <div className="shell">
+            <SectionHeading
+              eyebrow="Open records"
+              title={category?.name ?? 'This category'}
+              sub="Every name below is a map feature, not a reviewed business. The stamp on each card says the same thing."
+            />
+            {open.failed ? (
+              <EmptyState
+                title="That category did not load"
+                body="The file sits next to the site and a dropped connection is enough to miss it. Nothing is shown in its place."
+                action={
+                  <button className="btn-outline" onClick={open.retry}>
+                    Try again
+                  </button>
+                }
+              />
+            ) : open.data ? (
+              <ListingExplorer items={listings} pageSize={db.settings.listingsPerPage} showArea />
+            ) : (
+              <SkeletonGrid count={8} />
+            )}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

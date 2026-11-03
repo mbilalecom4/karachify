@@ -22,6 +22,7 @@ import { SearchBox } from '../components/SearchBox';
 import { KarachiToday } from '../components/KarachiToday';
 import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, populatedCategoryTiles } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
+import { openCountLabel, useTierSummary } from '../lib/openRecords';
 import { EmptyState, Reveal, SectionHeading } from '../components/ui';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
@@ -62,6 +63,7 @@ export default function Home() {
   const categories = selectCategories(db);
   const areas = selectAreas(db);
   const events = selectEvents(db);
+  const tier = useTierSummary();
 
   const hero = imageFor('hero-karachi', 'Karachi coastline');
   const today = new Date().toISOString().slice(0, 10);
@@ -242,7 +244,7 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {categoryTiles.map((t, i) => (
             <Reveal key={t.category.id} delay={Math.min(i * 25, 200)}>
-              <CategoryCard category={t.category} count={t.count} unit={t.unit} />
+              <CategoryCard category={t.category} count={t.count} unit={t.unit} extra={openCountLabel(t.category.id, tier.data)} />
             </Reveal>
           ))}
         </div>

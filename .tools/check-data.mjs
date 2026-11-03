@@ -7,7 +7,7 @@
 // already ships and imported from there: this checks the same objects the app
 // renders, not a re-reading of the source files.
 import { build } from 'esbuild';
-import { mkdtempSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, existsSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -24,6 +24,7 @@ const bundle = await build({
       export { listings } from './listings';
       export { events } from './events';
       export { categories, areas, city } from './taxonomy';
+      export { alreadyChecked, checkedKeys } from '../lib/openDedupe';
     `,
     resolveDir: join(root, 'src/data'),
     loader: 'ts',
@@ -38,7 +39,7 @@ const bundle = await build({
 const dir = mkdtempSync(join(tmpdir(), 'karachify-check-'));
 const file = join(dir, 'data.mjs');
 writeFileSync(file, bundle.outputFiles[0].text);
-const { listings, events, categories, areas, city } = await import(`file:///${file.replace(/\\/g, '/')}`);
+const { listings, events, categories, areas, city, alreadyChecked, checkedKeys } = await import(`file:///${file.replace(/\\/g, '/')}`);
 
 const overrides = JSON.parse(await readText('src/data/verified-overrides.json'));
 const provenance = JSON.parse(await readText('src/data/provenance.json'));
@@ -209,10 +210,92 @@ for (const [key, m] of Object.entries(media)) {
   if (m.kind !== 'related' && !m.license) failures.push(`media ${key}: depicts its subject but states no licence`);
 }
 
+/* ------------------- 4. the open-records tier stays honest ------------------- */
+
+/* The tier is not compiled into the bundle, so the loop above cannot see it. It
+   is 18,812 records nobody at Karachify has checked, which is exactly the kind
+   of data a fabricated field hides inside — so it is read from disk and held to
+   the same rules. */
+
+const TIER = join(root, 'public/data/tier');
+let tierCount = 0;
+if (existsSync(TIER)) {
+  const summary = JSON.parse(readFileSync(join(TIER, 'index.json'), 'utf8'));
+  /* The tiles on Home and Explore quote these numbers, so they are recomputed
+     here with the same rule the browser applies. A count that drifts from the
+     list behind it is a claim no source supports. */
+  const siteKeys = checkedKeys(listings);
+  let uncheckedTotal = 0;
+  const files = readdirSync(TIER).filter((f) => f.endsWith('.json') && f !== 'index.json');
+  check(
+    files.length === summary.categories.length,
+    `tier: index.json describes ${summary.categories.length} categories but ${files.length} files are shipped`
+  );
+  let seenSlugs = 0;
+  for (const row of summary.categories) {
+    const file = join(TIER, `${row.id}.json`);
+    if (!check(existsSync(file), `tier: category "${row.id}" is counted in index.json but its file is missing`)) continue;
+    const chunk = JSON.parse(readFileSync(file, 'utf8'));
+    check(chunk.count === chunk.records.length, `tier/${row.id}: index says ${row.count}, count field ${chunk.count}, file holds ${chunk.records.length}`);
+    check(chunk.id === row.id, `tier/${row.id}: the file declares itself "${chunk.id}"`);
+    const inner = new Set();
+    for (const r of chunk.records) {
+      const at = `tier/${row.id}/${r.slug}`;
+      seenSlugs++;
+      if (inner.has(r.slug)) failures.push(`${at}: duplicate slug inside one category`);
+      inner.add(r.slug);
+      for (const banned of ['rating', 'reviewCount', 'tagline', 'description', 'featured', 'promoted', 'priceRange', 'lastVerified']) {
+        if (r[banned] !== undefined) failures.push(`${at}: carries "${banned}", which no source supplied for an unchecked record`);
+      }
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(r.slug)) failures.push(`${at}: slug is not URL-safe`);
+      if (!categoryIds.has(r.categoryId)) failures.push(`${at}: categoryId "${r.categoryId}" is not in the taxonomy`);
+      if (!areaIds.has(r.areaId)) failures.push(`${at}: areaId "${r.areaId}" is not in the taxonomy`);
+      if (!r.sourceUrl) failures.push(`${at}: published with no sourceUrl — an unchecked record must still say where it came from`);
+      else {
+        let u;
+        try {
+          u = new URL(r.sourceUrl);
+        } catch {
+          failures.push(`${at}: sourceUrl "${String(r.sourceUrl).slice(0, 60)}" is not absolute`);
+        }
+        if (u && u.protocol !== 'https:') failures.push(`${at}: sourceUrl ${r.sourceUrl} is not https`);
+        if (u && !/(openstreetmap\.org|wikipedia\.org|wikimedia\.org)$/.test(u.host))
+          failures.push(`${at}: cites ${u.host}, which is not a source this project is licensed to republish`);
+      }
+      if (!(Number.isFinite(r.lat) && Number.isFinite(r.lng))) failures.push(`${at}: coordinates ${r.lat},${r.lng} are not numbers`);
+      else if (!(r.lat > 23.5 && r.lat < 26.5 && r.lng > 66.0 && r.lng < 68.7)) {
+        failures.push(`${at}: coordinates ${r.lat},${r.lng} fall outside the Karachi bounding box`);
+      }
+      if (r.hours?.some((h) => !h.day || !h.open)) failures.push(`${at}: an opening-hours row is missing its day or its time`);
+      if (!r.name || /^unnamed\b/i.test(r.name.trim())) failures.push(`${at}: has no name to list — a map feature nobody named is not a directory record`);
+      /* "Unnamed Road" is what a reverse geocode returns for an unlit lane, and it
+         is the map's own words, so it is not a placeholder marker here. */
+      const marker = /\b(demo|dummy|lorem ipsum|test record|sample record|tbd|n\/a)\b/i.exec([r.name, r.address, ...(r.tags ?? [])].join(' '));
+      if (marker) failures.push(`${at}: contains the placeholder marker "${marker[0]}"`);
+    }
+    const survivors = chunk.records.filter((r) => !alreadyChecked(r, siteKeys));
+    uncheckedTotal += survivors.length;
+    check(
+      row.unchecked === survivors.length,
+      `tier/${row.id}: index.json says ${row.unchecked} unchecked but the checked pages leave ${survivors.length}`
+    );
+    check(
+      row.withContact === survivors.filter((r) => r.phone || r.website || r.email).length,
+      `tier/${row.id}: index.json says ${row.withContact} with a contact but ${survivors.filter((r) => r.phone || r.website || r.email).length} of the listed records have one`
+    );
+  }
+  check(seenSlugs === summary.total, `tier: index.json totals ${summary.total} but the files hold ${seenSlugs}`);
+  check(
+    summary.alreadyChecked === seenSlugs - uncheckedTotal,
+    `tier: index.json hides ${summary.alreadyChecked} records as copies of a checked page but ${seenSlugs - uncheckedTotal} match one`
+  );
+  tierCount = seenSlugs;
+}
+
 /* -------------------------------- report -------------------------------- */
 
 if (failures.length) {
-  console.error(`\n✗ check-data: ${failures.length} problem(s) in ${listings.length} listings\n`);
+  console.error(`\n✗ check-data: ${failures.length} problem(s) in ${listings.length} listings + ${tierCount} open records\n`);
   for (const f of failures.slice(0, 60)) console.error(`  · ${f}`);
   if (failures.length > 60) console.error(`  … and ${failures.length - 60} more`);
   process.exit(1);
@@ -221,5 +304,6 @@ if (failures.length) {
 const sourced = listings.filter((l) => l.sourceUrl).length;
 console.log(
   `✓ check-data: ${listings.length} listings (${sourced} with a named source), ${events.length} seeded events, ` +
-    `${Object.keys(provenance.records).length} audited records, ${Object.keys(media).length} credited images — no fabricated fields found`
+    `${Object.keys(provenance.records).length} audited records, ${Object.keys(media).length} credited images, ` +
+    `${tierCount} open records all citing OpenStreetMap — no fabricated fields found`
 );
