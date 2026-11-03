@@ -157,10 +157,10 @@ export function StatusBadge({
 }) {
   const map = {
     demo: { label: 'Sample record', cls: 'badge-demo' },
-    verified: { label: 'Verified', cls: 'badge-verified' },
+    verified: { label: 'Source-verified', cls: 'badge-verified' },
     'needs-review': coordsVerified
       ? { label: 'Mapped pin · details unchecked', cls: 'badge-demo' }
-      : { label: 'Not verified yet', cls: 'badge-demo' },
+      : { label: 'Unverified', cls: 'badge-demo' },
   } as const;
   const m = map[status];
   return <span className={`${m.cls} ${className}`}>{m.label}</span>;

@@ -24,9 +24,9 @@ export default function Terms() {
           </p>
           <h2>2. Verified and unverified records</h2>
           <p>
-            A page badged <span className="badge-verified mx-0.5 align-middle">Verified</span> states the source it was
-            built from and the date it was checked. A page badged
-            <span className="badge-demo mx-0.5 align-middle">Not verified yet</span> has not been confirmed against a
+            A page badged <span className="badge-verified mx-0.5 align-middle">Source-verified</span> states the source it
+            was built from and the date it was checked. A page badged
+            <span className="badge-demo mx-0.5 align-middle">Unverified</span> has not been confirmed against a
             source — those records carry no star rating, no review count and no invented price band, and anything a source
             did not publish is left blank rather than guessed. Do not republish either kind as proof of a business’s
             current trading status; confirm with the operator before you travel.

@@ -59,12 +59,12 @@ const FAQS: Faq[] = [
   {
     group: 'Businesses',
     q: 'Can I change my opening hours or photos?',
-    a: 'Owner accounts can edit name, tagline, description, phone, price band, address and facilities from the dashboard. Edits set the record back to “Not verified yet” so a moderator sees them.',
+    a: 'Owner accounts can edit name, tagline, description, phone, price band, address and facilities from the dashboard. Edits set the record back to “Unverified” so a moderator sees them.',
   },
   {
     group: 'Events',
     q: 'Are the events real?',
-    a: 'The board is empty rather than filled. Karachify removed the invented sample calendar it shipped with: an event appears here when a dated source names it, or when a submitted event is published from what the organiser wrote — and that case is badged “Not verified yet”, never presented as confirmed.',
+    a: 'The board is empty rather than filled. Karachify removed the invented sample calendar it shipped with: an event appears here when a dated source names it, or when a submitted event is published from what the organiser wrote — and that case is badged “Unverified”, never presented as confirmed.',
   },
   {
     group: 'Events',
@@ -74,7 +74,7 @@ const FAQS: Faq[] = [
   {
     group: 'Events',
     q: 'Can I submit an event for the calendar?',
-    a: 'Use the submit-an-event form. The entry waits for moderation, and a published community event carries a “Not verified yet” badge until a dated source is attached to it.',
+    a: 'Use the submit-an-event form. The entry waits for moderation, and a published community event carries a “Unverified” badge until a dated source is attached to it.',
   },
   {
     group: 'Data & accuracy',

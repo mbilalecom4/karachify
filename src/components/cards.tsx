@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight, ShieldCheck, Image } from 'lucide-react';
+import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight, ShieldAlert, ShieldCheck, Image } from 'lucide-react';
 import type { Area, Category, CityEvent, Guide, Listing } from '../types';
 import { areaImageKey, imageFor, pictureSubject, type MediaEntry } from '../lib/media';
 import { actions, prefsFor, useDB } from '../lib/store';
@@ -49,7 +49,11 @@ export function FavouriteButton({
 
 /* ------------------------------ listing ------------------------------- */
 
-/** Small opaque stamp on the photo itself: what a reader of a travel card reads first. */
+/**
+ * Small opaque stamp on the photo itself: what a reader of a travel card reads
+ * first. All three states wear the same dark pill — a record that has not been
+ * checked should look as deliberate as one that has, not like a missing style.
+ */
 function MediaStamp({ listing }: { listing: Listing }) {
   if (listing.status === 'verified')
     return (
@@ -60,12 +64,17 @@ function MediaStamp({ listing }: { listing: Listing }) {
     );
   if (listing.coordsVerified)
     return (
-      <span className="chip-light">
-        <MapPin className="h-3.5 w-3.5 text-teal-600" />
+      <span className="chip-solid">
+        <MapPin className="h-3.5 w-3.5 text-teal-300" />
         Mapped pin · details unchecked
       </span>
     );
-  return <span className="chip-light">Not verified yet</span>;
+  return (
+    <span className="chip-solid">
+      <ShieldAlert className="h-3.5 w-3.5 text-amber-300" />
+      Unverified
+    </span>
+  );
 }
 
 export function ListingCard({
@@ -236,7 +245,7 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
         <div className="flex flex-wrap items-center gap-2">
           <span className="badge bg-navy-50 text-navy-700">{event.eventCategory}</span>
           {event.status !== 'verified' && (
-            <span className="badge-demo">{event.status === 'demo' ? 'Sample event' : 'Not verified yet'}</span>
+            <span className="badge-demo">{event.status === 'demo' ? 'Sample event' : 'Unverified'}</span>
           )}
         </div>
         <h3 className="text-[17px] font-bold leading-snug">

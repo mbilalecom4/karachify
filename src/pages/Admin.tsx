@@ -530,7 +530,7 @@ function Listings() {
             <Select value={draft.status} onChange={(e) => setDraft({ ...draft, status: e.target.value })}>
               <option value="verified">Verified source</option>
               <option value="demo">Sample record</option>
-              <option value="needs-review">Not verified yet</option>
+              <option value="needs-review">Unverified</option>
             </Select>
           </Field>
           <Field label="Tagline" className="sm:col-span-2">

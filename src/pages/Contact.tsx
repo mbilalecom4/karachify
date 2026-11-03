@@ -196,7 +196,7 @@ export default function Contact() {
               <h3>Reporting a factual error</h3>
               <p>
                 Tell us the listing, the field that is wrong and a source — an official site, a licence notice or a recent
-                photograph. The record is badged "Not verified yet" until a source is attached, rather than quietly edited
+                photograph. The record is badged "Unverified" until a source is attached, rather than quietly edited
                 on the strength of an email.
               </p>
             </Prose>

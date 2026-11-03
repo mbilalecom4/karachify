@@ -64,7 +64,7 @@ export default function About() {
               pages show — hours, admission or contact numbers where the operator states them — were read from the
               operator’s own website, a museum’s published tariff or OpenStreetMap, and each page links the source
               together with the date it was checked. Those pages carry a
-              <span className="badge-verified mx-1 align-middle">Verified</span> badge.
+              <span className="badge-verified mx-1 align-middle">Source-verified</span> badge.
             </p>
             <p>
               A further {sourcedCount - verifiedCount} destinations sit between the two states: their position is the
