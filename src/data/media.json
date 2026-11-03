@@ -1767,5 +1767,17 @@
     "license": "FAL",
     "verified": true,
     "kind": "subject"
+  },
+  "aga-khan-university-campus": {
+    "key": "aga-khan-university-campus",
+    "subject": "Aga Khan University Campus",
+    "via": "Aga Khan University",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aga_Khan_University_.jpg/500px-Aga_Khan_University_.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aga_Khan_University_.jpg/1280px-Aga_Khan_University_.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:Aga_Khan_University_.jpg",
+    "artist": "Kashif Mardani",
+    "license": "CC BY 2.0",
+    "verified": true,
+    "kind": "subject"
   }
 }

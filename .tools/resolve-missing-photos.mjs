@@ -197,11 +197,13 @@ function gateVerdict(name, fileTitle, articleTitle = '', place = ['karachi'], lo
      nothing: "Karachi City" is answered by "Techno City in Karachi", "Bagh e
      Karachi" by any garden in the city. So the file has to carry a word that
      makes *this* record specific — and when the record's own name contains no
-     such word at all, the only honest proof left is the whole name, in order. */
+     such word at all, the only honest proof left is the whole name, in order.
+     The phrase is built from `need`, so the "Campus" and "Branch" we added to
+     tell two records apart are not demanded of a photograph. */
   const distinctive = need.filter((w) => !GENERIC.has(w));
   if (distinctive.length) {
     if (!inFile.some((w) => distinctive.includes(w))) return `carries only shared words, none of ${distinctive.join(', ')}`;
-  } else if (!f.includes(norm(name).replace(/\s+/g, ' '))) {
+  } else if (!f.includes(need.join(' '))) {
     return `"${name}" is made only of words shared by many Karachi places, and the file is not named that phrase`;
   }
   const missing = need.filter((w) => !f.includes(w) && !a.includes(w));
@@ -481,9 +483,9 @@ for (const n of knownLabels) for (const w of new Set(tokens(n))) labelWords.set(
 GENERIC = new Set([...labelWords].filter(([, c]) => c >= 20).map(([w]) => w));
 if (EXPLAIN) console.error(`words shared by 20+ record names: ${[...GENERIC].sort().join(', ')}`);
 
+let awaitedLocality = null;
 for (const target of targets) {
-  const need = tokens(target.name).filter((w) => w !== 'campus' && w !== 'branch');
-  const others = knownLabels
+  const need = tokens(target.name).filter((w) => w !== 'campus' && w !== 'branch');  const others = knownLabels
     .filter((n) => norm(n) !== norm(target.name) && !nameMatch(target.name, n))
     .map((n) => ({ label: n, words: tokens(n).filter((w) => w !== 'campus' && w !== 'branch') }))
     .filter((o) => o.words.length >= 2 && o.words.length >= need.length && !o.words.every((w) => need.includes(w)));
@@ -501,10 +503,51 @@ for (const target of targets) {
   const candidates = target.picked?.map((p) => ({ ...p, source: p.article })) ?? [...(leadByTarget.get(target.key) ?? []), ...fromCommons, ...fromArticles];
   target.candidates = [];
   target.rejected = [];
+  target.otherAreas = otherAreas;
   for (const c of candidates) {
     const verdict = c.lane === 'lead' ? leadGate(c.file, c.article) : gateVerdict(target.name, c.file, c.article, target.place ?? ['karachi'], localArticles.has(c.article), others, otherAreas);
-    if (verdict) target.rejected.push({ ...c, why: verdict });
+    if (verdict === 'nothing places it in Karachi') (awaitedLocality ??= []).push({ target, c });
+    else if (verdict) target.rejected.push({ ...c, why: verdict });
     else target.candidates.push(c);
+  }
+}
+
+/* ── pass 2e: usage as evidence of the city ─────────────────────────────────
+   A file whose name carries no city can still be pinned to Karachi by where
+   Wikipedia actually puts it: a photograph used in the article titled
+   "Karachi", or in this record's own article, is a Karachi photograph. Only
+   the city is proved this way — the name gate still has to decide whether the
+   file is about *this* place — so the whole gate runs again on these files
+   with locality settled, and everything else about them is unchanged. */
+if (awaitedLocality?.length) {
+  const files = [...new Set(awaitedLocality.map((x) => x.c.file))];
+  const placed = new Map();
+  let checked = 0;
+  for (const group of chunk(files, 50)) {
+    const data = await api({
+      action: 'query', titles: group.map((f) => `File:${f}`).join('|'),
+      prop: 'globalusage|fileusage', redirects: 1, agulimit: 40,
+    });
+    for (const page of Object.values(data?.query?.pages ?? {})) {
+      const name = (page.title ?? '').replace(/^File:/, '');
+      const used = [...(page.globalusage ?? []), ...(page.fileusage ?? [])].map((u) => u.title.replace(/_/g, ' '));
+      /* Only the article for the city itself counts. "Karachi Fire Brigade" is
+         an article about a service, and a file used there proves nothing about
+         where it was taken. */
+      if (used.some((t) => /^karachi(\s*\((city|division)\))?$/.test(t))) placed.set(name, 'Karachi');
+    }
+    checked += group.length;
+    process.stderr.write(`  checked ${checked}/${files.length} files for city usage\n`);
+  }
+  for (const { target, c } of awaitedLocality) {
+    const via = placed.get(c.file);
+    if (!via) continue;
+    const again = gateVerdict(target.name, c.file, c.article, target.place ?? ['karachi'], true, target.others, target.otherAreas);
+    if (again) target.rejected.push({ ...c, why: `${again} (usage says Karachi, via “${via}”)` });
+    else {
+      if (EXPLAIN) console.error(`  usage placed ${c.file} in Karachi through “${via}”`);
+      target.candidates.push(c);
+    }
   }
 }
 
