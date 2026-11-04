@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { BookOpen, FolderSearch, MapPin, Sparkles, Tag, X } from 'lucide-react';
+import { ArrowRight, BookOpen, FolderSearch, Map as MapIcon, MapPin, Sparkles, Tag, X } from 'lucide-react';
 import { search, TYPE_LABEL, type ResultType, type SearchDoc } from '../lib/search';
 import { selectAreas, selectCategories, selectListings, selectEvents, useDB } from '../lib/store';
+import { isOpenListing } from '../lib/openRecords';
+import { tierLabel, useOpenNames } from '../lib/openNames';
 import { imageFor, pictureSubject } from '../lib/media';
 import { EventCard, ListingCard } from '../components/cards';
 import { SearchBox } from '../components/SearchBox';
@@ -10,7 +12,7 @@ import { EmptyState, Select, Tabs } from '../components/ui';
 import { plural } from '../lib/format';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
-const TYPES: ResultType[] = ['listing', 'event', 'area', 'category', 'guide'];
+const TYPES: ResultType[] = ['listing', 'event', 'area', 'category', 'guide', 'open'];
 
 export default function SearchResults() {
   useDocumentTitle('Search');
@@ -26,16 +28,28 @@ export default function SearchResults() {
     setType('all');
   }, [q]);
 
+  const listings = selectListings(db);
+  const events = selectEvents(db);
+  const categories = selectCategories(db);
+  const areas = selectAreas(db);
+
   const results = useMemo(() => (q.trim() ? search(db, q, { limit: 200 }) : []), [db, q]);
+  const curatedKeys = useMemo(
+    () => listings.filter((l) => !isOpenListing(l)).map((l) => ({ slug: l.slug, name: l.name, categoryId: l.categoryId })),
+    [listings]
+  );
+  const wider = useOpenNames(q, curatedKeys, 48);
+  const all = useMemo(() => [...results, ...wider.docs], [results, wider.docs]);
+
   const scoped = useMemo(
     () =>
-      results.filter((d) => {
+      all.filter((d) => {
         if (type !== 'all' && d.type !== type) return false;
         if (categoryId !== 'all' && d.categoryId && d.categoryId !== categoryId) return false;
         if (areaId !== 'all' && d.areaId && d.areaId !== areaId) return false;
         return true;
       }),
-    [results, type, categoryId, areaId]
+    [all, type, categoryId, areaId]
   );
 
   const grouped = useMemo(() => {
@@ -43,11 +57,6 @@ export default function SearchResults() {
     for (const d of scoped) map.set(d.type, [...(map.get(d.type) ?? []), d]);
     return TYPES.filter((t) => map.has(t)).map((t) => ({ type: t, docs: map.get(t) ?? [] }));
   }, [scoped]);
-
-  const listings = selectListings(db);
-  const events = selectEvents(db);
-  const categories = selectCategories(db);
-  const areas = selectAreas(db);
 
   return (
     <div>
@@ -59,7 +68,9 @@ export default function SearchResults() {
           </h1>
           <p className="mt-2 max-w-2xl text-[15px] text-navy-600">
             Global search runs against every record Karachify holds — {plural(listings.length, 'listing')},{' '}
-            {plural(events.length, 'event')}, {plural(areas.length, 'area')}, {plural(categories.length, 'category')} and the city guides.
+            {plural(events.length, 'event')}, {plural(areas.length, 'area')}, {plural(categories.length, 'category')} and
+            the city guides. From three characters it also searches {tierLabel()} by name. Those results are labelled as
+            unchecked and open the record&apos;s own page.
           </p>
           <div className="mt-5 max-w-3xl">
             <SearchBox variant="page" placeholder="Search places, restaurants, events, hotels and more..." />
@@ -87,7 +98,7 @@ export default function SearchResults() {
           <>
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <Tabs
-                tabs={[{ id: 'all', label: 'Everything', count: results.length }, ...TYPES.map((t) => ({ id: t, label: TYPE_LABEL[t], count: results.filter((d) => d.type === t).length }))]}
+                tabs={[{ id: 'all', label: 'Everything', count: all.length }, ...TYPES.map((t) => ({ id: t, label: TYPE_LABEL[t], count: all.filter((d) => d.type === t).length }))]}
                 active={type}
                 onChange={(id) => setType(id as ResultType | 'all')}
                 size="sm"
@@ -124,10 +135,19 @@ export default function SearchResults() {
               </div>
             </div>
 
+            {(wider.loading || wider.failed) && (
+              <p className="mb-4 flex items-center gap-2 rounded-xl bg-navy-50 px-3 py-2 text-[13px] text-navy-600">
+                <MapIcon className="h-3.5 w-3.5 shrink-0 text-teal-700" aria-hidden />
+                {wider.loading
+                  ? `Checking the ${tierLabel()} by name…`
+                  : 'The unchecked OpenStreetMap records could not be read just now, so the results below are only the checked pages.'}
+              </p>
+            )}
+
             {scoped.length === 0 ? (
-              results.length > 0 ? (
+              all.length > 0 ? (
                 <EmptyState
-                  title={`“${q}” has ${plural(results.length, 'match')}, but the filters removed them all`}
+                  title={`“${q}” has ${plural(all.length, 'match')}, but the filters removed them all`}
                   body="Filters are combined, so a narrow type plus one area can legitimately empty the page. Take a filter off, or start from the whole result set again."
                   action={
                     <div className="flex flex-wrap items-center justify-center gap-2">
@@ -147,24 +167,32 @@ export default function SearchResults() {
                         </button>
                       )}
                       <button className="btn-primary btn-sm" onClick={() => { setType('all'); setCategoryId('all'); setAreaId('all'); }}>
-                        Show all {plural(results.length, 'match')}
+                        Show all {plural(all.length, 'match')}
                       </button>
                     </div>
                   }
                 />
               ) : (
                 <EmptyState
-                  title={`Nothing matched “${q}”`}
-                  body="Karachify only knows what is in the dataset. Shorter words match better, and the spelling used in the record matters — try the category pages if you cannot find it."
+                  title={wider.loading ? `Nothing checked matched “${q}”` : `Nothing matched “${q}”`}
+                  body={
+                    wider.loading
+                      ? 'The checked pages have no hit for those words. The unchecked OpenStreetMap records are still being searched by name — a moment more and any name that matches will appear below.'
+                      : wider.failed
+                        ? 'The checked pages have no hit, and the unchecked OpenStreetMap records could not be read just now. Karachify will not show a record it could not confirm, so reload or try again shortly.'
+                        : 'Karachify only knows what is in the dataset. Shorter words match better, and the spelling used in the record matters — try the category pages if you cannot find it.'
+                  }
                   action={
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <Link to="/explore" className="btn-primary">
-                        Browse categories
-                      </Link>
-                      <button className="btn-outline" onClick={() => navigate('/map')}>
-                        Open the map instead
-                      </button>
-                    </div>
+                    wider.loading ? undefined : (
+                      <div className="flex flex-wrap justify-center gap-2">
+                        <Link to="/explore" className="btn-primary">
+                          Browse categories
+                        </Link>
+                        <button className="btn-outline" onClick={() => navigate('/map')}>
+                          Open the map instead
+                        </button>
+                      </div>
+                    )
                   }
                 />
               )
@@ -178,11 +206,20 @@ export default function SearchResults() {
                       {g.type === 'area' && <Tag className="h-4 w-4 text-teal-600" />}
                       {g.type === 'category' && <Tag className="h-4 w-4 text-teal-600" />}
                       {g.type === 'guide' && <BookOpen className="h-4 w-4 text-teal-600" />}
+                      {g.type === 'open' && <MapIcon className="h-4 w-4 text-teal-600" />}
                       <h2 className="font-display text-xl font-bold text-navy-800">
                         {TYPE_LABEL[g.type]}
                         <span className="ml-2 text-sm font-medium text-navy-400">{g.docs.length}</span>
                       </h2>
                     </div>
+
+                    {g.type === 'open' && (
+                      <p className="-mt-3 mb-4 max-w-3xl text-[13px] text-navy-500">
+                        Name, coordinates and category are OpenStreetMap&apos;s own. Karachify has not opened a source for
+                        these, so each row is only as good as the map entry behind it — the record page says when the data
+                        was taken.
+                      </p>
+                    )}
 
                     {g.type === 'listing' && (
                       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -202,6 +239,25 @@ export default function SearchResults() {
                           return e ? <EventCard key={e.id} event={e} /> : null;
                         })}
                       </div>
+                    )}
+
+                    {g.type === 'open' && (
+                      <ul className="grid gap-2 sm:grid-cols-2">
+                        {g.docs.map((d) => (
+                          <li key={`${d.type}-${d.slug}`}>
+                            <Link to={d.path} className="card card-hover flex items-center gap-3 px-4 py-3">
+                              <MapIcon className="h-4 w-4 shrink-0 text-navy-400" aria-hidden />
+                              <span className="min-w-0 flex-1">
+                                <span className="block truncate font-display font-bold text-navy-800">{d.title}</span>
+                                <span className="mt-0.5 block truncate text-[12.5px] text-navy-500">
+                                  {areas.find((a) => a.id === d.areaId)?.name ?? 'OpenStreetMap'} · not checked by Karachify
+                                </span>
+                              </span>
+                              <ArrowRight className="h-4 w-4 shrink-0 text-navy-300" aria-hidden />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     )}
 
                     {(g.type === 'area' || g.type === 'category' || g.type === 'guide') && (

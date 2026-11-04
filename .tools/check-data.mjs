@@ -225,13 +225,29 @@ if (existsSync(TIER) && !existsSync(PARTS))
   failures.push('tier: public/data/tier/parts is missing — the open records are published as 200-record parts, not one file per category');
 if (existsSync(TIER) && existsSync(PARTS)) {
   const summary = JSON.parse(readFileSync(join(TIER, 'index.json'), 'utf8'));
+  /* names.json is the file the search box reads. It is generated from the parts,
+     so it is checked against them here: a name list that drifts from the records
+     would send readers to pages that do not exist, or hide ones that do. */
+  const namesPath = join(TIER, 'names.json');
+  check(
+    existsSync(namesPath),
+    'tier: names.json is missing, so search has nothing to read the open tier from — run `npm run build:tier-names`'
+  );
+  const names = existsSync(namesPath) ? JSON.parse(readFileSync(namesPath, 'utf8')) : null;
+  if (names) {
+    check(names.total === summary.total, `tier/names.json: lists ${names.total} records, the summary declares ${summary.total}`);
+    check(
+      names.retrievedAt === summary.retrievedAt,
+      `tier/names.json: stamped ${names.retrievedAt}, the summary was taken ${summary.retrievedAt} — regenerate the names file with the data`
+    );
+  }
   /* The tiles on Home and Explore quote these numbers, so they are recomputed
      here with the same rule the browser applies. A count that drifts from the
      list behind it is a claim no source supports. */
   const siteKeys = checkedKeys(listings);
   let uncheckedTotal = 0;
   const indexes = readdirSync(PARTS).filter((f) => f.endsWith('.json'));
-  const loose = readdirSync(TIER).filter((f) => f.endsWith('.json') && f !== 'index.json');
+  const loose = readdirSync(TIER).filter((f) => f.endsWith('.json') && f !== 'index.json' && f !== 'names.json');
   check(
     loose.length === 0,
     `tier: ${loose.slice(0, 5).join(', ')} ${loose.length === 1 ? 'is' : 'are'} a second copy of records that only belong under parts/ — one unread file is how a count starts lying`
@@ -287,6 +303,19 @@ if (existsSync(TIER) && existsSync(PARTS)) {
     const chunk = { id: index.id, count: index.count, records };
     check(chunk.count === chunk.records.length, `tier/${row.id}: index says ${row.count}, count field ${chunk.count}, parts hold ${chunk.records.length}`);
     check(chunk.id === row.id, `tier/${row.id}: the parts declare themselves "${chunk.id}"`);
+    if (names) {
+      const listed = names.byCategory?.[row.id];
+      const expected = records.map((r) => [r.slug, r.name, r.areaId]);
+      const at = expected.findIndex((e, i) => JSON.stringify(e) !== JSON.stringify(listed?.[i]));
+      check(
+        at < 0 && listed?.length === expected.length,
+        `tier/names.json: ${row.id} ${
+          at < 0
+            ? `holds ${listed?.length ?? 0} names but the parts hold ${expected.length}`
+            : `row ${at + 1} says ${JSON.stringify(listed?.[at] ?? null)} while the parts say ${JSON.stringify(expected[at])}`
+        } — run \`npm run build:tier-names\``
+      );
+    }
     const inner = new Set();
     for (const r of chunk.records) {
       const at = `tier/${row.id}/${r.slug}`;

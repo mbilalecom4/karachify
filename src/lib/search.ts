@@ -2,7 +2,7 @@ import type { DB } from './store';
 import { selectAreas, selectCategories, selectEvents, selectListings } from './store';
 import { guides } from '../data/guides';
 
-export type ResultType = 'listing' | 'event' | 'area' | 'category' | 'guide';
+export type ResultType = 'listing' | 'event' | 'area' | 'category' | 'guide' | 'open';
 
 export interface SearchDoc {
   type: ResultType;
@@ -29,7 +29,24 @@ const norm = (s: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+/**
+ * Built once per store version, not once per keystroke.
+ *
+ * The store replaces its state object on every action, so identity is the whole
+ * invalidation rule: same object, same index. Typing ten characters into the
+ * search box used to rebuild and re-normalise 156 places, 18 areas and every
+ * guide ten times over to reach the same twelve rows.
+ */
+let indexCache: { db: DB; docs: SearchDoc[] } | null = null;
+
 export function buildIndex(db: DB): SearchDoc[] {
+  if (indexCache && indexCache.db === db) return indexCache.docs;
+  const docs = assembleIndex(db);
+  indexCache = { db, docs };
+  return docs;
+}
+
+function assembleIndex(db: DB): SearchDoc[] {
   const listings = selectListings(db);
   const events = selectEvents(db);
   const areas = selectAreas(db);
@@ -159,6 +176,7 @@ export const TYPE_LABEL: Record<ResultType, string> = {
   area: 'Areas',
   category: 'Categories',
   guide: 'Guides',
+  open: 'OpenStreetMap records',
 };
 
 export function groupByType(docs: SearchDoc[]) {

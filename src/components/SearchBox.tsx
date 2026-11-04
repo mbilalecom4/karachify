@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Clock, MapPin, Search, Sparkles, Tag, TrendingUp, X } from 'lucide-react';
+import { ArrowRight, Clock, Map as MapIcon, MapPin, Search, Sparkles, Tag, TrendingUp, X } from 'lucide-react';
 import { groupByType, search, TYPE_LABEL, type ResultType, type SearchDoc } from '../lib/search';
-import { actions, prefsFor, useDB } from '../lib/store';
+import { actions, prefsFor, selectListings, useDB } from '../lib/store';
+import { isOpenListing } from '../lib/openRecords';
+import { tierLabel, useOpenNames } from '../lib/openNames';
 import { imageFor, pictureSubject } from '../lib/media';
 import { ImageWithFallback } from './ui';
 
@@ -12,6 +14,7 @@ const ICONS = {
   area: TrendingUp,
   category: Tag,
   guide: Clock,
+  open: MapIcon,
 } as const;
 
 /** Underlines the part of a suggestion the user actually typed. */
@@ -53,17 +56,26 @@ export function SearchBox({
   const results = useMemo(() => (q.trim().length >= 2 ? search(db, q, { limit: 12 }) : []), [db, q]);
   const recent = prefsFor(db).recentSearches;
 
+  /* The unchecked tier is searched by name only, and a record that already has a
+     checked page is left out, so one place never shows up twice with two
+     different claims about it. */
+  const curatedKeys = useMemo(
+    () => selectListings(db).filter((l) => !isOpenListing(l)).map((l) => ({ slug: l.slug, name: l.name, categoryId: l.categoryId })),
+    [db]
+  );
+  const wider = useOpenNames(q, curatedKeys, 4);
+
   // Everyone reads suggestions in buckets — places, then areas, then the rest — the
   // same order the results page uses for its tabs. Cursor walks this flattened order.
   const groups = useMemo(() => {
-    const order: ResultType[] = ['listing', 'area', 'category', 'event', 'guide'];
-    const byType = groupByType(results);
+    const order: ResultType[] = ['listing', 'area', 'category', 'event', 'guide', 'open'];
+    const byType = groupByType([...results, ...wider.docs]);
     const buckets = order
       .map((t) => ({ type: t, items: byType.get(t) ?? [] }))
       .filter((b) => b.items.length > 0);
     let start = 0;
     return buckets.map((b) => ({ ...b, start: (start += b.items.length) - b.items.length }));
-  }, [results]);
+  }, [results, wider.docs]);
   const suggestions = useMemo(() => groups.flatMap((g) => g.items), [groups]);
 
   useEffect(() => {
@@ -204,16 +216,25 @@ export function SearchBox({
             </div>
           )}
 
-          {q.trim().length >= 2 && suggestions.length === 0 && (
+          {q.trim().length >= 2 && suggestions.length === 0 && !wider.loading && (
             <div className="px-3 py-6 text-center">
               <p className="text-sm font-semibold text-navy-800">No matches for “{q}”</p>
               <p className="mt-1 text-[13px] text-navy-500">
-                Try the area name, the dish, or a broader word like “beach”, “cafe” or “hospital”.
+                {wider.failed
+                  ? 'The checked pages have no hit, and the unchecked OpenStreetMap records could not be read just now — nothing below is a guess at what they hold.'
+                  : 'Try the area name, the dish, or a broader word like “beach”, “cafe” or “hospital”.'}
               </p>
               <button className="btn-outline btn-sm mt-3" onClick={submit}>
                 Open full search page
               </button>
             </div>
+          )}
+
+          {wider.loading && (
+            <p className="flex items-center gap-2 px-3 py-2 text-[12.5px] text-navy-500">
+              <MapIcon className="h-3.5 w-3.5 text-teal-700" aria-hidden />
+              Searching the {tierLabel()}…
+            </p>
           )}
 
           {groups.map((g) => {
