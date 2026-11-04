@@ -51,21 +51,22 @@ type Weather = {
 
 type Prayers = { fajr: string; sunrise: string; dhuhr: string; asr: string; maghrib: string; isha: string };
 
-/* Both APIs are rate-limited and the panel appears on two pages, so a module
-   cache keeps one visit to one request per source. */
+/* Both APIs are rate-limited and the panel appears on two pages, so one answer is
+   reused across the visit. It is written when the response arrives: two mounts
+   racing each other still ask twice, and the panel says what it is showing. */
 const TTL = 10 * 60 * 1000;
 const cache: { weather?: { at: number; value: Weather }; prayers?: { at: number; value: Prayers } } = {};
 
-async function getJSON(url: string, signal: AbortSignal): Promise<any> {
-  const res = await fetch(url, { signal, headers: { accept: 'application/json' } });
+async function getJSON(url: string): Promise<any> {
+  const res = await fetch(url, { headers: { accept: 'application/json' } });
   if (!res.ok) throw new Error(`${res.status}`);
   return res.json();
 }
 
-async function loadWeather(signal: AbortSignal): Promise<Weather> {
+async function loadWeather(): Promise<Weather> {
   const hit = cache.weather;
   if (hit && Date.now() - hit.at < TTL) return hit.value;
-  const j = await getJSON(OPEN_METEO, signal);
+  const j = await getJSON(OPEN_METEO);
   const c = j?.current;
   const d = j?.daily;
   if (!c || typeof c.temperature_2m !== 'number' || !Array.isArray(d?.time)) throw new Error('unexpected response');
@@ -88,10 +89,10 @@ async function loadWeather(signal: AbortSignal): Promise<Weather> {
   return value;
 }
 
-async function loadPrayers(signal: AbortSignal): Promise<Prayers> {
+async function loadPrayers(): Promise<Prayers> {
   const hit = cache.prayers;
   if (hit && Date.now() - hit.at < TTL) return hit.value;
-  const j = await getJSON(ALADHAN(karachiDate()), signal);
+  const j = await getJSON(ALADHAN(karachiDate()));
   const t = j?.data?.timings;
   if (!t || !t.Fajr || !t.Isha) throw new Error('unexpected response');
   const value: Prayers = {
@@ -156,31 +157,38 @@ const wmo = (code: number) => WMO[code] ?? { label: 'Unrecognised condition code
 
 const tempText = (v: number) => (Number.isFinite(v) ? `${Math.round(v)}°` : '—');
 
-function useLive<T>(load: (signal: AbortSignal) => Promise<T>) {
+function useLive<T>(load: () => Promise<T>) {
   const [value, setValue] = useState<T | null>(null);
   const [failed, setFailed] = useState(false);
   const [nonce, setNonce] = useState(0);
 
   useEffect(() => {
-    const ac = new AbortController();
-    /* A request can stall — Open-Meteo did while this was being tested. Without
-       a deadline the card sits on "Loading" forever, which reads as a working
-       panel, so the timeout has to land in the same honest failure state. */
-    let timedOut = false;
+    let wanted = true;
+    /* A request can stall — Open-Meteo did while this was being tested. Without a
+       deadline the card sits on "Loading" forever, which reads as a working panel,
+       so the timeout lands in the same honest failure state.
+
+       The request is deliberately not aborted on unmount: when Chromium cancels a
+       fetch whose response has not arrived, it rejects an internal promise that
+       nothing on this side holds, so the rejection cannot be caught and every
+       mount logged "AbortError: signal is aborted without reason". Both calls are
+       a couple of kilobytes and cached for ten minutes; a late answer is dropped. */
     const timer = setTimeout(() => {
-      timedOut = true;
-      ac.abort('karachify-live-timeout');
+      if (!wanted) return;
+      wanted = false;
+      setFailed(true);
     }, 8000);
     setFailed(false);
-    load(ac.signal)
-      .then((v) => setValue(v))
-      .catch((e: unknown) => {
-        if (timedOut || (e as Error)?.name !== 'AbortError') setFailed(true);
+    load()
+      .then((v) => {
+        if (wanted) setValue(v);
+      })
+      .catch(() => {
+        if (wanted) setFailed(true);
       })
       .finally(() => clearTimeout(timer));
     return () => {
-      clearTimeout(timer);
-      ac.abort();
+      wanted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nonce]);
