@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Info, Navigation, Search, X } from 'lucide-react';
+import { Info, Layers, Navigation, Search, X } from 'lucide-react';
 import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
 import { categoryById } from '../data/taxonomy';
 import { KarachifyMap, type MapPoint } from '../components/KarachifyMap';
 import { PageHero, Note } from '../components/Page';
 import { EmptyState, Select, TextInput } from '../components/ui';
-import { pinCaption, plural } from '../lib/format';
+import { formatDate, pinCaption, plural } from '../lib/format';
+import { listingHref, openToListing, useOpenRecords, useTierSummary, withoutCheckedDuplicates } from '../lib/openRecords';
 
 const PALETTE = ['#0A6A63', '#063231', '#0EA5E9', '#F59E0B', '#8B5CF6', '#EF4444', '#10B981', '#EC4899'];
+const LIST_CAP = 40;
+const LISTABLE = 300;
 
 export default function MapView() {
   const db = useDB();
@@ -21,6 +24,8 @@ export default function MapView() {
   const [pinned, setPinned] = useState<string[]>(() => params.getAll('c'));
   const [areaId, setAreaId] = useState(params.get('area') ?? 'all');
   const [withEvents, setWithEvents] = useState(events.length > 0);
+  const [withOpen, setWithOpen] = useState(false);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [q, setQ] = useState('');
   const [active, setActive] = useState<string | null>(params.get('focus') ?? null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -78,20 +83,57 @@ export default function MapView() {
     return [...l, ...e];
   }, [listings, events, pinned, areaId, withEvents, q, areas]);
 
+  /* One category file at a time: the unchecked tier is 7 MB across 21 files, so the
+     layer is offered only when exactly one category is chosen. */
+  const openCategory = pinned.length === 1 ? pinned[0] : undefined;
+  const tier = useTierSummary();
+  const openState = useOpenRecords(openCategory, withOpen);
+  const openTotal = openCategory ? (tier.data?.categories.find((c) => c.id === openCategory)?.unchecked ?? 0) : 0;
+  const openLoading = withOpen && Boolean(openCategory) && !openState.data && !openState.failed;
+
+  const openPoints = useMemo<MapPoint[]>(() => {
+    if (!withOpen || !openCategory || !openState.data) return [];
+    const term = q.trim().toLowerCase();
+    const inArea = (id: string) => areaId === 'all' || id === areaId;
+    return withoutCheckedDuplicates(openState.data.map(openToListing), listings)
+      .filter((x) => inArea(x.areaId) && (term ? `${x.name} ${x.address}`.toLowerCase().includes(term) : true))
+      .map((x) => ({
+        id: x.id,
+        title: x.name,
+        subtitle: `Unchecked OpenStreetMap record · ${categoryById.get(x.categoryId)?.name ?? 'map feature'}`,
+        path: listingHref(x),
+        lat: x.lat,
+        lng: x.lng,
+        color: '#4B7F95',
+        kind: 'open',
+      }));
+  }, [withOpen, openCategory, openState.data, listings, areaId, q]);
+
+  /* The side list is the checked catalogue, so thousands of dots do not belong in it.
+     Below this many they are listed too, because then a person can actually read them. */
+  const listPoints = useMemo<MapPoint[]>(
+    () => (openPoints.length > 0 && openPoints.length <= LISTABLE ? [...points, ...openPoints] : points),
+    [points, openPoints]
+  );
+
   const grouped = useMemo(() => {
     const map = new Map<string, MapPoint[]>();
-    for (const p of points) {
+    for (const p of listPoints) {
       const key = p.kind === 'event' ? 'events' : (p.subtitle.split(' · ')[0] ?? 'other');
       map.set(key, [...(map.get(key) ?? []), p]);
     }
     return [...map.entries()].sort((a, b) => b[1].length - a[1].length);
-  }, [points]);
+  }, [listPoints]);
 
   const toggleCategory = (id: string) =>
     setPinned((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   const dirty =
-    pinned.length > 0 || areaId !== 'all' || (events.length > 0 && !withEvents) || q !== '';
+    pinned.length > 0 ||
+    areaId !== 'all' ||
+    (events.length > 0 && !withEvents) ||
+    withOpen ||
+    q !== '';
 
   return (
     <div>
@@ -100,7 +142,7 @@ export default function MapView() {
         label="Karachi map"
         eyebrow="Interactive map"
         title="Explore Karachi on the map"
-        sub="Filter by category and locality, click a pin for a preview card, then open the full listing. A pin on a verified record is that place's own OpenStreetMap feature; the rest sit near the middle of their locality."
+        sub="Filter by category and locality, click a pin for a preview card, then open the full listing. A pin on a verified record is that place's own OpenStreetMap feature; the rest sit near the middle of their locality. Choose one category and switch on the OpenStreetMap layer to see every record in it that Karachify has not checked, drawn as dots."
         trail={[{ label: 'Home', to: '/' }, { label: 'Map' }]}
         height="min-h-[240px] sm:min-h-[260px]"
       />
@@ -130,13 +172,31 @@ export default function MapView() {
               />
               {events.length === 0 ? `Events on the map (none published yet)` : `Include events (${events.length})`}
             </label>
+            <label className="flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-navy-700">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={withOpen && pinned.length === 1}
+                disabled={pinned.length !== 1}
+                onChange={(e) => {
+                  setWithOpen(e.target.checked);
+                  setActive(null);
+                }}
+              />
+              <Layers className="h-3.5 w-3.5 text-navy-400" aria-hidden />
+              {openCategory
+                ? `OpenStreetMap layer (${openTotal.toLocaleString()} unchecked)`
+                : 'OpenStreetMap layer — pick one category'}
+            </label>
             {dirty && (
               <button
                 className="btn-outline btn-sm"
                 onClick={() => {
                   setPinned([]);
                   setAreaId('all');
-                  setWithEvents(true);
+                  setWithEvents(events.length > 0);
+                  setWithOpen(false);
+                  setExpanded({});
                   setQ('');
                   setParams({});
                 }}
@@ -166,9 +226,27 @@ export default function MapView() {
 
         <p className="mb-3 text-sm text-navy-500" aria-live="polite">
           {plural(points.length, 'place')} shown{dirty ? ' after filtering' : ''} · each pin states how it was positioned
+          {openLoading && ' · loading the unchecked OpenStreetMap records…'}
+          {openPoints.length > 0 && (
+            <>
+              {' · '}
+              <strong className="font-semibold text-navy-700">{openPoints.length.toLocaleString()}</strong> unchecked
+              record{openPoints.length === 1 ? '' : 's'} drawn as dots
+              {areaId === 'all' ? ' across Karachi' : ` in ${areas.find((a) => a.id === areaId)?.name ?? 'this area'}`}
+              {openPoints.length <= LISTABLE ? ', listed beside the map' : `, too many to list — click a dot instead`}
+            </>
+          )}
+          {openState.failed && (
+            <>
+              {' · '}
+              <button className="btn-ghost btn-sm" onClick={openState.retry}>
+                The layer did not load — try again
+              </button>
+            </>
+          )}
         </p>
 
-        {points.length === 0 ? (
+        {points.length === 0 && openPoints.length === 0 && !openLoading ? (
           <EmptyState
             title="No pins for this combination"
             body="Every filter is combined, so an area plus one narrow category can legitimately have nothing in it. Reset the filters to see the whole catalogue."
@@ -190,6 +268,7 @@ export default function MapView() {
             <div className="card order-2 min-w-0 overflow-hidden p-1.5 lg:order-1">
               <KarachifyMap
                 points={points}
+                clusterPoints={openPoints}
                 activeId={active}
                 highlightId={hovered ?? active}
                 onSelect={(p) => setActive(p.id)}
@@ -199,13 +278,17 @@ export default function MapView() {
             </div>
             <div ref={listRef} className="order-1 min-w-0 lg:order-2">
               <div className="card max-h-[420px] overflow-x-hidden overflow-y-auto p-3 sm:max-h-[560px]">
-                {grouped.map(([label, items]) => (
+                {grouped.map(([label, items]) => {
+                  const showAll = Boolean(expanded[label]);
+                  const shown = showAll ? items : items.slice(0, LIST_CAP);
+                  return (
                   <div key={label} className="mb-4 last:mb-0">
                     <p className="mb-2 px-1 text-[12px] font-bold uppercase tracking-wide text-navy-400">
                       {label} · {items.length}
+                      {!showAll && items.length > LIST_CAP ? ` · ${shown.length} on screen` : ''}
                     </p>
                     <ul className="space-y-2">
-                      {items.slice(0, 40).map((p) => (
+                      {shown.map((p) => (
                         <li key={p.id}>
                           <div
                             data-point={p.id}
@@ -245,8 +328,18 @@ export default function MapView() {
                         </li>
                       ))}
                     </ul>
+                    {items.length > LIST_CAP && (
+                      <button
+                        className="btn-outline btn-sm mt-2 w-full"
+                        aria-expanded={showAll}
+                        onClick={() => setExpanded((e) => ({ ...e, [label]: !e[label] }))}
+                      >
+                        {showAll ? 'Show fewer' : `Show all ${items.length.toLocaleString()} in this group`}
+                      </button>
+                    )}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -260,6 +353,15 @@ export default function MapView() {
             (the provider policy explicitly asks commercial sites not to hammer the public servers). A pin on a verified
             record is that place's own OpenStreetMap feature; every other pin is offset from the centre of its locality
             and is not an address.
+            {openPoints.length > 0 && (
+              <>
+                {' '}The dots are not pins: each one is an OpenStreetMap record Karachify has <strong>not</strong> checked
+                — {tier.data ? `${tier.data.licence}, read ${formatDate(tier.data.retrievedAt)}` : 'OpenStreetMap data'},
+                and a larger circle is a group of them at this zoom. Click a dot to open its page, which repeats the same
+                warning. The list beside the map is the checked catalogue; unchecked records join it only while the
+                filters leave {LISTABLE} or fewer of them, because one category can hold thousands.
+              </>
+            )}
           </Note>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { FeatureCollection } from 'geojson';
+import type { FeatureCollection, Point } from 'geojson';
 import type { GeoJSONSource, StyleSpecification } from 'maplibre-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -30,6 +30,18 @@ const escapeHtml = (s: string) =>
 /** MapLibre takes positions as [longitude, latitude]; our records store lat/lng separately. */
 const lngLat = (p: { lat: number; lng: number }): [number, number] => [p.lng, p.lat];
 
+const cardHTML = (p: { title: string; subtitle: string; path: string; lat: number; lng: number }) =>
+  `<div class="kmap-card">
+     <p class="kmap-card-title">${escapeHtml(p.title)}</p>
+     <p class="kmap-card-sub">${escapeHtml(p.subtitle)}</p>
+     <a class="kmap-card-link" href="#${escapeHtml(p.path)}">Open listing →</a>
+     <a class="kmap-card-dir" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}" target="_blank" rel="noopener noreferrer">Directions</a>
+   </div>`;
+
+const CLUSTER_SOURCE = 'karachify-cluster';
+const CLUSTER_LAYER = 'karachify-cluster';
+const DENSE_LAYER = 'karachify-dense-point';
+
 const osmStyle: StyleSpecification = {
   version: 8,
   sources: {
@@ -56,6 +68,7 @@ const osmStyle: StyleSpecification = {
  */
 export function KarachifyMap({
   points,
+  clusterPoints,
   routes,
   activeId,
   highlightId,
@@ -66,6 +79,9 @@ export function KarachifyMap({
   compact = false,
 }: {
   points: MapPoint[];
+  /** Thousands of the same kind of record, drawn as GPU circles and grouped into
+      clusters. They get no DOM pin, because 18,000 buttons is not a map. */
+  clusterPoints?: MapPoint[];
   routes?: MapRoute[];
   activeId?: string | null;
   /** Lights a pin without moving the camera — used for hover from the list. */
@@ -88,6 +104,10 @@ export function KarachifyMap({
   cb.current = { onSelect, onHover };
 
   const signature = useMemo(() => points.map((p) => `${p.id}:${p.lat}:${p.lng}:${p.color ?? ''}`).join('|'), [points]);
+  const clusterSignature = useMemo(
+    () => (clusterPoints ?? []).map((p) => `${p.id}:${p.lat}:${p.lng}:${p.color ?? ''}`).join('|'),
+    [clusterPoints]
+  );
   const routeSignature = useMemo(
     () => (routes ?? []).map((r) => `${r.id}:${r.color}:${r.stops.map((s) => `${s.lat},${s.lng}`).join(' ')}`).join('|'),
     [routes]
@@ -128,6 +148,56 @@ export function KarachifyMap({
         if (tileErrors >= 3) setTilesOffline(true);
       }
     });
+    /* Layer-named listeners survive the layer being added and removed again, so
+       they are wired once here rather than every time the dots are redrawn. */
+    m.on('click', DENSE_LAYER, (e) => {
+      const f = e.features?.[0];
+      if (!f) return;
+      const pr = f.properties ?? {};
+      const [lng, lat] = (f.geometry as Point).coordinates;
+      const p: MapPoint = {
+        id: String(pr.id ?? ''),
+        title: String(pr.title ?? 'Map record'),
+        subtitle: String(pr.subtitle ?? ''),
+        path: String(pr.path ?? '/'),
+        lat,
+        lng,
+        color: pr.color ? String(pr.color) : undefined,
+        kind: 'open',
+      };
+      new maplibregl.Popup({ closeButton: true, maxWidth: compact ? '260px' : '320px', offset: 18 })
+        .setLngLat(e.lngLat)
+        .setHTML(cardHTML(p))
+        .addTo(m);
+      cb.current.onSelect?.(p);
+    });
+    m.on('click', CLUSTER_LAYER, async (e) => {
+      const f = e.features?.[0];
+      if (!f) return;
+      const count = Number(f.properties?.point_count ?? 0);
+      const src = m.getSource(CLUSTER_SOURCE) as GeoJSONSource | undefined;
+      const expansion = await src?.getClusterExpansionZoom(Number(f.properties?.cluster_id ?? -1));
+      new maplibregl.Popup({ closeButton: true, maxWidth: '280px', offset: 14 })
+        .setLngLat(e.lngLat)
+        .setHTML(
+          `<div class="kmap-card">
+             <p class="kmap-card-title">${count} unchecked records grouped here</p>
+             <p class="kmap-card-sub">Karachify has not visited, phoned or opened any of them. The map is zooming in so one can be picked.</p>
+           </div>`,
+        )
+        .addTo(m);
+      m.easeTo({ center: e.lngLat, zoom: Math.min(expansion ?? m.getZoom() + 1.5, 17), duration: 420 });
+    });
+    for (const layer of [DENSE_LAYER, CLUSTER_LAYER]) {
+      m.on('mouseenter', layer, () => {
+        const c = m.getCanvas();
+        if (c) c.style.cursor = 'pointer';
+      });
+      m.on('mouseleave', layer, () => {
+        const c = m.getCanvas();
+        if (c) c.style.cursor = '';
+      });
+    }
     map.current = m;
 
     return () => {
@@ -157,14 +227,7 @@ export function KarachifyMap({
           ev.stopPropagation();
           const popup = new maplibregl.Popup({ closeButton: true, maxWidth: compact ? '260px' : '320px', offset: 18 })
             .setLngLat(lngLat(p))
-            .setHTML(
-              `<div class="kmap-card">
-                 <p class="kmap-card-title">${escapeHtml(p.title)}</p>
-                 <p class="kmap-card-sub">${escapeHtml(p.subtitle)}</p>
-                 <a class="kmap-card-link" href="#${escapeHtml(p.path)}">Open listing →</a>
-                 <a class="kmap-card-dir" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}" target="_blank" rel="noopener noreferrer">Directions</a>
-               </div>`
-            );
+            .setHTML(cardHTML(p));
           popup.addTo(m);
           cb.current.onSelect?.(p);
         });
@@ -185,6 +248,79 @@ export function KarachifyMap({
       markers.current = [];
     };
   }, [signature, points, compact]);
+
+  // The open-records tier: one GPU-drawn circle per record, grouped into clusters
+  // while zoomed out. Same popup, same selection callback as a pin.
+  useEffect(() => {
+    const m = map.current;
+    if (!m) return;
+
+    const draw = () => {
+      const list = clusterPoints ?? [];
+      if (list.length === 0) {
+        if (m.getLayer(DENSE_LAYER)) m.removeLayer(DENSE_LAYER);
+        if (m.getLayer(CLUSTER_LAYER)) m.removeLayer(CLUSTER_LAYER);
+        if (m.getSource(CLUSTER_SOURCE)) m.removeSource(CLUSTER_SOURCE);
+        return;
+      }
+      const data = {
+        type: 'FeatureCollection',
+        features: list.map((p) => ({
+          type: 'Feature',
+          properties: {
+            id: p.id,
+            title: p.title,
+            subtitle: p.subtitle,
+            path: p.path,
+            color: p.color ?? '#4B7F95',
+          },
+          geometry: { type: 'Point', coordinates: lngLat(p) },
+        })),
+      } as unknown as FeatureCollection;
+
+      const src = m.getSource(CLUSTER_SOURCE) as GeoJSONSource | undefined;
+      if (src) {
+        src.setData(data);
+        return;
+      }
+      m.addSource(CLUSTER_SOURCE, {
+        type: 'geojson',
+        data,
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 46,
+      });
+      m.addLayer({
+        id: CLUSTER_LAYER,
+        type: 'circle',
+        source: CLUSTER_SOURCE,
+        filter: ['has', 'point_count'],
+        paint: {
+          'circle-color': ['step', ['get', 'point_count'], '#7FA3B3', 25, '#5B8CA6', 100, '#3D7695', 400, '#2C6183'],
+          'circle-radius': ['step', ['get', 'point_count'], 10, 25, 13, 100, 16, 400, 20],
+          'circle-opacity': 0.86,
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 1.5,
+        },
+      });
+      m.addLayer({
+        id: DENSE_LAYER,
+        type: 'circle',
+        source: CLUSTER_SOURCE,
+        filter: ['!', ['has', 'point_count']],
+        paint: {
+          'circle-color': ['get', 'color'],
+          'circle-radius': 5,
+          'circle-opacity': 0.95,
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 1.2,
+        },
+      });
+    };
+
+    if (ready.current || m.isStyleLoaded()) draw();
+    else m.once('styledata', draw);
+  }, [clusterSignature, clusterPoints]);
 
   // The suggested order drawn as a line per day: straight legs between recorded
   // pins, so the curve says "this is the sequence", not "this is the road".
@@ -231,10 +367,10 @@ export function KarachifyMap({
   useEffect(() => {
     const m = map.current;
     if (!m || !activeId) return;
-    const p = points.find((x) => x.id === activeId);
+    const p = points.find((x) => x.id === activeId) ?? (clusterPoints ?? []).find((x) => x.id === activeId);
     if (!p) return;
     m.flyTo({ center: lngLat(p), zoom: Math.max(m.getZoom(), 13), speed: 0.8 });
-  }, [activeId, points]);
+  }, [activeId, points, clusterPoints]);
 
   // Pin ↔ card highlight, so hovering either one lights up the other.
   useEffect(() => {
