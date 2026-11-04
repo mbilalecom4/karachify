@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Listing } from '../types';
 import { areaById, categoryById } from '../data/taxonomy';
 import { alreadyChecked, checkedKeys } from './openDedupe';
@@ -8,8 +8,10 @@ import { alreadyChecked, checkedKeys } from './openDedupe';
  * Karachify has not checked by hand.
  *
  * It is deliberately NOT part of src/data/listings. That file is compiled into
- * the bundle and policed by .tools/check-data.mjs; this one is 7 MB of JSON the
- * visitor only downloads for the category they actually opened. The trade-off is
+ * the bundle and policed by .tools/check-data.mjs; this one is 7 MB of JSON, held
+ * in 200-record parts under public/data/tier/parts, that the visitor only
+ * downloads for the category they actually opened — and for a single record page,
+ * only the boundary index plus the one part that could hold it. The trade-off is
  * that nothing here can be linked to from the bundle by slug alone, so the route
  * carries the category — see listingHref.
  */
@@ -58,157 +60,219 @@ export interface TierSummary {
   areas: { id: string; count: number }[];
 }
 
+/* -------------------------------- the files -------------------------------- */
+
 const file = (name: string) => `${import.meta.env.BASE_URL}data/tier/${name}.json`;
 
 type Load<T> = { data: T | null; failed: boolean };
 
-const summaryCache: Load<TierSummary> = { data: null, failed: false };
-let summaryPromise: Promise<TierSummary> | null = null;
-const categoryCache = new Map<string, Load<OpenRecord[]>>();
-const categoryPromises = new Map<string, Promise<OpenRecord[]>>();
-
-async function getJson<T>(name: string): Promise<T> {
-  const res = await fetch(file(name), { headers: { Accept: 'application/json' } });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return (await res.json()) as T;
+/** One 200-record slice of a category, and the boundary table that locates it. */
+interface TierPart {
+  id: string;
+  count: number;
+  records: OpenRecord[];
 }
 
-export function loadTierSummary(): Promise<TierSummary> {
-  if (summaryCache.data) return Promise.resolve(summaryCache.data);
-  if (!summaryPromise) {
-    summaryPromise = getJson<TierSummary>('index')
-      .then((d) => {
-        summaryCache.data = d;
-        summaryCache.failed = false;
-        return d;
-      })
-      .catch((e) => {
-        summaryPromise = null;
-        summaryCache.failed = true;
-        throw e;
-      });
-  }
-  return summaryPromise;
+export interface TierPartBoundary {
+  from: string;
+  to: string;
+  n: number;
 }
 
-export function loadOpenCategory(categoryId: string): Promise<OpenRecord[]> {
-  const cached = categoryCache.get(categoryId);
-  if (cached?.data) return Promise.resolve(cached.data);
-  let p = categoryPromises.get(categoryId);
-  if (!p) {
-    p = getJson<{ records: OpenRecord[] }>(categoryId)
-      .then((d) => {
-        categoryCache.set(categoryId, { data: d.records, failed: false });
-        return d.records;
-      })
-      .catch((e) => {
-        categoryPromises.delete(categoryId);
-        categoryCache.set(categoryId, { data: null, failed: true });
-        throw e;
-      });
-    categoryPromises.set(categoryId, p);
+interface TierPartsIndex {
+  id: string;
+  size: number;
+  count: number;
+  parts: TierPartBoundary[];
+}
+
+const indexName = (categoryId: string) => `parts/${categoryId}`;
+const partName = (categoryId: string, position: number) => `parts/${categoryId}/${String(position + 1).padStart(3, '0')}`;
+
+/**
+ * Which part holds `slug`, by the boundary table, or -1 when the slug sorts
+ * outside every part. The comparison is plain `<`/`>` because that is the order
+ * the builder wrote the files in — a locale-aware compare would disagree with it.
+ */
+function partIndexOf(index: TierPartsIndex, slug: string) {
+  let lo = 0;
+  let hi = index.parts.length - 1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    const bound = index.parts[mid];
+    if (slug < bound.from) hi = mid - 1;
+    else if (slug > bound.to) lo = mid + 1;
+    else return mid;
   }
-  return p;
+  return -1;
+}
+
+const cache = new Map<string, Load<unknown>>();
+const readers = new Map<string, { promise: Promise<unknown>; refs: number; controller: AbortController }>();
+
+const isAbort = (error: unknown) => error instanceof Error && /abort/i.test(error.name);
+
+/**
+ * Read one tier file, with a single network request shared by everyone waiting
+ * for it. `release` is the other half of the deal: the request is aborted once
+ * the last reader leaves, so navigating away from an 80 KB part stops spending on
+ * a page nobody is looking at.
+ */
+function request<T>(name: string): Promise<T> {
+  const cached = cache.get(name);
+  if (cached?.data) return Promise.resolve(cached.data as T);
+  const shared = readers.get(name);
+  if (shared) {
+    shared.refs += 1;
+    return shared.promise as Promise<T>;
+  }
+  const controller = new AbortController();
+  const entry: { promise: Promise<unknown>; refs: number; controller: AbortController } = {
+    refs: 1,
+    controller,
+    promise: null as unknown as Promise<unknown>,
+  };
+  entry.promise = fetch(file(name), { headers: { Accept: 'application/json' }, signal: controller.signal })
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      readers.delete(name);
+      cache.set(name, { data, failed: false });
+      return data;
+    })
+    .catch((error) => {
+      readers.delete(name);
+      /* A visitor who left is not a file that is missing: the next reader has to
+         try again rather than inherit this as a permanent failure. */
+      if (!isAbort(error)) cache.set(name, { data: null, failed: true });
+      throw error;
+    });
+  readers.set(name, entry);
+  return entry.promise as Promise<T>;
+}
+
+function release(name: string) {
+  const shared = readers.get(name);
+  if (!shared) return;
+  shared.refs -= 1;
+  if (shared.refs > 0) return;
+  readers.delete(name);
+  shared.controller.abort();
 }
 
 /* --------------------------------- hooks --------------------------------- */
 
-export function useTierSummary() {
-  const [state, setState] = useState<Load<TierSummary>>({ data: summaryCache.data, failed: summaryCache.failed });
+/**
+ * Read a fixed list of tier files for as long as the caller is mounted.
+ * `files[i]` is null until that file arrives, so a caller can tell a record that
+ * is still downloading from one the dump does not hold at all.
+ */
+function useTierFiles(names: string[]) {
+  const key = names.join('|');
+  const [nonce, setNonce] = useState(0);
+  const [state, setState] = useState<{ key: string; files: unknown[]; failed: boolean }>({ key: '', files: [], failed: false });
   useEffect(() => {
-    if (summaryCache.data) return setState({ data: summaryCache.data, failed: false });
+    if (!names.length) {
+      setState({ key, files: [], failed: false });
+      return;
+    }
     let live = true;
-    loadTierSummary()
-      .then((d) => live && setState({ data: d, failed: false }))
-      .catch(() => {
-        if (!live) return;
-        summaryCache.failed = true;
-        setState({ data: null, failed: true });
-      });
+    const files = names.map(() => null as unknown);
+    let left = names.length;
+    let failed = false;
+    const settle = () => {
+      if (live && left === 0) setState({ key, files: [...files], failed });
+    };
+    names.forEach((name, i) => {
+      request<unknown>(name).then(
+        (data) => {
+          files[i] = data;
+          left -= 1;
+          settle();
+        },
+        () => {
+          failed = true;
+          left -= 1;
+          settle();
+        }
+      );
+    });
+    settle();
     return () => {
       live = false;
+      names.forEach((name) => release(name));
     };
-  }, []);
+  }, [key, nonce]);
   const retry = useCallback(() => {
-    summaryCache.failed = false;
-    setState({ data: null, failed: false });
-    loadTierSummary()
-      .then((d) => setState({ data: d, failed: false }))
-      .catch(() => {
-        summaryCache.failed = true;
-        setState({ data: null, failed: true });
-      });
-  }, []);
-  return { ...state, retry };
+    for (const name of key ? key.split('|') : []) cache.delete(name);
+    setNonce((n) => n + 1);
+  }, [key]);
+  /* Until this exact list has settled, neither its files nor a failure from the
+     list before it describe what the caller is asking for. */
+  const settled = state.key === key;
+  return { files: settled ? state.files : names.map(() => null), failed: settled ? state.failed : false, retry };
+}
+
+export function useTierSummary() {
+  const { files, failed, retry } = useTierFiles(['index']);
+  return { data: (files[0] as TierSummary | null) ?? null, failed, retry };
 }
 
 /**
- * One category of the tier, fetched the first time someone asks for it.
- * `open` is a switch, not a hook: the records stay off the page until the
- * visitor says they want the unchecked ones, so a category page still paints
- * from the bundle alone.
+ * A whole category of the tier, for the map layer and the directory list —
+ * the boundary index plus every part, in parallel.
+ * `open` is a switch, not a hook: the records stay off the page until the visitor
+ * says they want the unchecked ones, so a category page still paints from the
+ * bundle alone.
  */
 export function useOpenRecords(categoryId: string | undefined, open: boolean) {
-  const [state, setState] = useState<Load<OpenRecord[]>>({ data: null, failed: false });
-  useEffect(() => {
-    if (!categoryId || !open) return;
-    const cached = categoryCache.get(categoryId);
-    if (cached?.data) return setState({ data: cached.data, failed: false });
-    if (cached?.failed) return setState({ data: null, failed: true });
-    let live = true;
-    setState({ data: null, failed: false });
-    loadOpenCategory(categoryId)
-      .then((r) => live && setState({ data: r, failed: false }))
-      .catch(() => live && setState({ data: null, failed: true }));
-    return () => {
-      live = false;
-    };
-  }, [categoryId, open]);
-  const retry = useCallback(() => {
-    if (!categoryId) return;
-    categoryCache.delete(categoryId);
-    setState({ data: null, failed: false });
-    loadOpenCategory(categoryId)
-      .then((r) => setState({ data: r, failed: false }))
-      .catch(() => setState({ data: null, failed: true }));
-  }, [categoryId]);
-  return { ...state, retry };
+  const indexFile = useTierFiles(open && categoryId ? [indexName(categoryId)] : []);
+  const index = (indexFile.files[0] as TierPartsIndex | null) ?? undefined;
+  const parts = useMemo(() => (index ? index.parts.map((_, i) => partName(index.id, i)) : []), [index]);
+  const partFiles = useTierFiles(parts);
+  const data = useMemo(() => {
+    /* A part that failed would make the list shorter than the count next to it,
+       so a partial load is reported as a failure rather than shown as a list. */
+    if (!index || partFiles.failed || partFiles.files.length !== parts.length || partFiles.files.some((f) => f === null))
+      return null;
+    const all: OpenRecord[] = [];
+    for (const raw of partFiles.files) all.push(...(raw as TierPart).records);
+    return all;
+  }, [index, parts, partFiles.files, partFiles.failed]);
+  return {
+    data,
+    failed: indexFile.failed || partFiles.failed,
+    retry: () => {
+      indexFile.retry();
+      partFiles.retry();
+    },
+  };
 }
 
-/** Fetch a single record for the detail page, where the category is in the URL. */
+/**
+ * One record, for the page whose URL carries its category and slug. This is the
+ * reason the parts exist: two small reads instead of the whole category, which
+ * used to cost 1.9 MB to show a single place.
+ */
 export function useOpenRecord(categoryId: string | undefined, slug: string | undefined) {
-  const [state, setState] = useState<{ record: OpenRecord | null; missing: boolean; failed: boolean }>({
-    record: null,
-    missing: false,
-    failed: false,
-  });
-  useEffect(() => {
-    if (!categoryId || !slug) return;
-    let live = true;
-    setState({ record: null, missing: false, failed: false });
-    loadOpenCategory(categoryId)
-      .then((rows) => {
-        if (!live) return;
-        const found = rows.find((r) => r.slug === slug) ?? null;
-        setState({ record: found, missing: !found, failed: false });
-      })
-      .catch(() => live && setState({ record: null, missing: false, failed: true }));
-    return () => {
-      live = false;
-    };
-  }, [categoryId, slug]);
-  const retry = useCallback(() => {
-    if (!categoryId || !slug) return;
-    categoryCache.delete(categoryId);
-    setState({ record: null, missing: false, failed: false });
-    loadOpenCategory(categoryId)
-      .then((rows) => {
-        const found = rows.find((r) => r.slug === slug) ?? null;
-        setState({ record: found, missing: !found, failed: false });
-      })
-      .catch(() => setState({ record: null, missing: false, failed: true }));
-  }, [categoryId, slug]);
-  return { ...state, retry };
+  const indexFile = useTierFiles(categoryId ? [indexName(categoryId)] : []);
+  const index = (indexFile.files[0] as TierPartsIndex | null) ?? undefined;
+  const position = index && slug ? partIndexOf(index, slug) : -1;
+  const partFile = useTierFiles(index && position >= 0 ? [partName(index.id, position)] : []);
+  const part = (partFile.files[0] as TierPart | null) ?? undefined;
+  const record = part?.records.find((r) => r.slug === slug) ?? null;
+  const missing = Boolean(index) && (position < 0 || (part !== undefined && !record));
+  return {
+    record,
+    missing,
+    failed: indexFile.failed || partFile.failed,
+    retry: () => {
+      indexFile.retry();
+      partFile.retry();
+    },
+  };
 }
 
 /* -------------------------------- adapting ------------------------------- */

@@ -10,8 +10,8 @@ import { EmptyState, SectionHeading, SkeletonGrid } from '../components/ui';
 
 /**
  * The wider directory: everything the OpenStreetMap dump knows about Karachi,
- * published as it is. It is one file per category, fetched only when a category
- * is opened, so the page paints from a 7 KB summary rather than 7 MB of records.
+ * published as it is. The records arrive in slices of 200, fetched only when a
+ * category is opened, so the page paints from a 7 KB summary rather than 7 MB.
  */
 export default function Directory() {
   const { categoryId: chosen = '' } = useParams();

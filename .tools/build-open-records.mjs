@@ -19,7 +19,7 @@
  *
  * Usage: node .tools/build-open-records.mjs
  */
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, mkdtempSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, mkdtempSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
@@ -28,6 +28,18 @@ const SRC = 'Karachify Research/data/by-category';
 const OUT = 'public/data/tier';
 const failures = [];
 const fail = (m) => failures.push(m);
+
+/** Total bytes of the files under `dir` that `keep` accepts, walking sub-directories. */
+function filesUnder(dir, keep) {
+  if (!existsSync(dir)) return 0;
+  let n = 0;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const at = join(dir, entry.name);
+    if (entry.isDirectory()) n += filesUnder(at, keep);
+    else if (keep(at.replace(/\\/g, '/'))) n += readFileSync(at).length;
+  }
+  return n;
+}
 
 const b = await build({
   stdin: {
@@ -125,7 +137,12 @@ if (failures.length) {
 }
 
 rmSync(join(tmp), { recursive: true, force: true });
+/* Nothing in public/data/tier is hand-written — every file is produced here — so
+   the directory is rebuilt from scratch. This is also what retires the old
+   one-file-per-category layout rather than leaving it beside the parts. */
+rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
+mkdirSync(join(OUT, 'parts'), { recursive: true });
 
 const retrievedDates = new Set();
 for (const kept of perCategory.values()) for (const r of kept) if (r.retrievedAt) retrievedDates.add(r.retrievedAt);
@@ -163,14 +180,39 @@ const summary = {
 };
 
 writeFileSync(join(OUT, 'index.json'), JSON.stringify(summary));
+
+/* A record page used to fetch its whole category to read one record: 1.9 MB for
+   one restaurant out of a 4,581-record file. So the category IS the parts: every
+   record is written once, under parts/<category>/ in slug order, 200 to a file,
+   with a boundary index beside them listing the first and last slug of each
+   part. A record page then reads a ~2 KB index and one ~90 KB part; the map and
+   directory layer reads the same parts in parallel and gets the same bytes it
+   fetched before in one file. There is no second copy to drift out of date.
+     The sort is by code point, not localeCompare, and openRecords.ts searches
+   with the same `<`/`>` — a locale-aware order would place "a-b" where that
+   binary search cannot look. */
+const PART_SIZE = 200;
+const PARTS = join(OUT, 'parts');
+const byCodePoint = (a, b2) => (a < b2 ? -1 : a > b2 ? 1 : 0);
+let partFiles = 0;
 for (const [id, kept] of perCategory) {
-  writeFileSync(join(OUT, `${id}.json`), JSON.stringify({ id, count: kept.length, records: kept }));
+  const dir = join(PARTS, id);
+  mkdirSync(dir, { recursive: true });
+  const bySlug = [...kept].sort((a, b2) => byCodePoint(a.slug, b2.slug));
+  const parts = [];
+  for (let i = 0; i < bySlug.length; i += PART_SIZE) {
+    const slice = bySlug.slice(i, i + PART_SIZE);
+    const key = String(parts.length + 1).padStart(3, '0');
+    writeFileSync(join(dir, `${key}.json`), JSON.stringify({ id, count: slice.length, records: slice }));
+    parts.push({ from: slice[0].slug, to: slice[slice.length - 1].slug, n: slice.length });
+    partFiles++;
+  }
+  writeFileSync(join(PARTS, `${id}.json`), JSON.stringify({ id, size: PART_SIZE, count: bySlug.length, parts }));
 }
 
-const bytes = readdirSync(OUT)
-  .filter((f) => f.endsWith('.json'))
-  .reduce((n, f) => n + readFileSync(join(OUT, f)).length, 0);
+const bytes = filesUnder(OUT, (f) => f.endsWith('.json'));
 console.log(
   `open records: ${total} across ${perCategory.size} categories → ${(bytes / 1048576).toFixed(2)} MB in ${OUT}` +
+    ` as ${partFiles} parts of ${PART_SIZE} + ${perCategory.size} boundary indexes` +
     ` (dropped a placeholder rating/review count from ${droppedRatings} records)`
 );

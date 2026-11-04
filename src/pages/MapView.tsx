@@ -83,7 +83,7 @@ export default function MapView() {
     return [...l, ...e];
   }, [listings, events, pinned, areaId, withEvents, q, areas]);
 
-  /* One category file at a time: the unchecked tier is 7 MB across 21 files, so the
+  /* One category at a time: the unchecked tier is 7 MB across 105 parts, so the
      layer is offered only when exactly one category is chosen. */
   const openCategory = pinned.length === 1 ? pinned[0] : undefined;
   const tier = useTierSummary();

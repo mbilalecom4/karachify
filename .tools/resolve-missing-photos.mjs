@@ -329,26 +329,30 @@ for (const c of categories) {
   if (!media[key]) targets.push({ key, name: c.name, kind: 'category', place: ['karachi'] });
 }
 const TIER_DIR = join(ROOT, 'public/data/tier');
+const PART_ROOT = join(TIER_DIR, 'parts');
 /** Every name in the open tier, whether or not it is a target this run: the
  *  pool the "does this word identify anything?" count is taken from. */
 const tierNames = [];
-if (existsSync(TIER_DIR)) {
-  for (const file of readdirSync(TIER_DIR).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
-    const chunked = JSON.parse(readFileSync(join(TIER_DIR, file), 'utf8'));
-    for (const r of chunked.records) {
-      tierNames.push(r.name);
-      const title = enArticle(r.wikipedia);
-      if (!title) continue;
-      const key = `open:${chunked.id}:${r.slug}`;
-      if (media[key]) continue;
-      targets.push({
-        key,
-        name: r.name,
-        kind: 'open',
-        areaId: r.areaId,
-        articles: [title],
-        place: [...new Set(['karachi', ...(r.areaId ? tokens(areaNameById.get(r.areaId) ?? '') : [])])],
-      });
+if (existsSync(PART_ROOT)) {
+  for (const indexFile of readdirSync(PART_ROOT).filter((f) => f.endsWith('.json'))) {
+    const index = JSON.parse(readFileSync(join(PART_ROOT, indexFile), 'utf8'));
+    for (let i = 0; i < index.parts.length; i++) {
+      const part = JSON.parse(readFileSync(join(PART_ROOT, index.id, `${String(i + 1).padStart(3, '0')}.json`), 'utf8'));
+      for (const r of part.records) {
+        tierNames.push(r.name);
+        const title = enArticle(r.wikipedia);
+        if (!title) continue;
+        const key = `open:${index.id}:${r.slug}`;
+        if (media[key]) continue;
+        targets.push({
+          key,
+          name: r.name,
+          kind: 'open',
+          areaId: r.areaId,
+          articles: [title],
+          place: [...new Set(['karachi', ...(r.areaId ? tokens(areaNameById.get(r.areaId) ?? '') : [])])],
+        });
+      }
     }
   }
 }

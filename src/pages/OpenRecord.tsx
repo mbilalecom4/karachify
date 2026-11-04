@@ -40,7 +40,7 @@ export default function OpenRecord() {
           {failed ? (
             <EmptyState
               title="That record could not be loaded"
-              body="Open records live in one file per category, next to the site. A dropped connection is enough to miss it, and nothing is shown in its place rather than a remembered copy."
+              body="An open record is read from the slice of 200 that holds its name, served next to the site. A dropped connection is enough to miss it, and nothing is shown in its place rather than a remembered copy."
               action={
                 <button className="btn-outline" onClick={retry}>
                   Try again
@@ -50,7 +50,7 @@ export default function OpenRecord() {
           ) : (
             <EmptyState
               title="No open record with that address"
-              body="The category file does not hold a record with this name. It may have been mapped since this dump was taken, or the link may have been typed by hand."
+              body="No slice of this category holds a record with that name. It may have been mapped since this dump was taken, or the link may have been typed by hand."
               action={
                 <Link to="/directory" className="btn-primary">
                   Back to the wider directory

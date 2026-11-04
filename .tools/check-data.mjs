@@ -218,26 +218,75 @@ for (const [key, m] of Object.entries(media)) {
    the same rules. */
 
 const TIER = join(root, 'public/data/tier');
+const PARTS = join(TIER, 'parts');
+const pad3 = (n) => String(n).padStart(3, '0');
 let tierCount = 0;
-if (existsSync(TIER)) {
+if (existsSync(TIER) && !existsSync(PARTS))
+  failures.push('tier: public/data/tier/parts is missing — the open records are published as 200-record parts, not one file per category');
+if (existsSync(TIER) && existsSync(PARTS)) {
   const summary = JSON.parse(readFileSync(join(TIER, 'index.json'), 'utf8'));
   /* The tiles on Home and Explore quote these numbers, so they are recomputed
      here with the same rule the browser applies. A count that drifts from the
      list behind it is a claim no source supports. */
   const siteKeys = checkedKeys(listings);
   let uncheckedTotal = 0;
-  const files = readdirSync(TIER).filter((f) => f.endsWith('.json') && f !== 'index.json');
+  const indexes = readdirSync(PARTS).filter((f) => f.endsWith('.json'));
+  const loose = readdirSync(TIER).filter((f) => f.endsWith('.json') && f !== 'index.json');
   check(
-    files.length === summary.categories.length,
-    `tier: index.json describes ${summary.categories.length} categories but ${files.length} files are shipped`
+    loose.length === 0,
+    `tier: ${loose.slice(0, 5).join(', ')} ${loose.length === 1 ? 'is' : 'are'} a second copy of records that only belong under parts/ — one unread file is how a count starts lying`
+  );
+  check(
+    indexes.length === summary.categories.length,
+    `tier: index.json describes ${summary.categories.length} categories but ${indexes.length} boundary indexes are shipped`
   );
   let seenSlugs = 0;
   for (const row of summary.categories) {
-    const file = join(TIER, `${row.id}.json`);
-    if (!check(existsSync(file), `tier: category "${row.id}" is counted in index.json but its file is missing`)) continue;
-    const chunk = JSON.parse(readFileSync(file, 'utf8'));
-    check(chunk.count === chunk.records.length, `tier/${row.id}: index says ${row.count}, count field ${chunk.count}, file holds ${chunk.records.length}`);
-    check(chunk.id === row.id, `tier/${row.id}: the file declares itself "${chunk.id}"`);
+    const indexFile = join(PARTS, `${row.id}.json`);
+    if (
+      !check(
+        existsSync(indexFile),
+        `tier: category "${row.id}" is counted in index.json but its boundary index parts/${row.id}.json is missing`
+      )
+    )
+      continue;
+    const index = JSON.parse(readFileSync(indexFile, 'utf8'));
+    check(index.id === row.id, `tier/parts/${row.id}: the index declares itself "${index.id}"`);
+    check(index.count === row.count, `tier/parts/${row.id}: index.json says ${row.count} records, the boundary index says ${index.count}`);
+    check(
+      index.parts.length === Math.ceil(index.count / index.size),
+      `tier/parts/${row.id}: ${index.count} records at ${index.size} per part need ${Math.ceil(index.count / index.size)} parts, the index lists ${index.parts.length}`
+    );
+    /* Reassemble the category from its parts, in the order the browser would
+       find them, so every record is read exactly once by the loop below. */
+    const records = [];
+    const dir = join(PARTS, row.id);
+    if (!check(existsSync(dir), `tier/parts/${row.id}: the boundary index exists but its part directory is missing`)) continue;
+    const partDirs = readdirSync(dir, { withFileTypes: true }).filter((e) => e.isFile());
+    check(
+      partDirs.length === index.parts.length,
+      `tier/parts/${row.id}: the index lists ${index.parts.length} parts but ${partDirs.length} files are shipped`
+    );
+    index.parts.forEach((bound, i) => {
+      const at = `tier/parts/${row.id}/${pad3(i + 1)}`;
+      if (bound.from > bound.to) failures.push(`${at}: boundary ${bound.from}…${bound.to} is backwards`);
+      if (i && bound.from <= index.parts[i - 1].to)
+        failures.push(`${at}: starts at or before the previous part's last slug, so a binary search cannot pick one`);
+      const file = join(PARTS, row.id, `${pad3(i + 1)}.json`);
+      if (!check(existsSync(file), `${at}.json is listed by the boundary index but not on disk`)) return;
+      const part = JSON.parse(readFileSync(file, 'utf8'));
+      check(part.id === row.id, `${at}: the part declares itself "${part.id}"`);
+      check(part.count === part.records.length, `${at}: the part says ${part.count} records but carries ${part.records.length}`);
+      check(part.records.length === bound.n, `${at}: the index says ${bound.n} records, the file holds ${part.records.length}`);
+      check(
+        part.records.length === 0 || (part.records[0].slug === bound.from && part.records[part.records.length - 1].slug === bound.to),
+        `${at}: the index says ${bound.from}…${bound.to} but the file runs ${part.records[0]?.slug}…${part.records[part.records.length - 1]?.slug}`
+      );
+      records.push(...part.records);
+    });
+    const chunk = { id: index.id, count: index.count, records };
+    check(chunk.count === chunk.records.length, `tier/${row.id}: index says ${row.count}, count field ${chunk.count}, parts hold ${chunk.records.length}`);
+    check(chunk.id === row.id, `tier/${row.id}: the parts declare themselves "${chunk.id}"`);
     const inner = new Set();
     for (const r of chunk.records) {
       const at = `tier/${row.id}/${r.slug}`;

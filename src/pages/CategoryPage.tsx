@@ -134,8 +134,8 @@ export default function CategoryPage() {
         {showOpen && open.failed && (
           <div className="card mb-6 flex flex-wrap items-center justify-between gap-3 p-4">
             <p className="text-[14px] text-navy-600">
-              That list did not load. It is a {(tierRow ? tierRow.count : 0).toLocaleString()}-record file served next to the site, and a
-              dropped connection is enough to miss it — the checked listings above do not depend on it.
+              That list did not load. It is {(tierRow ? tierRow.count : 0).toLocaleString()} records served next to the site in slices of 200, and a
+              dropped connection is enough to miss one — the checked listings above do not depend on it.
             </p>
             <button className="btn-outline btn-sm" onClick={open.retry}>
               Try again
