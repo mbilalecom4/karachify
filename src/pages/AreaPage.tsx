@@ -5,7 +5,7 @@ import { selectAreas, selectCategories, selectEvents, selectListings, useDB } fr
 import { areaImageKey, imageFor } from '../lib/media';
 import { EventCard } from '../components/cards';
 import { ListingExplorer } from '../components/Explorer';
-import { KarachifyMap } from '../components/KarachifyMap';
+import { LazyMap } from '../components/LazyMap';
 import { PageHero } from '../components/Page';
 import { EmptyState, SectionHeading } from '../components/ui';
 import { coordText, pinCaption, plural } from '../lib/format';
@@ -136,7 +136,7 @@ export default function AreaPage() {
               }
             />
             <div className="card overflow-hidden p-2">
-              <KarachifyMap points={points} compact className="h-[360px] w-full" />
+              <LazyMap points={points} compact className="h-[360px] w-full" />
             </div>
           </div>
         </section>

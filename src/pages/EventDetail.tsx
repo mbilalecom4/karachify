@@ -14,7 +14,7 @@ import {
 import { actions, prefsFor, selectAreas, selectEvents, useDB } from '../lib/store';
 import { imageFor, pictureSubject } from '../lib/media';
 import { EventCard } from '../components/cards';
-import { KarachifyMap } from '../components/KarachifyMap';
+import { LazyMap } from '../components/LazyMap';
 import { Note } from '../components/Page';
 import { Breadcrumbs, EmptyState, IllustrativeStamp, SectionHeading, StatusBadge, useToast } from '../components/ui';
 import { coordText, dateRange, timeRange, toICS } from '../lib/format';
@@ -239,7 +239,7 @@ export default function EventDetail() {
             <article>
               <h2 className="section-title mb-3">Venue & location</h2>
               <div className="card overflow-hidden p-2">
-                <KarachifyMap
+                <LazyMap
                   compact
                   className="h-[320px] w-full"
                   points={[
