@@ -20,7 +20,7 @@ export default function MapView() {
 
   const [pinned, setPinned] = useState<string[]>(() => params.getAll('c'));
   const [areaId, setAreaId] = useState(params.get('area') ?? 'all');
-  const [withEvents, setWithEvents] = useState(true);
+  const [withEvents, setWithEvents] = useState(events.length > 0);
   const [q, setQ] = useState('');
   const [active, setActive] = useState<string | null>(params.get('focus') ?? null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -90,7 +90,8 @@ export default function MapView() {
   const toggleCategory = (id: string) =>
     setPinned((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
-  const dirty = pinned.length > 0 || areaId !== 'all' || !withEvents || q !== '';
+  const dirty =
+    pinned.length > 0 || areaId !== 'all' || (events.length > 0 && !withEvents) || q !== '';
 
   return (
     <div>
@@ -120,8 +121,14 @@ export default function MapView() {
               ))}
             </Select>
             <label className="flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-navy-700">
-              <input type="checkbox" className="checkbox" checked={withEvents} onChange={(e) => setWithEvents(e.target.checked)} />
-              Include sample events
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={withEvents}
+                disabled={events.length === 0}
+                onChange={(e) => setWithEvents(e.target.checked)}
+              />
+              {events.length === 0 ? `Events on the map (none published yet)` : `Include events (${events.length})`}
             </label>
             {dirty && (
               <button

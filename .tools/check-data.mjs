@@ -292,6 +292,30 @@ if (existsSync(TIER)) {
   tierCount = seenSlugs;
 }
 
+/* ------------------------- the source, not just the data ------------------ */
+/* Two mistakes this site has already made are cheap to make permanent:
+   publishing a date the code invented, and linking a category slug that the
+   taxonomy does not have. Both are lintable, so they are gated here rather
+   than left to whoever notices next. */
+{
+  const knownCategorySlugs = new Set(categories.map((c) => c.slug));
+  const walk = (dir) =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(join(dir, e.name)) : /\.tsx?$/.test(e.name) ? [join(dir, e.name)] : []
+    );
+  for (const file of walk(join(root, 'src'))) {
+    const rel = file.slice(root.length + 1).replace(/\\/g, '/');
+    const text = readFileSync(file, 'utf8');
+    text.split('\n').forEach((line, i) => {
+      if (/Date\.now\(\s*[+*-]\s*\d/.test(line) && !/^\s*(\/\/|\*|\/\*)/.test(line))
+        failures.push(`${rel}:${i + 1}: adds or subtracts from the clock — a date this site invents is a fabricated field`);
+      const link = /\/category\/([a-z0-9-]+)/.exec(line);
+      if (link && !knownCategorySlugs.has(link[1]))
+        failures.push(`${rel}:${i + 1}: links to /category/${link[1]}, which is not in the taxonomy`);
+    });
+  }
+}
+
 /* -------------------------------- report -------------------------------- */
 
 if (failures.length) {

@@ -130,6 +130,9 @@ export interface Listing {
   promoted: boolean;
   status: VerificationStatus;
   sourceUrl?: string;
+  /** The email a community-submitted listing came from, so "Your listings" can
+      mean your listings instead of everyone's. */
+  ownerEmail?: string;
   /** OpenStreetMap element the verified coordinates and address were read from. */
   osmId?: string;
   /** Date the verified fields below were last checked against their source. */
@@ -201,6 +204,16 @@ export interface Submission {
   address?: string;
   website?: string;
   images?: string[];
+  /* An event form asks these five questions, so the answers travel as fields.
+     Flattening them into the description string left the approval step with
+     nothing to read, and the first approval invented a date. */
+  eventCategory?: string;
+  date?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
+  ticketPrice?: string;
+  organiser?: string;
   listingId?: string;
   status: 'pending' | 'approved' | 'rejected';
   createdAt: string;

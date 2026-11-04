@@ -27,8 +27,12 @@ const packages = [
     name: 'Promoted placement',
     price: 'Not priced yet',
     real: 'A price would be agreed by email before anything runs — never invented here',
-    best: 'Seasonal campaigns, once there is measured traffic to sell against',
-    features: ['“Promoted” label on the card, never a disguised one', 'Enquiry form so we can agree scope and cost first', 'Monthly impression summary'],
+    best: 'Seasonal campaigns, once there is traffic worth selling against',
+    features: [
+      '“Promoted” label on the card, never a disguised one',
+      'Enquiry form so we can agree scope and cost first',
+      'No reach numbers yet — this build runs no analytics, so nobody is counted',
+    ],
     tone: 'border-navy-200',
   },
 ];

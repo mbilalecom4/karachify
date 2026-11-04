@@ -324,6 +324,7 @@ export const actions = {
       phone: sub.phone,
       website: sub.website,
       email: sub.email,
+      ownerEmail: sub.email?.toLowerCase(),
       facilities: [],
       tags: ['Community submitted'],
       featured: false,

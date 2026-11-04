@@ -96,7 +96,7 @@ export function Header() {
       to: '/plan',
       children: [
         { label: 'Plan your day', to: '/plan', note: 'Pick stops, get an ordered route' },
-        { label: 'Open right now', to: '/open-now', note: '24/7 and currently open' },
+        { label: 'Open right now', to: '/open-now', note: 'Only where the record’s own source says 24 hours' },
         { label: 'City guides', to: '/guides', note: 'How to spend a day here' },
       ],
     },

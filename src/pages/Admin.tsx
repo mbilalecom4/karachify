@@ -834,7 +834,19 @@ function Submissions() {
   const toast = useToast();
   const areas = selectAreas(db);
   const [filter, setFilter] = useState('pending');
-  const [reviewing, setReviewing] = useState<{ id: string; name: string; areaId: string; venue: string; date: string; eventCategory: EventCategory } | null>(null);
+  const [reviewing, setReviewing] = useState<{
+    id: string;
+    name: string;
+    areaId: string;
+    venue: string;
+    date: string;
+    endDate: string;
+    startTime: string;
+    endTime: string;
+    ticketPrice: string;
+    organiser: string;
+    eventCategory: EventCategory;
+  } | null>(null);
 
   const rows = db.submissions.filter((s) => filter === 'all' || s.status === filter);
 
@@ -945,8 +957,17 @@ function Submissions() {
                           name: s.name,
                           areaId: s.areaId ?? areas[0].id,
                           venue: s.address ?? '',
-                          date: new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10),
-                          eventCategory: 'Community',
+                          /* Whatever the submitter wrote, including nothing. A
+                             date two weeks from today is our date, not the
+                             event's, and publishing it would put a real-looking
+                             day on an unverified listing. */
+                          date: s.date ?? '',
+                          endDate: s.endDate ?? '',
+                          startTime: s.startTime ?? '',
+                          endTime: s.endTime ?? '',
+                          ticketPrice: s.ticketPrice ?? '',
+                          organiser: s.organiser ?? '',
+                          eventCategory: ((s.eventCategory ?? 'Community') as EventCategory) || 'Community',
                         })
                       }
                     >
@@ -998,8 +1019,10 @@ function Submissions() {
             </button>
             <button
               className="btn-primary"
+              disabled={!reviewing?.date}
+              title={reviewing?.date ? undefined : 'A published event needs a date the submitter gave, not one we guess'}
               onClick={() => {
-                if (!reviewing) return;
+                if (!reviewing || !reviewing.date) return;
                 const area = areas.find((a) => a.id === reviewing.areaId) ?? areas[0];
                 const event: CityEvent = {
                   id: `user-event-${Math.random().toString(36).slice(2, 8)}`,
@@ -1009,14 +1032,14 @@ function Submissions() {
                   name: reviewing.name,
                   description: db.submissions.find((s) => s.id === reviewing.id)?.description ?? '',
                   date: reviewing.date,
-                  startTime: '',
-                  endTime: '',
+                  startTime: reviewing.startTime,
+                  endTime: reviewing.endTime,
                   venue: reviewing.venue || `in ${area.name}`,
                   areaId: area.id,
                   eventCategory: reviewing.eventCategory,
-                  ticketPrice: 'Stated by the organiser',
+                  ticketPrice: reviewing.ticketPrice || 'Not stated',
                   ticketNote: 'Published from what the submitter wrote. Karachify has not checked the date, the ground or the price.',
-                  organiser: 'Not stated',
+                  organiser: reviewing.organiser || 'Not stated',
                   lat: area.lat,
                   lng: area.lng,
                   status: 'needs-review',
@@ -1036,8 +1059,23 @@ function Submissions() {
           <Field label="Title" required className="sm:col-span-2">
             <TextInput value={reviewing?.name ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, name: e.target.value } : r))} />
           </Field>
-          <Field label="Start date">
+          <Field label="Start date" required error={reviewing?.date ? undefined : 'The submitter gave no date — type one you have a source for'}>
             <TextInput type="date" value={reviewing?.date ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, date: e.target.value } : r))} />
+          </Field>
+          <Field label="End date" hint="Empty for a single-day event.">
+            <TextInput type="date" value={reviewing?.endDate ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, endDate: e.target.value } : r))} />
+          </Field>
+          <Field label="Start time">
+            <TextInput type="time" value={reviewing?.startTime ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, startTime: e.target.value } : r))} />
+          </Field>
+          <Field label="End time">
+            <TextInput type="time" value={reviewing?.endTime ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, endTime: e.target.value } : r))} />
+          </Field>
+          <Field label="Tickets" className="sm:col-span-2" hint="Exactly what the submitter wrote — blank publishes as “Not stated”.">
+            <TextInput value={reviewing?.ticketPrice ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, ticketPrice: e.target.value } : r))} />
+          </Field>
+          <Field label="Organiser" className="sm:col-span-2">
+            <TextInput value={reviewing?.organiser ?? ''} onChange={(e) => setReviewing((r) => (r ? { ...r, organiser: e.target.value } : r))} />
           </Field>
           <Field label="Type">
             <Select
@@ -1065,7 +1103,8 @@ function Submissions() {
           </Field>
         </div>
         <p className="mt-4 text-[13px] text-navy-500">
-          Times default to 17:00–21:00 and the ticket line reads “To confirm” until an organiser source exists.
+          Every field above came from the submission. Publish stays disabled until a date exists, because a date this
+          screen invented would read as the event&apos;s own.
         </p>
       </Modal>
     </div>

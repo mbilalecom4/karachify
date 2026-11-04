@@ -36,7 +36,12 @@ export default function BusinessDashboard() {
     if (!user) return [];
     const ids = db.submissions.filter((s) => s.listingId && s.email?.toLowerCase() === user.email).map((s) => s.listingId as string);
     const fromSubmissions = listings.filter((l) => ids.includes(l.id));
-    const community = listings.filter((l) => l.id.startsWith('user-') && !fromSubmissions.some((x) => x.id === l.id));
+    /* A `user-` id only says somebody submitted it, not that this person did.
+       Without the email match, every demo login would open every other
+       business's page and be able to rewrite it. */
+    const community = listings.filter(
+      (l) => l.ownerEmail === user.email && !fromSubmissions.some((x) => x.id === l.id),
+    );
     return [...fromSubmissions, ...community];
   }, [user, db.submissions, listings]);
 

@@ -112,12 +112,20 @@ export default function SubmitEvent() {
                 name: form.name.trim(),
                 categoryId: 'events',
                 areaId: form.areaId,
-                description: `${form.description.trim()}\n\nVenue: ${form.venue.trim()} · ${form.date}${
-                  form.endDate ? ` → ${form.endDate}` : ''
-                } · ${form.startTime}–${form.endTime} · Tickets: ${form.ticketPrice} · Organiser: ${form.organiser.trim()}`,
+                description: form.description.trim(),
                 email: form.email.trim().toLowerCase(),
                 phone: form.phone.trim() || undefined,
                 address: form.venue.trim(),
+                /* Sent as fields, not folded into the description. A reviewer
+                   who has to retype a date out of a paragraph is a reviewer who
+                   publishes the wrong one. */
+                eventCategory: form.eventCategory,
+                date: form.date,
+                endDate: form.endDate || undefined,
+                startTime: form.startTime,
+                endTime: form.endTime,
+                ticketPrice: form.ticketPrice.trim() || undefined,
+                organiser: form.organiser.trim(),
               });
               toast.push('Event submitted for review');
               setDone({ id: sub.id, name: form.name.trim() });
@@ -189,8 +197,9 @@ export default function SubmitEvent() {
 
           <aside className="space-y-4">
             <Note tone="warn">
-              Every event already in this showcase is clearly badged “Sample event”. Approved submissions will appear the
-              same way until a real organiser source is attached to them.
+              Nothing is on the calendar yet: this build ships with zero events, and a submission stays in the local
+              review queue until a moderator publishes it from what you wrote. Karachify does not add a date, a price or
+              an organiser of its own.
             </Note>
             <div className="card p-5">
               <h2 className="font-display text-[17px] font-bold text-navy-800">Before you submit</h2>
@@ -204,7 +213,7 @@ export default function SubmitEvent() {
             <div className="card p-5">
               <p className="text-sm font-semibold text-navy-800">Looking for a place to hold it?</p>
               <p className="mt-1.5 text-sm text-navy-500">Browse venues, grounds and halls already mapped in Karachi.</p>
-              <Link to="/category/event-venues" className="btn-outline mt-4 w-full">
+              <Link to="/category/wedding-and-event-venues" className="btn-outline mt-4 w-full">
                 Event venues
               </Link>
             </div>

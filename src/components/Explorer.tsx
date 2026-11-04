@@ -3,7 +3,7 @@ import { LayoutGrid, List, Search, SlidersHorizontal, X } from 'lucide-react';
 import type { Listing } from '../types';
 import { selectAreas, useDB } from '../lib/store';
 import { ListingCard } from './cards';
-import { EmptyState, Select, SkeletonGrid, TextInput } from './ui';
+import { EmptyState, Select, TextInput } from './ui';
 
 export type SortKey = 'recommended' | 'az' | 'area';
 
@@ -64,12 +64,6 @@ export function ListingExplorer({
   const [sort, setSort] = useState<SortKey>('recommended');
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [shown, setShown] = useState(pageSize);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 260);
-    return () => clearTimeout(t);
-  }, []);
 
   const areaOptions = useMemo(() => {
     const ids = areaFilterIds ?? Array.from(new Set(items.map((l) => l.areaId)));
@@ -161,33 +155,25 @@ export function ListingExplorer({
       </div>
 
       <p className="mb-4 flex flex-wrap items-center gap-2 text-sm text-navy-500" aria-live="polite">
-        {loading ? (
-          'Loading listings…'
-        ) : (
-          <>
-            <span className="font-semibold text-navy-800">
-              {sorted.length} listing{sorted.length === 1 ? '' : 's'}
-            </span>
-            {dirty && <span>matching your filters</span>}
-            {areaId !== 'all' && (
-              <button onClick={() => setAreaId('all')} className="chip chip-active">
-                {areaOptions.find((a) => a.id === areaId)?.name ?? 'Area'}
-                <X className="h-3.5 w-3.5" />
-              </button>
-            )}
-            {query.trim() && (
-              <button onClick={() => setQuery('')} className="chip chip-active">
-                “{query.trim()}”
-                <X className="h-3.5 w-3.5" />
-              </button>
-            )}
-          </>
+        <span className="font-semibold text-navy-800">
+          {sorted.length} listing{sorted.length === 1 ? '' : 's'}
+        </span>
+        {dirty && <span>matching your filters</span>}
+        {areaId !== 'all' && (
+          <button onClick={() => setAreaId('all')} className="chip chip-active">
+            {areaOptions.find((a) => a.id === areaId)?.name ?? 'Area'}
+            <X className="h-3.5 w-3.5" />
+          </button>
+        )}
+        {query.trim() && (
+          <button onClick={() => setQuery('')} className="chip chip-active">
+            “{query.trim()}”
+            <X className="h-3.5 w-3.5" />
+          </button>
         )}
       </p>
 
-      {loading ? (
-        <SkeletonGrid count={Math.min(8, pageSize)} />
-      ) : visible.length === 0 ? (
+      {visible.length === 0 ? (
         <EmptyState
           title={emptyTitle}
           body={emptyBody}

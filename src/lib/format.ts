@@ -122,8 +122,8 @@ export function directionsUrl(lat: number, lng: number, label?: string) {
   return `https://www.google.com/maps/dir/?api=1&destination=${dest}${name}&travelmode=driving`;
 }
 
-export function mapLinkUrl(lat: number, lng: number, label?: string) {
-  return `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}${label ? '' : ''}`;
+export function mapLinkUrl(lat: number, lng: number) {
+  return `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}`;
 }
 
 export function calendarDownloadName(title: string) {

@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarDays, LayoutGrid, List, Search, X } from 'lucide-react';
 import type { CityEvent } from '../types';
-import { selectAreas, selectEvents, useDB } from '../lib/store';
+import { selectAreas, selectEvents, selectListings, useDB } from '../lib/store';
+import { fieldsChecked } from '../lib/provenance';
 import { EventCard } from '../components/cards';
 import { PageHero, Note } from '../components/Page';
 import { EmptyState, SectionHeading, Select, Tabs, TextInput } from '../components/ui';
@@ -49,6 +50,19 @@ export default function Events() {
   const dirty = q !== '' || eventCategory !== 'all' || areaId !== 'all' || from !== '' || to !== '';
   const visible: CityEvent[] = filtered.slice(0, shown);
 
+  /* Counted from what the citations actually support. This sentence used to
+     read "19 Karachi destinations already carry opening hours, admission and
+     addresses" — a number nobody had measured, when the real figures are
+     smaller and different for each field. */
+  const published = useMemo(() => {
+    const l = selectListings(db);
+    return {
+      hours: l.filter((x) => fieldsChecked(x.slug, ['hours'])).length,
+      fees: l.filter((x) => fieldsChecked(x.slug, ['entryFees'])).length,
+      address: l.filter((x) => fieldsChecked(x.slug, ['address'])).length,
+    };
+  }, [db]);
+
   const hero = (
     <PageHero
       mediaKey="banner-events"
@@ -62,7 +76,7 @@ export default function Events() {
         <Link to="/submit-event" className="btn-primary btn-sm">
           Submit an event
         </Link>
-        <Link to="/category/events" className="btn btn-sm btn-on-media">
+        <Link to="/category/wedding-and-event-venues" className="btn btn-sm btn-on-media">
           Event venues
         </Link>
       </div>
@@ -96,7 +110,7 @@ export default function Events() {
             <SectionHeading
               eyebrow="Plan around the calendar you can check"
               title="Verified places, with the hours that are published"
-              sub="Events are the hardest thing on this site to state honestly, so they are last. Places are not — 19 Karachi destinations already carry opening hours, admission and addresses taken from named sources."
+              sub={`Events are the hardest thing on this site to state honestly, so they are last. Places are not — ${published.address} Karachi destinations carry an address from a named source, ${published.hours} carry published opening hours and ${published.fees} carry an admission price we can point at.`}
               action={
                 <Link to="/category/tourist-places" className="btn-outline btn-sm">
                   Browse places <ArrowRight className="h-3.5 w-3.5" />

@@ -86,7 +86,7 @@ export default function ListYourBusiness() {
         label="Karachi businesses"
         eyebrow="For businesses"
         title="List your business on Karachify"
-        sub="Free in this showcase. One form, one review step, and your place gets a page with photos, timings, a map pin and a favourites button."
+        sub="Free in this showcase. One form, one review step, and your place gets a page with its own URL, a map pin, the contact details you typed and a favourites button."
         trail={[{ label: 'Home', to: '/' }, { label: 'List your business' }]}
       />
 
@@ -102,7 +102,7 @@ export default function ListYourBusiness() {
               if (!form.areaId) next.areaId = 'Pick the area you are in';
               if (form.address.trim().length < 8) next.address = 'Add a street or landmark so people can find you';
               if (form.description.trim().length < 30) next.description = 'Write at least a sentence or two (30+ characters)';
-              if (!isValidEmail(form.email)) next.email = 'We need a working email to send the decision to';
+              if (!isValidEmail(form.email)) next.email = 'We need a working email so a reviewer can reach you';
               if (form.phone.trim() && form.phone.replace(/\D/g, '').length < 7) next.phone = 'That phone number looks too short';
               if (form.website.trim() && !/^https?:\/\/\S+\.\S+/i.test(form.website.trim())) next.website = 'Use the full link, starting with https://';
               setErrors(next);
@@ -264,9 +264,13 @@ export default function ListYourBusiness() {
               </ol>
             </div>
             <Note tone="warn">
-              This build has no server. Uploaded files are previewed in the browser and then discarded; only image links
-              you paste are stored. A phone number or timing entered here is published exactly as you typed it and badged
-              as owner-stated — Karachify does not check it before it appears.
+              This build has no server. Uploaded files are previewed in the browser and then discarded, and a pasted
+              image link is kept on your submission but is <strong>not</strong> published: every photograph on
+              Karachify is credited to the person who took it under their own licence, and a link you paste cannot be
+              checked for one. Your phone number, website and address are published exactly as you typed them and
+              badged as owner-stated — Karachify does not check them before they appear. Opening hours are not a field
+              here, because a directory that prints an owner's hours beside a source's hours invites the reader to
+              believe the wrong one.
             </Note>
             <div className="card p-5">
               <p className="text-sm font-semibold text-navy-800">Pricing</p>
