@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Clock, ExternalLink, Flag, Mail, MapPin, Phone, ShieldAlert, Globe } from 'lucide-react';
 import { areaById, categoryById } from '../data/taxonomy';
 import { humanTag, openToListing, osmIdOf, useOpenRecord } from '../lib/openRecords';
 import { mediaFor } from '../lib/media';
 import { coordText } from '../lib/format';
+import { applyPageMeta, metaForMissing, metaForOpenRecord } from '../lib/pageMeta';
 import { Breadcrumbs, EmptyState, StatusBadge } from '../components/ui';
 import { ReportModal } from '../components/ReportModal';
-import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 /**
  * One record from the OpenStreetMap dump.
@@ -25,7 +25,15 @@ export default function OpenRecord() {
   const [reporting, setReporting] = useState(false);
 
   const category = categoryById.get(categoryId);
-  useDocumentTitle(record ? record.name : 'Open record');
+
+  /* MetaManager keeps no head for this path — the name behind it lives in a tier
+     file rather than the bundle — so the page writes its own once it knows what
+     it found. A read that failed says nothing at all: the record is not missing,
+     it is unread, and the head must not claim otherwise. */
+  useEffect(() => {
+    if (record) applyPageMeta(metaForOpenRecord(record));
+    else if (missing) applyPageMeta(metaForMissing(`/directory/${categoryId}/${slug}`, 'open record'));
+  }, [record, missing, categoryId, slug]);
   const trail = [
     { label: 'Home', to: '/' },
     { label: 'Wider directory', to: '/directory' },

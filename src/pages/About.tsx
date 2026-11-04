@@ -121,7 +121,11 @@ export default function About() {
               <code>src/data/verified-overrides.json</code> by <code>.tools/apply-verification.mjs</code>, and merged over
               the seed records at load. The client-side store is shaped to match
               <code>docs/database-schema.sql</code>, so moving off browser storage means replacing selectors, not
-              rewriting pages. Routing uses hash URLs so a static host never 404s on a deep link.
+              rewriting pages. Every page has a path URL of its own, and the build writes a real HTML file with that
+              page's own title and description for the places, areas, categories and guides it can see — so a search
+              engine or a link preview is told the same thing the page says. The OpenStreetMap records are too many to
+              hand each a file, so those open through the host's fallback page and fill in their own description once the
+              data arrives.
             </p>
 
             <h2>What comes next</h2>

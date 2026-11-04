@@ -4,6 +4,7 @@ import type { Listing } from '../types';
 import { actions } from '../lib/store';
 import { coordText, isValidEmail } from '../lib/format';
 import { listingHref } from '../lib/openRecords';
+import { shareUrl } from '../lib/pageMeta';
 import { Note } from './Page';
 import { Field, Modal, Select, TextArea, TextInput, useToast } from './ui';
 
@@ -26,7 +27,9 @@ export function ReportModal({ open, onClose, listing }: { open: boolean; onClose
   const [form, setForm] = useState({ reason: REPORT_REASONS[0], details: '', email: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const pageUrl = `${window.location.origin}${window.location.pathname}#${listingHref(listing)}`;
+  /* The published URL of this page, not window.location: a report filed while
+     testing on a laptop must not cite an address nobody else can open. */
+  const pageUrl = shareUrl(listingHref(listing));
   const issueUrl = () => {
     const body = [
       `**Place:** ${listing.name}`,

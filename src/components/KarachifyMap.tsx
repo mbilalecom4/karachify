@@ -9,7 +9,7 @@ export interface MapPoint {
   id: string;
   title: string;
   subtitle: string;
-  /** HashRouter path, e.g. /place/mazar-e-quaid */
+  /** Site path the pin links to, e.g. /place/mazar-e-quaid */
   path: string;
   lat: number;
   lng: number;

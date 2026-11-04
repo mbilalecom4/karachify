@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "verify": "node .tools/check-data.mjs",
-    "build": "node .tools/check-data.mjs && tsc -b && vite build",
+    "build": "node .tools/check-data.mjs && tsc -b && vite build && node .tools/prerender.mjs",
     "typecheck": "tsc -b",
     "preview": "vite preview",
     "serve:dist": "node .tools/serve-dist.mjs",

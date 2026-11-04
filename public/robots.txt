@@ -1,6 +1,17 @@
 User-agent: *
 Allow: /
 
-# Hash routes (#/place/...) are fragments of one URL, so the sitemap lists the
-# one address the whole app is served from rather than a page that does not exist.
+# Path-routed pages now exist, so the sitemap can list them honestly: every URL
+# in it is a file the build just wrote. These are the addresses that are not
+# pages — the JSON the app fetches, and the screens whose contents live on the
+# visitor's own device, which a crawler would find empty.
+Disallow: /karachify/data/
+Disallow: /karachify/login
+Disallow: /karachify/signup
+Disallow: /karachify/profile
+Disallow: /karachify/saved
+Disallow: /karachify/dashboard
+Disallow: /karachify/admin
+Disallow: /karachify/search
+
 Sitemap: https://mbilalecom4.github.io/karachify/sitemap.xml

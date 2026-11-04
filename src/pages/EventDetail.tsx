@@ -18,6 +18,7 @@ import { KarachifyMap } from '../components/KarachifyMap';
 import { Note } from '../components/Page';
 import { Breadcrumbs, EmptyState, IllustrativeStamp, SectionHeading, StatusBadge, useToast } from '../components/ui';
 import { coordText, dateRange, timeRange, toICS } from '../lib/format';
+import { shareUrl } from '../lib/pageMeta';
 import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 export default function EventDetail() {
@@ -158,7 +159,7 @@ export default function EventDetail() {
             <button
               className="btn btn-sm btn-on-media"
               onClick={async () => {
-                const url = `${window.location.origin}${window.location.pathname}#/events/${event.slug}`;
+                const url = shareUrl(`/events/${event.slug}`);
                 if (navigator.share) {
                   try {
                     await navigator.share({ title: event.name, text: event.description, url });

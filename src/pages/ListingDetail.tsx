@@ -34,7 +34,7 @@ import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { ReportModal } from '../components/ReportModal';
 import { Note } from '../components/Page';
-import { useDocumentTitle } from '../lib/useDocumentTitle';
+import { shareUrl } from '../lib/pageMeta';
 import {
   Breadcrumbs,
   EmptyState,
@@ -156,7 +156,6 @@ export default function ListingDetail() {
   const areas = selectAreas(db);
 
   const listing = useMemo(() => listings.find((l) => l.slug === slug), [listings, slug]);
-  useDocumentTitle(listing ? listing.name : 'Listing');
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -279,7 +278,7 @@ export default function ListingDetail() {
             <button
               className="btn btn-sm btn-on-media"
               onClick={async () => {
-                const url = `${window.location.origin}${window.location.pathname}#/place/${listing.slug}`;
+                const url = shareUrl(`/place/${listing.slug}`);
                 if (navigator.share) {
                   try {
                     await navigator.share({ title: `${listing.name} — Karachify`, text: listing.tagline, url });

@@ -1,21 +1,34 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ToastProvider } from './components/ui';
 import App from './App';
 import './index.css';
 
 /**
- * HashRouter is deliberate: the site is deployed as a static bundle (GitHub
- * Pages) and hash routing keeps deep links like #/place/mazar-e-quaid working
- * without server rewrites.
+ * BrowserRouter, not HashRouter — a place's URL should read as `/place/…`, and
+ * a social card or a search result can only be pointed at a path that a server
+ * can actually answer.
+ *
+ * Two things make that work on a static host, and both are build-time, not
+ * runtime: `.tools/prerender.mjs` writes a real `<path>/index.html` for every
+ * indexable page, so those arrive with a 200 and their own head, and GitHub
+ * Pages falls back to `404.html` for anything else — which is the same shell,
+ * so a deep link to an OpenStreetMap record still opens even though the status
+ * line says otherwise.
+ *
+ * The basename is Vite's BASE_URL — the `/karachify/` the site is published
+ * under, with the trailing slash dropped so a joined href never reads
+ * `//place`. In dev BASE_URL is `/` and the basename goes back to `/`.
  */
+const basename = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={basename}>
       <ToastProvider>
         <App />
       </ToastProvider>
-    </HashRouter>
+    </BrowserRouter>
   </StrictMode>
 );

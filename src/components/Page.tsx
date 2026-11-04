@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { imageFor } from '../lib/media';
-import { useDocumentTitle } from '../lib/useDocumentTitle';
 import { Breadcrumbs, IllustrativeStamp } from './ui';
 
 /** Standard interior-page header: Karachi photograph, opaque scrim, title block. */
@@ -23,7 +22,8 @@ export function PageHero({
   children?: ReactNode;
   height?: string;
 }) {
-  useDocumentTitle(title);
+  /* The tab title is not set here. MetaManager owns the document head for every
+     page this hero appears on, and a second writer would win only by racing. */
   const media = imageFor(mediaKey, label);
   return (
     <section className={`relative isolate flex items-end overflow-hidden ${height}`}>

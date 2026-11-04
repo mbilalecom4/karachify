@@ -24,7 +24,6 @@ import { GuideCard, ListingCard, AreaCard, EventCard, CategoryCard, populatedCat
 import { LazyMap } from '../components/LazyMap';
 import { openCountLabel, useTierSummary } from '../lib/openRecords';
 import { EmptyState, Reveal, SectionHeading } from '../components/ui';
-import { useDocumentTitle } from '../lib/useDocumentTitle';
 
 const POPULAR_PLACE_SLUGS = [
   'mazar-e-quaid',
@@ -56,7 +55,6 @@ function photoCredit(img: ReturnType<typeof imageFor>, fallbackLabel: string) {
 }
 
 export default function Home() {
-  useDocumentTitle('');
   const db = useDB();
   const navigate = useNavigate();
   const listings = selectListings(db);

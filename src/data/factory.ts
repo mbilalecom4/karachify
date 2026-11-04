@@ -18,7 +18,14 @@ function offset(slug: string, spread: number) {
  * sentence after research has replaced the paragraph underneath it.
  */
 export function taglineFor(description: string) {
-  return description.split('.')[0].slice(0, 110);
+  const sentence = description.split('.')[0].trim();
+  if (sentence.length <= 110) return sentence;
+  /* A card is one line, so the sentence has to be cut — but at a space, with the
+     ellipsis that says so. Cutting at character 110 wrote "…that is the visual
+     hea" onto cards and into the description a crawler is handed for the page. */
+  const window = sentence.slice(0, 110);
+  const space = window.lastIndexOf(' ');
+  return `${window.slice(0, space > 40 ? space : 110).replace(/[,;:]+$/, '')}…`;
 }
 
 export function makeListing(seed: Seed): Listing {

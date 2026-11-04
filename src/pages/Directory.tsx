@@ -36,9 +36,9 @@ export default function Directory() {
     return t.map((a) => ({ ...a, area: areaById.get(a.id) })).filter((a) => a.area);
   }, [tier.data]);
 
-  /* An open record's trail links back to its tile as /directory#category-x.
-     HashRouter swallows that second fragment and the tiles only exist once the
-     summary has arrived, so the jump has to be made by hand. */
+  /* An open record's trail links back to its tile as /directory#category-x. The
+     tiles only exist once the 7 KB summary has arrived, so the jump cannot happen
+     on the anchor click itself and has to be made after the data paints. */
   useEffect(() => {
     if (!tier.data) return;
     const id = window.location.hash.match(/#(category-[\w-]+)$/)?.[1];

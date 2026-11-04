@@ -1,5 +1,6 @@
 import { useEffect, type MouseEvent } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { applyPageMeta, metaForPath } from '../lib/pageMeta';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { MobileTabBar } from './MobileTabBar';
@@ -13,10 +14,30 @@ function ScrollManager() {
   return null;
 }
 
+/**
+ * Keeps the document head in step with the page a visitor is on.
+ *
+ * `.tools/prerender.mjs` writes the same tags into the files a crawler receives,
+ * so the two only agree if both read `src/lib/pageMeta.ts`. Paths this module
+ * declines to describe — an account screen, an unknown slug, an OpenStreetMap
+ * record whose name lives in a tier file rather than the bundle — are left
+ * exactly as they were served, because a description invented to fill a gap is
+ * the thing this site promises not to do.
+ */
+function MetaManager() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const meta = metaForPath(pathname);
+    if (meta) applyPageMeta(meta);
+  }, [pathname]);
+  return null;
+}
+
 export function Layout() {
-  // The href is there for semantics, but a bare "#main" would be read by
-  // HashRouter as a route and send the visitor to a 404 — so the click moves
-  // focus itself and the router never sees the hash change.
+  // The href is a real anchor now that routes are paths: with JavaScript off the
+  // browser still jumps. The handler exists for what a jump alone does not do —
+  // move the focus, so the keys that follow land inside the page, not back on
+  // the header.
   const skipToContent = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const main = document.getElementById('main');
@@ -27,6 +48,7 @@ export function Layout() {
   return (
     <div className="flex min-h-screen flex-col pb-[64px] lg:pb-0">
       <ScrollManager />
+      <MetaManager />
       <a
         href="#main"
         onClick={skipToContent}
