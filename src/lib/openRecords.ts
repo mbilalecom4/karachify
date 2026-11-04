@@ -108,15 +108,22 @@ function partIndexOf(index: TierPartsIndex, slug: string) {
 }
 
 const cache = new Map<string, Load<unknown>>();
-const readers = new Map<string, { promise: Promise<unknown>; refs: number; controller: AbortController }>();
-
-const isAbort = (error: unknown) => error instanceof Error && /abort/i.test(error.name);
+const readers = new Map<string, { promise: Promise<unknown>; refs: number; xhr: XMLHttpRequest }>();
 
 /**
- * Read one tier file, with a single network request shared by everyone waiting
- * for it. `release` is the other half of the deal: the request is aborted once
- * the last reader leaves, so navigating away from an 80 KB part stops spending on
- * a page nobody is looking at.
+ * Read one tier file, with a single request shared by everyone waiting for it.
+ * `release` is the other half of the deal: the read is cancelled once the last
+ * reader leaves, so navigating away from an 80 KB part stops spending on a page
+ * nobody is looking at.
+ *
+ * XHR, not fetch. Chrome rejects a promise of its own — inside the body-reading
+ * machinery, outside anything the caller can attach a handler to — whenever an
+ * AbortController fires on a request it still owns. Measured against a server
+ * that drips the tier files slowly: switching a category's layer off mid-load
+ * through fetch left an uncaught AbortError for nearly every cancelled file;
+ * `xhr.abort()` leaves none, and the cancelled reads are still visible — the
+ * queued ones as net::ERR_ABORTED, the ones already streaming as zero bytes
+ * received out of an 82 KB body.
  */
 function request<T>(name: string): Promise<T> {
   const cached = cache.get(name);
@@ -126,30 +133,46 @@ function request<T>(name: string): Promise<T> {
     shared.refs += 1;
     return shared.promise as Promise<T>;
   }
-  const controller = new AbortController();
-  const entry: { promise: Promise<unknown>; refs: number; controller: AbortController } = {
+  const xhr = new XMLHttpRequest();
+  const entry: { promise: Promise<unknown>; refs: number; xhr: XMLHttpRequest } = {
     refs: 1,
-    controller,
+    xhr,
     promise: null as unknown as Promise<unknown>,
   };
-  entry.promise = fetch(file(name), { headers: { Accept: 'application/json' }, signal: controller.signal })
-    .then((res) => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      readers.delete(name);
+  const forget = () => readers.delete(name);
+  entry.promise = new Promise<unknown>((resolve, reject) => {
+    xhr.open('GET', file(name));
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.onload = () => {
+      forget();
+      if (xhr.status < 200 || xhr.status > 299) {
+        cache.set(name, { data: null, failed: true });
+        return reject(new Error(`HTTP ${xhr.status}`));
+      }
+      let data: unknown;
+      try {
+        data = JSON.parse(xhr.responseText);
+      } catch {
+        cache.set(name, { data: null, failed: true });
+        return reject(new Error(`${name}.json is not JSON`));
+      }
       cache.set(name, { data, failed: false });
-      return data;
-    })
-    .catch((error) => {
-      readers.delete(name);
-      /* A visitor who left is not a file that is missing: the next reader has to
-         try again rather than inherit this as a permanent failure. */
-      if (!isAbort(error)) cache.set(name, { data: null, failed: true });
-      throw error;
-    });
+      resolve(data);
+    };
+    xhr.onerror = () => {
+      forget();
+      cache.set(name, { data: null, failed: true });
+      reject(new Error('network'));
+    };
+    /* A visitor who left is not a file that is missing: nothing is cached here, so
+       the next reader has to try again rather than inherit this as a permanent failure. */
+    xhr.onabort = () => {
+      forget();
+      reject(new Error('cancelled'));
+    };
+  });
   readers.set(name, entry);
+  xhr.send();
   return entry.promise as Promise<T>;
 }
 
@@ -159,7 +182,7 @@ function release(name: string) {
   shared.refs -= 1;
   if (shared.refs > 0) return;
   readers.delete(name);
-  shared.controller.abort();
+  shared.xhr.abort();
 }
 
 /* --------------------------------- hooks --------------------------------- */
