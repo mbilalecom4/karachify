@@ -308,6 +308,17 @@ export function Reveal({ children, className = '', delay = 0 }: { children: Reac
 
 /* -------------------------------- modal ------------------------------- */
 
+const FOCUSABLE =
+  'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+
+/** Everything a Tab key can land on inside a dialog, in DOM order, with the
+ *  collapsed and hidden branches left out — a closed submenu is not a stop. */
+function focusablesIn(root: HTMLElement) {
+  return [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
+    (el) => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement
+  );
+}
+
 export function Modal({
   open,
   onClose,
@@ -324,18 +335,55 @@ export function Modal({
   size?: 'sm' | 'md' | 'lg';
 }) {
   const titleId = useId();
+  const panel = useRef<HTMLDivElement>(null);
+  /* The parent's onClose is usually a fresh arrow on every render. Holding it in
+     a ref keeps the key handler mounted once per opening instead of re-binding
+     — and re-running the focus effect, which would snatch the caret out of the
+     field a visitor is typing into. */
+  const dismiss = useRef(onClose);
+  dismiss.current = onClose;
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    document.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
+    const opener = document.activeElement;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    panel.current?.focus();
     return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevOverflow;
+      /* Back to whoever opened it, if that control survived. A report button on
+         a page this dialog navigated away from has not. */
+      if (opener instanceof HTMLElement && opener.isConnected) opener.focus();
     };
-  }, [open, onClose]);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const inside = () => (panel.current ? focusablesIn(panel.current) : []);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        dismiss.current();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const items = inside();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      /* The panel itself holds focus when the dialog opens, and nothing else
+         outside the list does. Either way there is no natural next stop inside
+         the dialog, so the key has to be steered rather than left to the browser
+         — native Tab from the panel would walk backwards into the page behind. */
+      const onItem = !!active && items.includes(active);
+      if (e.shiftKey ? !onItem || active === first : !onItem || active === last) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   if (!open) return null;
   const width = size === 'sm' ? 'max-w-md' : size === 'lg' ? 'max-w-3xl' : 'max-w-xl';
@@ -343,17 +391,23 @@ export function Modal({
   return (
     <div className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-navy-950/70 px-4 py-8 animate-fade-in" onMouseDown={onClose}>
       <div
+        ref={panel}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={`w-full ${width} rounded-2xl border border-navy-100 bg-white shadow-lift animate-fade-up`}
+        className={`w-full ${width} rounded-2xl border border-navy-100 bg-white shadow-lift outline-none animate-fade-up`}
         onMouseDown={(e) => e.stopPropagation()}
       >
         <header className="flex items-center justify-between gap-4 border-b border-navy-100 px-5 py-4">
           <h3 id={titleId} className="text-lg font-bold text-navy-800">
             {title}
           </h3>
-          <button onClick={onClose} aria-label="Close dialog" className="rounded-full p-1.5 text-navy-500 hover:bg-navy-50 hover:text-navy-800">
+          <button
+            onClick={onClose}
+            aria-label="Close dialog"
+            className="grid min-h-[44px] min-w-[44px] place-items-center rounded-full p-1.5 text-navy-500 hover:bg-navy-50 hover:text-navy-800"
+          >
             <X className="h-5 w-5" />
           </button>
         </header>

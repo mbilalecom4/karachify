@@ -209,7 +209,7 @@ export function Header() {
                   <button
                     onClick={() => (openMenu === item.label ? setOpenMenu(null) : hoverOpen(item.label))}
                     aria-expanded={openMenu === item.label}
-                    className="flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-semibold text-navy-700 hover:bg-navy-50 hover:text-navy-900 2xl:px-3 2xl:text-[14px]"
+                    className="flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-semibold text-navy-700 hover:bg-navy-50 hover:text-navy-900 2xl:px-3 2xl:text-[14px]"
                   >
                     {item.label}
                     <ChevronDown className={`h-4 w-4 text-navy-400 transition-transform ${openMenu === item.label ? 'rotate-180' : ''}`} />
@@ -238,7 +238,7 @@ export function Header() {
                   key={item.label}
                   to={item.to}
                   className={({ isActive }) =>
-                    `whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-semibold transition-colors 2xl:px-3 2xl:text-[14px] ${
+                    `flex min-h-[44px] items-center whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-semibold transition-colors 2xl:px-3 2xl:text-[14px] ${
                       isActive && item.to !== '/' ? 'bg-navy-50 text-teal-700' : 'text-navy-700 hover:bg-navy-50 hover:text-navy-900'
                     }`
                   }
@@ -253,11 +253,11 @@ export function Header() {
             <SearchBox variant="header" placeholder="Search Karachi..." />
           </div>
 
-          <button className="ml-auto rounded-full p-2 text-navy-700 hover:bg-navy-50 lg:hidden" onClick={() => setMobileSearch((s) => !s)} aria-label="Open search">
+          <button className="ml-auto grid min-h-[44px] min-w-[44px] place-items-center rounded-full text-navy-700 hover:bg-navy-50 lg:hidden" onClick={() => setMobileSearch((s) => !s)} aria-label="Open search">
             <Search className="h-5 w-5" />
           </button>
 
-          <button className="hidden rounded-full p-2 text-navy-700 hover:bg-navy-50 lg:block" onClick={() => navigate('/saved')} aria-label={`Favourites (${favourites})`}>
+          <button className="hidden min-h-[44px] min-w-[44px] place-items-center rounded-full text-navy-700 hover:bg-navy-50 lg:grid" onClick={() => navigate('/saved')} aria-label={`Favourites (${favourites})`}>
             <span className="relative block">
               <Heart className="h-5 w-5" />
               {favourites > 0 && (
@@ -272,7 +272,7 @@ export function Header() {
             <div className="relative hidden lg:block">
               <button
                 onClick={() => setAccount((a) => !a)}
-                className="flex items-center gap-2 rounded-full border border-navy-100 py-1 pl-1 pr-3 hover:border-teal-300"
+                className="flex min-h-[44px] items-center gap-2 rounded-full border border-navy-100 py-1 pl-1 pr-3 hover:border-teal-300"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-navy-800 text-[12px] font-bold text-white">
                   {user.name.slice(0, 1).toUpperCase()}
@@ -312,17 +312,17 @@ export function Header() {
             </div>
           ) : (
             <div className="hidden items-center gap-2 lg:flex">
-              <Link to="/login" className="btn-ghost btn-sm">
+              <Link to="/login" className="btn-ghost btn-sm min-h-[44px]">
                 Log in
               </Link>
-              <Link to="/signup" className="btn-accent btn-sm">
+              <Link to="/signup" className="btn-accent btn-sm min-h-[44px]">
                 Sign up
               </Link>
             </div>
           )}
 
           <button
-            className="rounded-xl border border-navy-100 p-2 text-navy-800 xl:hidden"
+            className="grid min-h-[44px] min-w-[44px] place-items-center rounded-xl border border-navy-100 text-navy-800 xl:hidden"
             onClick={() => setMobile((m) => !m)}
             aria-label={mobile ? 'Close menu' : 'Open menu'}
             aria-expanded={mobile}
@@ -423,7 +423,7 @@ function MobileNode({ item }: { item: NavItem }) {
           aria-label={`Toggle ${item.label} submenu`}
           aria-expanded={open}
           aria-controls={`submenu-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-          className="p-2 text-navy-500"
+          className="grid min-h-[44px] min-w-[44px] place-items-center text-navy-500"
         >
           <ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} />
         </button>

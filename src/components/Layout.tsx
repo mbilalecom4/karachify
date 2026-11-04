@@ -1,4 +1,4 @@
-import { useEffect, type MouseEvent } from 'react';
+import { useEffect, useRef, type MouseEvent } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { applyPageMeta, metaForPath } from '../lib/pageMeta';
 import { Header } from './Header';
@@ -33,6 +33,31 @@ function MetaManager() {
   return null;
 }
 
+/**
+ * Lands the caret of focus on the page a keyboard visitor just arrived on.
+ *
+ * Without it, Tab after a link keeps walking the header of the page they left.
+ * The first render is skipped, because on arrival there is nothing to move away
+ * from and stealing focus would scroll a reader who opened the site halfway down
+ * a link. A page that wants the caret somewhere specific — the search box —
+ * mounts its own focus first, and this defers to it.
+ */
+function FocusManager() {
+  const { pathname } = useLocation();
+  const arrived = useRef(false);
+  useEffect(() => {
+    if (!arrived.current) {
+      arrived.current = true;
+      return;
+    }
+    if (document.querySelector('[role="dialog"]')) return;
+    const main = document.getElementById('main');
+    if (!main || main.contains(document.activeElement)) return;
+    main.focus({ preventScroll: true });
+  }, [pathname]);
+  return null;
+}
+
 export function Layout() {
   // The href is a real anchor now that routes are paths: with JavaScript off the
   // browser still jumps. The handler exists for what a jump alone does not do —
@@ -49,6 +74,7 @@ export function Layout() {
     <div className="flex min-h-screen flex-col pb-[64px] lg:pb-0">
       <ScrollManager />
       <MetaManager />
+      <FocusManager />
       <a
         href="#main"
         onClick={skipToContent}

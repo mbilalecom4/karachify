@@ -99,7 +99,8 @@ export function SearchBox({
   return (
     <div ref={boxRef} className="relative w-full">
       <div
-        className={`flex items-center gap-2 rounded-full bg-white shadow-lift transition-shadow ${
+        onClick={() => inputRef.current?.focus()}
+        className={`flex min-h-[44px] items-center gap-2 rounded-full bg-white shadow-lift transition-shadow ${
           isHero ? 'border-2 border-white/70 p-1.5 sm:p-2' : 'border border-navy-200 p-1'
         } ${open && compactOnFocus ? 'ring-4 ring-teal-500/15' : ''}`}
       >
@@ -146,12 +147,12 @@ export function SearchBox({
               inputRef.current?.focus();
             }}
             aria-label="Clear search"
-            className="rounded-full p-1.5 text-navy-400 hover:bg-navy-50 hover:text-navy-700"
+            className="grid min-h-[44px] min-w-[44px] place-items-center rounded-full text-navy-400 hover:bg-navy-50 hover:text-navy-700"
           >
             <X className="h-4 w-4" />
           </button>
         )}
-        <button onClick={submit} className={isHero ? 'btn-primary' : 'btn-dark btn-sm'} aria-label="Search">
+        <button onClick={submit} className={isHero ? 'btn-primary' : 'btn-dark btn-sm min-h-[44px]'} aria-label="Search">
           {isHero ? 'Search' : 'Go'}
         </button>
       </div>
