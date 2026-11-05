@@ -55,10 +55,15 @@ export default function Privacy() {
               sent to the same geocoder, along with the fact that the search is limited to Karachi.
             </li>
             <li>
+              Once a plan is built, each leg between two stops is sent to the FOSSGIS public routing server as a pair of
+              coordinates, so that it can return the walking distance and time. That server sees two points in Karachi and
+              your IP address; it does not see your name, your plan, or which recorded place either point is.
+            </li>
+            <li>
               What you have already loaded — the page, its photographs, the record files — is also kept on your own device
               by a service worker, so a returning visit or an installed app can open it without a connection. That copy
-              never leaves the device, live weather and prayer figures are not part of it, and clearing site data removes
-              it.
+              never leaves the device, live figures — weather, prayer times, place names and walking routes — are not part of
+              it, and clearing site data removes it.
             </li>
           </ul>
           <p>

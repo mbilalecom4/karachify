@@ -5,6 +5,7 @@ import type { Listing } from '../types';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { aroundTheClock, coordText, copyText, distanceKm, plural } from '../lib/format';
 import { FAILURE_COPY, fromArea, labelPoint, searchKarachi, whereAmI, type GeoSuccess } from '../lib/geo';
+import { legKey, walkKm, walkLeg, walkMinutes, type LatLng, type WalkResult } from '../lib/walk';
 import { Note, PageHero } from '../components/Page';
 import { SectionHeading, useToast } from '../components/ui';
 import { LazyMap } from '../components/LazyMap';
@@ -128,6 +129,8 @@ export default function PlanDay() {
   const [categoryIds, setCategoryIds] = useState<string[]>(saved?.categoryIds ?? []);
   const [picked, setPicked] = useState<string[]>(saved?.picked ?? []);
   const [plan, setPlan] = useState<Listing[][] | null>(null);
+  /** Walking legs of the built plan, filled in as the router answers each one. */
+  const [legs, setLegs] = useState<Record<string, WalkResult>>({});
 
   const [start, setStart] = useState<Start | null>(saved?.start ?? null);
   const [asking, setAsking] = useState<'device' | 'search' | null>(null);
@@ -212,6 +215,32 @@ export default function PlanDay() {
     setPlan(null);
   };
 
+  /**
+   * Ask the router for every leg the built plan walks, one at a time. Each
+   * answer lands on its own; a plan whose router goes quiet still shows the
+   * straight-line figures it had before, labelled as what they are.
+   */
+  useEffect(() => {
+    if (!plan) {
+      setLegs({});
+      return;
+    }
+    const pairs: [LatLng, LatLng][] = [];
+    plan.forEach((stops, d) => {
+      if (d === 0 && start && stops.length) pairs.push([start, stops[0]]);
+      for (let i = 1; i < stops.length; i++) pairs.push([stops[i - 1], stops[i]]);
+    });
+    let live = true;
+    pairs.forEach(([a, b]) => {
+      walkLeg(a, b).then((res) => {
+        if (live) setLegs((table) => ({ ...table, [legKey(a, b)]: res }));
+      });
+    });
+    return () => {
+      live = false;
+    };
+  }, [plan, start]);
+
   /* ------------------------------ start point ------------------------------ */
 
   /**
@@ -283,22 +312,32 @@ export default function PlanDay() {
       .slice(0, 5);
   }, [start, pool, picked]);
 
+  /** The most recent router answer in the plan, or nothing if none arrived. */
+  const walkedAt = useMemo(() => {
+    const times = Object.values(legs).flatMap((r) => (r.ok ? [r.leg.at] : []));
+    return times.length ? new Date(Math.max(...times)) : null;
+  }, [legs]);
+
   const planText = () => {
     if (!plan) return '';
     const head =
       `Karachify suggested plan · ${days} ${days === 1 ? 'day' : 'days'} · ${GROUPS.find((g) => g.id === group)?.label}\n` +
       (start ? `Starting from: ${start.label} (${start.lat.toFixed(5)}, ${start.lng.toFixed(5)}) · ${sourceLine(start)}\n` : '') +
-      'Order is by straight-line distance on the map, not a walking or driving route.\n';
+      `Order is by straight-line distance on the map. ${
+        walkedAt
+          ? `Walking figures come from an OpenStreetMap foot route (OSRM, FOSSGIS), computed ${walkedAt.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}.`
+          : 'No walking route was returned, so the distances below are straight-line.'
+      }\n`;
     const body = plan
       .map((stops, i) => {
         const rows = stops.map((l, j) => {
-          const from =
-            j === 0
-              ? i === 0 && start
-                ? ` (${distanceKm(start, l).toFixed(1)} km from the start)`
-                : ''
-              : ` (${distanceKm(stops[j - 1], l).toFixed(1)} km from the previous stop)`;
-          return `  ${j + 1}. ${l.name}, ${areaName(l.areaId)}${from}`;
+          const origin: LatLng | null = j > 0 ? stops[j - 1] : i === 0 ? start : null;
+          if (!origin) return `  ${j + 1}. ${l.name}, ${areaName(l.areaId)}`;
+          const walked = legs[legKey(origin, l)];
+          const measure = walked?.ok
+            ? `${walkKm(walked.leg.metres)} km, about ${walkMinutes(walked.leg.seconds)} on foot`
+            : `${distanceKm(origin, l).toFixed(1)} km straight-line`;
+          return `  ${j + 1}. ${l.name}, ${areaName(l.areaId)} (${measure} ${j === 0 ? 'from the start' : 'from the previous stop'})`;
         });
         return `\nDay ${i + 1}\n${rows.length ? rows.join('\n') : '  — free day'}`;
       })
@@ -584,8 +623,8 @@ export default function PlanDay() {
               title={`${days} ${days === 1 ? 'day' : 'days'} · ${pickedListings.length} stops`}
               sub={
                 start
-                  ? `The run begins at the stop nearest your start point. Every distance shown is straight-line on the map, not a walking or driving route.`
-                  : 'Each day is a run of stops ordered by map distance from the centre of the areas you picked. Every distance shown is straight-line, not a walking or driving route.'
+                  ? 'The run begins at the stop nearest your start point. Where the router answered, each leg shows the walking distance and time; where it did not, the figure stays labelled straight-line.'
+                  : 'Each day is a run of stops ordered by map distance from the centre of the areas you picked. Where the router answered, each leg shows the walking distance and time; where it did not, the figure stays labelled straight-line.'
               }
               action={
                 <div className="no-print flex gap-2">
@@ -616,6 +655,23 @@ export default function PlanDay() {
                 {sourceLine(start)}, taken {new Date(start.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}.
               </p>
             )}
+            <p className="text-[12.5px] leading-relaxed text-navy-500">
+              {walkedAt ? (
+                <>
+                  The walking figures are a foot route over the OpenStreetMap path network, worked out by OSRM on the{' '}
+                  <a href="https://routing.openstreetmap.de" target="_blank" rel="noopener noreferrer" className="link font-semibold">
+                    FOSSGIS public server
+                  </a>{' '}
+                  at {walkedAt.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}. They assume a steady walk; they are
+                  not a driving time and Karachify does not offer one.
+                </>
+              ) : (
+                <>
+                  No walking route came back, so every leg below is the straight-line distance between the two pins. Karachify shows the straight figure rather than
+                  a guess when the router cannot be reached or finds no path between those two points.
+                </>
+              )}
+            </p>
             {planMap && planMap.points.length > 0 && (
               <figure className="card overflow-hidden p-1.5">
                 <LazyMap points={planMap.points} routes={planMap.routes} className="h-[340px] w-full sm:h-[440px]" compact />
@@ -628,7 +684,7 @@ export default function PlanDay() {
                   ))}
                   <span className="text-[12.5px] text-navy-600">
                     Each colour is one day. The dashed line joins the recorded pins in the suggested order
-                    {start ? ', leaving from your start point on day one' : ''} — it is not a walking or driving route.
+                    {start ? ', leaving from your start point on day one' : ''} — it shows the sequence, not the street you would walk.
                   </span>
                 </figcaption>
               </figure>
@@ -651,9 +707,10 @@ export default function PlanDay() {
                   ) : (
                     <ol className="mt-3 space-y-3">
                       {stops.map((l, i) => {
-                        const origin = i === 0 ? (dayIndex === 0 ? start : stops[i - 1]) : stops[i - 1];
-                        const fromStart = i === 0 && dayIndex === 0 && Boolean(start);
-                        const leg = i === 0 ? (origin ? distanceKm(origin, l) : null) : distanceKm(stops[i - 1], l);
+                        const origin: LatLng | null = i > 0 ? stops[i - 1] : dayIndex === 0 ? start ?? null : null;
+                        const straight = origin ? distanceKm(origin, l) : null;
+                        const walked = origin ? legs[legKey(origin, l)] : undefined;
+                        const where = i === 0 ? 'from your start' : 'from the previous stop';
                         return (
                           <li key={l.slug} className="flex gap-3">
                             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy-800 text-[12px] font-bold text-white">
@@ -665,7 +722,10 @@ export default function PlanDay() {
                               </Link>
                               <p className="text-[12.5px] text-navy-400">
                                 {areaName(l.areaId)}
-                                {leg != null && ` · ${leg.toFixed(1)} km ${fromStart ? 'from your start' : 'from the previous stop'}`}
+                                {straight != null &&
+                                  (walked?.ok
+                                    ? ` · ${walkKm(walked.leg.metres)} km, about ${walkMinutes(walked.leg.seconds)} on foot ${where}`
+                                    : ` · ${straight.toFixed(1)} km straight-line ${where}${walked ? ' — no walking route returned' : ' — working out the walk'}`)}
                               </p>
                               {l.address && <p className="mt-0.5 text-[12.5px] text-navy-500">{l.address}</p>}
                               <p className="text-[12px] text-navy-400">
@@ -684,8 +744,9 @@ export default function PlanDay() {
 
             <Note>
               <strong className="text-navy-700">What this plan is not.</strong> The order is a suggestion from straight-line
-              distance {start ? 'from your start point and' : ''} between the recorded pins; it does not know about traffic, one-way streets, prayers, lunch queues or
-              which gate is open. Karachify does not estimate walking or driving time. Check each place&apos;s hours and pin label
+              distance {start ? 'from your start point and ' : ''}between the recorded pins; it does not know about traffic, one-way streets, prayers, lunch queues or
+              which gate is open. The walking figures are a route over the map as it was drawn — a steady pace, no queues, no shade, and no driving time, which
+              Karachify does not estimate. Check each place&apos;s hours and pin label
               before you set out, and treat an <span className="font-semibold">approximate pin</span> as the neighbourhood,
               not the door.
               <Link to="/sources" className="link ml-1 font-semibold">

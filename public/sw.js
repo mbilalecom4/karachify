@@ -21,8 +21,9 @@
  *   photographs  cache first, capped. A card image is a rendition of a file
  *                that does not change, and the cache is trimmed so a long
  *                browsing session cannot quietly eat the device's storage.
- *   live reads   never cached. Weather, prayer times and "open now" are
- *                answers about this minute; a number from this morning would be
+ *   live reads   never cached. Weather, prayer times, place names and walking
+ *                routes are answers about this minute, asked because somebody
+ *                pressed a button; a number from this morning would be
  *                presented as if it were current, which is the one thing this
  *                site promises not to do. Those panels show their own
  *                unavailable state instead.
@@ -43,8 +44,8 @@ const LIMITS = { page: 60, bundle: 240, data: 80, media: 160 };
 /** `/karachify/` — the directory this worker was served from, which is its scope. */
 const SCOPE = self.location.pathname.replace(/[^/]*$/, '');
 
-/** The two live reads stay off the cache entirely — see the note at the top. */
-const LIVE_APIS = ['api.open-meteo.com', 'api.aladhan.com'];
+/** Live reads stay off the cache entirely — see the note at the top. */
+const LIVE_APIS = ['api.open-meteo.com', 'api.aladhan.com', 'nominatim.openstreetmap.org', 'routing.openstreetmap.de'];
 /** Hosts whose files are worth keeping: the photographs and the map tiles. */
 const CACHED_HOSTS = ['upload.wikimedia.org', 'thumb.wikimedia.org', 'tile.openstreetmap.org'];
 

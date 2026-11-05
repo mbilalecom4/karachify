@@ -17,7 +17,7 @@ const CSP =
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
   "font-src 'self' data: https://fonts.gstatic.com; " +
   "img-src 'self' data: blob: https://thumb.wikimedia.org https://upload.wikimedia.org https://tile.openstreetmap.org; " +
-  "connect-src 'self' https://tile.openstreetmap.org https://api.open-meteo.com https://api.aladhan.com https://nominatim.openstreetmap.org; " +
+  "connect-src 'self' https://tile.openstreetmap.org https://api.open-meteo.com https://api.aladhan.com https://nominatim.openstreetmap.org https://routing.openstreetmap.de; " +
   "object-src 'none'; base-uri 'self'; form-action 'self'";
 
 function contentSecurityPolicy(): Plugin {
