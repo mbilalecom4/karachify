@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarRange, Check, Copy, MapPin, Printer, Route, RotateCcw, Users } from 'lucide-react';
+import { ArrowRight, CalendarRange, Check, Copy, Crosshair, MapPin, Plus, Printer, Route, RotateCcw, Search, Users, X } from 'lucide-react';
 import type { Listing } from '../types';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
-import { aroundTheClock, copyText, distanceKm, plural } from '../lib/format';
+import { aroundTheClock, coordText, copyText, distanceKm, plural } from '../lib/format';
+import { FAILURE_COPY, fromArea, labelPoint, searchKarachi, whereAmI, type GeoSuccess } from '../lib/geo';
 import { Note, PageHero } from '../components/Page';
 import { SectionHeading, useToast } from '../components/ui';
 import { LazyMap } from '../components/LazyMap';
@@ -11,6 +12,12 @@ import { KarachiToday } from '../components/KarachiToday';
 import type { MapPoint, MapRoute } from '../components/KarachifyMap';
 
 type Group = 'solo' | 'couple' | 'family' | 'friends';
+
+/** Where the day begins. Kept on this device only, and only after a button press. */
+type Start = GeoSuccess & {
+  /** Set when a device coordinate was given a name by OpenStreetMap afterwards. */
+  named?: 'nominatim';
+};
 
 const GROUPS: { id: Group; label: string; note: string }[] = [
   { id: 'solo', label: 'Solo', note: 'One area a day, fewer stops, room to walk.' },
@@ -20,38 +27,64 @@ const GROUPS: { id: Group; label: string; note: string }[] = [
 ];
 
 const MAX_STOPS = 15;
-const KEY = 'karachify.plan.v1';
+const KEY = 'karachify.plan.v2';
+/** The plan saved before the start point existed. Read once, then written to v2. */
+const OLD_KEY = 'karachify.plan.v1';
+
+/** How each kind of start was obtained, in the words shown beside it. */
+const SOURCE_LINE: Record<Start['source'], string> = {
+  device: 'a position this device offered when you asked it to',
+  nominatim: 'a place you typed, found on OpenStreetMap',
+  area: 'the centre of an area you picked',
+};
+
+/** A device coordinate arrives nameless; say who supplied the name it now has. */
+const sourceLine = (start: Start) => SOURCE_LINE[start.source] + (start.named ? ' · the name is OpenStreetMap\u2019s' : '');
 
 // Dark enough to read over the base map, distinct enough for five days.
 const DAY_COLORS = ['#0A6A63', '#B45309', '#0369A1', '#6D28D9', '#BE123C'];
 const dayColor = (i: number) => DAY_COLORS[i % DAY_COLORS.length];
 
-type Saved = { group: Group; days: number; areaIds: string[]; categoryIds: string[]; picked: string[] } | null;
+type Saved = { group: Group; days: number; areaIds: string[]; categoryIds: string[]; picked: string[]; start?: Start | null };
 
 function loadSaved(): Saved {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return null;
-    const v = JSON.parse(raw) as Saved;
-    if (!v || !Array.isArray(v.picked)) return null;
-    return v;
-  } catch {
-    return null;
+  // v2 holds the start point as well as the picks, so a plan saved by the
+  // previous version is read from its own key rather than starting the visitor
+  // over on an empty page.
+  for (const key of [KEY, OLD_KEY]) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) continue;
+      const v = JSON.parse(raw) as Saved;
+      if (v && Array.isArray(v.picked)) return v;
+    } catch {
+      /* a corrupt entry is no better than no entry */
+    }
   }
+  return { group: 'family', days: 2, areaIds: [], categoryIds: [], picked: [] };
 }
 
-/** Nearest-neighbour from the stop closest to the selected areas' centre. */
-function orderStops(picked: Listing[], centres: { lat: number; lng: number }[]) {
+/**
+ * Nearest-neighbour over the recorded pins.
+ *
+ * With a start point the run begins at the stop nearest to where the visitor
+ * actually is; without one it begins at the stop nearest the centre of the
+ * areas they chose, which is the next best thing and is labelled as such on the
+ * page. Either way the measure is straight-line distance between two pins, and
+ * the page says so rather than implying a route.
+ */
+function orderStops(picked: Listing[], centres: { lat: number; lng: number }[], start?: Start | null) {
   if (picked.length < 2) return picked;
-  const start =
-    centres.length === 0
+  const anchors = start ? [start] : centres;
+  const first =
+    anchors.length === 0
       ? picked[0]
       : picked.reduce((best, p) => {
-          const sum = (l: Listing) => centres.reduce((t, c) => t + distanceKm(l, c), 0);
+          const sum = (l: Listing) => anchors.reduce((t, c) => t + distanceKm(l, c), 0);
           return sum(p) < sum(best) ? p : best;
         }, picked[0]);
-  const remaining = picked.filter((p) => p.slug !== start.slug);
-  const out = [start];
+  const remaining = picked.filter((p) => p.slug !== first.slug);
+  const out = [first];
   while (remaining.length) {
     let bestIndex = 0;
     let bestDistance = Infinity;
@@ -96,13 +129,18 @@ export default function PlanDay() {
   const [picked, setPicked] = useState<string[]>(saved?.picked ?? []);
   const [plan, setPlan] = useState<Listing[][] | null>(null);
 
+  const [start, setStart] = useState<Start | null>(saved?.start ?? null);
+  const [asking, setAsking] = useState<'device' | 'search' | null>(null);
+  const [geoError, setGeoError] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
+
   useEffect(() => {
     try {
-      localStorage.setItem(KEY, JSON.stringify({ group, days, areaIds, categoryIds, picked }));
+      localStorage.setItem(KEY, JSON.stringify({ group, days, areaIds, categoryIds, picked, start }));
     } catch {
       /* storage full or blocked — the planner still works for this visit */
     }
-  }, [group, days, areaIds, categoryIds, picked]);
+  }, [group, days, areaIds, categoryIds, picked, start]);
 
   const toggle = (list: string[], id: string) => (list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
 
@@ -139,11 +177,16 @@ export default function PlanDay() {
           kind: 'listing',
         });
       });
-      if (stops.length > 1) routes.push({ id: `day-${d + 1}`, color, stops: stops.map((l) => ({ lat: l.lat, lng: l.lng })) });
+      const line = stops.map((l) => ({ lat: l.lat, lng: l.lng }));
+      // Day one leaves from where the visitor said they are, so the line shows the
+      // whole day instead of starting in mid-air. The start itself gets no pin: a
+      // pin here is a record with a page, and a start point is not one.
+      const legs = d === 0 && start ? [{ lat: start.lat, lng: start.lng }, ...line] : line;
+      if (legs.length > 1) routes.push({ id: `day-${d + 1}`, color, stops: legs });
     });
     return { points, routes };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan]);
+  }, [plan, start]);
 
   const pick = (slug: string) => {
     if (picked.includes(slug)) {
@@ -160,7 +203,7 @@ export default function PlanDay() {
   const build = () => {
     if (pickedListings.length < 2) return;
     const centres = areas.filter((a) => areaIds.includes(a.id));
-    const ordered = orderStops(pickedListings, centres.length ? centres : areas);
+    const ordered = orderStops(pickedListings, centres.length ? centres : areas, start);
     setPlan(splitAcrossDays(ordered, days));
   };
 
@@ -169,13 +212,92 @@ export default function PlanDay() {
     setPlan(null);
   };
 
+  /* ------------------------------ start point ------------------------------ */
+
+  /**
+   * Ask the browser for the device position, then ask OpenStreetMap what to
+   * call it. The second answer is not required: a point the geocoder does not
+   * recognise is still a point, and it is kept under its coordinates rather than
+   * a name nobody gave it.
+   */
+  const useDevice = async () => {
+    setAsking('device');
+    setGeoError(null);
+    const point = await whereAmI();
+    if (!point.ok) {
+      setAsking(null);
+      setGeoError(FAILURE_COPY[point.reason]);
+      return;
+    }
+    const named = await labelPoint(point.lat, point.lng);
+    setAsking(null);
+    if (named.ok) {
+      setStart({ ...point, label: named.label, named: 'nominatim' });
+    } else {
+      setStart({ ...point });
+      setGeoError(
+        named.reason === 'offline'
+          ? 'Your position came from the device, but OpenStreetMap could not be reached to name it.'
+          : 'Your position came from the device. OpenStreetMap has no place name for that exact point, so it stays a coordinate.',
+      );
+    }
+  };
+
+  const useSearch = async () => {
+    if (query.trim().length < 2) return;
+    setAsking('search');
+    setGeoError(null);
+    const point = await searchKarachi(query);
+    setAsking(null);
+    if (point.ok) {
+      setStart(point);
+      setQuery('');
+    } else {
+      setGeoError(FAILURE_COPY[point.reason]);
+    }
+  };
+
+  const useArea = (areaId: string) => {
+    const area = areas.find((a) => a.id === areaId);
+    if (!area) return;
+    setGeoError(null);
+    setStart(fromArea(area));
+  };
+
+  const clearStart = () => {
+    setStart(null);
+    setGeoError(null);
+  };
+
+  /**
+   * Unpicked records closest to the start. Sorted on straight-line distance,
+   * which is what a shortlist is for; the figure is labelled as the crow flies
+   * wherever it is shown.
+   */
+  const nearStart = useMemo(() => {
+    if (!start) return [];
+    return pool
+      .filter((l) => !picked.includes(l.slug))
+      .map((l) => ({ listing: l, km: distanceKm(start, l) }))
+      .sort((a, b) => a.km - b.km)
+      .slice(0, 5);
+  }, [start, pool, picked]);
+
   const planText = () => {
     if (!plan) return '';
-    const head = `Karachify suggested plan · ${days} ${days === 1 ? 'day' : 'days'} · ${GROUPS.find((g) => g.id === group)?.label}\nOrder is by straight-line distance on the map, not a driving route.\n`;
+    const head =
+      `Karachify suggested plan · ${days} ${days === 1 ? 'day' : 'days'} · ${GROUPS.find((g) => g.id === group)?.label}\n` +
+      (start ? `Starting from: ${start.label} (${start.lat.toFixed(5)}, ${start.lng.toFixed(5)}) · ${sourceLine(start)}\n` : '') +
+      'Order is by straight-line distance on the map, not a walking or driving route.\n';
     const body = plan
       .map((stops, i) => {
         const rows = stops.map((l, j) => {
-          const from = j === 0 ? '' : ` (${distanceKm(stops[j - 1], l).toFixed(1)} km from the previous stop)`;
+          const from =
+            j === 0
+              ? i === 0 && start
+                ? ` (${distanceKm(start, l).toFixed(1)} km from the start)`
+                : ''
+              : ` (${distanceKm(stops[j - 1], l).toFixed(1)} km from the previous stop)`;
           return `  ${j + 1}. ${l.name}, ${areaName(l.areaId)}${from}`;
         });
         return `\nDay ${i + 1}\n${rows.length ? rows.join('\n') : '  — free day'}`;
@@ -191,7 +313,7 @@ export default function PlanDay() {
         label="Planning a day in Karachi"
         eyebrow="Plan your day"
         title="Build a route you can actually walk"
-        sub="Pick who is going, how many days you have and the places you want. Karachify orders the stops by map distance and splits them across your days — and tells you what it does not know."
+        sub="Tell Karachify where the day starts, who is going and how many days you have. It orders the stops by map distance from your start and splits them across your days — and tells you what it does not know."
         trail={[{ label: 'Home', to: '/' }, { label: 'Plan Your Day' }]}
       />
 
@@ -199,9 +321,130 @@ export default function PlanDay() {
         {/* Live, so it does not print: the itinerary has to stand on its own on paper. */}
         <KarachiToday />
 
-        {/* 1 — who */}
+        {/* 1 — where the day starts */}
         <div className="card p-5">
-          <SectionHeading eyebrow="Step 1" title="Who is going, and for how long?" />
+          <SectionHeading
+            eyebrow="Step 1"
+            title="Where does the day start?"
+            sub="Nothing is looked up until you press one of these. The point stays in this browser's own storage and is used only to order your stops and to list what is near you."
+          />
+
+          {start ? (
+            <div className="mt-4 rounded-xl border border-teal-500 bg-teal-50 p-4">
+              <div className="flex flex-wrap items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-700 text-white">
+                  <Crosshair className="h-4 w-4" aria-hidden />
+                </span>
+                <span className="min-w-[220px] flex-1">
+                  <span className="block font-semibold text-navy-800">{start.label}</span>
+                  <span className="block text-[12.5px] text-navy-500">
+                    {coordText(start.lat, start.lng)}
+                    {start.accuracy ? ` · the device placed you within about ${start.accuracy} m` : ''}
+                  </span>
+                  <span className="block text-[12px] text-navy-400">
+                    {sourceLine(start)} · taken {new Date(start.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </span>
+                <button type="button" className="btn-outline btn-sm sm:ml-auto" onClick={clearStart}>
+                  <X className="h-3.5 w-3.5" /> Remove
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-4 space-y-4">
+              <button type="button" className="btn-primary" onClick={useDevice} disabled={asking === 'device'}>
+                <Crosshair className="h-4 w-4" /> {asking === 'device' ? 'Waiting for your browser…' : 'Use my location'}
+              </button>
+              <div className="flex flex-wrap items-end gap-2">
+                <div className="min-w-[220px] flex-1">
+                  <label htmlFor="plan-start-query" className="text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-400">
+                    Or name a place
+                  </label>
+                  <input
+                    id="plan-start-query"
+                    className="input mt-1 w-full"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        useSearch();
+                      }
+                    }}
+                    placeholder="Tariq Road, DHA Phase 6, Frere Hall…"
+                  />
+                </div>
+                <button type="button" className="btn-outline" onClick={useSearch} disabled={asking === 'search' || query.trim().length < 2}>
+                  <Search className="h-4 w-4" /> {asking === 'search' ? 'Searching…' : 'Find it'}
+                </button>
+              </div>
+              <div>
+                <label htmlFor="plan-start-area" className="text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-400">
+                  Or start from an area
+                </label>
+                <select
+                  id="plan-start-area"
+                  className="select mt-1 w-full sm:w-72"
+                  value=""
+                  onChange={(e) => e.target.value && useArea(e.target.value)}
+                >
+                  <option value="">Choose an area</option>
+                  {areas.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.name}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1 text-[12px] text-navy-400">An area centre is the middle of that locality on the map, not your street.</p>
+              </div>
+            </div>
+          )}
+
+          {geoError && (
+            <p role="status" className="mt-3 rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-[12.5px] leading-relaxed text-navy-700">
+              {geoError}
+            </p>
+          )}
+        </div>
+
+        {start && nearStart.length > 0 && (
+          <div className="card p-5">
+            <SectionHeading
+              eyebrow="Near your start"
+              title="Places closest to where you are"
+              sub="Measured in a straight line from your start point — not a walking route, and not a ranking. Tap one to add it to the plan."
+            />
+            <ul className="mt-4 divide-y divide-navy-100 overflow-hidden rounded-xl border border-navy-100">
+              {nearStart.map(({ listing, km }) => (
+                <li key={listing.slug}>
+                  <button
+                    type="button"
+                    onClick={() => pick(listing.slug)}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-navy-50/60"
+                  >
+                    <span className="w-14 shrink-0 text-[13px] font-bold text-teal-700">{km.toFixed(1)} km</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-[14.5px] font-semibold text-navy-800">{listing.name}</span>
+                      <span className="block truncate text-[12.5px] text-navy-400">
+                        {categoryName(listing.categoryId)} · {areaName(listing.areaId)}
+                        {!listing.coordsVerified && ' · approximate pin'}
+                      </span>
+                    </span>
+                    {picked.includes(listing.slug) ? (
+                      <span className="shrink-0 rounded-full bg-teal-700 px-2 py-0.5 text-[11px] font-semibold text-white">In the plan</span>
+                    ) : (
+                      <Plus className="h-4 w-4 shrink-0 text-teal-600" aria-hidden />
+                    )}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* 2 — who */}
+        <div className="card p-5">
+          <SectionHeading eyebrow="Step 2" title="Who is going, and for how long?" />
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {GROUPS.map((g) => (
               <button
@@ -239,9 +482,9 @@ export default function PlanDay() {
           </div>
         </div>
 
-        {/* 2 — where and what */}
+        {/* 3 — where and what */}
         <div className="card p-5">
-          <SectionHeading eyebrow="Step 2" title="Which areas and what kind of place?" sub="Leave everything unselected to search the whole directory." />
+          <SectionHeading eyebrow="Step 3" title="Which areas and what kind of place?" sub="Leave everything unselected to search the whole directory." />
           <div className="mt-4">
             <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-navy-400">Areas</p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -276,10 +519,10 @@ export default function PlanDay() {
           </div>
         </div>
 
-        {/* 3 — pick places */}
+        {/* 4 — pick places */}
         <div className="card p-5">
           <SectionHeading
-            eyebrow="Step 3"
+            eyebrow="Step 4"
             title={`Choose the places (${picked.length}/${MAX_STOPS})`}
             sub={`${pool.length} records match the filters. A 24-hour badge means the record's own source states round-the-clock hours.`}
           />
@@ -339,7 +582,11 @@ export default function PlanDay() {
             <SectionHeading
               eyebrow="Your plan"
               title={`${days} ${days === 1 ? 'day' : 'days'} · ${pickedListings.length} stops`}
-              sub="Each day is a run of stops ordered by map distance. The distance printed between stops is straight-line, not a driving route."
+              sub={
+                start
+                  ? `The run begins at the stop nearest your start point. Every distance shown is straight-line on the map, not a walking or driving route.`
+                  : 'Each day is a run of stops ordered by map distance from the centre of the areas you picked. Every distance shown is straight-line, not a walking or driving route.'
+              }
               action={
                 <div className="no-print flex gap-2">
                   <button
@@ -363,6 +610,12 @@ export default function PlanDay() {
                 </div>
               }
             />
+            {start && (
+              <p className="text-[13px] leading-relaxed text-navy-600">
+                Day one leaves from <span className="font-semibold text-navy-800">{start.label}</span> ({coordText(start.lat, start.lng)}) ·{' '}
+                {sourceLine(start)}, taken {new Date(start.at).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}.
+              </p>
+            )}
             {planMap && planMap.points.length > 0 && (
               <figure className="card overflow-hidden p-1.5">
                 <LazyMap points={planMap.points} routes={planMap.routes} className="h-[340px] w-full sm:h-[440px]" compact />
@@ -374,7 +627,8 @@ export default function PlanDay() {
                     </span>
                   ))}
                   <span className="text-[12.5px] text-navy-600">
-                    Each colour is one day. The dashed line joins the recorded pins in the suggested order — it is not a driving route.
+                    Each colour is one day. The dashed line joins the recorded pins in the suggested order
+                    {start ? ', leaving from your start point on day one' : ''} — it is not a walking or driving route.
                   </span>
                 </figcaption>
               </figure>
@@ -397,7 +651,9 @@ export default function PlanDay() {
                   ) : (
                     <ol className="mt-3 space-y-3">
                       {stops.map((l, i) => {
-                        const leg = i === 0 ? null : distanceKm(stops[i - 1], l);
+                        const origin = i === 0 ? (dayIndex === 0 ? start : stops[i - 1]) : stops[i - 1];
+                        const fromStart = i === 0 && dayIndex === 0 && Boolean(start);
+                        const leg = i === 0 ? (origin ? distanceKm(origin, l) : null) : distanceKm(stops[i - 1], l);
                         return (
                           <li key={l.slug} className="flex gap-3">
                             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy-800 text-[12px] font-bold text-white">
@@ -409,7 +665,7 @@ export default function PlanDay() {
                               </Link>
                               <p className="text-[12.5px] text-navy-400">
                                 {areaName(l.areaId)}
-                                {leg != null && ` · ${leg.toFixed(1)} km from the previous stop`}
+                                {leg != null && ` · ${leg.toFixed(1)} km ${fromStart ? 'from your start' : 'from the previous stop'}`}
                               </p>
                               {l.address && <p className="mt-0.5 text-[12.5px] text-navy-500">{l.address}</p>}
                               <p className="text-[12px] text-navy-400">
@@ -428,8 +684,8 @@ export default function PlanDay() {
 
             <Note>
               <strong className="text-navy-700">What this plan is not.</strong> The order is a suggestion from straight-line
-              distance between the recorded pins; it does not know about traffic, one-way streets, prayers, lunch queues or
-              which gate is open. Karachify does not estimate driving time. Check each place&apos;s hours and pin label
+              distance {start ? 'from your start point and' : ''} between the recorded pins; it does not know about traffic, one-way streets, prayers, lunch queues or
+              which gate is open. Karachify does not estimate walking or driving time. Check each place&apos;s hours and pin label
               before you set out, and treat an <span className="font-semibold">approximate pin</span> as the neighbourhood,
               not the door.
               <Link to="/sources" className="link ml-1 font-semibold">

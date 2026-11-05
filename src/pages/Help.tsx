@@ -14,7 +14,7 @@ const FAQS: Faq[] = [
   {
     group: 'Browsing',
     q: 'How do I find places near me?',
-    a: 'Open the map, or start from an area page. Every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable or drivable cluster. There is no “near me” search: this site never asks for your location.',
+    a: 'Open the map, or start from an area page: every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable cluster. On the day planner you can also press “Use my location”, and your browser will ask you first. The planner then lists the records closest to that point and begins the route from it. Nothing is looked up until you press the button, the point stays on this device, and if you decline the request the area picker is still there — no guess is made for you.',
   },
   {
     group: 'Browsing',

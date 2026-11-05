@@ -272,7 +272,7 @@ const fixedPages: Record<string, { title: string; description: string }> = {
   '/plan': {
     title: 'Plan a day in Karachi · Karachify',
     description:
-      'Build a Karachi day plan from places that are open on the day you pick, order the stops from where you are, and print it as a one-page guide.',
+      'Build a Karachi day plan from the directory, open it from a place you name or a position your browser offers, order the stops by map distance from there, and print what you get.',
   },
   '/areas': {
     title: 'Karachi areas · Karachify',

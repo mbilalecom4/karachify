@@ -49,6 +49,12 @@ export default function Privacy() {
             </li>
             <li>Fonts are loaded from Google Fonts when available and fall back to system fonts offline.</li>
             <li>
+              Only if you press the location button on the day planner: your browser asks its own location provider for a
+              position — that negotiation happens in the browser, and the site never sees it — and the coordinates are then
+              sent to OpenStreetMap's geocoder to be given a place name. A place you type into the planner's search box is
+              sent to the same geocoder, along with the fact that the search is limited to Karachi.
+            </li>
+            <li>
               What you have already loaded — the page, its photographs, the record files — is also kept on your own device
               by a service worker, so a returning visit or an installed app can open it without a connection. That copy
               never leaves the device, live weather and prayer figures are not part of it, and clearing site data removes
@@ -62,9 +68,16 @@ export default function Privacy() {
           </p>
           <h2>Location</h2>
           <p>
-            The site never asks for your geolocation. Map positions come from the coordinates stored with each record: an
-            OpenStreetMap feature for a verified place, an offset from the locality centre for every other one, which is
-            why each pin states which of the two it is.
+            Nothing here looks up where you are on its own. No page asks your browser for a position when it loads; the
+            planner only asks when you press its "Use my location" button, and a declined request is remembered as a
+            declined request rather than retried behind your back. The point that comes back is kept in this browser's own
+            storage, alongside your plan, and is used to order your stops and list what is near you. Removing it takes one
+            press, or clearing site data.
+          </p>
+          <p>
+            Map positions come from the coordinates stored with each record: an OpenStreetMap feature for a verified place,
+            an offset from the locality centre for every other one, which is why each pin states which of the two it is.
+            Those positions have nothing to do with yours, and none of them are sent anywhere.
           </p>
           <h2>Children</h2>
           <p>
