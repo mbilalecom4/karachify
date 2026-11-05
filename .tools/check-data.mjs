@@ -189,6 +189,9 @@ for (const e of provenance.exclusions) {
 /* ---------------------- 3. licence discipline for art -------------------- */
 
 const IMAGE_HOSTS = /(wikimedia\.org|wikivoyage\.org|wikipedia\.org)$/;
+/** The thumbnail widths this image host agrees to make, measured Nov 2026. */
+const RENDITION_WIDTHS = [120, 250, 330, 500, 960, 1280, 1920];
+const renditionWidth = (url) => Number(String(url ?? '').split('?')[0].match(/\/(\d+)px-[^/]*$/)?.[1] ?? 0) || 0;
 for (const [key, m] of Object.entries(media)) {
   for (const field of ['thumb', 'wide']) {
     if (!m[field]) continue;
@@ -208,6 +211,34 @@ for (const [key, m] of Object.entries(media)) {
     failures.push(`media ${key}: depicts its subject under an attribution licence but credits neither an author nor a file page to read it from`);
   }
   if (m.kind !== 'related' && !m.license) failures.push(`media ${key}: depicts its subject but states no licence`);
+
+  /* Rendition discipline. `w`, `h` and `px` are not hand-written: they are what
+     `.tools/measure-renditions.mjs` found by asking the API and then asking the
+     image host for each URL. The host serves thumbnails only at these widths —
+     anything else returns 400 — and two `wide` values in an earlier revision of
+     this file did exactly that, so the shape is re-checked here rather than
+     trusted. A srcset naming a width the host refuses is a broken image. */
+  if (m.px || m.w || m.h) {
+    const ok = Number.isInteger(m.w) && m.w > 0 && Number.isInteger(m.h) && m.h > 0;
+    if (!ok) failures.push(`media ${key}: measured with px but no sane intrinsic size (${m.w}x${m.h}) — re-run npm run measure:renditions`);
+    const list = Array.isArray(m.px) ? m.px : [];
+    if (!list.length) failures.push(`media ${key}: px is empty, so nothing may be offered in a srcset — re-run npm run measure:renditions`);
+    list.forEach((width, i) => {
+      if (!RENDITION_WIDTHS.includes(width)) failures.push(`media ${key}: px offers ${width}px, which is not a width this host thumbnails at`);
+      if (i && list[i - 1] >= width) failures.push(`media ${key}: px is not ascending (${list.join(', ')})`);
+      if (ok && width >= m.w) failures.push(`media ${key}: px offers ${width}px for a ${m.w}px original — that URL is the full file, not a rendition`);
+    });
+    const thumbWidth = renditionWidth(m.thumb);
+    /* At or above its own width the host hands back the original file, so a
+       narrow file's stored thumb carries a width the candidate list cannot. */
+    if (thumbWidth && ok && !list.includes(thumbWidth) && thumbWidth < m.w) {
+      failures.push(`media ${key}: its thumb is a ${thumbWidth}px rendition but px (${list.join(', ')}) does not confirm that width answers`);
+    }
+    const wideWidth = renditionWidth(m.wide);
+    if (m.wide && !list.includes(wideWidth)) {
+      failures.push(`media ${key}: its wide is ${wideWidth || 'not a'}px rendition, which px (${list.join(', ')}) does not confirm`);
+    }
+  }
 }
 
 /* ------------------- 4. the open-records tier stays honest ------------------- */

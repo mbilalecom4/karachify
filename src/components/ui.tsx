@@ -89,6 +89,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 
 export function ImageWithFallback({
   src,
+  srcSet,
+  sizes,
+  width,
+  height,
   alt,
   label,
   title,
@@ -97,6 +101,10 @@ export function ImageWithFallback({
   eager = false,
 }: {
   src?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt: string;
   label?: string;
   title?: string;
@@ -107,11 +115,15 @@ export function ImageWithFallback({
   const [failed, setFailed] = useState(false);
   const fallback = useMemo(() => placeholderImage(label ?? alt), [label, alt]);
   const resolved = !src || failed ? fallback : src;
+  // A srcset left on the frame after a failure lets the browser pick the broken
+  // file again, so the candidate list only travels with the real source.
+  const renditions = resolved === src ? { srcSet, sizes, width, height } : {};
 
   return (
     <span className={`block overflow-hidden bg-navy-50 ${wrapperClass}`}>
       <img
         src={resolved}
+        {...renditions}
         alt={alt}
         title={title}
         loading={eager ? 'eager' : 'lazy'}

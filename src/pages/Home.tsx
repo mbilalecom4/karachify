@@ -16,7 +16,7 @@ import {
 import { guides } from '../data/guides';
 import type { Listing } from '../types';
 import { coverage, selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
-import { imageFor, pictureSubject } from '../lib/media';
+import { failToPlaceholder, imageFor, pictureSubject } from '../lib/media';
 import { pinCaption } from '../lib/format';
 import { SearchBox } from '../components/SearchBox';
 import { KarachiToday } from '../components/KarachiToday';
@@ -180,10 +180,11 @@ export default function Home() {
 
           <div className="relative isolate min-h-[300px] overflow-hidden rounded-[28px] border border-navy-100 shadow-lift sm:min-h-[420px] lg:min-h-[520px]">
             <img
-              src={hero.wide}
+              {...hero.wideImg('feature')}
               alt={hero.entry ? pictureSubject(hero.entry) : 'Karachi'}
+              decoding="async"
               className="absolute inset-0 -z-10 h-full w-full object-cover"
-              onError={(e) => (e.currentTarget.src = hero.fallback)}
+              onError={(e) => failToPlaceholder(e.currentTarget, hero.fallback)}
             />
             <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center gap-2">
               <span className="chip-light">
@@ -341,7 +342,7 @@ export default function Home() {
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {restaurants.map((l) => (
-            <ListingCard key={l.id} listing={l} />
+            <ListingCard key={l.id} listing={l} size="card4" />
           ))}
         </div>
       </section>
@@ -361,7 +362,7 @@ export default function Home() {
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {hotels.map((l) => (
-              <ListingCard key={l.id} listing={l} />
+              <ListingCard key={l.id} listing={l} size="card4" />
             ))}
           </div>
         </div>
@@ -405,7 +406,7 @@ export default function Home() {
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {promoted.map((l) => (
-              <ListingCard key={l.id} listing={l} />
+              <ListingCard key={l.id} listing={l} size="card4" />
             ))}
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-navy-100 bg-white p-5">
@@ -442,7 +443,7 @@ export default function Home() {
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {guides.slice(0, 4).map((g) => (
-            <GuideCard key={g.id} guide={g} />
+            <GuideCard key={g.id} guide={g} size="card4" />
           ))}
         </div>
       </section>
@@ -504,11 +505,13 @@ function SourcingBand() {
 
         <div className="relative isolate min-h-[240px] lg:min-h-full">
           <img
-            src={band.wide}
+            {...band.wideImg('feature')}
             alt=""
             aria-hidden
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 -z-10 h-full w-full object-cover"
-            onError={(e) => (e.currentTarget.src = band.fallback)}
+            onError={(e) => failToPlaceholder(e.currentTarget, band.fallback)}
           />
           <div className="absolute inset-x-5 bottom-5">
             <span className="chip-light">

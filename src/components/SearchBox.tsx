@@ -262,7 +262,7 @@ export function SearchBox({
                     className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors ${on ? 'bg-mist' : 'hover:bg-mist'}`}
                   >
                     <ImageWithFallback
-                      src={media.thumb}
+                      {...media.thumbImg('chip')}
                       alt=""
                       label={doc.title}
                       title={media.entry?.kind === 'related' ? `Illustrative photo — shows ${pictureSubject(media.entry)}` : undefined}

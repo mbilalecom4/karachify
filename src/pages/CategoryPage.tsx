@@ -202,7 +202,7 @@ export default function CategoryPage() {
               .filter((l) => l.featured)
               .slice(0, 4)
               .map((l) => (
-                <ListingCard key={l.id} listing={l} />
+                <ListingCard key={l.id} listing={l} size="card4" />
               ))}
           </div>
         </section>

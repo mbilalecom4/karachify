@@ -5,7 +5,7 @@ import { search, TYPE_LABEL, type ResultType, type SearchDoc } from '../lib/sear
 import { selectAreas, selectCategories, selectListings, selectEvents, useDB } from '../lib/store';
 import { isOpenListing } from '../lib/openRecords';
 import { tierLabel, useOpenNames } from '../lib/openNames';
-import { imageFor, pictureSubject } from '../lib/media';
+import { failToPlaceholder, imageFor, pictureSubject } from '../lib/media';
 import { EventCard, ListingCard } from '../components/cards';
 import { SearchBox } from '../components/SearchBox';
 import { EmptyState, Select, Tabs } from '../components/ui';
@@ -268,12 +268,14 @@ export default function SearchResults() {
                             <Link key={`${d.type}-${d.slug}`} to={d.path} className="card card-hover flex items-center gap-4 overflow-hidden p-0">
                               <span className="block h-24 w-32 shrink-0 overflow-hidden bg-navy-50">
                                 <img
-                                  src={media.thumb}
+                                  {...media.thumbImg('row')}
                                   alt=""
                                   aria-hidden
+                                  loading="lazy"
+                                  decoding="async"
                                   title={media.entry?.kind === 'related' ? `Illustrative photo — shows ${pictureSubject(media.entry)}` : undefined}
                                   className="h-full w-full object-cover"
-                                  onError={(e) => (e.currentTarget.src = media.fallback)}
+                                  onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
                                 />
                               </span>
                               <span className="min-w-0 py-3 pr-4">

@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 import type { DetailLayout, Listing } from '../types';
 import { actions, prefsFor, reviewsFor, selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
-import { imageFor, pictureSubject, placeholderImage } from '../lib/media';
+import { failToPlaceholder, imageFor, imgAttrs, pictureSubject, placeholderImage } from '../lib/media';
 import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
@@ -218,7 +218,7 @@ export default function ListingDetail() {
       {/* ------------------------------- header ------------------------------- */}
       <section className="relative isolate overflow-hidden bg-navy-900">
         <div className="absolute inset-0 -z-10">
-          <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : listing.name} className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = media.fallback)} />
+          <img {...media.wideImg('hero')} alt={media.entry ? pictureSubject(media.entry) : listing.name} decoding="async" className="h-full w-full object-cover" onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)} />
           <div className="media-scrim-flat absolute inset-0" />
         </div>
         <span className="absolute right-4 top-20 z-10">
@@ -325,7 +325,13 @@ export default function ListingDetail() {
               aria-label={`Open photo ${i + 1}: ${f.caption}`}
             >
               <span className={`block ${i === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
-                <img src={f.src} alt={f.caption} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                <img
+                  {...(f.real ? imgAttrs(media.entry, f.src, i === 0 ? 'galleryLead' : 'galleryCell') : { src: f.src })}
+                  alt={f.caption}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
               </span>
               <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-navy-950/85 px-3 py-2">
                 <span className="text-[12px] font-semibold text-white">{f.caption}</span>
@@ -597,7 +603,7 @@ export default function ListingDetail() {
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {nearby.map(({ l, distance: d }) => (
                 <div key={l.id}>
-                  <ListingCard listing={l} />
+                  <ListingCard listing={l} size="card4" />
                   <p className="mt-1.5 text-[12px] text-navy-400">≈ {d.toFixed(1)} km away (approx.)</p>
                 </div>
               ))}
@@ -621,7 +627,7 @@ export default function ListingDetail() {
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {related.map((l) => (
-              <ListingCard key={l.id} listing={l} />
+              <ListingCard key={l.id} listing={l} size="card4" />
             ))}
           </div>
         </section>
@@ -630,7 +636,12 @@ export default function ListingDetail() {
       {/* ------------------------------- modals ------------------------------- */}
       <Modal open={lightbox} onClose={() => setLightbox(false)} title={gallery[active]?.caption ?? listing.name} size="lg">
         <figure>
-          <img src={gallery[active]?.src} alt={gallery[active]?.caption ?? listing.name} className="w-full rounded-xl bg-navy-50" />
+          <img
+            {...(gallery[active]?.real ? imgAttrs(media.entry, gallery[active]!.src, 'lightbox') : { src: gallery[active]?.src })}
+            alt={gallery[active]?.caption ?? listing.name}
+            decoding="async"
+            className="w-full rounded-xl bg-navy-50"
+          />
           <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[13px] text-navy-500">
             <span>
               Photo {active + 1} of {gallery.length}

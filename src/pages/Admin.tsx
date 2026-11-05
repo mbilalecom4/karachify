@@ -42,7 +42,7 @@ import {
   useToast,
 } from '../components/ui';
 import { Note } from '../components/Page';
-import { attributionRows, resolvedMediaCount } from '../lib/media';
+import { attributionRows, imgAttrs, resolvedMediaCount } from '../lib/media';
 import { slugify, uniqueSlug } from '../lib/format';
 import type { Area, Category, CityEvent, EventCategory, Listing } from '../types';
 import { EVENT_CATEGORIES } from './SubmitEvent';
@@ -1375,7 +1375,7 @@ function Media() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((m) => (
           <figure key={m.key} className="card overflow-hidden">
-            <img src={m.thumb} alt={m.subject} loading="lazy" className="aspect-[4/3] w-full bg-navy-50 object-cover" />
+            <img {...imgAttrs(m, m.thumb, 'sheet')} src={m.thumb} alt={m.subject} loading="lazy" decoding="async" className="aspect-[4/3] w-full bg-navy-50 object-cover" />
             <figcaption className="p-4">
               <p className="truncate font-semibold text-navy-800" title={m.subject}>
                 {m.subject}

@@ -117,7 +117,7 @@ export default function GuideDetail() {
           />
           <div className="grid gap-5 sm:grid-cols-3">
             {related.map((g) => (
-              <GuideCard key={g.id} guide={g} />
+              <GuideCard key={g.id} guide={g} size="card3sm" />
             ))}
           </div>
         </div>

@@ -9,9 +9,122 @@ export interface MediaEntry extends MediaRef {
   /** Why a `related` picture is standing in, recorded per entry and read by
    *  the claim audit — not a caption. */
   illustrativeReason?: string;
+  /** Width and height of the original file on Wikimedia Commons, as the API
+   *  reported them to `.tools/measure-renditions.mjs`. */
+  w?: number;
+  h?: number;
+  /** Every rendition of this file that was asked for and answered: the widths
+   *  on the host's allow-list that sit below `w`. Nothing else may be offered. */
+  px?: number[];
 }
 
 const registry = mediaJson as Record<string, MediaEntry>;
+
+/**
+ * How wide each painted frame gets, measured with `getBoundingClientRect()` in
+ * Chromium at 390 / 640 / 1024 / 1280 / 1440 CSS px (and 768 for the article
+ * figure) — the widths the layout actually produces, not what the classes look
+ * like they should give. `srcset` cannot pick a rendition without this: the list
+ * says what exists, `sizes` says what the page will draw with it. Where a frame
+ * is fluid the expression tracks the viewport; where the layout caps it the
+ * number is the cap. A desktop window loses about 15px of each `100vw` figure to
+ * its scrollbar, so the measured widths sit a few pixels under the claim.
+ */
+export const IMG = {
+  /** full-bleed hero: edge to edge, 390px on a 390px viewport, 1440px at 1440 */
+  hero: '100vw',
+  /** the two home panels: 356px on a phone, 590px at 640, 432–441px at 1024,
+   *  555–558px from 1280 up */
+  feature: '(max-width: 639px) calc(100vw - 39px), (max-width: 1023px) calc(100vw - 65px), (max-width: 1299px) 44vw, 558px',
+  /** card image in a grid that narrows to four across at `xl`: 356px on a phone,
+   *  284–286px at 640, 282–307px above `lg` */
+  card: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 34px), 305px',
+  /** the same card image where four sit in a row: 223px at 1024, 287px once the
+   *  `max-w-[1280px]` shell stops growing */
+  card4: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 34px), (max-width: 1279px) calc((100vw - 124px) / 4), 289px',
+  /** a card in a `sm:grid-cols-2 lg:grid-cols-3` grid that stays three-up, which
+   *  is every event card: two across to 1023px exactly as `card`, then the same
+   *  three-up row `card3sm` measured (305px at 1024, 390px from 1280) */
+  card3: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 34px), (max-width: 1279px) calc((100vw - 104px) / 3), 392px',
+  /** a card in a `sm:grid-cols-3` grid (three-up from 640): 182px at 640, 305px
+   *  at 1024, 390px once the shell stops growing */
+  card3sm: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc((100vw - 88px) / 3), (max-width: 1279px) calc((100vw - 104px) / 3), 392px',
+  /** an area card in the Explore six-up row: 305px at 1024, 187px from 1280 */
+  card6: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 34px), (max-width: 1279px) calc((100vw - 104px) / 3), 189px',
+  /** the same card image in the list view: full width on a phone, then a fixed
+   *  `w-56` (events) or `w-64` (listings) column. Claimed as 224px so the 250px
+   *  rendition still wins for both. */
+  cardList: '(max-width: 639px) calc(100vw - 40px), 224px',
+  /** category tiles: 2-up on a phone (162px), 3-up to 300px, 222–228px above `lg` */
+  tile: '(max-width: 639px) calc(50vw - 30px), (max-width: 1023px) calc(33.33vw - 30px), 240px',
+  /** tiles that stop at four across instead of narrowing to five at `xl` — 228px
+   *  at 1024, 292px above the 1280px shell */
+  tile4: '(max-width: 639px) calc(50vw - 30px), (max-width: 1023px) calc(33.33vw - 30px), (max-width: 1279px) calc((100vw - 112px) / 4), 292px',
+  /** the lead frame of a listing gallery: 341px on a phone, 465px at 1024, 600px from 1294 */
+  galleryLead: '(max-width: 639px) calc(100vw - 49px), (max-width: 1023px) calc(100vw - 65px), (max-width: 1293px) calc((100vw - 94px) / 2), 600px',
+  /** every other gallery frame, which sits beside the lead above 640px: 225px at 1024, 293px at 1366 */
+  galleryCell: '(max-width: 639px) calc(100vw - 49px), (max-width: 1023px) calc(50vw - 26px), (max-width: 1279px) calc((100vw - 96px) / 4), 293px',
+  /** the enlarged frame inside the gallery lightbox (a `max-w-3xl` dialog) */
+  lightbox: '(max-width: 1023px) calc(100vw - 84px), 728px',
+  /** a figure in the article column: 341px on a phone, 703px at 768, 766px from 1024 up */
+  figure: '(max-width: 639px) calc(100vw - 49px), (max-width: 1023px) calc(100vw - 65px), 766px',
+  /** the admin photograph contact sheet: 358px on a phone, 288px at 640, 299px
+   *  at 1024, 395px once the `max-w-[1280px]` shell stops growing */
+  sheet: '(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(50vw - 32px), (max-width: 1279px) calc((100vw - 96px) / 3), 395px',
+  /** a search-result row's thumbnail, fixed by its own class */
+  row: '128px',
+  /** the search dropdown's chip, fixed by its own class */
+  chip: '44px',
+  /** the credits table's thumbnail, fixed by its own class */
+  credit: '64px',
+} as const;
+
+export type ImgSize = keyof typeof IMG;
+
+export interface ImgAttrs {
+  src?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
+}
+
+const rewidth = (url: string, width: number) => url.replace(/\/(\d+)px-([^/]*?)(\?|#|$)/, `/${width}px-$2$3`);
+
+/** The widths this file can be asked for, biggest last. */
+function candidateWidths(entry?: MediaEntry): number[] {
+  const px = entry?.px;
+  const own = entry?.w;
+  if (!px?.length || !own) return [];
+  return px.filter((width) => width > 0 && width < own);
+}
+
+/**
+ * The attributes for one painted photograph, spread onto the `<img>`.
+ *
+ * A `srcset` is only ever built from the widths recorded against this file, and
+ * those were each requested before being written down — see
+ * `.tools/measure-renditions.mjs`, which refuses to record a width the API did
+ * not confirm for that exact path. So a browser is never offered a URL that
+ * 404s, and a card is never asked to stretch a 500px file across 1900px.
+ */
+export function imgAttrs(entry: MediaEntry | undefined, src: string | undefined, size: ImgSize): ImgAttrs {
+  const base = entry?.thumb;
+  const widths = candidateWidths(entry);
+  const attrs: ImgAttrs = { src };
+  /* Candidates are always cut from the entry's own thumb URL, whatever frame
+     they are being painted into: that is the path the measurement pass asked
+     the host about, and one host per file keeps the list honest. */
+  if (entry && base && /\/\d+px-/.test(base) && widths.length > 1) {
+    attrs.srcSet = widths.map((width) => `${rewidth(base, width)} ${width}w`).join(', ');
+    attrs.sizes = IMG[size];
+  }
+  if (entry?.w && entry.h) {
+    attrs.width = entry.w;
+    attrs.height = entry.h;
+  }
+  return attrs;
+}
 
 export function mediaFor(key: string): MediaEntry | undefined {
   return registry[key];
@@ -111,13 +224,31 @@ ${text
 export function imageFor(key: string, label: string) {
   const entry = registry[key];
   const fallback = placeholderImage(label);
+  const thumb = entry?.thumb ?? fallback;
+  const wide = entry?.wide ?? entry?.thumb ?? fallback;
   return {
-    thumb: entry?.thumb ?? fallback,
-    wide: entry?.wide ?? entry?.thumb ?? fallback,
+    thumb,
+    wide,
     fallback,
     entry,
     isPlaceholder: !entry,
+    /** The attributes for this picture painted at the card size. */
+    thumbImg: (size: ImgSize = 'card') => imgAttrs(entry, thumb, size),
+    /** …painted at the size a hero or gallery needs. */
+    wideImg: (size: ImgSize = 'hero') => imgAttrs(entry, wide, size),
   };
+}
+
+/**
+ * Point a frame at the designed stand-in after its photograph failed to load.
+ * The `srcset` has to go with it: leaving it in place means the browser keeps
+ * choosing a rendition of the file that just failed rather than the fallback
+ * now sitting in `src`.
+ */
+export function failToPlaceholder(img: HTMLImageElement, fallback: string) {
+  img.removeAttribute('srcset');
+  img.removeAttribute('sizes');
+  if (img.src !== fallback) img.src = fallback;
 }
 
 export function attributionRows(): MediaEntry[] {

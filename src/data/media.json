@@ -4,420 +4,767 @@
     "subject": "Aga Khan University Hospital",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "ansari-hall": {
     "key": "ansari-hall",
     "subject": "Ansari Hall Art Centre",
     "via": "Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/500px-Clifton_Karachi_View.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Karachi_View.jpg",
     "artist": "Ktownboy103",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 1284,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "bahadurabad-bus-terminal": {
     "key": "bahadurabad-bus-terminal",
     "subject": "Bahadurabad Bus Terminal",
     "via": "Bahadurabad",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bahadurabad_Area_Karachi_City.jpg/500px-Bahadurabad_Area_Karachi_City.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bahadurabad_Area_Karachi_City.jpg/1280px-Bahadurabad_Area_Karachi_City.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Bahadurabad_Area_Karachi_City.jpg/1920px-Bahadurabad_Area_Karachi_City.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Bahadurabad_Area_Karachi_City.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4624,
+    "h": 3472,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "bahria-university-karachi": {
     "key": "bahria-university-karachi",
     "subject": "Bahria University Karachi Campus",
     "via": "Bahria University",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bahria_University_Karachi_Campus_Business_Department.jpg/500px-Bahria_University_Karachi_Campus_Business_Department.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bahria_University_Karachi_Campus_Business_Department.jpg/1280px-Bahria_University_Karachi_Campus_Business_Department.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bahria_University_Karachi_Campus_Business_Department.jpg/1920px-Bahria_University_Karachi_Campus_Business_Department.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Bahria_University_Karachi_Campus_Business_Department.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 3090,
+    "h": 2322,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-art-culture": {
     "key": "banner-art-culture",
     "subject": "Art & Culture",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-beaches": {
     "key": "banner-beaches",
     "subject": "Beaches",
     "via": "Sandspit, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sands_Pit_Beach%2C_Karachi.jpg/500px-Sands_Pit_Beach%2C_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sands_Pit_Beach%2C_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sands_Pit_Beach%2C_Karachi.jpg/500px-Sands_Pit_Beach%2C_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sands_Pit_Beach,_Karachi.jpg",
     "artist": "Yasir Hussain from Lahore, Pakistan",
     "license": "CC BY-SA 2.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 540,
+    "h": 404,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "banner-doctors-clinics": {
     "key": "banner-doctors-clinics",
     "subject": "Doctors & Clinics",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-events": {
     "key": "banner-events",
     "subject": "events",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-government": {
     "key": "banner-government",
     "subject": "government",
     "via": "Karachi Metropolitan Corporation Building",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/PK_Karachi_asv2020-02_img74_KMC_Building.jpg/500px-PK_Karachi_asv2020-02_img74_KMC_Building.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/PK_Karachi_asv2020-02_img74_KMC_Building.jpg/1280px-PK_Karachi_asv2020-02_img74_KMC_Building.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/PK_Karachi_asv2020-02_img74_KMC_Building.jpg/1920px-PK_Karachi_asv2020-02_img74_KMC_Building.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img74_KMC_Building.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 5394,
+    "h": 3034,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-guides": {
     "key": "banner-guides",
     "subject": "guides",
     "via": "Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/500px-Clifton_Karachi_View.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Karachi_View.jpg",
     "artist": "Ktownboy103",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 1284,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "banner-hospitals": {
     "key": "banner-hospitals",
     "subject": "hospitals",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-hotels": {
     "key": "banner-hotels",
     "subject": "hotels",
     "via": "Pearl-Continental Hotels & Resorts",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/PCKarachi.jpg/500px-PCKarachi.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/PCKarachi.jpg/1280px-PCKarachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/PCKarachi.jpg/1920px-PCKarachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PCKarachi.jpg",
     "artist": "Wasif Malik",
     "license": "CC BY 2.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 2463,
+    "h": 2558,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-museums-galleries": {
     "key": "banner-museums-galleries",
     "subject": "Museums & Art Galleries",
     "via": "Pakistan Air Force Museum",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/500px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/1280px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/1920px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PAF_Museum_Karachi,_Pakistan_06.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-parks-recreation": {
     "key": "banner-parks-recreation",
     "subject": "Parks & Recreation",
     "via": "Ibn-e-Qasim Bagh Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 720,
+    "h": 441,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "banner-professional-services": {
     "key": "banner-professional-services",
     "subject": "Karachi Expo Centre",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-religious-places": {
     "key": "banner-religious-places",
     "subject": "Religious Places",
     "via": "Grand Jamia Mosque, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/500px-Grand_Jamia_Mosque_Drone_View.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/91/Grand_Jamia_Mosque_Drone_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/960px-Grand_Jamia_Mosque_Drone_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Grand_Jamia_Mosque_Drone_View.jpg",
     "artist": "Malik Riaz, Facebook",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 1200,
+    "h": 1200,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "banner-restaurants-cafes": {
     "key": "banner-restaurants-cafes",
     "subject": "Restaurants & Cafes",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-shopping": {
     "key": "banner-shopping",
     "subject": "shopping",
     "via": "Empress Market",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/500px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1280px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1920px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 5568,
+    "h": 3132,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-sports-fitness": {
     "key": "banner-sports-fitness",
     "subject": "Sports & Fitness",
     "via": "National Stadium, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/National_Stadium_after_Roof_removal.jpg/500px-National_Stadium_after_Roof_removal.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/98/National_Stadium_after_Roof_removal.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/National_Stadium_after_Roof_removal.jpg/960px-National_Stadium_after_Roof_removal.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:National_Stadium_after_Roof_removal.jpg",
     "artist": "Pakistan Cricket Board (PCB)",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 1244,
+    "h": 757,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "banner-tourist-places": {
     "key": "banner-tourist-places",
     "subject": "Tourist Places & Attractions",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-transport": {
     "key": "banner-transport",
     "subject": "transport",
     "via": "Jinnah International Airport",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/500px-PK_Karachi_Airport_asv2020-01.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/1280px-PK_Karachi_Airport_asv2020-01.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/1920px-PK_Karachi_Airport_asv2020-01.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_Airport_asv2020-01.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 7229,
+    "h": 4066,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-wedding-venues": {
     "key": "banner-wedding-venues",
     "subject": "Wedding & Event Venues",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one member of the category, used as the category header"
+    "illustrativeReason": "one member of the category, used as the category header",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "beach-resort-hawkesbay": {
     "key": "beach-resort-hawkesbay",
     "subject": "Hawke's Bay Beach Resort",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "bismillah-marwa": {
     "key": "bismillah-marwa",
     "subject": "Bismillah Marwa Restaurant",
     "via": "Biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/500px-%22Hyderabadi_Dum_Biryani%22.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/1280px-%22Hyderabadi_Dum_Biryani%22.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/1920px-%22Hyderabadi_Dum_Biryani%22.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:\"Hyderabadi_Dum_Biryani\".jpg",
     "artist": "Mahi Tatavarty",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 4032,
+    "h": 2592,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "boat-basin": {
     "key": "boat-basin",
     "subject": "Boat Basin",
     "via": "Boat Basin",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Boat_Basin.jpg/500px-Boat_Basin.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Boat_Basin.jpg/1280px-Boat_Basin.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Boat_Basin.jpg/1920px-Boat_Basin.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Boat_Basin.jpg",
     "artist": "Crosji",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4032,
+    "h": 2268,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "brigo-beach": {
     "key": "brigo-beach",
     "subject": "Brigo Beach",
     "via": "Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/500px-Clifton_Karachi_View.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Karachi_View.jpg",
     "artist": "Ktownboy103",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 1284,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "cairo-burns": {
     "key": "cairo-burns",
     "subject": "Cairo Restaurant",
     "via": "Karachi halwa",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Karachi_Halwa_%28Corn_Flour_Halwa%29.jpg/500px-Karachi_Halwa_%28Corn_Flour_Halwa%29.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Karachi_Halwa_%28Corn_Flour_Halwa%29.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Karachi_Halwa_%28Corn_Flour_Halwa%29.jpg/500px-Karachi_Halwa_%28Corn_Flour_Halwa%29.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_Halwa_(Corn_Flour_Halwa).jpg",
     "artist": "Shilpab2",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 780,
+    "h": 931,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "chai-wali-karachi": {
     "key": "chai-wali-karachi",
     "subject": "Chai Wali Federal B",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "chaukhandi-tombs": {
     "key": "chaukhandi-tombs",
     "subject": "Chaukhandi Tombs",
     "via": "Chaukhandi tombs",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg/500px-PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg/1280px-PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg/1920px-PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Chaukhandi_Necropolis_near_Karachi_asv2020-02_img08.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 7791,
+    "h": 4382,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "clifton-beach": {
     "key": "clifton-beach",
     "subject": "Clifton Beach",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "darya-dining": {
     "key": "darya-dining",
     "subject": "Darya Restaurant",
     "via": "Sindhi cuisine",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Pakistani_Food_Karahi_Beef.jpg/500px-Pakistani_Food_Karahi_Beef.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Pakistani_Food_Karahi_Beef.jpg/1280px-Pakistani_Food_Karahi_Beef.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Pakistani_Food_Karahi_Beef.jpg/1920px-Pakistani_Food_Karahi_Beef.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Pakistani_Food_Karahi_Beef.jpg",
     "artist": "Jess Lander from Culver City, CA, USA",
     "license": "CC BY 2.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 3872,
+    "h": 2592,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "data-darbar": {
     "key": "data-darbar",
     "subject": "Data Darbar Shrine",
     "via": "Data Darbar 2",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Data_Darbar_2.jpg/500px-Data_Darbar_2.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Data_Darbar_2.jpg/1280px-Data_Darbar_2.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Data_Darbar_2.jpg/1920px-Data_Darbar_2.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Data_Darbar_2.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4051,
+    "h": 2322,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "dolmen-mall-clifton": {
     "key": "dolmen-mall-clifton",
     "subject": "Dolmen Mall Clifton",
     "via": "Dolmen Mall Clifton",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/500px-Dolmen_Mall_Clifton.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/1280px-Dolmen_Mall_Clifton.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/1920px-Dolmen_Mall_Clifton.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Dolmen_Mall_Clifton.jpg",
     "artist": "Shahzor01",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 8192,
+    "h": 4608,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "dolmen-mall-tariq-road": {
     "key": "dolmen-mall-tariq-road",
@@ -429,19 +776,37 @@
     "artist": "Shahzor01",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1467,
+    "h": 1144,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "dolphin-park-clifton": {
     "key": "dolphin-park-clifton",
     "subject": "Dolphin Park",
     "via": "Ibn-e-Qasim Bagh Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 720,
+    "h": 441,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "dow-university-health-sciences": {
     "key": "dow-university-health-sciences",
@@ -453,1104 +818,2036 @@
     "artist": "User:Isnabeel",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1787,
+    "h": 1404,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "empress-market": {
     "key": "empress-market",
     "subject": "Empress Market",
     "via": "Empress Market",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/500px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1280px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1920px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5568,
+    "h": 3132,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "french-creek": {
     "key": "french-creek",
     "subject": "French Creek & mangrove belt",
     "via": "Indus River Delta–Arabian Sea mangroves",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mangrove-Keti_Bundar.jpg/500px-Mangrove-Keti_Bundar.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/90/Mangrove-Keti_Bundar.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mangrove-Keti_Bundar.jpg/960px-Mangrove-Keti_Bundar.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Mangrove-Keti_Bundar.jpg",
     "artist": "Agha Tahir Hussain",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 1024,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "frere-hall": {
     "key": "frere-hall",
     "subject": "Frere Hall",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "ghari-kabab": {
     "key": "ghari-kabab",
     "subject": "Ghari Kabab House",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "grand-mosque-karachi": {
     "key": "grand-mosque-karachi",
     "subject": "Grand Mosque of Karachi",
     "via": "Grand Jamia Mosque, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/500px-Grand_Jamia_Mosque_Drone_View.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/91/Grand_Jamia_Mosque_Drone_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/960px-Grand_Jamia_Mosque_Drone_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Grand_Jamia_Mosque_Drone_View.jpg",
     "artist": "Malik Riaz, Facebook",
     "license": "CC0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1200,
+    "h": 1200,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "guide-heritage-walk-saddar": {
     "key": "guide-heritage-walk-saddar",
     "subject": "Frere Hall",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-karachi-for-business-visitors": {
     "key": "guide-karachi-for-business-visitors",
     "subject": "Karachi Expo Centre",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-karachi-in-the-monsoon": {
     "key": "guide-karachi-in-the-monsoon",
     "subject": "Clifton Beach",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-karachi-photo-spots": {
     "key": "guide-karachi-photo-spots",
     "subject": "Mohatta Palace",
     "via": "Mohatta Palace Karachi Sindh",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/500px-Mohatta_Palace_Karachi_Sindh.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/1280px-Mohatta_Palace_Karachi_Sindh.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/1920px-Mohatta_Palace_Karachi_Sindh.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Mohatta_Palace_Karachi_Sindh.jpg",
     "artist": "Aareezasif",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 4928,
+    "h": 3264,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-karachi-with-kids": {
     "key": "guide-karachi-with-kids",
     "subject": "Karachi Zoo",
     "via": "An elephant bathing at the Karachi Zoological and Botanical Gardens, Pakistan - Sunday October 10,2021.jpg",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/500px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/1280px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/1920px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
     "artist": "Framjiarnaz",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 4608,
+    "h": 3456,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-one-day-in-karachi": {
     "key": "guide-one-day-in-karachi",
     "subject": "Mazar-e-Quaid",
     "via": "Mazar-e-Quaid",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1920px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 5176,
+    "h": 5176,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-shopping-in-karachi": {
     "key": "guide-shopping-in-karachi",
     "subject": "Dolmen Mall Clifton",
     "via": "Dolmen Mall Clifton",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/500px-Dolmen_Mall_Clifton.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/1280px-Dolmen_Mall_Clifton.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dolmen_Mall_Clifton.jpg/1920px-Dolmen_Mall_Clifton.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Dolmen_Mall_Clifton.jpg",
     "artist": "Shahzor01",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 8192,
+    "h": 4608,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "guide-where-karachi-eats": {
     "key": "guide-where-karachi-eats",
     "subject": "Where Karachi eats: biryani, nihari, chai and the night shift",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one scene from the guide, used as the article cover"
+    "illustrativeReason": "one scene from the guide, used as the article cover",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "gulshan-park": {
     "key": "gulshan-park",
     "subject": "Gulshan-e-Iqbal Community Park",
     "via": "Karachi Safari Park",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Safari_Park_Karachi_-_panoramio.jpg/500px-Safari_Park_Karachi_-_panoramio.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Safari_Park_Karachi_-_panoramio.jpg/1280px-Safari_Park_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Safari_Park_Karachi_-_panoramio.jpg/1920px-Safari_Park_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Safari_Park_Karachi_-_panoramio.jpg",
     "artist": "Anwar Ahmed",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 4320,
+    "h": 3240,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "gurdwara-karachi": {
     "key": "gurdwara-karachi",
     "subject": "Gurdwara Bungalow Granthi, Saddar",
     "via": "Masjid-e-Tooba",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/500px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1280px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1920px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 7266,
+    "h": 3633,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hababs": {
     "key": "hababs",
     "subject": "Hababs",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "habib-university": {
     "key": "habib-university",
     "subject": "Habib University",
     "via": "Habib University",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Habib_University_3.jpg/500px-Habib_University_3.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Habib_University_3.jpg/1280px-Habib_University_3.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Habib_University_3.jpg/1920px-Habib_University_3.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Habib_University_3.jpg",
     "artist": "Samarhashmi",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2700,
+    "h": 1800,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hawkes-bay-beach": {
     "key": "hawkes-bay-beach",
     "subject": "Hawke's Bay Beach",
     "via": "HawksBay_Beach.jpg",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/HawksBay_Beach.jpg/500px-HawksBay_Beach.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/HawksBay_Beach.jpg/1280px-HawksBay_Beach.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/HawksBay_Beach.jpg/1920px-HawksBay_Beach.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:HawksBay_Beach.jpg",
     "artist": "NomanAhmed96",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5184,
+    "h": 3456,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hero-karachi": {
     "key": "hero-karachi",
     "subject": "Karachi",
     "via": "Empress Market, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/500px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1280px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/PK_Karachi_asv2020-02_img36_Empress_Market.jpg/1920px-PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img36_Empress_Market.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5568,
+    "h": 3132,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hero-karachi-night": {
     "key": "hero-karachi-night",
     "subject": "Mazar-e-Quaid, Karachi",
     "via": "Mazar-e-Quaid",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1920px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5176,
+    "h": 5176,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hill-park-karachi": {
     "key": "hill-park-karachi",
     "subject": "Hill Park",
     "via": "Hill Park, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/500px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/1280px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/1920px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Hill_Park_02,_Karachi,_Pakistan.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hills-park-karachi": {
     "key": "hills-park-karachi",
     "subject": "Hawa Khandwa View Point",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "hotel-rehri-saddar": {
     "key": "hotel-rehri-saddar",
     "subject": "Rehri Carvery",
     "via": "Dal",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/3_types_of_lentil.png/500px-3_types_of_lentil.png",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/3_types_of_lentil.png/1280px-3_types_of_lentil.png",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/3_types_of_lentil.png/1920px-3_types_of_lentil.png",
     "filePage": "https://commons.wikimedia.org/wiki/File:3_types_of_lentil.png",
     "artist": "User:Justinc",
     "license": "CC BY-SA 2.5",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 3488,
+    "h": 2000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "ibne-bin-qasim-bagh": {
     "key": "ibne-bin-qasim-bagh",
     "subject": "Bagh-e-Ibne-Bin-Qasim",
     "via": "Ibn-e-Qasim Bagh Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 720,
+    "h": 441,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "ibne-qasim-stadium": {
     "key": "ibne-qasim-stadium",
     "subject": "Ibn-e-Qasim Bagh Stadium",
     "via": "Ibn-e-Qasim Bagh Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 720,
+    "h": 441,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "ice-cream-karachi-club": {
     "key": "ice-cream-karachi-club",
     "subject": "Lubnan Ice Cream",
     "via": "Kulfi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Matka_kulfi.jpg/500px-Matka_kulfi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Matka_kulfi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Matka_kulfi.jpg/500px-Matka_kulfi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Matka_kulfi.jpg",
     "artist": "Commoner247",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 960,
+    "h": 1280,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "indus-hospital-karachi": {
     "key": "indus-hospital-karachi",
     "subject": "The Indus Hospital",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "jamia-masjid-karachi": {
     "key": "jamia-masjid-karachi",
     "subject": "Jamiya Masjid, Kutcherie Bazaar",
     "via": "Grand Jamia Mosque, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/500px-Grand_Jamia_Mosque_Drone_View.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/91/Grand_Jamia_Mosque_Drone_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Grand_Jamia_Mosque_Drone_View.jpg/960px-Grand_Jamia_Mosque_Drone_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Grand_Jamia_Mosque_Drone_View.jpg",
     "artist": "Malik Riaz, Facebook",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 1200,
+    "h": 1200,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "jinnah-international-airport": {
     "key": "jinnah-international-airport",
     "subject": "Jinnah International Airport",
     "via": "Jinnah International Airport",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/500px-PK_Karachi_Airport_asv2020-01.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/1280px-PK_Karachi_Airport_asv2020-01.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PK_Karachi_Airport_asv2020-01.jpg/1920px-PK_Karachi_Airport_asv2020-01.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_Airport_asv2020-01.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 7229,
+    "h": 4066,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-circular-railway": {
     "key": "karachi-circular-railway",
     "subject": "Karachi Circular Railway (KCR)",
     "via": "Karachi Circular Railway",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Karachi_Circular_Railway.jpg/500px-Karachi_Circular_Railway.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Karachi_Circular_Railway.jpg/1280px-Karachi_Circular_Railway.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Karachi_Circular_Railway.jpg/1920px-Karachi_Circular_Railway.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_Circular_Railway.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2409,
+    "h": 1622,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-expo-centre": {
     "key": "karachi-expo-centre",
     "subject": "Karachi Expo Centre",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-gymkhana": {
     "key": "karachi-gymkhana",
     "subject": "Karachi Gymkhana",
     "via": "Karachi Gymkhana",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Cricket_Ground_in_karachi.jpeg/500px-Cricket_Ground_in_karachi.jpeg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Cricket_Ground_in_karachi.jpeg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Cricket_Ground_in_karachi.jpeg/500px-Cricket_Ground_in_karachi.jpeg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Cricket_Ground_in_karachi.jpeg",
     "license": "CC BY-SA 1.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 584,
+    "h": 438,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "karachi-metropolitan-corporation": {
     "key": "karachi-metropolitan-corporation",
     "subject": "Karachi Metropolitan Corporation (KMC)",
     "via": "Karachi Metropolitan Corporation Building",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/KMCBuilding_Karachi.jpg/1280px-KMCBuilding_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/KMCBuilding_Karachi.jpg/1280px-KMCBuilding_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/KMCBuilding_Karachi.jpg/1920px-KMCBuilding_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:KMCBuilding_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5138,
+    "h": 3682,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-port-cruise-terminal": {
     "key": "karachi-port-cruise-terminal",
     "subject": "Karachi Port Cruise Terminal",
     "via": "Port of Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/500px-Karachi_Seaport.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1280px-Karachi_Seaport.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1920px-Karachi_Seaport.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_Seaport.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4611,
+    "h": 3461,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-port-terminal": {
     "key": "karachi-port-terminal",
     "subject": "Karachi Port",
     "via": "Port of Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/500px-Karachi_Seaport.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1280px-Karachi_Seaport.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1920px-Karachi_Seaport.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_Seaport.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4611,
+    "h": 3461,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "karachi-zoo": {
     "key": "karachi-zoo",
     "subject": "Karachi Zoo",
     "via": "An elephant bathing at the Karachi Zoological and Botanical Gardens, Pakistan - Sunday October 10,2021.jpg",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/500px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/1280px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg/1920px-An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:An_elephant_bathing_at_the_Karachi_Zoological_and_Botanical_Gardens%2C_Pakistan_-_Sunday_October_10%2C2021.jpg",
     "artist": "Framjiarnaz",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4608,
+    "h": 3456,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "khi-dinner": {
     "key": "khi-dinner",
     "subject": "Karachi Dinner (Defence)",
     "via": "Mughlai cuisine",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Murgh_Musallam_Steamed.JPG/500px-Murgh_Musallam_Steamed.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Murgh_Musallam_Steamed.JPG/1280px-Murgh_Musallam_Steamed.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Murgh_Musallam_Steamed.JPG/1920px-Murgh_Musallam_Steamed.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Murgh_Musallam_Steamed.JPG",
     "artist": "Miansari66",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "khi-literary-society": {
     "key": "khi-literary-society",
     "subject": "Readers Book Centre, Frere Road",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "kolhapichay-clifton": {
     "key": "kolhapichay-clifton",
     "subject": "Kolhapichay & Grill",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "landhi-biryani-house": {
     "key": "landhi-biryani-house",
     "subject": "Landhi Biryani House",
     "via": "Biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/500px-%22Hyderabadi_Dum_Biryani%22.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/1280px-%22Hyderabadi_Dum_Biryani%22.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/%22Hyderabadi_Dum_Biryani%22.jpg/1920px-%22Hyderabadi_Dum_Biryani%22.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:\"Hyderabadi_Dum_Biryani\".jpg",
     "artist": "Mahi Tatavarty",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 4032,
+    "h": 2592,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "liaquat-national-hospital": {
     "key": "liaquat-national-hospital",
     "subject": "Liaquat National Hospital",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "lucky-one-mall": {
     "key": "lucky-one-mall",
     "subject": "Lucky One Mall",
     "via": "LuckyOne Mall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Lucky_One_Mall.jpg/500px-Lucky_One_Mall.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Lucky_One_Mall.jpg/1280px-Lucky_One_Mall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Lucky_One_Mall.jpg/1280px-Lucky_One_Mall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Lucky_One_Mall.jpg",
     "artist": "H4MZ1246",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1706,
+    "h": 960,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "lumbini-park": {
     "key": "lumbini-park",
     "subject": "Lumbini Park",
     "via": "Ibn-e-Qasim Bagh Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg/500px-Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ismail_Gold_Shield_Football_Tournament_at_Ibn-e-Qasim_Bagh_Stadium.jpg",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 720,
+    "h": 441,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "malir-garden": {
     "key": "malir-garden",
     "subject": "Saima Village & Malir Dam Gardens",
     "via": "Karachi E - Hashim Khaskheli Goth - Malir Dam IMG 8103 seasonal river",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg/500px-Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg/1280px-Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg/1920px-Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_E_-_Hashim_Khaskheli_Goth_-_Malir_Dam_IMG_8103_seasonal_river.jpg",
     "artist": "Bjoertvedt",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 3793,
+    "h": 2141,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "manora-island": {
     "key": "manora-island",
     "subject": "Manora",
     "via": "Manora, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Manora_-_P11008351.jpg/500px-Manora_-_P11008351.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Manora_-_P11008351.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Manora_-_P11008351.jpg/960px-Manora_-_P11008351.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Manora_-_P11008351.jpg",
     "artist": "Waqas.usman",
     "license": "CC BY-SA 2.5",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1024,
+    "h": 724,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "marine-drive-strip": {
     "key": "marine-drive-strip",
     "subject": "Marine Drive Beach Strip",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "masjid-e-tooba": {
     "key": "masjid-e-tooba",
     "subject": "Masjid-e-Tooba (Gol Mahal Masjid)",
     "via": "Masjid-e-Tooba",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/500px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1280px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1920px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 7266,
+    "h": 3633,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "mazar-e-quaid": {
     "key": "mazar-e-quaid",
     "subject": "Mazar-e-Quaid",
     "via": "Mazar-e-Quaid",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1920px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5176,
+    "h": 5176,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "mazar-gardens": {
     "key": "mazar-gardens",
     "subject": "Mazar-e-Quaid Gardens",
     "via": "Mazar-e-Quaid",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1920px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5176,
+    "h": 5176,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "mehboob-wharf": {
     "key": "mehboob-wharf",
     "subject": "Mehboob Wharf Road",
     "via": "Prawn",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Penaeus_monodon.jpg/500px-Penaeus_monodon.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Penaeus_monodon.jpg/1280px-Penaeus_monodon.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Penaeus_monodon.jpg/1920px-Penaeus_monodon.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Penaeus_monodon.jpg",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "mithai-burns": {
     "key": "mithai-burns",
     "subject": "Al-Imran Sweets",
     "via": "Gulab jamun",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Gulab-jamun-wallpaper-1.jpg/500px-Gulab-jamun-wallpaper-1.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Gulab-jamun-wallpaper-1.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Gulab-jamun-wallpaper-1.jpg/500px-Gulab-jamun-wallpaper-1.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Gulab-jamun-wallpaper-1.jpg",
     "artist": "Sapra5379",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 600,
+    "h": 400,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "mohatta-palace": {
     "key": "mohatta-palace",
     "subject": "Mohatta Palace",
     "via": "Mohatta Palace Karachi Sindh",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/500px-Mohatta_Palace_Karachi_Sindh.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/1280px-Mohatta_Palace_Karachi_Sindh.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mohatta_Palace_Karachi_Sindh.jpg/1920px-Mohatta_Palace_Karachi_Sindh.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Mohatta_Palace_Karachi_Sindh.jpg",
     "artist": "Aareezasif",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4928,
+    "h": 3264,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "national-hospital-karachi": {
     "key": "national-hospital-karachi",
     "subject": "National Hospital",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "national-museum-pakistan": {
     "key": "national-museum-pakistan",
     "subject": "National Museum of Pakistan",
     "via": "National Museum of Pakistan",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/500px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/1280px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/1920px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img32_National_Museum.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 6807,
+    "h": 3829,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "national-stadium-karachi": {
     "key": "national-stadium-karachi",
     "subject": "National Stadium Karachi",
     "via": "National Stadium, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/National_Stadium_after_Roof_removal.jpg/500px-National_Stadium_after_Roof_removal.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/9/98/National_Stadium_after_Roof_removal.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/National_Stadium_after_Roof_removal.jpg/960px-National_Stadium_after_Roof_removal.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:National_Stadium_after_Roof_removal.jpg",
     "artist": "Pakistan Cricket Board (PCB)",
     "license": "CC0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1244,
+    "h": 757,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "nicv": {
     "key": "nicv",
     "subject": "National Institute of Cardiovascular Diseases",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "nihari-haveli": {
     "key": "nihari-haveli",
     "subject": "Nihari Haveli",
     "via": "Nihari",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Nalli_Nihari_India.jpg/500px-Nalli_Nihari_India.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Nalli_Nihari_India.jpg/1280px-Nalli_Nihari_India.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Nalli_Nihari_India.jpg/1920px-Nalli_Nihari_India.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Nalli_Nihari_India.jpg",
     "artist": "Nilanjan Sasmal",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2048,
+    "h": 1598,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "ocean-park-karachi": {
     "key": "ocean-park-karachi",
     "subject": "Ocean Park Karachi",
     "via": "Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/500px-Clifton_Karachi_View.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Karachi_View.jpg",
     "artist": "Ktownboy103",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 1284,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "paaf-museum-karachi": {
     "key": "paaf-museum-karachi",
     "subject": "Pakistan Air Force Museum",
     "via": "Pakistan Air Force Museum",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/500px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/1280px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/PAF_Museum_Karachi%2C_Pakistan_06.jpg/1920px-PAF_Museum_Karachi%2C_Pakistan_06.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PAF_Museum_Karachi,_Pakistan_06.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "pakistan-institute-medical-sciences": {
     "key": "pakistan-institute-medical-sciences",
     "subject": "Pakistan Institute of Medical Sciences (PIMS)",
     "via": "Pakistan Institute of Medical Sciences",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Pims.jpg/500px-Pims.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Pims.jpg/1280px-Pims.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Pims.jpg/1920px-Pims.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Pims.jpg",
     "artist": "imrankhan",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2048,
+    "h": 1536,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "pakistan-maritime-museum": {
     "key": "pakistan-maritime-museum",
     "subject": "Pakistan Maritime Museum",
     "via": "Pakistan Maritime Museum",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg/500px-Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg/1280px-Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg/1920px-Pakistan_Maritime_Museum%2C_Karachi%2C_Pakistan_3.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Pakistan_Maritime_Museum,_Karachi,_Pakistan_3.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "pakistan-railways-heritage": {
     "key": "pakistan-railways-heritage",
     "subject": "Karachi Railway Station & Heritage Premises",
     "via": "Karachi Cantonment railway station",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg/500px-PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg/1280px-PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg/1920px-PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img54_Cantonment_Railway_Station.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 7177,
+    "h": 4037,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "paradise-point": {
     "key": "paradise-point",
     "subject": "Paradise Point",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "pearl-vohra": {
     "key": "pearl-vohra",
     "subject": "Pearl-Airconditioned Hotel & Pearl-Continental",
     "via": "Bristol Hotel, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg/500px-Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg/1280px-Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg/1280px-Bristol_Hotel_-_Civil_Lines%2C_Karachi..jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Bristol_Hotel_-_Civil_Lines,_Karachi..jpg",
     "artist": "Sadia Sarfraz",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 1709,
+    "h": 2664,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "peshawar-restaurant-khi": {
     "key": "peshawar-restaurant-khi",
     "subject": "Peshawar Restaurant",
     "via": "Chapli kebab",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Chapli_Kebab.jpg/500px-Chapli_Kebab.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Chapli_Kebab.jpg/1280px-Chapli_Kebab.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Chapli_Kebab.jpg/1920px-Chapli_Kebab.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Chapli_Kebab.jpg",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 4592,
+    "h": 2576,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "port-grand": {
     "key": "port-grand",
     "subject": "Port Grand",
     "via": "Port Grand",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Port_Grand_Karachi.JPG/500px-Port_Grand_Karachi.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Port_Grand_Karachi.JPG/1280px-Port_Grand_Karachi.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Port_Grand_Karachi.JPG/1920px-Port_Grand_Karachi.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Port_Grand_Karachi.JPG",
     "artist": "Obaid747",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 3000,
+    "h": 2000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "quaid-e-azam-house": {
     "key": "quaid-e-azam-house",
     "subject": "Quaid-e-Azam House Museum",
     "via": "Quaid-e-Azam House",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg/500px-PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg/1280px-PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg/1920px-PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img55_Jinnah_Museum.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5396,
+    "h": 3373,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "roastery-gulshan": {
     "key": "roastery-gulshan",
     "subject": "The Roastery",
     "via": "Latte",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/500px-Caffe_Latte_at_Pulse_Cafe.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/1280px-Caffe_Latte_at_Pulse_Cafe.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/1920px-Caffe_Latte_at_Pulse_Cafe.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Caffe_Latte_at_Pulse_Cafe.jpg",
     "artist": "B adger1",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2585,
+    "h": 2234,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "saddar-bukhara": {
     "key": "saddar-bukhara",
     "subject": "Bukhara Grill",
     "via": "Seekh kebab",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Pakistani_Food_Beef_Kabobs.jpg/500px-Pakistani_Food_Beef_Kabobs.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Pakistani_Food_Beef_Kabobs.jpg/1280px-Pakistani_Food_Beef_Kabobs.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Pakistani_Food_Beef_Kabobs.jpg/1920px-Pakistani_Food_Beef_Kabobs.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Pakistani_Food_Beef_Kabobs.jpg",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 3872,
+    "h": 2592,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "saddar-electronic-market": {
     "key": "saddar-electronic-market",
     "subject": "Electronic Market & Hillside",
     "via": "Imtiaz (retail chain)",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg/500px-Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg/1280px-Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg/1920px-Imtiaz_Super_Market_Tariq_Road%2C_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Imtiaz_Super_Market_Tariq_Road,_Karachi.jpg",
     "artist": "Sareena Moin",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4160,
+    "h": 3120,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "sandspit-beach": {
     "key": "sandspit-beach",
     "subject": "Sandspit",
     "via": "Sandspit Beach",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sands_Pit_Beach%2C_Karachi.jpg/500px-Sands_Pit_Beach%2C_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sands_Pit_Beach%2C_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sands_Pit_Beach%2C_Karachi.jpg/500px-Sands_Pit_Beach%2C_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sands_Pit_Beach,_Karachi.jpg",
     "artist": "Yasir Hussain from Lahore, Pakistan",
     "license": "CC BY-SA 2.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 540,
+    "h": 404,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "sea-shell-boatkasin": {
     "key": "sea-shell-boatkasin",
     "subject": "Sea Shell, Boat Basin",
     "via": "Fish fry",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fried_Fish_and_French_Fries.jpg/500px-Fried_Fish_and_French_Fries.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/8/87/Fried_Fish_and_French_Fries.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fried_Fish_and_French_Fries.jpg/960px-Fried_Fish_and_French_Fries.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Fried_Fish_and_French_Fries.jpg",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 1024,
+    "h": 768,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "seaview-ferry-terminal": {
     "key": "seaview-ferry-terminal",
     "subject": "Sea View Ferry & Manora Boat Terminal",
     "via": "Port of Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/500px-Karachi_Seaport.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1280px-Karachi_Seaport.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Karachi_Seaport.jpg/1920px-Karachi_Seaport.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Karachi_Seaport.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4611,
+    "h": 3461,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "seaview-point": {
     "key": "seaview-point",
     "subject": "Sea View Point",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/500px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1280px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Seaview_%28Clifton_Beach%29_Karachi.jpg/1920px-Seaview_%28Clifton_Beach%29_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Seaview_(Clifton_Beach)_Karachi.jpg",
     "artist": "M.irfan44",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4000,
+    "h": 3000,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "sir-syed-university": {
     "key": "sir-syed-university",
     "subject": "Sir Syed University of Engineering & Technology",
     "via": "Sir Syed University of Engineering and Technology",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg/500px-Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg/1250px-Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg/960px-Sir_Syed_University_of_Engineering_and_Technology_%28SSUET%29.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sir_Syed_University_of_Engineering_and_Technology_(SSUET).jpg",
     "artist": "Imran",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1250,
+    "h": 882,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "siut": {
     "key": "siut",
     "subject": "Sindh Institute of Urology & Transplantation (SIUT)",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "south-city-hospital": {
     "key": "south-city-hospital",
     "subject": "South City Hospital",
     "via": "Aga Khan University Hospital, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/500px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1280px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Agha_Khan_Hospital_Karachi_-_panoramio.jpg/1920px-Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Agha_Khan_Hospital_Karachi_-_panoramio.jpg",
     "artist": "khadim-un-nabi Rao",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 3000,
+    "h": 2051,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "st-andrews-scots-kirk": {
     "key": "st-andrews-scots-kirk",
     "subject": "St. Andrew's Scots Kirk",
     "via": "Masjid-e-Tooba",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/500px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1280px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg/1920px-PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img57_Tooba_Mosque.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 7266,
+    "h": 3633,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "st-patricks-cathedral": {
     "key": "st-patricks-cathedral",
     "subject": "St. Patrick's Cathedral",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/500px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1280px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PK_Karachi_asv2020-02_img62_Frere_Hall.jpg/1920px-PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img62_Frere_Hall.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 4862,
+    "h": 3890,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "state-bank-of-pakistan-museum": {
     "key": "state-bank-of-pakistan-museum",
     "subject": "State Bank of Pakistan Museum",
     "via": "Old building of State Bank of Pakistan, Now its known as State Bank Museum.jpg",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg/500px-Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg/1280px-Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg/1920px-Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Old_building_of_State_Bank_of_Pakistan%2C_Now_its_known_as_State_Bank_Museum.jpg",
     "artist": "Asim Iftikhar Nagi",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 10410,
+    "h": 5764,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "sughar-house": {
     "key": "sughar-house",
     "subject": "Sughar House Crafts Centre",
     "via": "Ajrak",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Ajrak.jpg/500px-Ajrak.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Ajrak.jpg/1280px-Ajrak.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Ajrak.jpg/1920px-Ajrak.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Ajrak.jpg",
     "artist": "Ahub1988",
     "license": "CC BY-SA 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 4137,
+    "h": 1821,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "swaminarayan-temple-khi": {
     "key": "swaminarayan-temple-khi",
     "subject": "Swaminaraya Mandir, Kharadar",
     "via": "Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/500px-Clifton_Karachi_View.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Clifton_Karachi_View.jpg/1280px-Clifton_Karachi_View.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Karachi_View.jpg",
     "artist": "Ktownboy103",
     "license": "CC0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a Karachi scene standing in for this specific address"
+    "illustrativeReason": "a Karachi scene standing in for this specific address",
+    "w": 1284,
+    "h": 690,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "taftri-house": {
     "key": "taftri-house",
     "subject": "Taftri House",
     "via": "Sindhi biryani",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/500px-Sindhi_Biryani.JPG",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1280px-Sindhi_Biryani.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sindhi_Biryani.JPG/1920px-Sindhi_Biryani.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Sindhi_Biryani.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "dish photo of what the place serves, not the premises"
+    "illustrativeReason": "dish photo of what the place serves, not the premises",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "talwar-lawn": {
     "key": "talwar-lawn",
     "subject": "Talwar Police Officers' Club Lawn",
     "via": "Karachi Expo Center",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/500px-Expocenter_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1280px-Expocenter_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Expocenter_Karachi.jpg/1920px-Expocenter_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Expocenter_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "a real Karachi building, but not the one this record is about"
+    "illustrativeReason": "a real Karachi building, but not the one this record is about",
+    "w": 5681,
+    "h": 4261,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "university-of-karachi": {
     "key": "university-of-karachi",
     "subject": "University of Karachi",
     "via": "University of Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG/500px-Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG/800px-Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG/500px-Applied_Economics_Research_Centre%2C_University_of_Karachi.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Applied_Economics_Research_Centre,_University_of_Karachi.JPG",
     "artist": "M.Imran (talk) (Uploads)",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 800,
+    "h": 600,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "wazir-mansion": {
     "key": "wazir-mansion",
     "subject": "Wazir Mansion",
     "via": "Wazir Mansion",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg/500px-PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg",
-    "wide": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg/1280px-PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg/1920px-PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img28_Wazir_Mansion.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 3529,
+    "h": 4705,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-universities": {
     "key": "banner-universities",
     "subject": "Universities & Colleges",
     "via": "Iqra University Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Iqra_university_main_campus.jpg/500px-Iqra_university_main_campus.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Iqra_university_main_campus.jpg/1280px-Iqra_university_main_campus.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Iqra_university_main_campus.jpg/330px-Iqra_university_main_campus.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Iqra_university_main_campus.jpg",
     "artist": "Nomaziz",
     "license": "CC BY 3.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one example of the category, used as the category header"
+    "illustrativeReason": "one example of the category, used as the category header",
+    "w": 454,
+    "h": 133,
+    "px": [
+      120,
+      250,
+      330
+    ]
   },
   "banner-schools": {
     "key": "banner-schools",
     "subject": "Schools & Institutes",
     "via": "Aisha Bawany School, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aisha_Bawany_School,_Karachi.jpg/500px-Aisha_Bawany_School,_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aisha_Bawany_School,_Karachi.jpg/1280px-Aisha_Bawany_School,_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aisha_Bawany_School,_Karachi.jpg/1920px-Aisha_Bawany_School,_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Aisha_Bawany_School,_Karachi.jpg",
     "artist": "Khigrapher",
     "license": "CC BY-SA 4.0",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one example of the category, used as the category header"
+    "illustrativeReason": "one example of the category, used as the category header",
+    "w": 3666,
+    "h": 2974,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "banner-emergency": {
     "key": "banner-emergency",
@@ -1563,210 +2860,397 @@
     "license": "Public domain",
     "verified": true,
     "kind": "related",
-    "illustrativeReason": "one example of the category, used as the category header"
+    "illustrativeReason": "one example of the category, used as the category header",
+    "w": 1498,
+    "h": 964,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   },
   "tandoori-hut-restaurant-boat-basin": {
     "key": "tandoori-hut-restaurant-boat-basin",
     "subject": "Tandoori Hut Restaurant, Boat Basin",
     "via": "Wikimedia Commons",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Tandoori_hut_Restaurant.jpg/500px-Tandoori_hut_Restaurant.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Tandoori_hut_Restaurant.jpg/1280px-Tandoori_hut_Restaurant.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Tandoori_hut_Restaurant.jpg/500px-Tandoori_hut_Restaurant.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Tandoori_hut_Restaurant.jpg",
     "artist": "Shahzaibabdullahofficial",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 960,
+    "h": 673,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "movenpick-karachi": {
     "key": "movenpick-karachi",
     "subject": "Mövenpick Hotel Karachi",
     "via": "Wikimedia Commons",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Movenpick_Karachi.jpg/500px-Movenpick_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Movenpick_Karachi.jpg/1280px-Movenpick_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Movenpick_Karachi.jpg/1920px-Movenpick_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Movenpick_Karachi.jpg",
     "artist": "Wasif Malik",
     "license": "CC BY 2.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2284,
+    "h": 1332,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "iba-karachi": {
     "key": "iba-karachi",
     "subject": "Institute of Business Administration",
     "via": "Wikimedia Commons",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg/500px-Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg/1280px-Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg/1920px-Institute_of_Business_Administration_%28IBA%29_in_Karachi_%2830714357776%29.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Institute_of_Business_Administration_(IBA)_in_Karachi_(30714357776).jpg",
     "artist": "USAID Pakistan",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4211,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:beaches:clifton-beach-karachi-clifton": {
     "key": "open:beaches:clifton-beach-karachi-clifton",
     "subject": "Clifton Beach, Karachi",
     "via": "Clifton Beach, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Clifton_Beach_Karachi.JPG/500px-Clifton_Beach_Karachi.JPG",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Clifton_Beach_Karachi.JPG/1280px-Clifton_Beach_Karachi.JPG",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Clifton_Beach_Karachi.JPG/1920px-Clifton_Beach_Karachi.JPG",
     "filePage": "https://commons.wikimedia.org/wiki/File:Clifton_Beach_Karachi.JPG",
     "artist": "Miansari66",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:museums-galleries:mohatta-palace-clifton": {
     "key": "open:museums-galleries:mohatta-palace-clifton",
     "subject": "Mohatta Palace",
     "via": "Qasr-e-Fatima",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mohatta_Palace_Karachi_2.jpg/500px-Mohatta_Palace_Karachi_2.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mohatta_Palace_Karachi_2.jpg/1280px-Mohatta_Palace_Karachi_2.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mohatta_Palace_Karachi_2.jpg/1920px-Mohatta_Palace_Karachi_2.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Mohatta_Palace_Karachi_2.jpg",
     "artist": "User Swerveut on en.wikipedia",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2048,
+    "h": 1536,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:museums-galleries:national-museum-of-pakistan-gulberg-karachi": {
     "key": "open:museums-galleries:national-museum-of-pakistan-gulberg-karachi",
     "subject": "National Museum of Pakistan",
     "via": "National Museum of Pakistan",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/500px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/1280px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/PK_Karachi_asv2020-02_img32_National_Museum.jpg/1920px-PK_Karachi_asv2020-02_img32_National_Museum.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img32_National_Museum.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 6807,
+    "h": 3829,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:parks-recreation:bagh-ibne-qasim-clifton": {
     "key": "open:parks-recreation:bagh-ibne-qasim-clifton",
     "subject": "Bagh Ibne Qasim",
     "via": "Bagh Ibne Qasim",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bagh-e-Qasim_Karachi.jpg/500px-Bagh-e-Qasim_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bagh-e-Qasim_Karachi.jpg/1280px-Bagh-e-Qasim_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bagh-e-Qasim_Karachi.jpg/960px-Bagh-e-Qasim_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Bagh-e-Qasim_Karachi.jpg",
     "artist": "newsphoto90/suleman sajjad",
     "license": "CC BY-SA 2.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1024,
+    "h": 681,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "open:parks-recreation:hill-park-gulistan-e-johar": {
     "key": "open:parks-recreation:hill-park-gulistan-e-johar",
     "subject": "Hill Park",
     "via": "Hill Park, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/500px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/1280px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hill_Park_02%2C_Karachi%2C_Pakistan.jpg/1920px-Hill_Park_02%2C_Karachi%2C_Pakistan.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Hill_Park_02,_Karachi,_Pakistan.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:parks-recreation:jheel-park-bahadurabad": {
     "key": "open:parks-recreation:jheel-park-bahadurabad",
     "subject": "Jheel Park",
     "via": "Jheel Park",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg/500px-Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg/1280px-Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg/1920px-Jheel_Park%2C_Karachi%2C_Pakistan%2C_1.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Jheel_Park,_Karachi,_Pakistan,_1.jpg",
     "artist": "Adnanrail",
     "license": "CC BY-SA 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2816,
+    "h": 2112,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:parks-recreation:safari-park-malir": {
     "key": "open:parks-recreation:safari-park-malir",
     "subject": "Safari Park",
     "via": "Karachi Safari Park",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Safari_Park_Karachi.jpg/500px-Safari_Park_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Safari_Park_Karachi.jpg/1280px-Safari_Park_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Safari_Park_Karachi.jpg/960px-Safari_Park_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Safari_Park_Karachi.jpg",
     "artist": "Shahid1024",
     "license": "CC BY 3.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1024,
+    "h": 768,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960
+    ]
   },
   "open:sports-fitness:kmc-football-stadium-saddar": {
     "key": "open:sports-fitness:kmc-football-stadium-saddar",
     "subject": "KMC Football Stadium",
     "via": "KMC Football Stadium",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg/500px-CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg/1280px-CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg/500px-CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium%2C_Karachi_in_1969.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:CSKA_Moscow_and_Pakistan_national_football_team_at_the_KMC_Stadium,_Karachi_in_1969.jpg",
     "license": "Public domain",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 940,
+    "h": 526,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
   },
   "open:sports-fitness:national-stadium-karachi-bahadurabad": {
     "key": "open:sports-fitness:national-stadium-karachi-bahadurabad",
     "subject": "National Stadium, Karachi",
     "via": "National Stadium, Karachi",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/NationalStadium_Karachi_Pak_vs_Eng.jpg/500px-NationalStadium_Karachi_Pak_vs_Eng.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/NationalStadium_Karachi_Pak_vs_Eng.jpg/1280px-NationalStadium_Karachi_Pak_vs_Eng.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/NationalStadium_Karachi_Pak_vs_Eng.jpg/1920px-NationalStadium_Karachi_Pak_vs_Eng.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:NationalStadium_Karachi_Pak_vs_Eng.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4128,
+    "h": 2322,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:tourist-places:frere-hall-federal-b-area": {
     "key": "open:tourist-places:frere-hall-federal-b-area",
     "subject": "Frere Hall",
     "via": "Frere Hall",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Frere_Hall_Karachi%2C_Pk.jpg/500px-Frere_Hall_Karachi%2C_Pk.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Frere_Hall_Karachi%2C_Pk.jpg/1280px-Frere_Hall_Karachi%2C_Pk.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Frere_Hall_Karachi%2C_Pk.jpg/1920px-Frere_Hall_Karachi%2C_Pk.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Frere_Hall_Karachi,_Pk.jpg",
     "artist": "Muhammad Ahmed",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 4202,
+    "h": 3123,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "ned-university": {
     "key": "ned-university",
     "subject": "NED University of Engineering & Technology",
     "via": "NED University of Engineering and Technology",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NED_University_Karachi.jpg/500px-NED_University_Karachi.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NED_University_Karachi.jpg/1280px-NED_University_Karachi.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NED_University_Karachi.jpg/1920px-NED_University_Karachi.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:NED_University_Karachi.jpg",
     "artist": "King Eliot",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5184,
+    "h": 3088,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:government:karachi-port-trust-building-saddar": {
     "key": "open:government:karachi-port-trust-building-saddar",
     "subject": "Karachi Port Trust Building",
     "via": "Karachi Port Trust Building",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KPTKarachi1.jpg/500px-KPTKarachi1.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KPTKarachi1.jpg/1280px-KPTKarachi1.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/KPTKarachi1.jpg/1920px-KPTKarachi1.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:KPTKarachi1.jpg",
     "artist": "Ali Shaikh Abbas",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1975,
+    "h": 2275,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:shopping:empress-market-saddar": {
     "key": "open:shopping:empress-market-saddar",
     "subject": "Empress Market",
     "via": "Wikimedia Commons",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Empress_Market_Saddar_Karachi_cropped.jpg/500px-Empress_Market_Saddar_Karachi_cropped.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Empress_Market_Saddar_Karachi_cropped.jpg/1280px-Empress_Market_Saddar_Karachi_cropped.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Empress_Market_Saddar_Karachi_cropped.jpg/1920px-Empress_Market_Saddar_Karachi_cropped.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:Empress_Market_Saddar_Karachi_cropped.jpg",
     "artist": "Siddiqi",
     "license": "CC BY-SA 4.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 2853,
+    "h": 1957,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "open:tourist-places:mausoleum-of-quaid-e-azam-bahadurabad": {
     "key": "open:tourist-places:mausoleum-of-quaid-e-azam-bahadurabad",
     "subject": "Mazar-e-Quaid (Jinnah Mausoleum)",
     "via": "Wikimedia Commons",
     "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/500px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
-    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1280px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg/1920px-PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "filePage": "https://commons.wikimedia.org/wiki/File:PK_Karachi_asv2020-02_img52_Mazar-e-Quaid.jpg",
     "artist": "A.Savin",
     "license": "FAL",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 5176,
+    "h": 5176,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   },
   "aga-khan-university-campus": {
     "key": "aga-khan-university-campus",
@@ -1778,6 +3262,16 @@
     "artist": "Kashif Mardani",
     "license": "CC BY 2.0",
     "verified": true,
-    "kind": "subject"
+    "kind": "subject",
+    "w": 1760,
+    "h": 1320,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280
+    ]
   }
 }

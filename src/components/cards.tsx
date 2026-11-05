@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Heart, MapPin, Star, Ticket, Clock3, ArrowRight, ShieldAlert, ShieldCheck, Image } from 'lucide-react';
 import type { Area, Category, CityEvent, Guide, Listing } from '../types';
-import { areaImageKey, imageFor, pictureSubject, type MediaEntry } from '../lib/media';
+import { areaImageKey, failToPlaceholder, imageFor, pictureSubject, type ImgSize, type MediaEntry } from '../lib/media';
 import { actions, prefsFor, useDB } from '../lib/store';
 import { listingHref } from '../lib/openRecords';
 import { IllustrativeStamp, useToast } from './ui';
@@ -82,10 +82,14 @@ export function ListingCard({
   listing,
   view = 'grid',
   showArea = true,
+  size,
 }: {
   listing: Listing;
   view?: 'grid' | 'list';
   showArea?: boolean;
+  /** Which painted width this card's frame will have, which depends on how many
+   *  cards the surrounding grid puts in a row — see `IMG`. */
+  size?: ImgSize;
 }) {
   /* An open record's photograph is filed under its id (`open:<category>:<slug>`),
      not under the bare slug it shares with nothing else in the dump. */
@@ -122,7 +126,7 @@ export function ListingCard({
     return (
       <article className="card card-hover relative flex flex-col gap-4 overflow-hidden p-0 sm:flex-row">
         <Link to={href} className="block shrink-0 sm:w-64" aria-label={`View ${listing.name}`}>
-          <ImageBlock media={media} alt={listing.name} className="h-44 w-full sm:h-full" />
+          <ImageBlock media={media} alt={listing.name} size="cardList" className="h-44 w-full sm:h-full" />
         </Link>
         <div className="flex min-w-0 flex-1 flex-col gap-2 p-5">
           <div className="flex flex-wrap items-center gap-2">
@@ -147,7 +151,7 @@ export function ListingCard({
   return (
     <article className="card card-hover relative flex flex-col overflow-hidden">
       <Link to={href} className="group relative block" aria-label={`View ${listing.name}`}>
-        <ImageBlock media={media} alt={listing.name} className="aspect-[3/2] w-full" />
+        <ImageBlock media={media} alt={listing.name} size={size} className="aspect-[3/2] w-full" />
         <span className="absolute inset-x-3 bottom-3">
           <MediaStamp listing={listing} />
         </span>
@@ -172,18 +176,16 @@ export function ListingCard({
   );
 }
 
-function ImageBlock({ media, alt, className }: { media: ReturnType<typeof imageFor>; alt: string; className?: string }) {
+function ImageBlock({ media, alt, className, size = 'card' }: { media: ReturnType<typeof imageFor>; alt: string; className?: string; size?: ImgSize }) {
   return (
     <span className={`block overflow-hidden bg-navy-50 ${className}`}>
       <img
-        src={media.thumb}
+        {...media.thumbImg(size)}
         alt={alt}
         loading="lazy"
         decoding="async"
         className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
-        onError={(e) => {
-          if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback;
-        }}
+        onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
       />
     </span>
   );
@@ -212,7 +214,7 @@ function CategoryPill({ category }: { category?: Category }) {  if (!category) r
 
 /* -------------------------------- event -------------------------------- */
 
-export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: 'grid' | 'list' }) {
+export function EventCard({ event, view = 'grid', size }: { event: CityEvent; view?: 'grid' | 'list'; size?: ImgSize }) {
   const media = imageFor(event.slug, event.name);
   const area = areaById.get(event.areaId);
   const d = new Date(`${event.date}T00:00:00`);
@@ -230,14 +232,12 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
       >
         <span className={`block ${view === 'list' ? 'h-44 w-full sm:h-full' : 'aspect-[16/10] w-full'}`}>
           <img
-            src={media.thumb}
+            {...media.thumbImg(view === 'list' ? 'cardList' : size ?? 'card3')}
             alt={event.name}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
-            onError={(e) => {
-              if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback;
-            }}
+            onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
           />
         </span>
       </Link>
@@ -284,7 +284,7 @@ export function EventCard({ event, view = 'grid' }: { event: CityEvent; view?: '
 
 /* -------------------------------- area --------------------------------- */
 
-export function AreaCard({ area, count }: { area: Area; count: number }) {
+export function AreaCard({ area, count, size }: { area: Area; count: number; size?: ImgSize }) {
   const media = imageFor(areaImageKey(area.id), area.name);
   return (
     <Link to={`/area/${area.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0">
@@ -292,12 +292,12 @@ export function AreaCard({ area, count }: { area: Area; count: number }) {
           object-cover is what sliced the roofline off these photos. */}
       <span className="relative block aspect-[4/3] overflow-hidden bg-navy-50 sm:aspect-[16/10]">
         <img
-          src={media.thumb}
+          {...media.thumbImg(size ?? 'card')}
           alt={`${area.name}, Karachi`}
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
+          onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
         />
       </span>
       <span className="flex flex-1 items-center justify-between gap-3 bg-navy-800 px-4 py-3">
@@ -336,25 +336,27 @@ export function CategoryCard({
   count,
   unit = ['place', 'places'],
   extra,
+  size,
 }: {
   category: Category;
   count: number;
   unit?: [string, string];
   /** A second, smaller figure — used for the unchecked map records sitting behind the same category. */
   extra?: string;
+  size?: ImgSize;
 }) {
   const media = imageFor(`banner-${category.id}`, category.name);
   return (
     <Link to={`/category/${category.slug}`} className="card card-hover group flex h-auto flex-col overflow-hidden p-0">
       <span className="relative block aspect-[4/3] overflow-hidden bg-navy-50 sm:aspect-[16/10]">
         <img
-          src={media.thumb}
+          {...media.thumbImg(size ?? 'tile')}
           alt=""
           aria-hidden
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
+          onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
         />
       </span>
       <span className="flex flex-1 items-center gap-3 bg-navy-800 px-4 py-3">
@@ -375,18 +377,18 @@ export function CategoryCard({
 
 /* -------------------------------- guide -------------------------------- */
 
-export function GuideCard({ guide }: { guide: Guide }) {
+export function GuideCard({ guide, size }: { guide: Guide; size?: ImgSize }) {
   const media = imageFor(`guide-${guide.slug}`, guide.title);
   return (
     <Link to={`/guides/${guide.slug}`} className="card card-hover group flex flex-col overflow-hidden">
       <span className="relative block aspect-[16/9] overflow-hidden bg-navy-50">
         <img
-          src={media.thumb}
+          {...media.thumbImg(size ?? 'card')}
           alt={guide.title}
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          onError={(e) => { if (media.fallback && e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback; }}
+          onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
         />
         <span className="absolute bottom-2.5 right-2.5">
           <IllustrativeStamp entry={media.entry} />

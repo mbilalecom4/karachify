@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { imageFor } from '../lib/media';
+import { failToPlaceholder, imageFor } from '../lib/media';
 import { Breadcrumbs, IllustrativeStamp } from './ui';
 
 /** Standard interior-page header: Karachi photograph, opaque scrim, title block. */
@@ -29,12 +29,11 @@ export function PageHero({
     <section className={`relative isolate flex items-end overflow-hidden ${height}`}>
       <div className="absolute inset-0 -z-10">
         <img
-          src={media.wide}
+          {...media.wideImg('hero')}
           alt={label}
+          decoding="async"
           className="h-full w-full object-cover"
-          onError={(e) => {
-            if (e.currentTarget.src !== media.fallback) e.currentTarget.src = media.fallback;
-          }}
+          onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)}
         />
         {/* Flat scrim: the whole frame is darkened, not just the bottom, so the
             breadcrumbs and eyebrow at the top are never set on open sky. */}

@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Clock, ExternalLink, Flag, Mail, MapPin, Phone, ShieldAlert, Globe } from 'lucide-react';
 import { areaById, categoryById } from '../data/taxonomy';
 import { humanTag, openToListing, osmIdOf, useOpenRecord } from '../lib/openRecords';
-import { mediaFor } from '../lib/media';
+import { imgAttrs, mediaFor } from '../lib/media';
 import { coordText } from '../lib/format';
 import { applyPageMeta, metaForMissing, metaForOpenRecord } from '../lib/pageMeta';
 import { Breadcrumbs, EmptyState, StatusBadge } from '../components/ui';
@@ -114,9 +114,10 @@ export default function OpenRecord() {
         {photo && (
           <figure className="card mt-6 overflow-hidden p-0">
             <img
-              src={photo.wide ?? photo.thumb}
+              {...imgAttrs(photo, photo.wide ?? photo.thumb, 'figure')}
               alt={`${record.name}, photographed for Wikimedia Commons`}
               loading="lazy"
+              decoding="async"
               className="h-[clamp(190px,30vw,320px)] w-full object-cover"
             />
             <figcaption className="px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, ExternalLink } from 'lucide-react';
-import { attributionRows, openRecordMediaCount, pictureSubject, placeholderImage, resolvedMediaCount } from '../lib/media';
+import { attributionRows, failToPlaceholder, imgAttrs, openRecordMediaCount, pictureSubject, placeholderImage, resolvedMediaCount } from '../lib/media';
 import { selectListings, useDB } from '../lib/store';
 import { Field, TextInput } from '../components/ui';
 import { Note, PageHero } from '../components/Page';
@@ -85,14 +85,14 @@ export default function ImageCredits() {
                 <tr key={m.key} className="border-b border-navy-50 last:border-0">
                   <td className="px-4 py-2.5">
                     <img
+                      {...imgAttrs(m, m.thumb, 'credit')}
                       src={m.thumb}
                       alt=""
                       aria-hidden
                       loading="lazy"
+                      decoding="async"
                       className="h-12 w-16 rounded-md bg-navy-50 object-cover"
-                      onError={(e) => {
-                        e.currentTarget.src = placeholderImage(m.subject);
-                      }}
+                      onError={(e) => failToPlaceholder(e.currentTarget, placeholderImage(m.subject))}
                     />
                   </td>
                   <td className="px-4 py-2.5 font-medium text-navy-800">

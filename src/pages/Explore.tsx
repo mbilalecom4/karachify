@@ -96,7 +96,7 @@ export default function Explore() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {areas.slice(0, 6).map((a) => (
-              <AreaCard key={a.id} area={a} count={listings.filter((l) => l.areaId === a.id).length} />
+              <AreaCard key={a.id} area={a} count={listings.filter((l) => l.areaId === a.id).length} size="card6" />
             ))}
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function Explore() {
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {guides.slice(0, 4).map((g) => (
-            <GuideCard key={g.id} guide={g} />
+            <GuideCard key={g.id} guide={g} size="card4" />
           ))}
         </div>
       </section>

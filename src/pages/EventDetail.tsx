@@ -12,7 +12,7 @@ import {
   Navigation,
 } from 'lucide-react';
 import { actions, prefsFor, selectAreas, selectEvents, useDB } from '../lib/store';
-import { imageFor, pictureSubject } from '../lib/media';
+import { failToPlaceholder, imageFor, pictureSubject } from '../lib/media';
 import { EventCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { Note } from '../components/Page';
@@ -82,7 +82,7 @@ export default function EventDetail() {
     <div>
       <section className="relative isolate overflow-hidden bg-navy-900">
         <div className="absolute inset-0 -z-10">
-          <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : event.name} className="h-full w-full object-cover" onError={(e) => (e.currentTarget.src = media.fallback)} />
+          <img {...media.wideImg('hero')} alt={media.entry ? pictureSubject(media.entry) : event.name} decoding="async" className="h-full w-full object-cover" onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)} />
           <div className="media-scrim-flat absolute inset-0" />
         </div>
         <span className="absolute right-4 top-20 z-10">
@@ -267,7 +267,7 @@ export default function EventDetail() {
             <article>
               <h2 className="section-title mb-3">Photo</h2>
               <figure>
-                <img src={media.wide} alt={media.entry ? pictureSubject(media.entry) : event.name} className="w-full rounded-xl border border-navy-100" onError={(e) => (e.currentTarget.src = media.fallback)} />
+                <img {...media.wideImg('figure')} alt={media.entry ? pictureSubject(media.entry) : event.name} loading="lazy" decoding="async" className="w-full rounded-xl border border-navy-100" onError={(e) => failToPlaceholder(e.currentTarget, media.fallback)} />
                 <figcaption className="mt-2 text-[13px] text-navy-500">
                   {media.entry ? (
                     <>
