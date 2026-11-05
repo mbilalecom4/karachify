@@ -60,11 +60,18 @@ export default function Privacy() {
               your IP address; it does not see your name, your plan, or which recorded place either point is.
             </li>
             <li>
-              The list of places shipped with this site — every pharmacy, hospital and clinic in its OpenStreetMap file — is
-              fetched from this site itself, from a file that does not change. If you then press "Check OpenStreetMap for
-              right now", one query goes to a public Overpass server carrying the coordinates of the page you are reading
-              and a radius: not your own position, and not which place you were looking at. The server sees that query and
-              your IP address.
+              The list of places shipped with this site — every pharmacy, hospital and clinic in its OpenStreetMap file, and
+              the record of which places publish opening hours — is fetched from this site itself, from files that do not
+              change. No server of ours sees either request beyond the ordinary log of a page being downloaded. If you then
+              press "Check OpenStreetMap for right now", one query goes to a public Overpass server carrying the coordinates
+              of the page you are reading and a radius: not your own position, and not which place you were looking at. The
+              server sees that query and your IP address.
+            </li>
+            <li>
+              A problem you report through a listing page, or through the reports page, is written into this browser's own
+              storage. It is not sent anywhere by this build — the only route that reaches the people maintaining the data
+              is the GitHub issue link, which you press yourself, and which quotes the record's name, the page address, the
+              position shown and the hours shown so the report can be checked.
             </li>
             <li>
               What you have already loaded — the page, its photographs, the record files — is also kept on your own device

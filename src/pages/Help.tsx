@@ -108,8 +108,18 @@ const FAQS: Faq[] = [
   },
   {
     group: 'Data & accuracy',
+    q: 'What does the open-now panel on an area page actually count?',
+    a: 'Press it and the page reads a file of the records in that area that publish opening hours, then sorts them by what their own words say about this minute on Karachi’s clock (UTC+5) — not your device’s clock, which may be set to another country. Four things can be wrong with that, and the panel says which: a record whose hours are written in a shape the reader cannot follow is counted under “Hours Karachify could not read” instead of being guessed at, a record that states no hours is not counted at all, the date the map hours were read is printed beside the figures, and every row links the source that states it. Nothing there is a promise that a shut door is open: it is a restatement of what the published hours say about the current minute.',
+  },
+  {
+    group: 'Data & accuracy',
     q: 'I found an error. What now?',
     a: 'Every listing page has a "Report a problem with this record" button under Verification & source. It files the report in this browser and, more usefully, can open a prefilled issue on the public repository so it reaches whoever edits the data. Corrections to phone numbers, hours and prices are applied only against a citable source.',
+  },
+  {
+    group: 'Data & accuracy',
+    q: 'Does a report I file reach you automatically?',
+    a: 'No. A report is written into this browser’s own storage and appears on the reports page, where you can read it back or clear it — nothing is uploaded, and the site has no server to receive it. The one route that reaches a human is the “Send this one to us as an issue” button, which opens a prefilled issue on the public repository with your own text in it. If you close that without sending it, the report stays on your device and nobody sees it. Where the report concerns opening hours, the button quotes the hours the page was showing so the correction can be compared with what was actually displayed.',
   },
   {
     group: 'Data & accuracy',

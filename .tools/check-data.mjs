@@ -253,6 +253,7 @@ const PARTS = join(TIER, 'parts');
 const pad3 = (n) => String(n).padStart(3, '0');
 let tierCount = 0;
 let nearbyCount = 0;
+let areaHoursCount = 0;
 if (existsSync(TIER) && !existsSync(PARTS))
   failures.push('tier: public/data/tier/parts is missing — the open records are published as 200-record parts, not one file per category');
 if (existsSync(TIER) && existsSync(PARTS)) {
@@ -437,6 +438,70 @@ if (existsSync(TIER) && existsSync(PARTS)) {
   }
 }
 
+/* --------- 6. the per-area hours file only carries hours somebody stated --------- */
+
+/* Area pages print "N of the records here that publish hours are open at this
+   minute" from this file, so every row has to be traceable to a source the
+   reader can open, and the denominator has to be the one the same build cut. */
+{
+  const at = join(root, 'public/data/hours-by-area.json');
+  if (check(existsSync(at), 'area-hours: public/data/hours-by-area.json is missing — run `npm run build:area-hours`')) {
+    const file = JSON.parse(readFileSync(at, 'utf8'));
+    check(file.areas && typeof file.areas === 'object', 'area-hours: areas is not a table');
+    check(file.totals && typeof file.totals === 'object', 'area-hours: totals is not a table');
+    const tierIndex = existsSync(join(TIER, 'index.json')) ? JSON.parse(readFileSync(join(TIER, 'index.json'), 'utf8')) : null;
+    if (tierIndex)
+      check(
+        file.retrievedAt === tierIndex.retrievedAt,
+        `area-hours: stamped ${file.retrievedAt} while the open-records tier was taken ${tierIndex.retrievedAt} — one dump, one date`
+      );
+
+    const checkedSlugs = new Set(listings.map((l) => l.slug));
+    for (const [areaId, rows] of Object.entries(file.areas)) {
+      if (!areaIds.has(areaId)) failures.push(`area-hours: area "${areaId}" is not in the taxonomy`);
+      if (!Array.isArray(rows)) {
+        failures.push(`area-hours: ${areaId} is not a list of rows`);
+        continue;
+      }
+      if (file.totals[areaId] < rows.length)
+        failures.push(`area-hours: ${areaId} claims ${file.totals[areaId]} records hold this locality but lists ${rows.length} with hours`);
+      for (const r of rows) {
+        const where = `area-hours: ${r.name || '(unnamed)'} ${r.path || ''}`;
+        if (!r.name) failures.push(`${where}: a row nobody can name`);
+        if ('rating' in r || 'reviewCount' in r) failures.push(`${where}: a rating survived the build`);
+        if (!Array.isArray(r.hours) || !r.hours.length) failures.push(`${where}: no hours, so it does not belong in a hours file`);
+        else for (const h of r.hours) if (!h.day || !h.open) failures.push(`${where}: an hours row with a blank half (${JSON.stringify(h)})`);
+        if (!/^https?:\/\//.test(r.sourceUrl || '')) failures.push(`${where}: source ${r.sourceUrl} is not a page a reader can open`);
+        if (!r.statedOn) failures.push(`${where}: hours with no date saying when they were read`);
+        if (r.tier === 'checked') {
+          const slug = (r.path || '').replace(/^\/place\//, '');
+          if (!r.path?.startsWith('/place/')) failures.push(`${where}: a checked page must be addressed /place/<slug>`);
+          else if (!checkedSlugs.has(slug)) failures.push(`${where}: /place/${slug} is not a page this build ships`);
+          else if (!(provenance.records[slug]?.sources ?? []).some((c) => c.supports?.includes('hours')))
+            failures.push(`${where}: counted as sourced hours while provenance cites no source supporting "hours"`);
+        } else if (r.tier === 'map') {
+          const m = /^\/directory\/([a-z0-9-]+)\/([a-z0-9-]+)$/.exec(r.path || '');
+          if (!m) failures.push(`${where}: a map row must be addressed /directory/<category>/<slug>`);
+          else if (!categoryIds.has(m[1])) failures.push(`${where}: category "${m[1]}" is not in the taxonomy`);
+          if (!/^(https:\/\/www\.openstreetmap\.org)?\/(node|way|relation)\/\d+/.test(r.sourceUrl || '') && !/openstreetmap\.org\/(node|way|relation)\/\d+/.test(r.sourceUrl || ''))
+            failures.push(`${where}: map hours with no OpenStreetMap element behind them (${r.sourceUrl})`);
+        } else failures.push(`${where}: tier "${r.tier}" is neither "checked" nor "map"`);
+      }
+    }
+
+    /* Counted from the same two files the build read, so the page's "N checked
+       pages state hours no citation backs" cannot drift from the truth. */
+    const statedNoSource = listings.filter(
+      (l) => l.hours?.length && !(provenance.records[l.slug]?.sources ?? []).some((c) => c.supports?.includes('hours'))
+    ).length;
+    check(
+      file.hoursWithoutSource === statedNoSource,
+      `area-hours: excludes ${file.hoursWithoutSource} checked pages as unsourced but ${statedNoSource} state hours with no hours citation`
+    );
+    areaHoursCount = Object.values(file.areas).reduce((n, rows) => n + rows.length, 0);
+  }
+}
+
 /* ------------------------- the source, not just the data ------------------ */
 /* Two mistakes this site has already made are cheap to make permanent:
    publishing a date the code invented, and linking a category slug that the
@@ -474,5 +539,5 @@ const sourced = listings.filter((l) => l.sourceUrl).length;
 console.log(
   `✓ check-data: ${listings.length} listings (${sourced} with a named source), ${events.length} seeded events, ` +
     `${Object.keys(provenance.records).length} audited records, ${Object.keys(media).length} credited images, ` +
-    `${tierCount} open records and ${nearbyCount} nearby places all citing OpenStreetMap — no fabricated fields found`
+    `${tierCount} open records, ${nearbyCount} nearby places and ${areaHoursCount} sourced hours rows all citing OpenStreetMap — no fabricated fields found`
 );

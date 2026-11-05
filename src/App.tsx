@@ -7,6 +7,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Explore = lazy(() => import('./pages/Explore'));
 const ServicesHub = lazy(() => import('./pages/ServicesHub'));
 const OpenNow = lazy(() => import('./pages/OpenNow'));
+const RecentReports = lazy(() => import('./pages/RecentReports'));
 const PlanDay = lazy(() => import('./pages/PlanDay'));
 const OurServices = lazy(() => import('./pages/OurServices'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="explore" element={<Explore />} />
           <Route path="services" element={<ServicesHub />} />
           <Route path="open-now" element={<OpenNow />} />
+          <Route path="reported" element={<RecentReports />} />
           <Route path="plan" element={<PlanDay />} />
           <Route path="our-services" element={<OurServices />} />
           <Route path="category/:slug" element={<CategoryPage />} />

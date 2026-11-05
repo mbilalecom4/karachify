@@ -33,7 +33,7 @@ import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { NearbyEssentials } from '../components/NearbyEssentials';
-import { ReportModal } from '../components/ReportModal';
+import { ReportModal, STALE_HOURS_REASON } from '../components/ReportModal';
 import { Note } from '../components/Page';
 import { shareUrl } from '../lib/pageMeta';
 import {
@@ -162,6 +162,7 @@ export default function ListingDetail() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [claimOpen, setClaimOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [reportReason, setReportReason] = useState<string | undefined>();
 
   const nearby = useMemo(
     () =>
@@ -501,9 +502,31 @@ export default function ListingDetail() {
                       <span className="mt-1 block text-[12px] text-navy-400">
                         {listing.lastVerified ? `Checked against a source on ${listing.lastVerified}.` : 'Not verified against an official source — confirm before travelling.'}
                       </span>
+                      <button
+                        type="button"
+                        className="mt-2 inline-flex items-center gap-1 text-[12.5px] font-semibold text-teal-700 hover:text-teal-900"
+                        onClick={() => {
+                          setReportReason(STALE_HOURS_REASON);
+                          setReportOpen(true);
+                        }}
+                      >
+                        <Flag className="h-3.5 w-3.5" /> These hours look out of date
+                      </button>
                     </>
                   ) : (
-                    <span className="text-navy-400">Opening hours have not been verified for this place.</span>
+                    <span className="text-navy-400">
+                      Opening hours have not been verified for this place.
+                      <button
+                        type="button"
+                        className="mt-2 block text-[12.5px] font-semibold text-teal-700 hover:text-teal-900"
+                        onClick={() => {
+                          setReportReason(STALE_HOURS_REASON);
+                          setReportOpen(true);
+                        }}
+                      >
+                        <Flag className="mr-1 inline h-3.5 w-3.5" /> Know when it actually opens? Report what the hours should be
+                      </button>
+                    </span>
                   )}
                 </Row>
                 <Row icon={<Ticket className="h-4 w-4" />} label="Admission">
@@ -667,7 +690,15 @@ export default function ListingDetail() {
         kind={layout === 'hotel' ? 'hotel-booking' : 'listing'}
       />
       <ClaimModal open={claimOpen} onClose={() => setClaimOpen(false)} listing={listing} />
-      <ReportModal open={reportOpen} onClose={() => setReportOpen(false)} listing={listing} />
+      <ReportModal
+        open={reportOpen}
+        onClose={() => {
+          setReportOpen(false);
+          setReportReason(undefined);
+        }}
+        listing={listing}
+        presetReason={reportReason}
+      />
     </div>
   );
 }

@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Flag, Github } from 'lucide-react';
 import type { Listing } from '../types';
 import { actions } from '../lib/store';
 import { coordText, isValidEmail } from '../lib/format';
 import { listingHref } from '../lib/openRecords';
 import { shareUrl } from '../lib/pageMeta';
+import { hoursQuote } from '../lib/hoursRead';
 import { Note } from './Page';
 import { Field, Modal, Select, TextArea, TextInput, useToast } from './ui';
+
+export const STALE_HOURS_REASON = 'The opening hours look out of date';
 
 const REPORT_REASONS = [
   'The map pin is in the wrong place',
   'The address is wrong or incomplete',
   'It has closed, moved or changed name',
-  'A phone number, website or opening hour is wrong',
+  STALE_HOURS_REASON,
+  'A phone number or website is wrong',
   'A photograph is not this place',
   'Something else about this record',
 ];
@@ -21,11 +26,28 @@ const REPORT_REASONS = [
  * Reporting has two honest routes and the modal names both: this build has no
  * server, so a form can only ever file on the visitor's own device. The issue
  * link is the one that actually reaches whoever maintains the data.
+ *
+ * `presetReason` is what the one-press "these hours look out of date" button on a
+ * listing page uses, so the person tapping it does not have to choose again.
  */
-export function ReportModal({ open, onClose, listing }: { open: boolean; onClose: () => void; listing: Listing }) {
+export function ReportModal({
+  open,
+  onClose,
+  listing,
+  presetReason,
+}: {
+  open: boolean;
+  onClose: () => void;
+  listing: Listing;
+  presetReason?: string;
+}) {
   const toast = useToast();
   const [form, setForm] = useState({ reason: REPORT_REASONS[0], details: '', email: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (open && presetReason) setForm((f) => ({ ...f, reason: presetReason }));
+  }, [open, presetReason]);
 
   /* The published URL of this page, not window.location: a report filed while
      testing on a laptop must not cite an address nobody else can open. */
@@ -37,6 +59,7 @@ export function ReportModal({ open, onClose, listing }: { open: boolean; onClose
       `**What looks wrong:** ${form.reason}`,
       form.details.trim() ? `**Details:** ${form.details.trim()}` : '',
       `**Address shown:** ${listing.address ?? 'not stated'}`,
+      form.reason === STALE_HOURS_REASON ? `**Hours shown:** ${hoursQuote(listing.hours) || 'none stated on this page'}` : '',
       `**Map position shown:** ${coordText(listing.lat, listing.lng)}${
         listing.coordsVerified ? ' (recorded as an OpenStreetMap position)' : ' (approximate, derived from the area centre)'
       }`,
@@ -77,10 +100,14 @@ export function ReportModal({ open, onClose, listing }: { open: boolean; onClose
         className="space-y-4"
       >
         <Note>
-          This build has no server, so nothing here can be emailed. Filing saves the report into the review queue in <em>this</em>{' '}
-          browser, where the admin screen shows it — useful for the owner of this device, useless for telling us. To actually reach the
-          people who edit this data, send the second option: it opens a prefilled issue on the public Karachify repository and needs a
-          free GitHub account.
+          This build has no server, so nothing here can be emailed. Filing saves the report into <em>this</em> browser, where
+          the{' '}
+          <Link to="/reported" className="link font-semibold" onClick={onClose}>
+            reports page
+          </Link>{' '}
+          lists it — useful for the owner of this device, useless for telling us. To actually reach the people who edit this
+          data, send the second option: it opens a prefilled issue on the public Karachify repository and needs a free GitHub
+          account.
         </Note>
         <Field label="What is wrong?">
           <Select value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })}>
@@ -89,6 +116,13 @@ export function ReportModal({ open, onClose, listing }: { open: boolean; onClose
             ))}
           </Select>
         </Field>
+        {form.reason === STALE_HOURS_REASON && (
+          <p className="rounded-xl border border-navy-100 bg-navy-50 px-3 py-2 text-[12.5px] leading-relaxed text-navy-600">
+            The hours on this record read <b>{hoursQuote(listing.hours) || 'nothing — no hours are stated here'}</b>
+            {listing.lastVerified ? `, as checked on ${listing.lastVerified}` : ''}. Say what they should say instead and,
+            if you have it, the page that publishes it.
+          </p>
+        )}
         <Field
           label="What should it say instead?"
           required

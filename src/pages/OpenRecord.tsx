@@ -7,7 +7,7 @@ import { imgAttrs, mediaFor } from '../lib/media';
 import { coordText } from '../lib/format';
 import { applyPageMeta, metaForMissing, metaForOpenRecord } from '../lib/pageMeta';
 import { Breadcrumbs, EmptyState, StatusBadge } from '../components/ui';
-import { ReportModal } from '../components/ReportModal';
+import { ReportModal, STALE_HOURS_REASON } from '../components/ReportModal';
 
 /**
  * One record from the OpenStreetMap dump.
@@ -23,6 +23,7 @@ export default function OpenRecord() {
   const { categoryId = '', slug = '' } = useParams();
   const { record, missing, failed, retry } = useOpenRecord(categoryId, slug);
   const [reporting, setReporting] = useState(false);
+  const [reportReason, setReportReason] = useState<string | undefined>();
 
   const category = categoryById.get(categoryId);
 
@@ -214,6 +215,18 @@ export default function OpenRecord() {
                 </li>
               ))}
             </ul>
+            {record.hours?.length ? (
+              <button
+                type="button"
+                className="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold text-teal-700 hover:text-teal-900"
+                onClick={() => {
+                  setReportReason(STALE_HOURS_REASON);
+                  setReporting(true);
+                }}
+              >
+                <Flag className="h-3.5 w-3.5" /> These hours look out of date
+              </button>
+            ) : null}
             <p className="mt-3 text-[13px] text-navy-500">
               These were typed into OpenStreetMap by a contributor. Karachify has not rung the number or opened the website to see whether
               they still belong to this place.
@@ -251,7 +264,15 @@ export default function OpenRecord() {
         </section>
       </div>
 
-      <ReportModal open={reporting} onClose={() => setReporting(false)} listing={listing} />
+      <ReportModal
+        open={reporting}
+        onClose={() => {
+          setReporting(false);
+          setReportReason(undefined);
+        }}
+        listing={listing}
+        presetReason={reportReason}
+      />
     </div>
   );
 }

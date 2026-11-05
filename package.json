@@ -15,7 +15,8 @@
     "preview": "vite preview",
     "serve:dist": "node .tools/serve-dist.mjs",
     "deploy": "npm run build && gh-pages -d dist",
-    "build:nearby": "node .tools/build-nearby.mjs"
+    "build:nearby": "node .tools/build-nearby.mjs",
+    "build:area-hours": "node .tools/build-area-hours.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.451.0",

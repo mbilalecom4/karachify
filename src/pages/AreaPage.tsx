@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
 import { areaImageKey, imageFor } from '../lib/media';
+import { AreaOpenHours } from '../components/AreaOpenHours';
 import { EventCard } from '../components/cards';
 import { ListingExplorer } from '../components/Explorer';
 import { LazyMap } from '../components/LazyMap';
@@ -116,6 +117,10 @@ export default function AreaPage() {
           positionLabel={`the centre of ${area.name}`}
           approximate
         />
+      </section>
+
+      <section className="shell">
+        <AreaOpenHours areaId={area.id} areaName={area.name} />
       </section>
 
       <section className="shell section">
