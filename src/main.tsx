@@ -23,6 +23,26 @@ import './index.css';
  */
 const basename = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/';
 
+/*
+ * The offline layer, and only in a built site. A dev server that hot-swaps
+ * modules and a worker holding the previous build open each other's work, so
+ * registration waits for production. The URL is Vite's BASE_URL with the
+ * trailing slash it already carries, which puts the worker at the root of the
+ * published site — `/karachify/sw.js` — because a worker's scope is the
+ * directory it is served from and it cannot reach above it.
+ *
+ * Failing to register is not a failure of the visit: the site still loads the
+ * way it did before the worker existed, so this says so in the console and
+ * leaves the page alone.
+ */
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch((error) => {
+      console.warn('Offline support is off for this visit: the service worker did not register.', error);
+    });
+  });
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter basename={basename}>

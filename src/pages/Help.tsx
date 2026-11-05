@@ -28,6 +28,11 @@ const FAQS: Faq[] = [
   },
   {
     group: 'Browsing',
+    q: 'Does it work without a connection?',
+    a: 'Pages you have already opened are saved on your device and load again offline, and the browser’s install item turns the site into an app of its own. A page opened for the first time still needs a connection. Live answers — the weather, prayer times and whether a place is open right now — are never served from a saved copy, so those panels report that they did not load instead of showing a figure from an earlier day. Whenever the page in front of you is the saved copy, a strip above the content says so and gives the time it was saved.',
+  },
+  {
+    group: 'Browsing',
     q: 'Why does a search for a real restaurant return nothing?',
     a: 'Search only knows the records in this dataset. It never invents a business to fill an empty result — you get a no-results page with suggestions instead.',
   },

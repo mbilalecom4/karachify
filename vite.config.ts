@@ -36,11 +36,39 @@ function contentSecurityPolicy(): Plugin {
   };
 }
 
+/**
+ * The install tags: the manifest, and the icon iOS asks for by name rather than
+ * by manifest entry.
+ *
+ * They are written here instead of in index.html because every one of them is
+ * an absolute path under the published base, and the base is not known until
+ * the build runs — `/karachify/` on GitHub Pages, `/` on the dev server. A path
+ * hard-coded into the HTML would be wrong in one of the two. It matters that
+ * they are absolute: `.tools/prerender.mjs` copies this head into 225 files
+ * nested at different depths, and a relative `./manifest.webmanifest` would
+ * resolve against each of those directories instead of the site.
+ */
+function webAppTags(): Plugin {
+  let base = '/';
+  return {
+    name: 'karachify-web-app',
+    configResolved(config) {
+      base = config.base;
+    },
+    transformIndexHtml() {
+      return [
+        { tag: 'link', attrs: { rel: 'manifest', href: `${base}manifest.webmanifest` }, injectTo: 'head-prepend' },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: `${base}icons/apple-touch-icon.png` }, injectTo: 'head-prepend' },
+      ];
+    },
+  };
+}
+
 // GitHub Pages serves the site under /<repo-name>/, so production builds need that base.
 // Set KARACHIFY_BASE to your repository name before `npm run build`.
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? `/${process.env.KARACHIFY_BASE || 'karachify'}/` : '/',
-  plugins: [react(), contentSecurityPolicy()],
+  plugins: [react(), contentSecurityPolicy(), webAppTags()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

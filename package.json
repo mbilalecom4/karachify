@@ -9,6 +9,7 @@
     "verify": "node .tools/check-data.mjs",
     "build:tier-names": "node .tools/build-tier-names.mjs",
     "measure:renditions": "node .tools/measure-renditions.mjs --limit=60 --write",
+    "icons": "node .tools/build-icons.mjs",
     "build": "node .tools/check-data.mjs && tsc -b && vite build && node .tools/prerender.mjs",
     "typecheck": "tsc -b",
     "preview": "vite preview",

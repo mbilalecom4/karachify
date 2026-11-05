@@ -48,6 +48,12 @@ export default function Privacy() {
               typed — and your IP address is visible to those two servers as it is to any website you load.
             </li>
             <li>Fonts are loaded from Google Fonts when available and fall back to system fonts offline.</li>
+            <li>
+              What you have already loaded — the page, its photographs, the record files — is also kept on your own device
+              by a service worker, so a returning visit or an installed app can open it without a connection. That copy
+              never leaves the device, live weather and prayer figures are not part of it, and clearing site data removes
+              it.
+            </li>
           </ul>
           <p>
             No other network calls are made. Saved places, the day plan and anything written into a form stay in this

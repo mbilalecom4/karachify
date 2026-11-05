@@ -4,6 +4,7 @@ import { applyPageMeta, metaForPath } from '../lib/pageMeta';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { MobileTabBar } from './MobileTabBar';
+import { OfflineNote } from './OfflineNote';
 
 function ScrollManager() {
   const { pathname, search, hash } = useLocation();
@@ -83,6 +84,7 @@ export function Layout() {
         Skip to content
       </a>
       <Header />
+      <OfflineNote />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         <Outlet />
       </main>
