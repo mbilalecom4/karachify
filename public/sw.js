@@ -21,12 +21,12 @@
  *   photographs  cache first, capped. A card image is a rendition of a file
  *                that does not change, and the cache is trimmed so a long
  *                browsing session cannot quietly eat the device's storage.
- *   live reads   never cached. Weather, prayer times, place names and walking
- *                routes are answers about this minute, asked because somebody
- *                pressed a button; a number from this morning would be
- *                presented as if it were current, which is the one thing this
- *                site promises not to do. Those panels show their own
- *                unavailable state instead.
+ *   live reads   never cached. Weather, prayer times, place names, walking
+ *                routes and the live "what is mapped here now" query are answers
+ *                about this minute, asked because somebody pressed a button; a
+ *                number from this morning would be presented as if it were
+ *                current, which is the one thing this site promises not to do.
+ *                Those panels show their own unavailable state instead.
  *
  * Every cached answer also tells the page it was cached, and when the copy was
  * taken, so the notice in the header can say so out loud.
@@ -45,7 +45,14 @@ const LIMITS = { page: 60, bundle: 240, data: 80, media: 160 };
 const SCOPE = self.location.pathname.replace(/[^/]*$/, '');
 
 /** Live reads stay off the cache entirely — see the note at the top. */
-const LIVE_APIS = ['api.open-meteo.com', 'api.aladhan.com', 'nominatim.openstreetmap.org', 'routing.openstreetmap.de'];
+const LIVE_APIS = [
+  'api.open-meteo.com',
+  'api.aladhan.com',
+  'nominatim.openstreetmap.org',
+  'routing.openstreetmap.de',
+  'overpass-api.de',
+  'overpass.kumi.systems',
+];
 /** Hosts whose files are worth keeping: the photographs and the map tiles. */
 const CACHED_HOSTS = ['upload.wikimedia.org', 'thumb.wikimedia.org', 'tile.openstreetmap.org'];
 

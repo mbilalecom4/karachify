@@ -32,6 +32,7 @@ import { failToPlaceholder, imageFor, imgAttrs, pictureSubject, placeholderImage
 import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
+import { NearbyEssentials } from '../components/NearbyEssentials';
 import { ReportModal } from '../components/ReportModal';
 import { Note } from '../components/Page';
 import { shareUrl } from '../lib/pageMeta';
@@ -726,6 +727,19 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
         <Link className="btn-outline btn-sm" to={`/map?focus=${listing.slug}`}>
           <Images className="h-3.5 w-3.5" /> Show on the Karachi map
         </Link>
+      </div>
+      <div className="mt-4">
+        <NearbyEssentials
+          lat={listing.lat}
+          lng={listing.lng}
+          subject={listing.name}
+          positionLabel={
+            listing.coordsVerified
+              ? `the OpenStreetMap position recorded for ${listing.name}`
+              : `the neighbourhood marker standing in for ${listing.name}`
+          }
+          approximate={!listing.coordsVerified}
+        />
       </div>
     </article>
   );

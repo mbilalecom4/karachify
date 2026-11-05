@@ -252,6 +252,7 @@ const TIER = join(root, 'public/data/tier');
 const PARTS = join(TIER, 'parts');
 const pad3 = (n) => String(n).padStart(3, '0');
 let tierCount = 0;
+let nearbyCount = 0;
 if (existsSync(TIER) && !existsSync(PARTS))
   failures.push('tier: public/data/tier/parts is missing — the open records are published as 200-record parts, not one file per category');
 if (existsSync(TIER) && existsSync(PARTS)) {
@@ -401,6 +402,41 @@ if (existsSync(TIER) && existsSync(PARTS)) {
   tierCount = seenSlugs;
 }
 
+/* --------------- 5. the shipped "around here" file stays honest --------------- */
+
+/* nearby.json is what the pharmacy/hospital/clinic panel answers from when it
+   does not have a live read, so the same rule applies: a row either cites the
+   OpenStreetMap element it came from or it does not belong in the file, and the
+   date printed above the list has to be the date the dump was taken. */
+{
+  const at = join(root, 'public/data/nearby.json');
+  if (check(existsSync(at), 'nearby: public/data/nearby.json is missing — run `node .tools/build-nearby.mjs`')) {
+    const file = JSON.parse(readFileSync(at, 'utf8'));
+    check(Array.isArray(file.records), 'nearby: records is not a list');
+    check(file.total === file.records.length, `nearby: declares ${file.total} records but holds ${file.records.length}`);
+    const kinds = new Set(file.kinds);
+    for (const kind of file.notCovered || [])
+      check(!file.records.some((r) => r.kind === kind), `nearby: "${kind}" is declared as not covered, yet records of it are in the file`);
+    for (const r of file.records) {
+      const where = `nearby: ${r.name || '(unnamed)'} ${r.osm || ''}`;
+      if (!kinds.has(r.kind)) failures.push(`${where}: kind "${r.kind}" is not one the file says it carries`);
+      if (!r.name) failures.push(`${where}: a row with no name cannot be walked to`);
+      if (!Number.isFinite(r.lat) || !Number.isFinite(r.lng)) failures.push(`${where}: coordinates ${r.lat}/${r.lng}`);
+      else if (Math.abs(r.lat - 24.86) > 1.2 || Math.abs(r.lng - 67.01) > 1.2) failures.push(`${where}: ${r.lat},${r.lng} is not Karachi`);
+      if (!/^(node|way|relation)\/\d+$/.test(r.osm || '')) failures.push(`${where}: no OpenStreetMap element to check it against`);
+      if ('rating' in r || 'reviewCount' in r) failures.push(`${where}: a rating survived the build`);
+    }
+    if (existsSync(join(TIER, 'index.json'))) {
+      const tierSummary = JSON.parse(readFileSync(join(TIER, 'index.json'), 'utf8'));
+      check(
+        file.retrievedAt === tierSummary.retrievedAt,
+        `nearby: stamped ${file.retrievedAt} while the open-records tier was taken ${tierSummary.retrievedAt} — one dump, one date`
+      );
+    }
+    nearbyCount = file.records.length;
+  }
+}
+
 /* ------------------------- the source, not just the data ------------------ */
 /* Two mistakes this site has already made are cheap to make permanent:
    publishing a date the code invented, and linking a category slug that the
@@ -438,5 +474,5 @@ const sourced = listings.filter((l) => l.sourceUrl).length;
 console.log(
   `✓ check-data: ${listings.length} listings (${sourced} with a named source), ${events.length} seeded events, ` +
     `${Object.keys(provenance.records).length} audited records, ${Object.keys(media).length} credited images, ` +
-    `${tierCount} open records all citing OpenStreetMap — no fabricated fields found`
+    `${tierCount} open records and ${nearbyCount} nearby places all citing OpenStreetMap — no fabricated fields found`
 );

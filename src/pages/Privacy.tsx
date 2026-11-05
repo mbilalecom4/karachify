@@ -60,10 +60,17 @@ export default function Privacy() {
               your IP address; it does not see your name, your plan, or which recorded place either point is.
             </li>
             <li>
+              The list of places shipped with this site — every pharmacy, hospital and clinic in its OpenStreetMap file — is
+              fetched from this site itself, from a file that does not change. If you then press "Check OpenStreetMap for
+              right now", one query goes to a public Overpass server carrying the coordinates of the page you are reading
+              and a radius: not your own position, and not which place you were looking at. The server sees that query and
+              your IP address.
+            </li>
+            <li>
               What you have already loaded — the page, its photographs, the record files — is also kept on your own device
               by a service worker, so a returning visit or an installed app can open it without a connection. That copy
-              never leaves the device, live figures — weather, prayer times, place names and walking routes — are not part of
-              it, and clearing site data removes it.
+              never leaves the device, live figures — weather, prayer times, place names, walking routes and the live
+              nearby check — are not part of it, and clearing site data removes it.
             </li>
           </ul>
           <p>

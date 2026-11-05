@@ -6,6 +6,7 @@ import { areaImageKey, imageFor } from '../lib/media';
 import { EventCard } from '../components/cards';
 import { ListingExplorer } from '../components/Explorer';
 import { LazyMap } from '../components/LazyMap';
+import { NearbyEssentials } from '../components/NearbyEssentials';
 import { PageHero } from '../components/Page';
 import { EmptyState, SectionHeading } from '../components/ui';
 import { coordText, pinCaption, plural } from '../lib/format';
@@ -105,6 +106,16 @@ export default function AreaPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="shell">
+        <NearbyEssentials
+          lat={area.lat}
+          lng={area.lng}
+          subject={area.name}
+          positionLabel={`the centre of ${area.name}`}
+          approximate
+        />
       </section>
 
       <section className="shell section">

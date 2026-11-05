@@ -14,7 +14,7 @@ const FAQS: Faq[] = [
   {
     group: 'Browsing',
     q: 'How do I find places near me?',
-    a: 'Open the map, or start from an area page: every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable cluster. On the day planner you can also press “Use my location”, and your browser will ask you first. The planner then lists the records closest to that point and begins the route from it. Nothing is looked up until you press the button, the point stays on this device, and if you decline the request the area picker is still there — no guess is made for you.',
+    a: 'Open the map, or start from an area page: every listing belongs to one of Karachi’s areas, so filtering by area narrows the directory to a walkable cluster. On the day planner you can also press “Use my location”, and your browser will ask you first. The planner then lists the records closest to that point and begins the route from it. Any listing page and any area page carries a panel of the pharmacies, hospitals and clinics around that position, which you press to read. Nothing is looked up until you press a button, the point stays on this device, and if you decline the request the area picker is still there — no guess is made for you.',
   },
   {
     group: 'Browsing',

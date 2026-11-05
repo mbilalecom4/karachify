@@ -4,12 +4,12 @@ import { fileURLToPath, URL } from 'node:url';
 
 /**
  * Only the hosts this app actually loads from: bundled assets, Wikimedia images,
- * OpenStreetMap tiles, Google Fonts and the two live reads behind the "today"
- * panel (weather and calculated prayer times). Links a visitor clicks are
- * navigations, not fetches, so they need no entry. GitHub Pages cannot send
- * response headers, so the policy has to travel in the document — and only in a
- * production build, because the dev server serves inline scripts and a websocket
- * for hot reload.
+ * OpenStreetMap tiles, Google Fonts and the live reads — weather, prayer times,
+ * the place-name geocoder, the foot router and the Overpass query behind
+ * "pharmacies around here". Links a visitor clicks are navigations, not fetches,
+ * so they need no entry. GitHub Pages cannot send response headers, so the policy
+ * has to travel in the document — and only in a production build, because the dev
+ * server serves inline scripts and a websocket for hot reload.
  */
 const CSP =
   "default-src 'self'; script-src 'self'; " +
@@ -17,7 +17,9 @@ const CSP =
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
   "font-src 'self' data: https://fonts.gstatic.com; " +
   "img-src 'self' data: blob: https://thumb.wikimedia.org https://upload.wikimedia.org https://tile.openstreetmap.org; " +
-  "connect-src 'self' https://tile.openstreetmap.org https://api.open-meteo.com https://api.aladhan.com https://nominatim.openstreetmap.org https://routing.openstreetmap.de; " +
+  "connect-src 'self' https://tile.openstreetmap.org https://api.open-meteo.com https://api.aladhan.com" +
+  " https://nominatim.openstreetmap.org https://routing.openstreetmap.de" +
+  " https://overpass-api.de https://overpass.kumi.systems; " +
   "object-src 'none'; base-uri 'self'; form-action 'self'";
 
 function contentSecurityPolicy(): Plugin {
