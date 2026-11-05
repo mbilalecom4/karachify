@@ -281,6 +281,42 @@
   .plan-page > *:not(.plan-result) {
     display: none !important;
   }
+  /* The area guide is the same trick for a locality: the sheet is cut from the
+     records that name a source, and everything else on the page stays on
+     screen — including the listings that were left off for want of a source. */
+  .area-page > *:not(.area-guide) {
+    display: none !important;
+  }
+  .area-guide {
+    display: block !important;
+    line-height: 1.35;
+  }
+  /* The screen sizes are set inline on each line, so paper has to override them
+     rather than merely set a parent size: Saddar prints 24 records, and a sheet
+     that runs onto a second page has to be folded to be read. */
+  .area-guide li,
+  .area-guide p {
+    font-size: 9.5px !important;
+  }
+  .area-guide h2 {
+    font-size: 15px !important;
+  }
+  .area-guide h3 {
+    font-size: 9px !important;
+  }
+  .area-guide li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .area-guide .mt-3 {
+    margin-top: 0.4rem;
+  }
+  .area-guide .mt-1 {
+    margin-top: 0.15rem;
+  }
+  .area-guide .mt-2 {
+    margin-top: 0.35rem;
+  }
   .no-print,
   .plan-result figure {
     display: none !important;

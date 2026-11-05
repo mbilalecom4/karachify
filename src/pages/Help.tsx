@@ -28,6 +28,11 @@ const FAQS: Faq[] = [
   },
   {
     group: 'Browsing',
+    q: 'Can I take an area page with me on paper?',
+    a: 'Press “Print this guide” beside the chips at the top of any area page. The sheet is cut from the records that name a source — address, phone and the hours a source actually states, each line ending with the site it was read from — and it says how many records were left off because nothing backed them. A locality with nothing sourced prints that fact instead of padding itself out. The map, the listings without a source and the filters stay on screen. Saddar’s 24 sourced records are the most any locality here has, and they still fit one A4 page.',
+  },
+  {
+    group: 'Browsing',
     q: 'Does it work without a connection?',
     a: 'Pages you have already opened are saved on your device and load again offline, and the browser’s install item turns the site into an app of its own. A page opened for the first time still needs a connection. Live answers — the weather, prayer times and whether a place is open right now — are never served from a saved copy, so those panels report that they did not load instead of showing a figure from an earlier day. Whenever the page in front of you is the saved copy, a strip above the content says so and gives the time it was saved.',
   },

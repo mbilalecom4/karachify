@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin, Printer } from 'lucide-react';
 import { selectAreas, selectCategories, selectEvents, selectListings, useDB } from '../lib/store';
 import { areaImageKey, imageFor } from '../lib/media';
+import { AreaGuide } from '../components/AreaGuide';
 import { AreaOpenHours } from '../components/AreaOpenHours';
 import { EventCard } from '../components/cards';
 import { ListingExplorer } from '../components/Explorer';
@@ -15,6 +16,7 @@ import { coordText, pinCaption, plural } from '../lib/format';
 export default function AreaPage() {
   const { slug = '' } = useParams();
   const db = useDB();
+  const [guide, setGuide] = useState(false);
   const areas = selectAreas(db);
   const categories = selectCategories(db);
   const listings = selectListings(db);
@@ -69,8 +71,15 @@ export default function AreaPage() {
     .filter((x) => x.count > 0)
     .sort((a, b) => b.count - a.count);
 
+  /* The sheet is cut from bundle data only, so the dialog can open straight
+     away; the preview state exists so the visitor sees what is about to print. */
+  const printGuide = () => {
+    setGuide(true);
+    setTimeout(() => window.print(), 80);
+  };
+
   return (
-    <div>
+    <div className="area-page">
       <PageHero
         mediaKey={areaImageKey(area.id)}
         label={`${area.name}, Karachi`}
@@ -91,6 +100,9 @@ export default function AreaPage() {
           >
             <MapPin className="h-3 w-3" /> Directions
           </a>
+          <button type="button" className="badge bg-white/10 text-white ring-1 ring-inset ring-white/30 hover:bg-white/20" onClick={printGuide}>
+            <Printer className="h-3 w-3" /> Print this guide
+          </button>
         </div>
         <p className="mt-3 max-w-xl text-[13px] text-navy-200">
           A pin labelled "OpenStreetMap position" is that place's own mapped feature. The rest sit near the locality
@@ -195,6 +207,8 @@ export default function AreaPage() {
           </div>
         </section>
       )}
+
+      <AreaGuide area={area} items={items} categories={categories} preview={guide} onPreview={setGuide} onPrint={() => window.print()} />
     </div>
   );
 }

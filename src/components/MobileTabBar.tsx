@@ -13,7 +13,7 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Sections"
-      className="fixed inset-x-0 bottom-0 z-[60] border-t border-navy-100 bg-white lg:hidden"
+      className="no-print fixed inset-x-0 bottom-0 z-[60] border-t border-navy-100 bg-white lg:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <ul className="mx-auto flex max-w-[560px] items-stretch">
