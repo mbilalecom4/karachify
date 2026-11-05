@@ -79,6 +79,12 @@ export function AreaGuide({ area, items, categories, preview, onPreview, onPrint
               {sourced.length} of the {items.length} records Karachify holds for {area.name} name a source it was read from, and
               those are the ones written below.
             </>
+          ) : items.length === 0 ? (
+            <>
+              Karachify has read no page about {area.name} that names a source, so this sheet carries no places. The locality is
+              covered by the wider OpenStreetMap directory, whose records are the map’s own, and the address of both pages is
+              printed below.
+            </>
           ) : (
             <>
               Karachify holds {items.length} {items.length === 1 ? 'record' : 'records'} for {area.name} and none of them names a
@@ -116,10 +122,16 @@ export function AreaGuide({ area, items, categories, preview, onPreview, onPrint
             only where a source states them — a blank here means nobody could find the figure, not that the door is shut.
           </p>
           <p className="mt-1">
-            {osmPositions} of the {sourced.length} records above sit on their own OpenStreetMap feature; the rest are placed near
-            the locality centre and are not addresses.
-            {dropped > 0 ? ` ${dropped} further ${dropped === 1 ? 'record is' : 'records are'} held for this locality without a source and are left off this sheet.` : ''}
-            {' '}No rating, review count or price appears here, because none was sourced.
+            {sourced.length > 0 && (
+              <>
+                {osmPositions} of the {sourced.length} records above sit on their own OpenStreetMap feature; the rest are placed
+                near the locality centre and are not addresses.
+                {dropped > 0
+                  ? ` ${dropped} further ${dropped === 1 ? 'record is' : 'records are'} held for this locality without a source and are left off this sheet.`
+                  : ''}{' '}
+              </>
+            )}
+            No rating, review count or price appears here, because none was sourced.
           </p>
           <p className="mt-1">
             The live page, with photographs and the wider map record: {shareUrl(`/area/${area.slug}`)} · sources and how they
