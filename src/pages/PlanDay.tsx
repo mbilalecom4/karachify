@@ -4,7 +4,8 @@ import { ArrowRight, CalendarRange, Check, Copy, Crosshair, MapPin, Plus, Printe
 import type { Listing } from '../types';
 import { selectAreas, selectCategories, selectListings, useDB } from '../lib/store';
 import { aroundTheClock, coordText, copyText, distanceKm, plural } from '../lib/format';
-import { FAILURE_COPY, fromArea, labelPoint, searchKarachi, whereAmI, type GeoSuccess } from '../lib/geo';
+import { FAILURE_COPY, fromArea, labelPoint, searchKarachi, whereAmI } from '../lib/geo';
+import { sourceLine, type Start } from '../lib/startPoint';
 import { legKey, walkKm, walkLeg, walkMinutes, type LatLng, type WalkResult } from '../lib/walk';
 import { Note, PageHero } from '../components/Page';
 import { SectionHeading, useToast } from '../components/ui';
@@ -13,12 +14,6 @@ import { KarachiToday } from '../components/KarachiToday';
 import type { MapPoint, MapRoute } from '../components/KarachifyMap';
 
 type Group = 'solo' | 'couple' | 'family' | 'friends';
-
-/** Where the day begins. Kept on this device only, and only after a button press. */
-type Start = GeoSuccess & {
-  /** Set when a device coordinate was given a name by OpenStreetMap afterwards. */
-  named?: 'nominatim';
-};
 
 const GROUPS: { id: Group; label: string; note: string }[] = [
   { id: 'solo', label: 'Solo', note: 'One area a day, fewer stops, room to walk.' },
@@ -31,16 +26,6 @@ const MAX_STOPS = 15;
 const KEY = 'karachify.plan.v2';
 /** The plan saved before the start point existed. Read once, then written to v2. */
 const OLD_KEY = 'karachify.plan.v1';
-
-/** How each kind of start was obtained, in the words shown beside it. */
-const SOURCE_LINE: Record<Start['source'], string> = {
-  device: 'a position this device offered when you asked it to',
-  nominatim: 'a place you typed, found on OpenStreetMap',
-  area: 'the centre of an area you picked',
-};
-
-/** A device coordinate arrives nameless; say who supplied the name it now has. */
-const sourceLine = (start: Start) => SOURCE_LINE[start.source] + (start.named ? ' · the name is OpenStreetMap\u2019s' : '');
 
 // Dark enough to read over the base map, distinct enough for five days.
 const DAY_COLORS = ['#0A6A63', '#B45309', '#0369A1', '#6D28D9', '#BE123C'];

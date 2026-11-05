@@ -33,6 +33,11 @@ const FAQS: Faq[] = [
   },
   {
     group: 'Browsing',
+    q: 'How far is it on foot from where I am?',
+    a: 'Every place page ends its Location block with this question. Press “Use my location” and your browser’s own location prompt does the work, or name a place to walk from instead — nothing is sent anywhere until you press one of them. The figure that comes back is a foot route over the OpenStreetMap path network, worked out by OSRM on the FOSSGIS public server, and it is shown with the time that route was computed and the point it measured from. If you already gave the day planner a start point, the page offers that point rather than asking your browser again, and says so. When the router cannot be reached, or finds no foot path, you get the straight-line distance with the words “straight-line” next to it and a line saying no walking route came back — never a minute figure that nobody returned. Karachify does not estimate driving times.',
+  },
+  {
+    group: 'Browsing',
     q: 'Does it work without a connection?',
     a: 'Pages you have already opened are saved on your device and load again offline, and the browser’s install item turns the site into an app of its own. A page opened for the first time still needs a connection. Live answers — the weather, prayer times and whether a place is open right now — are never served from a saved copy, so those panels report that they did not load instead of showing a figure from an earlier day. Whenever the page in front of you is the saved copy, a strip above the content says so and gives the time it was saved.',
   },

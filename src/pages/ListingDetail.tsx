@@ -33,6 +33,7 @@ import { categoryById } from '../data/taxonomy';
 import { FeaturedBadge, ListingCard } from '../components/cards';
 import { LazyMap } from '../components/LazyMap';
 import { NearbyEssentials } from '../components/NearbyEssentials';
+import { WalkFrom } from '../components/WalkFrom';
 import { ReportModal, STALE_HOURS_REASON } from '../components/ReportModal';
 import { Note } from '../components/Page';
 import { shareUrl } from '../lib/pageMeta';
@@ -725,6 +726,9 @@ function distance(a: { lat: number; lng: number }, b: { lat: number; lng: number
 }
 
 function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
+  const positionLabel = listing.coordsVerified
+    ? `the OpenStreetMap position recorded for ${listing.name}`
+    : `the neighbourhood marker standing in for ${listing.name}`;
   const points = useMemo(
     () => [
       {
@@ -764,13 +768,12 @@ function LocationBlock({ listing, area }: { listing: Listing; area: string }) {
           lat={listing.lat}
           lng={listing.lng}
           subject={listing.name}
-          positionLabel={
-            listing.coordsVerified
-              ? `the OpenStreetMap position recorded for ${listing.name}`
-              : `the neighbourhood marker standing in for ${listing.name}`
-          }
+          positionLabel={positionLabel}
           approximate={!listing.coordsVerified}
         />
+      </div>
+      <div className="mt-4">
+        <WalkFrom lat={listing.lat} lng={listing.lng} subject={listing.name} positionLabel={positionLabel} approximate={!listing.coordsVerified} />
       </div>
     </article>
   );

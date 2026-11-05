@@ -49,15 +49,17 @@ export default function Privacy() {
             </li>
             <li>Fonts are loaded from Google Fonts when available and fall back to system fonts offline.</li>
             <li>
-              Only if you press the location button on the day planner: your browser asks its own location provider for a
-              position — that negotiation happens in the browser, and the site never sees it — and the coordinates are then
-              sent to OpenStreetMap's geocoder to be given a place name. A place you type into the planner's search box is
-              sent to the same geocoder, along with the fact that the search is limited to Karachi.
+              Only if you press a location button — on the day planner, or “Use my location” on a place page: your browser
+              asks its own location provider for a position — that negotiation happens in the browser, and the site never
+              sees it — and the coordinates are then sent to OpenStreetMap’s geocoder to be given a place name. A place you
+              type into either search box is sent to the same geocoder, along with the fact that the search is limited to
+              Karachi.
             </li>
             <li>
               Once a plan is built, each leg between two stops is sent to the FOSSGIS public routing server as a pair of
-              coordinates, so that it can return the walking distance and time. That server sees two points in Karachi and
-              your IP address; it does not see your name, your plan, or which recorded place either point is.
+              coordinates, so that it can return the walking distance and time — and the same single pair goes there when you
+              press “Work out the walk” on a place page. That server sees two points in Karachi and your IP address; it does
+              not see your name, your plan, or which recorded place either point is.
             </li>
             <li>
               The list of places shipped with this site — every pharmacy, hospital and clinic in its OpenStreetMap file, and
