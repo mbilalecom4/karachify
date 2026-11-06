@@ -38,3 +38,7 @@ dist
 /Karachify Research/data/duplicates.json
 /Karachify Research/data/images/*
 !/Karachify Research/data/images/manifest.json
+
+# screenshots and network caches written by the .tools passes
+/.tools/_shots/
+/.tools/flickr-cache.json

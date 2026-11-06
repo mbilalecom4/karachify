@@ -1,0 +1,131 @@
+[
+  {
+    "key": "karachi-grammar-school",
+    "name": "Karachi Grammar School",
+    "qid": "Q6367758",
+    "qidVia": "the article “Karachi Grammar School” this record names",
+    "qidOwn": true,
+    "qidNotSubject": null,
+    "inKarachi": true,
+    "pin": [
+      24.811344,
+      67.023312
+    ],
+    "lanes": [
+      "wordsearch",
+      "article",
+      "article",
+      "wordsearch"
+    ],
+    "candidates": 4,
+    "accepted": [
+      {
+        "file": "KGS JS.jpg",
+        "evidence": "named by the category it is filed under: “karachi grammar school” · the item's Karachi claim: its “located in” chain reaches Karachi, its description names Karachi, the article it comes from is geo-tagged in Karachi",
+        "license": "Public domain",
+        "artist": "Munibz",
+        "width": 640,
+        "height": 480,
+        "filePage": "https://commons.wikimedia.org/wiki/File:KGS_JS.jpg",
+        "score": 5
+      }
+    ],
+    "refused": [
+      {
+        "file": "KGS MS.jpg",
+        "via": "the article “Karachi Grammar School”",
+        "why": "only 1 of the 2 words that name it appear on the file page"
+      },
+      {
+        "file": "Kgs cc1.JPG",
+        "via": "the article “Karachi Grammar School”",
+        "why": "only 1 of the 2 words that name it appear on the file page"
+      },
+      {
+        "file": "The Imperial Gazetteer Of India Vol-Xv (IA TheImperialGazetteerOfIndiaVolXV).pdf",
+        "via": "Wikimedia Commons",
+        "why": "only 0 of the 2 words that name it appear on the file page"
+      }
+    ]
+  },
+  {
+    "key": "tdf-magnifiscience-centre",
+    "name": "TDF MagnifiScience Centre",
+    "qid": "Q111602905",
+    "qidVia": "Wikidata searched for “TDF MagnifiScience Centre”",
+    "qidOwn": true,
+    "qidNotSubject": null,
+    "inKarachi": true,
+    "pin": [
+      24.8467603,
+      67.0029824
+    ],
+    "lanes": [
+      "category",
+      "category",
+      "category",
+      "category",
+      "category",
+      "category",
+      "category",
+      "category",
+      "category",
+      "wordsearch"
+    ],
+    "candidates": 10,
+    "accepted": [
+      {
+        "file": "MSC from Karachi City Railway Station.jpg",
+        "evidence": "named by its own description: “the tdf s magnifiscience centre seen from karachi city railway station beyond the tracks” · found through Commons category “MagnifiScience Centre” · photographed 92 m from this record's own pin · the item's Karachi claim: its “located in” chain reaches Karachi, its coordinate is inside the Karachi box, its description names Karachi",
+        "license": "CC BY 4.0",
+        "artist": "crosji",
+        "width": 4032,
+        "height": 2268,
+        "filePage": "https://commons.wikimedia.org/wiki/File:MSC_from_Karachi_City_Railway_Station.jpg",
+        "score": 9
+      }
+    ],
+    "refused": [
+      {
+        "file": "MSC Science Garden.mpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC water world.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC Karachi.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MagnifiScience Centre Karachi.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC floors.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC floors reverse.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC building night.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "only 2 of the 3 words that name it appear on the file page"
+      },
+      {
+        "file": "MSC school visit.jpg",
+        "via": "Commons category “MagnifiScience Centre”",
+        "why": "it is about “visit”, an event or a person, not the place"
+      }
+    ]
+  }
+]

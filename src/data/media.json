@@ -3273,5 +3273,50 @@
       960,
       1280
     ]
+  },
+  "karachi-grammar-school": {
+    "key": "karachi-grammar-school",
+    "subject": "Karachi Grammar School",
+    "via": "Wikimedia Commons",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/KGS_JS.jpg/500px-KGS_JS.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/KGS_JS.jpg/500px-KGS_JS.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:KGS_JS.jpg",
+    "artist": "Munibz",
+    "license": "Public domain",
+    "verified": true,
+    "kind": "subject",
+    "evidence": "named by the category it is filed under: “karachi grammar school” · the item's Karachi claim: its “located in” chain reaches Karachi, its description names Karachi, the article it comes from is geo-tagged in Karachi",
+    "w": 640,
+    "h": 480,
+    "px": [
+      120,
+      250,
+      330,
+      500
+    ]
+  },
+  "tdf-magnifiscience-centre": {
+    "key": "tdf-magnifiscience-centre",
+    "subject": "TDF MagnifiScience Centre",
+    "via": "Wikimedia Commons",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/MSC_from_Karachi_City_Railway_Station.jpg/500px-MSC_from_Karachi_City_Railway_Station.jpg",
+    "wide": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/MSC_from_Karachi_City_Railway_Station.jpg/1920px-MSC_from_Karachi_City_Railway_Station.jpg",
+    "filePage": "https://commons.wikimedia.org/wiki/File:MSC_from_Karachi_City_Railway_Station.jpg",
+    "artist": "crosji",
+    "license": "CC BY 4.0",
+    "verified": true,
+    "kind": "subject",
+    "evidence": "named by its own description: “the tdf s magnifiscience centre seen from karachi city railway station beyond the tracks” · found through Commons category “MagnifiScience Centre” · photographed 92 m from this record's own pin · the item's Karachi claim: its “located in” chain reaches Karachi, its coordinate is inside the Karachi box, its description names Karachi",
+    "w": 4032,
+    "h": 2268,
+    "px": [
+      120,
+      250,
+      330,
+      500,
+      960,
+      1280,
+      1920
+    ]
   }
 }

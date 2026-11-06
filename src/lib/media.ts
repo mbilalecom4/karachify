@@ -9,6 +9,10 @@ export interface MediaEntry extends MediaRef {
   /** Why a `related` picture is standing in, recorded per entry and read by
    *  the claim audit — not a caption. */
   illustrativeReason?: string;
+  /** For a photo found through the file's own metadata rather than its name: the
+   *  category it is filed under, the description it carries, or the position the
+   *  camera recorded, written by `.tools/resolve-verified-photos.mjs`. */
+  evidence?: string;
   /** Width and height of the original file on Wikimedia Commons, as the API
    *  reported them to `.tools/measure-renditions.mjs`. */
   w?: number;

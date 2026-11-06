@@ -1,0 +1,741 @@
+[
+  {
+    "key": "cantine-grill-dha",
+    "name": "Cantine Grill & Bakery",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "tandoor-karachi-gulberg",
+    "name": "Tandoor House",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "pizza-corner-khi",
+    "name": "Pizza Corner",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "burger-lab-korangi",
+    "name": "Burger Lab",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "shinzozi-grill",
+    "name": "Shinzozi Grill",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "dera-resturant-boat-basin",
+    "name": "Dera Resturant, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "baithak-boat-basin",
+    "name": "Baithak, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "baloch-ice-cream-boat-basin",
+    "name": "Baloch Ice Cream, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "chick-n-chips-boat-basin",
+    "name": "Chick N Chips, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "nihari-inn-boat-basin",
+    "name": "Nihari Inn, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "qasr-ul-nakheel-boat-basin",
+    "name": "Qasr-ul-Nakheel, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "fams-patisserie-boat-basin",
+    "name": "Fam's Patisserie, Boat Basin",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "karachi-broast-boat-basin",
+    "name": "Karachi Broast, Boat Basin",
+    "photosFound": 2,
+    "named": 1,
+    "pagesRead": 1,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Khan broast",
+        "why": "only 1 of the 3 words that name it appear on the photo"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "7-star-boat-basin",
+    "name": "7 Star, Boat Basin",
+    "photosFound": 24,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Kothari Pared (Clifton-Karachi) Pakistan",
+        "why": "only 1 of the 3 words that name it appear on the photo"
+      },
+      {
+        "title": "Kothari Pared (Clifton-Karachi) Pakistan",
+        "why": "only 1 of the 3 words that name it appear on the photo"
+      },
+      {
+        "title": "Quaid e Azam House (Metropole-Karachi) Pakistan",
+        "why": "only 1 of the 3 words that name it appear on the photo"
+      },
+      {
+        "title": "Quaid e Azam House (Metropole-Karachi) Pakistan",
+        "why": "only 1 of the 3 words that name it appear on the photo"
+      }
+    ]
+  },
+  {
+    "key": "ginsoy-dha",
+    "name": "Ginsoy",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "kababjees-shaheed-e-millat",
+    "name": "Kababjees",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "broadway-pizza-gulshan",
+    "name": "Broadway Pizza",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "residency-hotel-dha",
+    "name": "Residency Hotel, DHA",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "airport-lodge-khi",
+    "name": "Airport Lodge Karachi",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "serviced-apartments-gulshan",
+    "name": "Serviced Apartments, Gulshan-e-Iqbal",
+    "photosFound": 12,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "First 5 Star Luxury Boutique Hotel in Pakistan H&S HOTELS",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "First 5 Star Luxury Boutique Hotel in Pakistan H&S HOTELS",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "First 5 Star Luxury Boutique Hotel in Pakistan H&S HOTELS",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "First 5 Star Luxury Boutique Hotel in Pakistan H&S HOTELS",
+        "why": "its own words name a different city"
+      }
+    ]
+  },
+  {
+    "key": "guest-house-saddar",
+    "name": "Cantonment Guest House",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "budget-inn-nazimabad",
+    "name": "Nazimabad Budget Inn",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "ayesha-palace-venue",
+    "name": "Ayesha Palace & Convention Centre",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "beach-country-club",
+    "name": "Beach Country Club",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "panji-kama-venue",
+    "name": "Panji Kama Banquet & Lawn",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "nicc-convention",
+    "name": "NICC Convention Centre",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "polyverse-mall",
+    "name": "Polyverse Mall",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "darman-mall",
+    "name": "Darman Mall",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "saddar-bohri-bazaar",
+    "name": "Bohri Bazaar & Ahmadpur",
+    "photosFound": 14,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "pakistan - from karachi to peshawar",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "pakistan - from karachi to peshawar",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "pakistan - from karachi to peshawar",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "pakistan - from karachi to peshawar",
+        "why": "its own words name a different city"
+      }
+    ]
+  },
+  {
+    "key": "jolane-strip",
+    "name": "Johar Block 5 Shopping Strip",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "ziarat-market",
+    "name": "Ziafat Market (Junk Market)",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "rafic-market",
+    "name": "Wood & Leather Market, Saddar",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "chaliha-bazaar",
+    "name": "Pechs 11th Street Market",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "korangi-wholesale-mandi",
+    "name": "Korangi Sabzi Mandi",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "karnal-park",
+    "name": "Bagh-e-Karnal",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "bukhari-park-dha",
+    "name": "Khayaban-e-Bukhari Park",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "jinnah-postgraduate-medical-centre",
+    "name": "Jinnah Postgraduate Medical Centre (JPMC)",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "civil-hospital-karachi",
+    "name": "Civil Hospital Karachi",
+    "photosFound": 9,
+    "named": 6,
+    "pagesRead": 6,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Visit To PWA's Thallesemia Care Centre",
+        "why": "it is about “visit”, an event or a person, not the place"
+      },
+      {
+        "title": "Petarians: Altaf Shaikh and Dr Humayun Sarwat",
+        "why": "only 0 of the 2 words that name it appear on the photo"
+      },
+      {
+        "title": " labourer pulling",
+        "why": "it names the place only as an address — “jahangir karachi june 10 a labourer pulling heavily loaded h” is a photograph of something else"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "mama-parshuram-clinic-lyari",
+    "name": "Pak-Sindh Chinese Friendly Hospital",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "rehman-transfusion-memon",
+    "name": "Memon Hospital",
+    "photosFound": 3,
+    "named": 1,
+    "pagesRead": 1,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Abdul Sattar Edhi, humanitarian",
+        "why": "it is about “awarded”, an event or a person, not the place"
+      },
+      {
+        "title": "Abdul Sattar Edhi, philanthropist ",
+        "why": "it is about “awarded”, an event or a person, not the place"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "md-drug-store-clifton",
+    "name": "MD Drug Store (Clifton branch)",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "shaheen-chemist-dha",
+    "name": "Shaheen Chemist",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "bait-ul-hikma-lab",
+    "name": "Baitul Hikma Diagnostic Centre",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "szabist-karachi",
+    "name": "SZABIST Karachi",
+    "photosFound": 20,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Jobs In SZABIST Karachi 15th August 2018 for Head & Teaching Faculty",
+        "why": "it names the place only as an address — “jobs in szabist karachi 15th august 2018 for head teaching f” is a photograph of something else"
+      },
+      {
+        "title": "Philip presenting award to Gulana Anwar (winner)",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Group photograph with the winners",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Group photograph with the High Commissioner",
+        "why": "its own words name a different city"
+      }
+    ]
+  },
+  {
+    "key": "jinnah-university-for-women",
+    "name": "Jinnah University for Women",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "karachi-grammar-school",
+    "name": "Karachi Grammar School",
+    "photosFound": 34,
+    "named": 13,
+    "pagesRead": 6,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Fb Area Campus 1",
+        "why": "it is about “with the”, an event or a person, not the place"
+      },
+      {
+        "title": "Sabir Ali Magician at Happy Palace Grammar School",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Sabir Ali Magician at Happy Palace Grammar School",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Sabir Ali Magician at Happy Palace Grammar School",
+        "why": "its own words name a different city"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "convent-of-jesus-mary",
+    "name": "Convent of Jesus & Mary",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "st-anthonys-high-school",
+    "name": "St. Anthony's High School",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "city-school-dha",
+    "name": "City School, DHA Campus",
+    "photosFound": 21,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "At a social occasion, 2016",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Farewell Dr Durre Shahwar - you played a fine innings!",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Dr Quaid, Dr Zulfiqar and Dr Kakar",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Participants of the Social Determinants of Health consultation in Bhurban, 2012",
+        "why": "its own words name a different city"
+      }
+    ]
+  },
+  {
+    "key": "dha-phase-8-school",
+    "name": "DHA Senior Secondary School",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "beaconhouse-gulshan",
+    "name": "Beaconhouse School System, Gulshan",
+    "photosFound": 3,
+    "named": 3,
+    "pagesRead": 3,
+    "accepted": [],
+    "refused": [
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "rescue-1122-karachi",
+    "name": "Rescue 1122",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "edhi-foundation-karachi",
+    "name": "Edhi Foundation Ambulance Service",
+    "photosFound": 22,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Pakistan's greatest humanist Abdul Sattar Edhi passes away at 88",
+        "why": "its own words name a different city"
+      },
+      {
+        "title": "Edhi and kids",
+        "why": "only 1 of the 4 words that name it appear on the photo"
+      },
+      {
+        "title": "school teacher",
+        "why": "only 0 of the 4 words that name it appear on the photo"
+      },
+      {
+        "title": "f-edhi",
+        "why": "only 1 of the 4 words that name it appear on the photo"
+      }
+    ]
+  },
+  {
+    "key": "sindh-police-hq",
+    "name": "Sindh Police Headquarters & Complaint Cell",
+    "photosFound": 20,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Police Patrol",
+        "why": "only 1 of the 5 words that name it appear on the photo"
+      },
+      {
+        "title": "imam bargah babul hawaej40",
+        "why": "only 2 of the 5 words that name it appear on the photo"
+      },
+      {
+        "title": "imam bargah babul hawaej13",
+        "why": "only 2 of the 5 words that name it appear on the photo"
+      },
+      {
+        "title": "imam bargah babul hawaej31",
+        "why": "only 2 of the 5 words that name it appear on the photo"
+      }
+    ]
+  },
+  {
+    "key": "karachi-fire-brigade",
+    "name": "Karachi Fire Brigade",
+    "photosFound": 3,
+    "named": 2,
+    "pagesRead": 2,
+    "accepted": [],
+    "refused": [
+      {
+        "title": "Karachi Burning",
+        "why": "only 1 of the 2 words that name it appear on the photo"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      },
+      {
+        "why": "licensed “All rights reserved” on its own page, which does not allow this kind of republication"
+      }
+    ]
+  },
+  {
+    "key": "bahria-adventure-land",
+    "name": "Bahria Adventure Land",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  },
+  {
+    "key": "tdf-magnifiscience-centre",
+    "name": "TDF MagnifiScience Centre",
+    "photosFound": 0,
+    "named": 0,
+    "pagesRead": 0,
+    "accepted": [],
+    "refused": []
+  }
+]
