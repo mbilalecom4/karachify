@@ -91,9 +91,33 @@ export interface ImgAttrs {
   sizes?: string;
   width?: number;
   height?: number;
+  crossOrigin?: 'anonymous';
 }
 
 const rewidth = (url: string, width: number) => url.replace(/\/(\d+)px-([^/]*?)(\?|#|$)/, `/${width}px-$2$3`);
+
+/**
+ * Percent-encode the commas in a Commons file name.
+ *
+ * A comma is the separator inside `srcset`, and Commons names carry them by the
+ * thousand — "Aisha_Bawany_School,_Karachi.jpg". Left raw, the browser reads
+ * the candidate list as a URL that stops at the comma, asks for a path that was
+ * never the file, and the frame is broken with nothing wrong on the host. The
+ * encoded form names the same file and cannot be mistaken for a separator.
+ */
+const srcSetSafe = (url: string) => (/^https?:/i.test(url) ? url.replace(/,/g, '%2C') : url);
+
+/**
+ * Ask for the photograph in CORS mode.
+ *
+ * Two things follow from it, and the offline layer needs both. The service
+ * worker then receives a response whose status it can read, so a throttled
+ * answer from the host is refused instead of being filed as though it were the
+ * picture — an opaque copy is indistinguishable from a saved 429. And the frame
+ * still paints: the host sends `access-control-allow-origin: *` on every
+ * thumbnail, which is what made this measurable before it was relied on.
+ */
+const corsFor = (url: string | undefined): 'anonymous' | undefined => (url && /^https?:/i.test(url) ? 'anonymous' : undefined);
 
 /** The widths this file can be asked for, biggest last. */
 function candidateWidths(entry?: MediaEntry): number[] {
@@ -115,12 +139,12 @@ function candidateWidths(entry?: MediaEntry): number[] {
 export function imgAttrs(entry: MediaEntry | undefined, src: string | undefined, size: ImgSize): ImgAttrs {
   const base = entry?.thumb;
   const widths = candidateWidths(entry);
-  const attrs: ImgAttrs = { src };
+  const attrs: ImgAttrs = { src: src ? srcSetSafe(src) : src, crossOrigin: corsFor(src) };
   /* Candidates are always cut from the entry's own thumb URL, whatever frame
      they are being painted into: that is the path the measurement pass asked
      the host about, and one host per file keeps the list honest. */
   if (entry && base && /\/\d+px-/.test(base) && widths.length > 1) {
-    attrs.srcSet = widths.map((width) => `${rewidth(base, width)} ${width}w`).join(', ');
+    attrs.srcSet = widths.map((width) => `${srcSetSafe(rewidth(base, width))} ${width}w`).join(', ');
     attrs.sizes = IMG[size];
   }
   if (entry?.w && entry.h) {
@@ -252,6 +276,7 @@ export function imageFor(key: string, label: string) {
 export function failToPlaceholder(img: HTMLImageElement, fallback: string) {
   img.removeAttribute('srcset');
   img.removeAttribute('sizes');
+  img.removeAttribute('crossorigin');
   if (img.src !== fallback) img.src = fallback;
 }
 

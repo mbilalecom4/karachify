@@ -23,6 +23,12 @@ export default function OpenRecord() {
   const { categoryId = '', slug = '' } = useParams();
   const { record, missing, failed, retry } = useOpenRecord(categoryId, slug);
   const [reporting, setReporting] = useState(false);
+  /** The picture this page tried to show and could not, remembered by URL so
+   *  the next record still gets its chance. The caption beneath the figure
+   *  names an artist and a licence, so a file that never arrived takes the
+   *  whole figure with it rather than leaving text describing an absent
+   *  photograph. */
+  const [photoFailedFor, setPhotoFailedFor] = useState<string | null>(null);
   const [reportReason, setReportReason] = useState<string | undefined>();
 
   const category = categoryById.get(categoryId);
@@ -112,7 +118,7 @@ export default function OpenRecord() {
           </p>
         </div>
 
-        {photo && (
+        {photo && photoFailedFor !== (photo.wide ?? photo.thumb) && (
           <figure className="card mt-6 overflow-hidden p-0">
             <img
               {...imgAttrs(photo, photo.wide ?? photo.thumb, 'figure')}
@@ -120,6 +126,7 @@ export default function OpenRecord() {
               loading="lazy"
               decoding="async"
               className="h-[clamp(190px,30vw,320px)] w-full object-cover"
+              onError={() => setPhotoFailedFor(photo.wide ?? photo.thumb ?? '')}
             />
             <figcaption className="px-4 py-3 text-[12.5px] leading-relaxed text-navy-500">
               Photograph from Wikimedia Commons

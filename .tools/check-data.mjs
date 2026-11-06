@@ -203,6 +203,12 @@ for (const [key, m] of Object.entries(media)) {
       continue;
     }
     if (!IMAGE_HOSTS.test(host)) failures.push(`media ${key}: ${field} is hotlinked from ${host}, which is not a Wikimedia project`);
+    /* A raw comma in a stored URL is a `srcset` separator waiting to happen.
+       The candidate list is a comma-separated string, so the browser reads the
+       URL as ending at the comma and asks for a path that was never the file.
+       Commons names carry commas by the thousand — they belong percent-encoded,
+       which is the same file to the host and invisible to the parser. */
+    if (/,/.test(m[field])) failures.push(`media ${key}: ${field} carries a raw comma, which truncates the srcset — write it as %2C`);
   }
   if (m.filePage && !m.filePage.startsWith('https://commons.wikimedia.org/wiki/File:')) {
     failures.push(`media ${key}: file page ${m.filePage} is not a Commons file page`);

@@ -124,6 +124,7 @@ export function ImageWithFallback({
       <img
         src={resolved}
         {...renditions}
+        crossOrigin={/^https?:/i.test(resolved ?? '') ? 'anonymous' : undefined}
         alt={alt}
         title={title}
         loading={eager ? 'eager' : 'lazy'}

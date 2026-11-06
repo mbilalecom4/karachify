@@ -160,6 +160,12 @@ export default function ListingDetail() {
   const listing = useMemo(() => listings.find((l) => l.slug === slug), [listings, slug]);
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  /** Gallery photographs that did not paint, remembered by URL so the next
+   *  record still gets its chance. A frame that cannot be painted is shown as
+   *  the designed stand-in and re-labelled: the badge saying "Photo" is a claim
+   *  about what is on this screen, so it goes when what is on the screen is no
+   *  longer a photograph. */
+  const [unpainted, setUnpainted] = useState<Record<string, boolean>>({});
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [claimOpen, setClaimOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
@@ -213,6 +219,10 @@ export default function ListingDetail() {
   const meta = LAYOUT_META[layout];
   const media = imageFor(listing.slug, listing.name);
   const gallery = buildGallery(listing);
+  const leadFrame = gallery[active];
+  /** Whether the enlarged frame is really showing the photograph its caption
+   *  describes, which is a question the browser answers, not the data file. */
+  const leadPainted = Boolean(leadFrame?.real && !unpainted[leadFrame.src]);
   const favourites = prefsFor(db).favouriteListings;
   const isFavourite = favourites.includes(listing.id);
 
@@ -329,16 +339,25 @@ export default function ListingDetail() {
             >
               <span className={`block ${i === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
                 <img
-                  {...(f.real ? imgAttrs(media.entry, f.src, i === 0 ? 'galleryLead' : 'galleryCell') : { src: f.src })}
+                  {...(f.real
+                    ? unpainted[f.src]
+                      ? { src: media.fallback }
+                      : imgAttrs(media.entry, f.src, i === 0 ? 'galleryLead' : 'galleryCell')
+                    : { src: f.src })}
                   alt={f.caption}
                   loading={i === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  onError={() => {
+                    if (f.real) setUnpainted((u) => (u[f.src] ? u : { ...u, [f.src]: true }));
+                  }}
                 />
               </span>
               <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 bg-navy-950/85 px-3 py-2">
                 <span className="text-[12px] font-semibold text-white">{f.caption}</span>
-                <span className={`badge ${f.real ? 'bg-teal-700 text-white' : 'bg-amber-400/90 text-navy-900'}`}>{f.real ? 'Photo' : 'Placeholder'}</span>
+                <span className={`badge ${f.real && !unpainted[f.src] ? 'bg-teal-700 text-white' : 'bg-amber-400/90 text-navy-900'}`}>
+                  {f.real && !unpainted[f.src] ? 'Photo' : 'Placeholder'}
+                </span>
               </span>
             </button>
           ))}
@@ -673,15 +692,22 @@ export default function ListingDetail() {
       <Modal open={lightbox} onClose={() => setLightbox(false)} title={gallery[active]?.caption ?? listing.name} size="lg">
         <figure>
           <img
-            {...(gallery[active]?.real ? imgAttrs(media.entry, gallery[active]!.src, 'lightbox') : { src: gallery[active]?.src })}
-            alt={gallery[active]?.caption ?? listing.name}
+            {...(leadFrame?.real
+              ? leadPainted
+                ? imgAttrs(media.entry, leadFrame.src, 'lightbox')
+                : { src: media.fallback }
+              : { src: leadFrame?.src })}
+            alt={leadFrame?.caption ?? listing.name}
             decoding="async"
             className="w-full rounded-xl bg-navy-50"
+            onError={() => {
+              if (leadFrame?.real) setUnpainted((u) => (u[leadFrame.src] ? u : { ...u, [leadFrame.src]: true }));
+            }}
           />
           <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[13px] text-navy-500">
             <span>
               Photo {active + 1} of {gallery.length}
-              {gallery[active]?.real && media.entry ? ` · ${media.entry.artist ?? 'Wikimedia Commons contributor'} · ${media.entry.license ?? 'licence see file page'}` : ' · designed placeholder, not a photograph'}
+              {leadPainted && media.entry ? ` · ${media.entry.artist ?? 'Wikimedia Commons contributor'} · ${media.entry.license ?? 'licence see file page'}` : ' · designed placeholder, not a photograph'}
             </span>
             <span className="flex gap-2">
               <button className="btn-outline btn-sm" onClick={() => setActive((i) => (i - 1 + gallery.length) % gallery.length)}>

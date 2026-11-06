@@ -18,9 +18,15 @@
  *   data         network first. The record files and the OpenStreetMap tier are
  *                the site's substance; a saved copy is worth having offline and
  *                worth labelling as saved.
- *   photographs  cache first, capped. A card image is a rendition of a file
- *                that does not change, and the cache is trimmed so a long
- *                browsing session cannot quietly eat the device's storage.
+ *   photographs  cache first, capped — but only a copy this worker can vouch
+ *                for. A card image is a rendition of a file that does not
+ *                change, and the cache is trimmed so a long browsing session
+ *                cannot quietly eat the device's storage. The images are
+ *                fetched in CORS mode, which is what makes the status of the
+ *                answer readable here; Wikimedia answers with
+ *                `access-control-allow-origin: *`, and every rate limit it
+ *                imposes on a busy page then shows up as a refusal instead of
+ *                becoming the picture.
  *   live reads   never cached. Weather, prayer times, place names, walking
  *                routes and the live "what is mapped here now" query are answers
  *                about this minute, asked because somebody pressed a button; a
@@ -32,7 +38,15 @@
  * taken, so the notice in the header can say so out loud.
  */
 
-const BUILD = 'karachify-v1';
+/*
+ * v2: the media cache under v1 was filled without ever reading a response's
+ * status, so a throttled answer from the photograph host could be filed as
+ * though it were the picture and then served in its place on every later
+ * visit. Changing the id makes `activate` delete those caches on the next
+ * load, which is the only way to reach a visitor whose browser is already
+ * holding them.
+ */
+const BUILD = 'karachify-v2';
 const CACHES = {
   page: `${BUILD}-pages`,
   bundle: `${BUILD}-bundle`,
@@ -99,23 +113,36 @@ self.addEventListener('message', (event) => {
 /**
  * Store a response, then trim the oldest entries past the limit.
  *
- * A photograph arrives as an opaque response — cross-origin, no readable
- * headers — and the Cache API accepts it as it is. Anything this site serves
- * itself is stamped with the moment it was filed, because the page has to be
- * able to say how old the copy it is showing really is.
+ * Only a copy whose status this worker was allowed to read is kept. An opaque
+ * response — what a cross-origin request in no-cors mode hands back — is a body
+ * with no readable answer attached, so a throttled reply from the photograph
+ * host looks exactly like the JPEG it is standing in for. Filing that under the
+ * photograph's address and serving it cache-first turns one busy minute into a
+ * permanently broken image. Everything the site asks for is now fetched in a
+ * mode where the status is readable, so nothing that used to be worth keeping
+ * is refused here.
+ *
+ * Anything this site does keep is stamped with the moment it was filed, because
+ * the page has to be able to say how old the copy it is showing really is.
  */
 async function save(cacheName, request, response, limit) {
-  if (!response || response.type === 'error') return;
-  if (response.type !== 'opaque' && response.status !== 200) return;
-  const cache = await caches.open(cacheName);
-  await cache.put(request, response.type === 'opaque' ? response : await stamp(response));
-  // A redirected navigation is filed under both addresses it is true at, so an
-  // offline reload finds it whichever one the browser asks for.
-  if (response.redirected && response.url && response.type === 'default') {
-    await cache.put(new Request(response.url), await stamp(response));
+  if (!response || response.type === 'opaque' || response.status !== 200) return;
+  // Filing the copy is a bonus on top of the answer already on its way to the
+  // page: a device that will not accept it — full storage is the usual reason —
+  // must not be allowed to lose the photograph as well as the copy.
+  try {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, await stamp(response));
+    // A redirected navigation is filed under both addresses it is true at, so an
+    // offline reload finds it whichever one the browser asks for.
+    if (response.redirected && response.url) {
+      await cache.put(new Request(response.url), await stamp(response));
+    }
+    const keys = await cache.keys();
+    for (let i = 0; i < keys.length - limit; i += 1) await cache.delete(keys[i]);
+  } catch (storage) {
+    /* The response itself is untouched, so the page still gets its answer. */
   }
-  const keys = await cache.keys();
-  for (let i = 0; i < keys.length - limit; i += 1) await cache.delete(keys[i]);
 }
 
 /**
