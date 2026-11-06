@@ -1,0 +1,1189 @@
+{
+  "ranOn": "2026-11-06",
+  "offline": false,
+  "limits": {
+    "geocodedPinMetres": 400,
+    "approximatePinMetres": 1000
+  },
+  "pool": {
+    "fromDump": 2360,
+    "readLive": 1302
+  },
+  "gained": 0,
+  "fieldCounts": {
+    "phone": 0,
+    "website": 0,
+    "email": 0,
+    "hours": 0,
+    "sourceUrl": 0
+  },
+  "osmTagsNow": [
+    {
+      "slug": "national-museum-pakistan",
+      "fields": [
+        "hours"
+      ]
+    },
+    {
+      "slug": "liaquat-national-hospital",
+      "fields": [
+        "email"
+      ]
+    },
+    {
+      "slug": "movenpick-karachi",
+      "fields": [
+        "phone",
+        "website"
+      ]
+    }
+  ],
+  "records": [],
+  "refused": [
+    {
+      "slug": "mazar-e-quaid",
+      "name": "Mazar-e-Quaid",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "mohatta-palace",
+      "name": "Mohatta Palace",
+      "matched": [
+        "way/479576906"
+      ],
+      "why": "matched way/479576906 \"Mohatta Palace\" — every field they hold the record already carries",
+      "notes": [
+        "hours: already carried"
+      ]
+    },
+    {
+      "slug": "frere-hall",
+      "name": "Frere Hall",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "clifton-beach",
+      "name": "Clifton Beach",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "port-grand",
+      "name": "Port Grand",
+      "matched": [
+        "node/4351418894"
+      ],
+      "why": "matched node/4351418894 \"Port Grand\" — every field they hold the record already carries",
+      "notes": [
+        "hours: already carried"
+      ]
+    },
+    {
+      "slug": "pakistan-maritime-museum",
+      "name": "Pakistan Maritime Museum",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "empress-market",
+      "name": "Empress Market",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "quaid-e-azam-house",
+      "name": "Quaid-e-Azam House Museum",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-zoo",
+      "name": "Karachi Zoo (Empress Zoo)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "manora-island",
+      "name": "Manora",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "chaukhandi-tombs",
+      "name": "Chaukhandi Tombs",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "national-museum-pakistan",
+      "name": "National Museum of Pakistan",
+      "matched": [
+        "node/5128917944"
+      ],
+      "why": "matched node/5128917944 \"National Museum of Pakistan\" — every field they hold the record already carries",
+      "notes": [
+        "hours: already carried"
+      ]
+    },
+    {
+      "slug": "wazir-mansion",
+      "name": "Wazir Mansion",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "paaf-museum-karachi",
+      "name": "Pakistan Air Force Museum",
+      "matched": [
+        "way/484255789"
+      ],
+      "why": "matched way/484255789 \"Pakistan Air Force Museum Park\" — every field they hold the record already carries",
+      "notes": [
+        "website: already carried",
+        "email: already carried",
+        "the element is tagged \"Pakistan Air Force Museum Park\""
+      ]
+    },
+    {
+      "slug": "data-darbar",
+      "name": "Data Darbar Shrine",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "st-patricks-cathedral",
+      "name": "St. Patrick's Cathedral",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "seaview-point",
+      "name": "Sea View Point",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "boat-basin",
+      "name": "Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-port-terminal",
+      "name": "Karachi Port",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "hills-park-karachi",
+      "name": "Hawa Khandwa View Point",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "khi-dinner",
+      "name": "Karachi Dinner (Defence)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "hababs",
+      "name": "Hababs",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "bismillah-marwa",
+      "name": "Bismillah Marwa Restaurant",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "saddar-bukhara",
+      "name": "Bukhara Grill",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "mehboob-wharf",
+      "name": "Mehboob Wharf Road",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ghari-kabab",
+      "name": "Ghari Kabab House",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "nihari-haveli",
+      "name": "Nihari Haveli",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "chai-wali-karachi",
+      "name": "Chai Wali Federal B",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "cairo-burns",
+      "name": "Cairo Restaurant",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "landhi-biryani-house",
+      "name": "Landhi Biryani House",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "sea-shell-boatkasin",
+      "name": "Sea Shell, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "kolhapichay-clifton",
+      "name": "Kolhapichay & Grill",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "roastery-gulshan",
+      "name": "The Roastery",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "cantine-grill-dha",
+      "name": "Cantine Grill & Bakery",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "darya-dining",
+      "name": "Darya Restaurant",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "tandoor-karachi-gulberg",
+      "name": "Tandoor House",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "peshawar-restaurant-khi",
+      "name": "Peshawar Restaurant",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "mithai-burns",
+      "name": "Al-Imran Sweets",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "pizza-corner-khi",
+      "name": "Pizza Corner",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "burger-lab-korangi",
+      "name": "Burger Lab",
+      "matched": [],
+      "why": "1 element(s) of this name sit 433 m or more from this pin, beyond the 400 m this geocoded pin allows",
+      "notes": []
+    },
+    {
+      "slug": "ice-cream-karachi-club",
+      "name": "Lubnan Ice Cream",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "taftri-house",
+      "name": "Taftri House",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "hotel-rehri-saddar",
+      "name": "Rehri Carvery",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "shinzozi-grill",
+      "name": "Shinzozi Grill",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "tandoori-hut-restaurant-boat-basin",
+      "name": "Tandoori Hut Restaurant, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "dera-resturant-boat-basin",
+      "name": "Dera Resturant, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "baithak-boat-basin",
+      "name": "Baithak, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "baloch-ice-cream-boat-basin",
+      "name": "Baloch Ice Cream, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "chick-n-chips-boat-basin",
+      "name": "Chick N Chips, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "nihari-inn-boat-basin",
+      "name": "Nihari Inn, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "qasr-ul-nakheel-boat-basin",
+      "name": "Qasr-ul-Nakheel, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "fams-patisserie-boat-basin",
+      "name": "Fam's Patisserie, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-broast-boat-basin",
+      "name": "Karachi Broast, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "7-star-boat-basin",
+      "name": "7 Star, Boat Basin",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ginsoy-dha",
+      "name": "Ginsoy",
+      "matched": [],
+      "why": "1 element(s) of this name sit 3018 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "kababjees-shaheed-e-millat",
+      "name": "Kababjees",
+      "matched": [],
+      "why": "2 element(s) of this name sit 4289 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "broadway-pizza-gulshan",
+      "name": "Broadway Pizza",
+      "matched": [],
+      "why": "1 element(s) of this name sit 5758 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "movenpick-karachi",
+      "name": "Mövenpick Hotel Karachi",
+      "matched": [
+        "node/5135305798"
+      ],
+      "why": "matched node/5135305798 \"Mövenpick Hotel Karachi\" — every field they hold the record already carries",
+      "notes": [
+        "phone: the record already carries one",
+        "website: already carried"
+      ]
+    },
+    {
+      "slug": "pearl-vohra",
+      "name": "Pearl-Airconditioned Hotel & Pearl-Continental",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "residency-hotel-dha",
+      "name": "Residency Hotel, DHA",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "airport-lodge-khi",
+      "name": "Airport Lodge Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "serviced-apartments-gulshan",
+      "name": "Serviced Apartments, Gulshan-e-Iqbal",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "guest-house-saddar",
+      "name": "Cantonment Guest House",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "beach-resort-hawkesbay",
+      "name": "Hawke's Bay Beach Resort",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "budget-inn-nazimabad",
+      "name": "Nazimabad Budget Inn",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ayesha-palace-venue",
+      "name": "Ayesha Palace & Convention Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "talwar-lawn",
+      "name": "Talwar Police Officers' Club Lawn",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "beach-country-club",
+      "name": "Beach Country Club",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-expo-centre",
+      "name": "Karachi Expo Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "panji-kama-venue",
+      "name": "Panji Kama Banquet & Lawn",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "nicc-convention",
+      "name": "NICC Convention Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "dolmen-mall-clifton",
+      "name": "Dolmen Mall Clifton",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "dolmen-mall-tariq-road",
+      "name": "Dolmen Mall Tariq Road",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "lucky-one-mall",
+      "name": "Lucky One Mall",
+      "matched": [
+        "way/549120622"
+      ],
+      "why": "matched way/549120622 \"Lucky One Mall\" — every field they hold the record already carries",
+      "notes": [
+        "phone: the record already carries one",
+        "website: already carried",
+        "email: already carried"
+      ]
+    },
+    {
+      "slug": "polyverse-mall",
+      "name": "Polyverse Mall",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "darman-mall",
+      "name": "Darman Mall",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "saddar-bohri-bazaar",
+      "name": "Bohri Bazaar & Ahmadpur",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "jolane-strip",
+      "name": "Johar Block 5 Shopping Strip",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ziarat-market",
+      "name": "Ziafat Market (Junk Market)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "rafic-market",
+      "name": "Wood & Leather Market, Saddar",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "chaliha-bazaar",
+      "name": "Pechs 11th Street Market",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "saddar-electronic-market",
+      "name": "Electronic Market & Hillside",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "korangi-wholesale-mandi",
+      "name": "Korangi Sabzi Mandi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ibne-bin-qasim-bagh",
+      "name": "Bagh-e-Ibne-Bin-Qasim",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "hill-park-karachi",
+      "name": "Hill Park",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "lumbini-park",
+      "name": "Lumbini Park",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ocean-park-karachi",
+      "name": "Ocean Park Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karnal-park",
+      "name": "Bagh-e-Karnal",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "dolphin-park-clifton",
+      "name": "Dolphin Park",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "mazar-gardens",
+      "name": "Mazar-e-Quaid Gardens",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "bukhari-park-dha",
+      "name": "Khayaban-e-Bukhari Park",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "gulshan-park",
+      "name": "Gulshan-e-Iqbal Community Park",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "malir-garden",
+      "name": "Saima Village & Malir Dam Gardens",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "hawkes-bay-beach",
+      "name": "Hawke's Bay Beach",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "sandspit-beach",
+      "name": "Sandspit",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "marine-drive-strip",
+      "name": "Marine Drive Beach Strip",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "brigo-beach",
+      "name": "Brigo Beach",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "paradise-point",
+      "name": "Paradise Point",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "french-creek",
+      "name": "French Creek & mangrove belt",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "aga-khan-university-hospital",
+      "name": "Aga Khan University Hospital",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "jinnah-postgraduate-medical-centre",
+      "name": "Jinnah Postgraduate Medical Centre (JPMC)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "national-hospital-karachi",
+      "name": "National Hospital",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "south-city-hospital",
+      "name": "South City Hospital",
+      "matched": [],
+      "why": "1 element(s) of this name sit 2140 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "liaquat-national-hospital",
+      "name": "Liaquat National Hospital",
+      "matched": [
+        "node/4762117190"
+      ],
+      "why": "matched node/4762117190 \"Liaquat National Hospital & Medical College\" — every field they hold the record already carries",
+      "notes": [
+        "phone: the record already carries one",
+        "website: already carried",
+        "email: already carried",
+        "the element is tagged \"Liaquat National Hospital & Medical College\""
+      ]
+    },
+    {
+      "slug": "civil-hospital-karachi",
+      "name": "Civil Hospital Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "pakistan-institute-medical-sciences",
+      "name": "Pakistan Institute of Medical Sciences (PIMS)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "siut",
+      "name": "Sindh Institute of Urology & Transplantation (SIUT)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "indus-hospital-karachi",
+      "name": "The Indus Hospital",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "nicv",
+      "name": "National Institute of Cardiovascular Diseases",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "mama-parshuram-clinic-lyari",
+      "name": "Pak-Sindh Chinese Friendly Hospital",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "rehman-transfusion-memon",
+      "name": "Memon Hospital",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "md-drug-store-clifton",
+      "name": "MD Drug Store (Clifton branch)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "shaheen-chemist-dha",
+      "name": "Shaheen Chemist",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "bait-ul-hikma-lab",
+      "name": "Baitul Hikma Diagnostic Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "university-of-karachi",
+      "name": "University of Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ned-university",
+      "name": "NED University of Engineering & Technology",
+      "matched": [
+        "way/288310364"
+      ],
+      "why": "matched way/288310364 \"NED University of Engineering & Technology\" — every field they hold the record already carries",
+      "notes": [
+        "phone: the record already carries one",
+        "website: already carried"
+      ]
+    },
+    {
+      "slug": "iba-karachi",
+      "name": "Institute of Business Administration",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "aga-khan-university-campus",
+      "name": "Aga Khan University Campus",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "habib-university",
+      "name": "Habib University",
+      "matched": [],
+      "why": "1 element(s) of this name sit 13355 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "dow-university-health-sciences",
+      "name": "Dow University of Health Sciences",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "szabist-karachi",
+      "name": "SZABIST Karachi",
+      "matched": [],
+      "why": "1 element(s) of this name sit 1319 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "sir-syed-university",
+      "name": "Sir Syed University of Engineering & Technology",
+      "matched": [],
+      "why": "1 element(s) of this name sit 9382 m or more from this pin, beyond the 1000 m this approximate pin allows",
+      "notes": []
+    },
+    {
+      "slug": "bahria-university-karachi",
+      "name": "Bahria University Karachi Campus",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "jinnah-university-for-women",
+      "name": "Jinnah University for Women",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-grammar-school",
+      "name": "Karachi Grammar School",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "convent-of-jesus-mary",
+      "name": "Convent of Jesus & Mary",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "st-anthonys-high-school",
+      "name": "St. Anthony's High School",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "city-school-dha",
+      "name": "City School, DHA Campus",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "dha-phase-8-school",
+      "name": "DHA Senior Secondary School",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "beaconhouse-gulshan",
+      "name": "Beaconhouse School System, Gulshan",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "state-bank-of-pakistan-museum",
+      "name": "State Bank of Pakistan Museum",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "pakistan-railways-heritage",
+      "name": "Karachi Railway Station & Heritage Premises",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ansari-hall",
+      "name": "Ansari Hall Art Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "sughar-house",
+      "name": "Sughar House Crafts Centre",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "khi-literary-society",
+      "name": "Readers Book Centre, Frere Road",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "masjid-e-tooba",
+      "name": "Masjid-e-Tooba (Gol Mahal Masjid)",
+      "matched": [],
+      "why": "1 element(s) of this name sit 16588 m or more from this pin, beyond the 400 m this geocoded pin allows",
+      "notes": []
+    },
+    {
+      "slug": "grand-mosque-karachi",
+      "name": "Grand Mosque of Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "gurdwara-karachi",
+      "name": "Gurdwara Bungalow Granthi, Saddar",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "st-andrews-scots-kirk",
+      "name": "St. Andrew's Scots Kirk",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "jamia-masjid-karachi",
+      "name": "Jamiya Masjid, Kutcherie Bazaar",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "swaminarayan-temple-khi",
+      "name": "Swaminaraya Mandir, Kharadar",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "national-stadium-karachi",
+      "name": "National Stadium Karachi",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "ibne-qasim-stadium",
+      "name": "Ibn-e-Qasim Bagh Stadium",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-gymkhana",
+      "name": "Karachi Gymkhana",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "jinnah-international-airport",
+      "name": "Jinnah International Airport",
+      "matched": [
+        "way/435769885"
+      ],
+      "why": "matched way/435769885 \"جناح بین الاقوامی ہوائی اڈہ\" — every field they hold the record already carries",
+      "notes": [
+        "website: already carried",
+        "the element is tagged \"جناح بین الاقوامی ہوائی اڈہ\""
+      ]
+    },
+    {
+      "slug": "seaview-ferry-terminal",
+      "name": "Sea View Ferry & Manora Boat Terminal",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-circular-railway",
+      "name": "Karachi Circular Railway (KCR)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "bahadurabad-bus-terminal",
+      "name": "Bahadurabad Bus Terminal",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-port-cruise-terminal",
+      "name": "Karachi Port Cruise Terminal",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-metropolitan-corporation",
+      "name": "Karachi Metropolitan Corporation (KMC)",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "rescue-1122-karachi",
+      "name": "Rescue 1122",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "edhi-foundation-karachi",
+      "name": "Edhi Foundation Ambulance Service",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "sindh-police-hq",
+      "name": "Sindh Police Headquarters & Complaint Cell",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "karachi-fire-brigade",
+      "name": "Karachi Fire Brigade",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "bahria-adventure-land",
+      "name": "Bahria Adventure Land",
+      "matched": [],
+      "why": "no element in the pool of 3188 names this place with a phone, website, email or opening_hours tag worth taking",
+      "notes": []
+    },
+    {
+      "slug": "tdf-magnifiscience-centre",
+      "name": "TDF MagnifiScience Centre",
+      "matched": [
+        "node/8633769213"
+      ],
+      "why": "matched node/8633769213 \"TDF MagnifiScience Centre\" — every field they hold the record already carries",
+      "notes": [
+        "phone: the record already carries one",
+        "website: already carried",
+        "hours: tagged \"Mo-Thu 09:00-17:00 Sa-Su 10:00-19:30\", which this reader cannot turn into a schedule — left unpublished"
+      ]
+    }
+  ],
+  "failedLanes": []
+}

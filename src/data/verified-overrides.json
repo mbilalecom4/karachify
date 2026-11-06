@@ -475,7 +475,12 @@
       "lng": 67.0176726,
       "coordsVerified": true,
       "address": "National Museum of Pakistan, Shahrah e Kamal Ata Turk, Pakistan Secretariat, Saddar Town, Karachi District, Karachi Division, Sindh, 75530, Pakistan",
-      "hours": null,
+      "hours": [
+        {
+          "day": "Thursday – Tuesday",
+          "open": "10:00 – 17:00"
+        }
+      ],
       "status": "needs-review",
       "sourceUrl": "https://www.openstreetmap.org/node/5128917944",
       "lastVerified": "2026-10-30",
@@ -923,7 +928,8 @@
       "status": "verified",
       "sourceUrl": "https://www.openstreetmap.org/relation/17336275",
       "lastVerified": "2026-10-31",
-      "osmId": "relation/17336275"
+      "osmId": "relation/17336275",
+      "email": "info@lnh.edu.pk"
     },
     "quaid-e-azam-house": {
       "isNew": false,
@@ -983,7 +989,9 @@
       "status": "needs-review",
       "sourceUrl": "https://www.openstreetmap.org/node/5135305798",
       "lastVerified": "2026-11-02",
-      "osmId": "5135305798"
+      "osmId": "5135305798",
+      "phone": "+92 21 35633333",
+      "website": "https://movenpick.com/"
     },
     "hill-park-karachi": {
       "isNew": false,

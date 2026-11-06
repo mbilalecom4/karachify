@@ -433,6 +433,17 @@ export default function Sources() {
             page by hand: if the research file does not carry a URL for it, the value does not exist in the build.
           </p>
           <p>
+            Practical details have a second, narrower route in. <code>.tools/enrich-from-osm.mjs</code> re-reads
+            OpenStreetMap — the same ODbL-licensed source the map, the nearby panel and the open-records tier already
+            cite — looking for a phone, website, email or opening hours a record is missing. It writes one only where
+            the element is provably the same door: a record whose position came from a real geocode may join on a
+            matching name within 400 m, a record whose position is an area centre only on an exact name within 1 km.
+            Every value it adds carries the element it was read from in <code>provenance.json</code> under the batch{' '}
+            <code>osm-tags</code>, it fills blanks without overwriting anything research checked at an operator, and it
+            prints the records it refused instead of quietly dropping them. A rating, a review count or a price cannot
+            come this way, because OpenStreetMap does not hold those fields.
+          </p>
+          <p>
             A place can be researched twice — once to pin it, later to chase the details the first pass could not find —
             so records merge by name before anything ships. The rules there are deliberately conservative: a re-check
             that lands a different coordinate is reported as a conflict and ignored rather than moving the pin on its own,

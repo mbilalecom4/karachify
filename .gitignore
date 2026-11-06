@@ -42,3 +42,7 @@ dist
 # screenshots and network caches written by the .tools passes
 /.tools/_shots/
 /.tools/flickr-cache.json
+
+# OpenStreetMap tag cache and pin ledger written by .tools/enrich-from-osm.mjs
+/.tools/osm-tags-cache.json
+/.tools/osm-pins-read.json

@@ -1321,7 +1321,8 @@
       "confidence": "partially-verified",
       "batches": [
         "batch-b-museums",
-        "batch-f-practical"
+        "batch-f-practical",
+        "osm-tags"
       ],
       "published": [
         "lat",
@@ -1329,7 +1330,8 @@
         "address",
         "sourceUrl",
         "osmId",
-        "lastVerified"
+        "lastVerified",
+        "hours"
       ],
       "sources": [
         {
@@ -1371,11 +1373,18 @@
           "supports": [],
           "note": "supplied: description - founded 17 April 1950 in Frere Hall, moved to Burns Garden in 1970, eleven galleries; checked for hours/fee/contact: none published, only DoAM HQ phone shown, not used as venue contact",
           "batch": "batch-f-practical"
+        },
+        {
+          "url": "https://www.openstreetmap.org/node/5128917944",
+          "supports": [
+            "hours"
+          ],
+          "note": "OpenStreetMap element tagged \"National Museum of Pakistan\"; fields taken only where the record carried none.",
+          "batch": "osm-tags"
         }
       ],
       "notFound": [
         "website",
-        "hours",
         "ticketPrices",
         "entryConditions",
         "contact",
@@ -2701,7 +2710,8 @@
       "lastVerified": "2026-10-31",
       "confidence": "verified",
       "batches": [
-        "batch-i-around-the-clock"
+        "batch-i-around-the-clock",
+        "osm-tags"
       ],
       "published": [
         "lat",
@@ -2712,7 +2722,8 @@
         "lastVerified",
         "hours",
         "website",
-        "phone"
+        "phone",
+        "email"
       ],
       "sources": [
         {
@@ -2742,6 +2753,15 @@
           ],
           "note": "",
           "batch": "batch-i-around-the-clock"
+        },
+        {
+          "url": "https://www.openstreetmap.org/node/4762117190",
+          "supports": [
+            "contact",
+            "email"
+          ],
+          "note": "OpenStreetMap element tagged \"Liaquat National Hospital & Medical College\"; fields taken only where the record carried none.",
+          "batch": "osm-tags"
         }
       ],
       "notFound": [
@@ -2908,7 +2928,8 @@
       "lastVerified": "2026-11-02",
       "confidence": "partially-verified",
       "batches": [
-        "batch-j-osm-locations"
+        "batch-j-osm-locations",
+        "osm-tags"
       ],
       "published": [
         "lat",
@@ -2916,17 +2937,20 @@
         "address",
         "sourceUrl",
         "osmId",
-        "lastVerified"
+        "lastVerified",
+        "phone",
+        "website"
       ],
       "sources": [
         {
           "url": "https://www.openstreetmap.org/node/5135305798",
           "supports": [
-            "coordinates",
-            "address"
+            "phone",
+            "contact",
+            "website"
           ],
-          "note": "",
-          "batch": "batch-j-osm-locations"
+          "note": "OpenStreetMap element tagged \"Mövenpick Hotel Karachi\"; fields taken only where the record carried none.",
+          "batch": "osm-tags"
         }
       ],
       "notFound": [],
