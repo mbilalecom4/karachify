@@ -53,7 +53,7 @@ import {
 } from '../components/ui';
 import { admissionLabel, coordText, copyText, directionsUrl, mapLinkUrl, isValidEmail, pinCaption, plural, priceLabel } from '../lib/format';
 import { listingHref } from '../lib/openRecords';
-import { fieldsAbsent, fieldsChecked, isAudited } from '../lib/provenance';
+import { citationsFor, fieldsAbsent, fieldsChecked, isAudited } from '../lib/provenance';
 
 /** Names what the record actually carries: "its map position, address and contact". */
 function andList(items: (string | false | null | undefined)[]) {
@@ -471,16 +471,20 @@ export default function ListingDetail() {
                       </Link>
                     </>
                   )}
-                  {listing.address && (
-                    <span className="mt-0.5 block text-[12px] text-navy-400">
-                      {fieldsChecked(listing.slug, ['address'])
-                        ? `Checked against a source on ${listing.lastVerified}.`
-                        : 'Not yet checked against an official source.'}
-                    </span>
-                  )}
+                  {listing.address &&
+                    (citationsFor(listing.slug, 'address').length ? (
+                      <CitedNote slug={listing.slug} field="address" />
+                    ) : (
+                      <span className="mt-0.5 block text-[12px] text-navy-400">
+                        {fieldsChecked(listing.slug, ['address'])
+                          ? `Checked against a source on ${listing.lastVerified}.`
+                          : 'Not yet checked against an official source.'}
+                      </span>
+                    ))}
                 </Row>
                 <Row icon={<Phone className="h-4 w-4" />} label="Phone">
                   {listing.phone ?? <span className="text-navy-400">No published number for this record.</span>}
+                  {listing.phone && <CitedNote slug={listing.slug} field="phone" />}
                 </Row>
                 {listing.website && (
                   <Row icon={<ExternalLink className="h-4 w-4" />} label="Website">
@@ -500,9 +504,15 @@ export default function ListingDetail() {
                           </li>
                         ))}
                       </ul>
-                      <span className="mt-1 block text-[12px] text-navy-400">
-                        {listing.lastVerified ? `Checked against a source on ${listing.lastVerified}.` : 'Not verified against an official source — confirm before travelling.'}
-                      </span>
+                      {citationsFor(listing.slug, 'hours').length ? (
+                        <CitedNote slug={listing.slug} field="hours" />
+                      ) : (
+                        <span className="mt-1 block text-[12px] text-navy-400">
+                          {listing.lastVerified
+                            ? `Checked against a source on ${listing.lastVerified}.`
+                            : 'Not verified against an official source — confirm before travelling.'}
+                        </span>
+                      )}
                       <button
                         type="button"
                         className="mt-2 inline-flex items-center gap-1 text-[12.5px] font-semibold text-teal-700 hover:text-teal-900"
@@ -567,6 +577,7 @@ export default function ListingDetail() {
                     <a href={`mailto:${listing.email}`} className="link break-all">
                       {listing.email}
                     </a>
+                    <CitedNote slug={listing.slug} field="email" />
                   </Row>
                 )}
               </dl>
@@ -705,6 +716,41 @@ export default function ListingDetail() {
 }
 
 /* ------------------------------ small pieces ------------------------------ */
+
+/**
+ * Who the citation points at, read off its address and nothing else — a
+ * source's own domain is the only claim this page can actually support.
+ */
+function sourceName(url: string) {
+  try {
+    const host = new URL(url).host.replace(/^www\./, '');
+    if (host.endsWith('openstreetmap.org')) return 'OpenStreetMap';
+    if (host.endsWith('wikimedia.org') || host.endsWith('wikipedia.org') || host.endsWith('wikiart.org')) return 'Wikimedia';
+    return host;
+  } catch {
+    return 'the source';
+  }
+}
+
+/**
+ * The address a detail was read from. A date on the record is not the date
+ * this line was read — a record checked at an operator's page last month can
+ * carry one field re-read from a map today — so only a citation that states
+ * its own read date gets one here.
+ */
+function CitedNote({ slug, field }: { slug: string; field: string }) {
+  const cite = citationsFor(slug, field)[0];
+  if (!cite) return null;
+  return (
+    <span className="mt-1 block text-[12px] text-navy-400">
+      Read from{' '}
+      <a href={cite.url} target="_blank" rel="noopener noreferrer" className="link">
+        {sourceName(cite.url)}
+      </a>
+      {cite.readOn ? ` on ${cite.readOn}` : ''}.
+    </span>
+  );
+}
 
 function Row({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (

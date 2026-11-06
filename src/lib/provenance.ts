@@ -1,6 +1,6 @@
 import provenanceData from '../data/provenance.json';
 
-type Citation = { url: string; supports?: string[]; batch?: string };
+type Citation = { url: string; supports?: string[]; batch?: string; readOn?: string };
 type ProvRecord = { published?: string[]; notFound?: string[]; sources?: Citation[] } | undefined;
 
 const records = (provenanceData as unknown as { records: Record<string, ProvRecord> }).records;
